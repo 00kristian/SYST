@@ -22,6 +22,15 @@ public class SystematicContext : DbContext, ISystematicContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Event>()
+        .HasIndex(s => s.Id)
+        .IsUnique();
         
+        modelBuilder
+        .Entity<Candidate>()
+        .Property(s => s.University)
+        .HasConversion(
+            v => v.ToString(),
+            v => (UniversityEnum)Enum.Parse(typeof(UniversityEnum), v));
     }
 }}
