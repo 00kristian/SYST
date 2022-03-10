@@ -15,6 +15,7 @@ namespace Infrastructure{
                 .Build();
 
             var connectionString = configuration.GetConnectionString("EventToolDB");
+
             var optionBuilder = new DbContextOptionsBuilder<SystematicContext>()
                 .UseSqlServer(connectionString);
 
