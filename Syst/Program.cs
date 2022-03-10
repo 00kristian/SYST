@@ -25,7 +25,6 @@ builder.Services.AddSwaggerGen(c =>{
     c.UseInlineDefinitionsForEnums();
 });
 
-builder.Services.AddControllers();
 var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
