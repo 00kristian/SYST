@@ -60,7 +60,7 @@ public class SystematicContext : DbContext, ISystematicContext
         modelBuilder.Entity<Candidate>()
         .Property(c => c.Answers)
         .HasConversion(
-            v => JsonSerializer.Serialize(v.Select(d => d.ToString()).ToList(), default(JsonSerializerOptions)),
+            v => JsonSerializer.Serialize(v!.Select(d => d.ToString()).ToList(), default(JsonSerializerOptions)),
             v => JsonSerializer.Deserialize<List<string>>(v, default(JsonSerializerOptions))!.Select(d => (bool)Enum.Parse(typeof(bool), d)).ToList(),
             new ValueComparer<ICollection<bool>>(
             (c1, c2) => c1!.SequenceEqual(c2!),
@@ -71,7 +71,7 @@ public class SystematicContext : DbContext, ISystematicContext
         modelBuilder.Entity<Question>()
         .Property(q => q.Options)
         .HasConversion(
-            v => JsonSerializer.Serialize(v.Select(d => d.ToString()).ToList(), default(JsonSerializerOptions)),
+            v => JsonSerializer.Serialize(v!.Select(d => d.ToString()).ToList(), default(JsonSerializerOptions)),
             v => JsonSerializer.Deserialize<List<string>>(v, default(JsonSerializerOptions))!.Select(d => (string)Enum.Parse(typeof(string), d)).ToList(),
             new ValueComparer<ICollection<string>>(
             (c1, c2) => c1!.SequenceEqual(c2!),
