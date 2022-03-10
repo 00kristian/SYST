@@ -20,17 +20,39 @@ public class SystematicContext : DbContext, ISystematicContext
 
     public SystematicContext(DbContextOptions<SystematicContext> options): base(options) { }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override async void OnModelCreating(ModelBuilder modelBuilder)
     {
+
+        modelBuilder.Entity<Candidate>()
+        .HasMany<Event>(c => c.Events)
+        .WithMany(e => e.Candidates);
+
         modelBuilder.Entity<Event>()
-        .HasIndex(s => s.Id)
-        .IsUnique();
+        .HasOne<Quiz>(e => e.Quiz)
+        .WithMany(q => q.Events);
         
+        modelBuilder.Entity<Question>()
+        .HasOne<Quiz>(que => que.Quiz)
+        .WithMany(q => q.Questions);
+
+        modelBuilder.Entity<Quiz>()
+        .HasMany<Candidate>(q => q.Candidates)
+        .WithOne(c => c.Quiz);
+
+        modelBuilder.Entity<Admin>()
+        .HasMany<Event>(a => a.Events)
+        .WithMany(e => e.Admins);
+
+        modelBuilder.Entity<Question>()
+        .Property(q => q.Options);
+
         modelBuilder
         .Entity<Candidate>()
         .Property(s => s.University)
+        .HasMaxLength(50)
         .HasConversion(
             v => v.ToString(),
             v => (UniversityEnum)Enum.Parse(typeof(UniversityEnum), v));
     }
-}}
+}
+}

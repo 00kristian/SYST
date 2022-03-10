@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Syst;
 
 namespace Core {
 
@@ -17,7 +18,14 @@ namespace Core {
         string StudyProgram,
 
         [Required]
-        UniversityEnum University
+        UniversityEnum University,
+
+        [Required]
+        ICollection<Event> Events,
+
+        [Required]
+        Quiz Quiz
+
 
     );
 }

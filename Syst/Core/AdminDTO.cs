@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Syst;
 
 namespace Core {
 
@@ -11,7 +12,10 @@ namespace Core {
         string Name,
 
         [Required, EmailAddress]
-        string Email
+        string Email,
+
+        [Required]
+        ICollection<Event> Events
 
     );
 }

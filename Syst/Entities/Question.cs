@@ -6,5 +6,7 @@ namespace Syst{
         public string? Answer {get; set;}
         public string? ImageURL {get; set;} //what to do? 
         public ICollection<string>? Options {get; set;}
+
+        public Quiz? Quiz {get; set;}
     }
 }

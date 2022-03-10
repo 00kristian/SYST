@@ -8,6 +8,9 @@ namespace Syst{
         public string? Email {get; set;}
         public string? StudyProgram {get; set;}
         public UniversityEnum University {get; set;}
+        public ICollection<Event>? Events {get; set;}
+        public Quiz? Quiz {get; set;}
+        public ICollection<bool>? Answers {get; set;}
 
     }
 }

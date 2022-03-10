@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Syst;
 
 namespace Core {
 
@@ -17,7 +18,10 @@ namespace Core {
         string ImageURl,
 
         [Required]
-        ICollection<string> Options
+        ICollection<string> Options,
+
+        [Required]
+        Quiz Quiz
 
     );
 }
