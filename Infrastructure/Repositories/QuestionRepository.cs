@@ -14,7 +14,7 @@ namespace Infrastructure
 
         public async Task<(Status, int id)> Create(QuestionDTO questionDTO) {
 
-            foreach (Question q in _context.questions) {
+            foreach (Question q in _context.Questions) {
                 if (q.Representation == q.Representation) return (Status.Conflict, q.Id);
             }
                 var entity = new Question
@@ -26,7 +26,7 @@ namespace Infrastructure
                     
                 };
 
-                _context.questions.Add(entity);
+                _context.Questions.Add(entity);
 
                 await _context.SaveChangesAsync();
 
@@ -36,7 +36,7 @@ namespace Infrastructure
 
         public async Task<(Status, QuestionDTO)> Read(int id)
         {
-            var q = await _context.questions.Where(q => q.Id == id).Select(q => new QuestionDTO(){
+            var q = await _context.Questions.Where(q => q.Id == id).Select(q => new QuestionDTO(){
                 Representation = q.Representation!,
                 Id = q.Id,
                 Answer = q.Answer!,
@@ -49,7 +49,7 @@ namespace Infrastructure
         }
 
          public async Task<IReadOnlyCollection<QuestionDTO>> ReadAll() =>
-            await _context.questions.Select(q => new QuestionDTO(){
+            await _context.Questions.Select(q => new QuestionDTO(){
                 Representation = q.Representation!,
                 Id = q.Id,
                 Answer = q.Answer!,
@@ -59,7 +59,7 @@ namespace Infrastructure
 
         public async Task<Status> Update(int id, QuestionDTO questionDTO)
         {
-            var q = await _context.questions.Where(q => q.Id == id).FirstOrDefaultAsync();
+            var q = await _context.Questions.Where(q => q.Id == id).FirstOrDefaultAsync();
 
             if (q == default(Question)) return Status.NotFound;
 
@@ -75,11 +75,11 @@ namespace Infrastructure
 
         public async Task<Status> Delete(int id){
 
-            var q = await _context.questions.Where(q => q.Id == id).FirstOrDefaultAsync();
+            var q = await _context.Questions.Where(q => q.Id == id).FirstOrDefaultAsync();
             
             if (q == default(Question)) return Status.NotFound;
 
-            _context.questions.Remove(q);
+            _context.Questions.Remove(q);
 
             await _context.SaveChangesAsync();
             return Status.Deleted;

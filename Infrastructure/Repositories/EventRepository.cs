@@ -14,7 +14,7 @@ namespace Infrastructure
 
         public async Task<(Status, int id)> Create(EventDTO eventDTO) {
 
-            foreach (Event e in _context.events) {
+            foreach (Event e in _context.Events) {
                 if (e.Name == e.Name) return (Status.Conflict, e.Id);
             }
                 var entity = new Event
@@ -24,7 +24,7 @@ namespace Infrastructure
                     Location = eventDTO.Location, 
                 };
 
-                _context.events.Add(entity);
+                _context.Events.Add(entity);
 
                 await _context.SaveChangesAsync();
 
@@ -32,7 +32,7 @@ namespace Infrastructure
         }
         public async Task<(Status, EventDTO)> Read(int id)
         {
-            var e = await _context.events.Where(e => e.Id == id).Select(e => new EventDTO(){
+            var e = await _context.Events.Where(e => e.Id == id).Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
                 Date = e.Date,
@@ -44,7 +44,7 @@ namespace Infrastructure
         }
 
          public async Task<IReadOnlyCollection<EventDTO>> ReadAll() =>
-            await _context.events.Select(e => new EventDTO(){
+            await _context.Events.Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
                 Date = e.Date,
@@ -52,13 +52,13 @@ namespace Infrastructure
             }).ToListAsync();
 
         public async Task<(Status, int)> ReadIdFromName(string name) {
-            int id = await _context.events.Where(e => e.Name == name).Select(e => e.Id).FirstOrDefaultAsync();
+            int id = await _context.Events.Where(e => e.Name == name).Select(e => e.Id).FirstOrDefaultAsync();
             return (id == 0 ? Status.NotFound : Status.Found, id);
         }
 
         public async Task<Status> Update(int id, EventDTO eventDTO)
         {
-            var e = await _context.events.Where(e => e.Id == id).FirstOrDefaultAsync();
+            var e = await _context.Events.Where(e => e.Id == id).FirstOrDefaultAsync();
 
             if (e == default(Event)) return Status.NotFound;
 
@@ -73,11 +73,11 @@ namespace Infrastructure
 
         public async Task<Status> Delete(int id){
 
-            var e = await _context.events.Where(c => c.Id == id).FirstOrDefaultAsync();
+            var e = await _context.Events.Where(c => c.Id == id).FirstOrDefaultAsync();
             
             if (e == default(Event)) return Status.NotFound;
 
-            _context.events.Remove(e);
+            _context.Events.Remove(e);
 
             await _context.SaveChangesAsync();
             return Status.Deleted;

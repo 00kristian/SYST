@@ -4,11 +4,11 @@ namespace Infrastructure;
 
 public interface ISystematicContext : IDisposable
 {
-    public DbSet<Admin> admins { get; set; }
-    public DbSet<Candidate> candidates {get;set;}
-    public DbSet<Event> events {get;set;}
-    public DbSet<Question> questions {get;set;}
-    public DbSet<Quiz> quizes {get;set;}
+    public DbSet<Admin> Admins { get; set; }
+    public DbSet<Candidate> Candidates {get;set;}
+    public DbSet<Event> Events {get;set;}
+    public DbSet<Question> Questions {get;set;}
+    public DbSet<Quiz> Quizes {get;set;}
     int SaveChanges();
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
