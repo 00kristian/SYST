@@ -9,11 +9,17 @@ $connectionString = "Server=localhost;Database=$database;User Id=sa;Password=$pa
 
 Start-Sleep -s 20
 
-cd ./Infrastructure
+cd ./Syst
 
 dotnet user-secrets set "ConnectionStrings:EventToolDB" "$connectionString"
 
+cd ../Infrastructure
+
+dotnet user-secrets set "ConnectionStrings:EventToolDB" "$connectionString"
+dotnet ef database update -s .
+
 cd ../Syst
+
 
 Write-Host "Starting App, from now on you can run with just 'dotnet run'"
 dotnet run
