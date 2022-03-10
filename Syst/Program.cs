@@ -1,10 +1,17 @@
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Server.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDbContext<SystematicContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("EventToolDB"),
+builder => {
+    builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+}));
+builder.Services.AddScoped<ISystematicContext, SystematicContext>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
@@ -35,5 +42,7 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html");;
+
+await app.SeedAsync();
 
 app.Run();
