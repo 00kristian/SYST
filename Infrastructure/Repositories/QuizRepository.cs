@@ -13,18 +13,18 @@ namespace Infrastructure
         }
 
          public async Task<IReadOnlyCollection<QuizDTO>> ReadAll() =>
-            await _context.candidates.Select(c => new QuizDTO(){
+            await _context.Candidates.Select(c => new QuizDTO(){
                 Id = c.Id
             }).ToListAsync();
 
 
         public async Task<Status> Delete(int id){
 
-            var c = await _context.quizes.Where(c => c.Id == id).FirstOrDefaultAsync();
+            var c = await _context.Quizes.Where(c => c.Id == id).FirstOrDefaultAsync();
             
             if (c == default(Quiz)) return Status.NotFound;
 
-            _context.quizes.Remove(c);
+            _context.Quizes.Remove(c);
 
             await _context.SaveChangesAsync();
             return Status.Deleted;
@@ -37,7 +37,7 @@ namespace Infrastructure
                     Date = quizDTO.Date
                 };
 
-                _context.quizes.Add(entity);
+                _context.Quizes.Add(entity);
 
                 await _context.SaveChangesAsync();
 
@@ -47,7 +47,7 @@ namespace Infrastructure
         public async Task<(Status, QuizDTO)> Read(int id)
         {
             
-            var quiz = await _context.quizes.Where(q => q.Id == id).Select(q => new QuizDTO(){
+            var quiz = await _context.Quizes.Where(q => q.Id == id).Select(q => new QuizDTO(){
                 Id = q.Id,
                 Date = q.Date
               
@@ -59,7 +59,7 @@ namespace Infrastructure
 
         public async Task<Status> Update(int id, QuizDTO quizDTO)
         {
-            var q = await _context.quizes.Where(q => q.Id == id).FirstOrDefaultAsync();
+            var q = await _context.Quizes.Where(q => q.Id == id).FirstOrDefaultAsync();
 
             if (q == default(Quiz)) return Status.NotFound;
 

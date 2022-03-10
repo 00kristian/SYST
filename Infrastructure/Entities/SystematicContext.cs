@@ -11,11 +11,11 @@ namespace Infrastructure;
 
 public class SystematicContext : DbContext, ISystematicContext
 {
-    public DbSet<Admin> admins { get; set; } = null!;
-    public DbSet<Candidate> candidates {get;set;} = null!;
-    public DbSet<Event> events {get;set;} = null!;
-    public DbSet<Question> questions {get;set;} = null!;
-    public DbSet<Quiz> quizes {get;set;} = null!;
+    public DbSet<Admin> Admins { get; set; } = null!;
+    public DbSet<Candidate> Candidates {get;set;} = null!;
+    public DbSet<Event> Events {get;set;} = null!;
+    public DbSet<Question> Questions {get;set;} = null!;
+    public DbSet<Quiz> Quizes {get;set;} = null!;
     public string DbPath { get; private set; } = null!;
 
     public SystematicContext(DbContextOptions<SystematicContext> options): base(options) { }
@@ -24,7 +24,7 @@ public class SystematicContext : DbContext, ISystematicContext
     {
 
         modelBuilder.Entity<Candidate>()
-        .HasMany<Event>(c => c.Events)
+        .HasMany<Event>(c => c.EventsParticipatedIn)
         .WithMany(e => e.Candidates);
 
         modelBuilder.Entity<Event>()
@@ -40,8 +40,7 @@ public class SystematicContext : DbContext, ISystematicContext
         .WithOne(c => c.Quiz);
 
         modelBuilder.Entity<Admin>()
-        .HasMany<Event>(a => a.Events)
-        .WithMany(e => e.Admins);
+        .HasMany<Event>(a => a.Events);
 
         modelBuilder.Entity<Question>()
         .Property(q => q.Options);

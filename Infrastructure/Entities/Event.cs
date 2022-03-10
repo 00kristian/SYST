@@ -8,7 +8,5 @@ namespace Infrastructure{
         public ICollection<Candidate>? Candidates {get; set;}
         public Quiz? Quiz {get; set;}
         public double Rating {get; set;}
-
-        public ICollection<Admin>? Admins {get; set;}
     }
 }

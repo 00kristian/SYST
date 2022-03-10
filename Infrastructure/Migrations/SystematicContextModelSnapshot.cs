@@ -22,32 +22,17 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("AdminEvent", b =>
-                {
-                    b.Property<int>("AdminsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EventsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AdminsId", "EventsId");
-
-                    b.HasIndex("EventsId");
-
-                    b.ToTable("AdminEvent");
-                });
-
             modelBuilder.Entity("CandidateEvent", b =>
                 {
                     b.Property<int>("CandidatesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EventsId")
+                    b.Property<int>("EventsParticipatedInId")
                         .HasColumnType("int");
 
-                    b.HasKey("CandidatesId", "EventsId");
+                    b.HasKey("CandidatesId", "EventsParticipatedInId");
 
-                    b.HasIndex("EventsId");
+                    b.HasIndex("EventsParticipatedInId");
 
                     b.ToTable("CandidateEvent");
                 });
@@ -68,7 +53,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("admins");
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("Infrastructure.Candidate", b =>
@@ -103,7 +88,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("QuizId");
 
-                    b.ToTable("candidates");
+                    b.ToTable("Candidates");
                 });
 
             modelBuilder.Entity("Infrastructure.Event", b =>
@@ -113,6 +98,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("AdminId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -131,9 +119,11 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AdminId");
+
                     b.HasIndex("QuizId");
 
-                    b.ToTable("events");
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("Infrastructure.Question", b =>
@@ -163,7 +153,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("QuizId");
 
-                    b.ToTable("questions");
+                    b.ToTable("Questions");
                 });
 
             modelBuilder.Entity("Infrastructure.Quiz", b =>
@@ -179,22 +169,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("quizes");
-                });
-
-            modelBuilder.Entity("AdminEvent", b =>
-                {
-                    b.HasOne("Infrastructure.Admin", null)
-                        .WithMany()
-                        .HasForeignKey("AdminsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Infrastructure.Event", null)
-                        .WithMany()
-                        .HasForeignKey("EventsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.ToTable("Quizes");
                 });
 
             modelBuilder.Entity("CandidateEvent", b =>
@@ -207,7 +182,7 @@ namespace Infrastructure.Migrations
 
                     b.HasOne("Infrastructure.Event", null)
                         .WithMany()
-                        .HasForeignKey("EventsId")
+                        .HasForeignKey("EventsParticipatedInId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -223,6 +198,10 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Infrastructure.Event", b =>
                 {
+                    b.HasOne("Infrastructure.Admin", null)
+                        .WithMany("Events")
+                        .HasForeignKey("AdminId");
+
                     b.HasOne("Infrastructure.Quiz", "Quiz")
                         .WithMany("Events")
                         .HasForeignKey("QuizId");
@@ -237,6 +216,11 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("QuizId");
 
                     b.Navigation("Quiz");
+                });
+
+            modelBuilder.Entity("Infrastructure.Admin", b =>
+                {
+                    b.Navigation("Events");
                 });
 
             modelBuilder.Entity("Infrastructure.Quiz", b =>

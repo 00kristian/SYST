@@ -14,7 +14,7 @@ namespace Infrastructure
 
         public async Task<(Status, int id)> Create(AdminDTO adminDTO) {
 
-            foreach (Admin a in _context.admins) {
+            foreach (Admin a in _context.Admins) {
                 if (a.Name == a.Name) return (Status.Conflict, a.Id);
             }
                 var entity = new Admin
@@ -23,7 +23,7 @@ namespace Infrastructure
                     Email = adminDTO.Email!,
                 };
 
-                _context.admins.Add(entity);
+                _context.Admins.Add(entity);
 
                 await _context.SaveChangesAsync();
 
@@ -31,13 +31,13 @@ namespace Infrastructure
         }
 
         public async Task<(Status, int)> ReadIdFromName(string name) {
-            int id = await _context.admins.Where(a => a.Name == name).Select(a => a.Id).FirstOrDefaultAsync();
+            int id = await _context.Admins.Where(a => a.Name == name).Select(a => a.Id).FirstOrDefaultAsync();
             return (id == 0 ? Status.NotFound : Status.Found, id);
         }
 
         public async Task<(Status, AdminDTO)> Read(int id)
         {
-            var a = await _context.admins.Where(a => a.Id == id).Select(a => new AdminDTO(){
+            var a = await _context.Admins.Where(a => a.Id == id).Select(a => new AdminDTO(){
                 Name = a.Name!,
                 Id = a.Id,
                 Email = a.Email!,
@@ -48,7 +48,7 @@ namespace Infrastructure
         }
         public async Task<Status> Update(int id, AdminDTO adminDTO)
         {
-            var a = await _context.admins.Where(a => a.Id == id).FirstOrDefaultAsync();
+            var a = await _context.Admins.Where(a => a.Id == id).FirstOrDefaultAsync();
 
             if (a == default(Admin)) return Status.NotFound;
 
@@ -62,11 +62,11 @@ namespace Infrastructure
 
         public async Task<Status> Delete(int id){
 
-            var a = await _context.admins.Where(a => a.Id == id).FirstOrDefaultAsync();
+            var a = await _context.Admins.Where(a => a.Id == id).FirstOrDefaultAsync();
             
             if (a == default(Admin)) return Status.NotFound;
 
-            _context.admins.Remove(a);
+            _context.Admins.Remove(a);
 
             await _context.SaveChangesAsync();
             return Status.Deleted;
