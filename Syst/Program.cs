@@ -1,3 +1,4 @@
+using Core;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -12,6 +13,7 @@ builder => {
     builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
 }));
 builder.Services.AddScoped<ISystematicContext, SystematicContext>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
