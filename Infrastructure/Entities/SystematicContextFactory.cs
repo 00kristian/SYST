@@ -14,7 +14,8 @@ namespace Infrastructure{
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            var connectionString = configuration.GetConnectionString("ProjectBankDB");
+            var connectionString = configuration.GetConnectionString("EventToolDB");
+
             var optionBuilder = new DbContextOptionsBuilder<SystematicContext>()
                 .UseSqlServer(connectionString);
 
