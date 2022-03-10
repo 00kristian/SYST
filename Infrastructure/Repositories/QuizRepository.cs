@@ -1,7 +1,7 @@
 using Core;
 using Microsoft.EntityFrameworkCore;
 
-namespace Syst
+namespace Infrastructure
 {
 
     public class QuizRepository : IQuizRepository

@@ -1,4 +1,4 @@
-namespace Syst{
+namespace Infrastructure{
 
     public class Event {
         public int Id {get; set;}

@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Syst;
 
 namespace Core {
 
@@ -21,7 +20,7 @@ namespace Core {
         ICollection<string> Options,
 
         [Required]
-        Quiz Quiz
+        QuizDTO Quiz
 
     );
 }

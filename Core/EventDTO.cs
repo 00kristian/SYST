@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Syst;
 
 namespace Core {
 
@@ -18,16 +17,16 @@ namespace Core {
         string Location,
 
         [Required]
-        ICollection<Candidate> Candidates,
+        ICollection<CandidateDTO> Candidates,
 
         [Required]
-        Quiz Quiz,
+        QuizDTO Quiz,
 
         [Required]
         double Rating,
 
         [Required]
-        ICollection<Admin> Admins
+        ICollection<AdminDTO> Admins
 
 
     );
