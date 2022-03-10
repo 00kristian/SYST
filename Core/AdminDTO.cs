@@ -1,9 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using Syst;
 
 namespace Core {
 
-    public record struct CandidateDTO(
+    public record struct AdminDTO(
 
         [Required]
         int Id,
@@ -15,17 +14,7 @@ namespace Core {
         string Email,
 
         [Required]
-        string StudyProgram,
-
-        [Required]
-        UniversityEnum University,
-
-        [Required]
-        ICollection<Event> Events,
-
-        [Required]
-        Quiz Quiz
-
+        ICollection<EventDTO> Events
 
     );
 }

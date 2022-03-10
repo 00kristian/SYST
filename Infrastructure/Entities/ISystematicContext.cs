@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Syst;
+namespace Infrastructure;
 
 public interface ISystematicContext : IDisposable
 {

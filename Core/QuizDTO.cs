@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Syst;
 
 namespace Core {
 
@@ -12,13 +11,13 @@ namespace Core {
         DateTime Date,
 
         [Required]
-        ICollection<Question> Questions,
+        ICollection<QuestionDTO> Questions,
 
         [Required]
-        ICollection<Event> Events,
+        ICollection<EventDTO> Events,
 
         [Required]
-        ICollection<Candidate> Candidates
+        ICollection<CandidateDTO> Candidates
 
     );
 }

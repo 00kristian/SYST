@@ -1,5 +1,5 @@
 
-namespace Syst{
+namespace Infrastructure{
 
     public class Candidate{
 

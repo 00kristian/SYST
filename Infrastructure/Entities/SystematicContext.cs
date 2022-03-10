@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace Syst;
+namespace Infrastructure;
 
 public class SystematicContext : DbContext, ISystematicContext
 {
