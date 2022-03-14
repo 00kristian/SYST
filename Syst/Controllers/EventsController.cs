@@ -16,6 +16,7 @@ public class EventsController : ControllerBase
         _repo = repo;
     }
 
+    //Return all events stored in the database
     [ProducesResponseType(200)]
     [HttpGet(Name = "GetEvents")]
     public async Task<IEnumerable<EventDTO>> Get()
@@ -23,6 +24,8 @@ public class EventsController : ControllerBase
         return await _repo.ReadAll(); 
     }
 
+
+    //Return an event given an id
     [ProducesResponseType(404)]
     [ProducesResponseType(typeof(EventDTO), 200)]
     [HttpGet("{id}")]

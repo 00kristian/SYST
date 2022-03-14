@@ -20,7 +20,8 @@ public static class SeedExtensions
     }
 
     private static async Task SeedObjectsAsync(SystematicContext context)
-    {
+    {   
+        //Admin seeding
         if (context.Admins.Count() > 1) return;
 
         await context.Database.MigrateAsync();
@@ -35,6 +36,7 @@ public static class SeedExtensions
             await context.SaveChangesAsync();
         }
 
+        //Event seeding
         if (context.Events.Count() > 1) return;
 
         await context.Database.MigrateAsync();
