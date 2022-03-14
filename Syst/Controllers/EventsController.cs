@@ -22,4 +22,17 @@ public class EventsController : ControllerBase
     {
         return await _repo.ReadAll(); 
     }
+
+    [ProducesResponseType(404)]
+    [ProducesResponseType(typeof(EventDTO), 200)]
+    [HttpGet("{id}")]
+    public async Task<ActionResult<EventDTO>> Get(int id)
+    {
+        var res = await _repo.Read(id);
+        if (res.Item1 == Status.NotFound) {
+            return res.Item1.ToActionResult();
+        } else {
+            return new ActionResult<EventDTO>(res.Item2);
+        }
+    }
 }
