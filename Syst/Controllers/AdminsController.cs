@@ -25,7 +25,7 @@ public class AdminsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<AdminDTO>> Get(int id)
     {   
-        //Using our CRUD operation to get the specified adming by id
+        //Using our CRUD operation to get the specified admin by id
         var res = await _repo.Read(id);
         if (res.Item1 == Status.NotFound) {
             return res.Item1.ToActionResult();

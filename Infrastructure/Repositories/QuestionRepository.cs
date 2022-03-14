@@ -59,7 +59,7 @@ namespace Infrastructure
                 Options = q.Options!
             }).ToListAsync();
 
-        //Updates a question name, date and location
+        //Updates a representation, answer, imageURL and options
         public async Task<Status> Update(int id, QuestionDTO questionDTO)
         {
             var q = await _context.Questions.Where(q => q.Id == id).FirstOrDefaultAsync();
