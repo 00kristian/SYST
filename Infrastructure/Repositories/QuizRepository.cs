@@ -12,24 +12,7 @@ namespace Infrastructure
             _context = context;
         }
 
-         public async Task<IReadOnlyCollection<QuizDTO>> ReadAll() =>
-            await _context.Candidates.Select(c => new QuizDTO(){
-                Id = c.Id
-            }).ToListAsync();
-
-
-        public async Task<Status> Delete(int id){
-
-            var c = await _context.Quizes.Where(c => c.Id == id).FirstOrDefaultAsync();
-            
-            if (c == default(Quiz)) return Status.NotFound;
-
-            _context.Quizes.Remove(c);
-
-            await _context.SaveChangesAsync();
-            return Status.Deleted;
-        }
-
+        //Creates a quiz
         public async Task<(Status, int id)> Create(QuizDTO quizDTO)
         {
              var entity = new Quiz
@@ -44,6 +27,26 @@ namespace Infrastructure
                 return (Status.Created, entity.Id);
         }
 
+        //Return a list of all quizes
+         public async Task<IReadOnlyCollection<QuizDTO>> ReadAll() =>
+            await _context.Candidates.Select(c => new QuizDTO(){
+                Id = c.Id
+            }).ToListAsync();
+
+        //Deletes a quiz given the quiz id
+        public async Task<Status> Delete(int id){
+
+            var c = await _context.Quizes.Where(c => c.Id == id).FirstOrDefaultAsync();
+            
+            if (c == default(Quiz)) return Status.NotFound;
+
+            _context.Quizes.Remove(c);
+
+            await _context.SaveChangesAsync();
+            return Status.Deleted;
+        }
+
+        //Return a quiz given the quiz id
         public async Task<(Status, QuizDTO)> Read(int id)
         {
             
@@ -56,7 +59,8 @@ namespace Infrastructure
             if (quiz == default(QuizDTO)) return (Status.NotFound, quiz);
             else return (Status.Found, quiz);
         }
-
+        
+        //Updates a quiz date value
         public async Task<Status> Update(int id, QuizDTO quizDTO)
         {
             var q = await _context.Quizes.Where(q => q.Id == id).FirstOrDefaultAsync();

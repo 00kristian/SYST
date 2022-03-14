@@ -7,7 +7,7 @@ public interface IAdminRepository
     {
         Task<(Status, int id)> Create(AdminDTO adminDTO);
         Task<(Status, AdminDTO)> Read(int id);
-        Task<(Status, int)> ReadIdFromName(string name);
+        Task<(Status, string?)> ReadNameFromId(int id);
         Task<Status> Update(int id, AdminDTO adminDTO);
         Task<Status> Delete(int id);
 

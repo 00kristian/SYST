@@ -12,6 +12,7 @@ namespace Infrastructure
             _context = context;
         }
 
+        //Creates an event
         public async Task<(Status, int id)> Create(EventDTO eventDTO) {
 
             foreach (Event e in _context.Events) {
@@ -30,6 +31,8 @@ namespace Infrastructure
 
                 return (Status.Created, entity.Id);
         }
+
+        //Return an event given the event id
         public async Task<(Status, EventDTO)> Read(int id)
         {
             var e = await _context.Events.Where(e => e.Id == id).Select(e => new EventDTO(){
@@ -43,6 +46,7 @@ namespace Infrastructure
             else return (Status.Found, e);
         }
 
+        //Return a list of all events
          public async Task<IReadOnlyCollection<EventDTO>> ReadAll() =>
             await _context.Events.Select(e => new EventDTO(){
                 Name = e.Name!,
@@ -51,11 +55,13 @@ namespace Infrastructure
                 Location = e.Location!
             }).ToListAsync();
 
-        public async Task<(Status, int)> ReadIdFromName(string name) {
-            int id = await _context.Events.Where(e => e.Name == name).Select(e => e.Id).FirstOrDefaultAsync();
-            return (id == 0 ? Status.NotFound : Status.Found, id);
+        //Return a name given the event id 
+        public async Task<(Status, string?)> ReadNameFromId(int id) {
+            string? name = await _context.Events.Where(e => e.Id == id).Select(e => e.Name).FirstOrDefaultAsync();
+            return (name == null ? Status.NotFound : Status.Found, name);
         }
 
+        //Updates an events name, date and location
         public async Task<Status> Update(int id, EventDTO eventDTO)
         {
             var e = await _context.Events.Where(e => e.Id == id).FirstOrDefaultAsync();
@@ -71,6 +77,7 @@ namespace Infrastructure
             return Status.Updated;
         }
 
+        //Deletes an event given the event id
         public async Task<Status> Delete(int id){
 
             var e = await _context.Events.Where(c => c.Id == id).FirstOrDefaultAsync();

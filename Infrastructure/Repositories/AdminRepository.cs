@@ -12,6 +12,7 @@ namespace Infrastructure
             _context = context;
         }
 
+        //Creates an admin
         public async Task<(Status, int id)> Create(AdminDTO adminDTO) {
 
             foreach (Admin a in _context.Admins) {
@@ -30,11 +31,13 @@ namespace Infrastructure
                 return (Status.Created, entity.Id);
         }
 
-        public async Task<(Status, int)> ReadIdFromName(string name) {
-            int id = await _context.Admins.Where(a => a.Name == name).Select(a => a.Id).FirstOrDefaultAsync();
-            return (id == 0 ? Status.NotFound : Status.Found, id);
+        //Return a name given the admin id 
+        public async Task<(Status, string?)> ReadNameFromId(int id) {
+            string? name = await _context.Admins.Where(a => a.Id == id).Select(a => a.Name).FirstOrDefaultAsync();
+            return (name == null ? Status.NotFound : Status.Found, name);
         }
 
+        //Return an admin given the admin id
         public async Task<(Status, AdminDTO)> Read(int id)
         {
             var a = await _context.Admins.Where(a => a.Id == id).Select(a => new AdminDTO(){
@@ -46,6 +49,8 @@ namespace Infrastructure
             if (a == default(AdminDTO)) return (Status.NotFound, a);
             else return (Status.Found, a);
         }
+
+        //Updates an admins name and email values
         public async Task<Status> Update(int id, AdminDTO adminDTO)
         {
             var a = await _context.Admins.Where(a => a.Id == id).FirstOrDefaultAsync();
@@ -60,6 +65,7 @@ namespace Infrastructure
             return Status.Updated;
         }
 
+        //Deletes an admin given the admin id
         public async Task<Status> Delete(int id){
 
             var a = await _context.Admins.Where(a => a.Id == id).FirstOrDefaultAsync();
