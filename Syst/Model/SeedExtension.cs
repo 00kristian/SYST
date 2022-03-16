@@ -40,17 +40,7 @@ public static class SeedExtensions
                 new Candidate() {Name = "Camille Gonnsen", Email = "camg@itu.dk", StudyProgram = "Bsc i Rødhårethed", University = UniversityEnum.ITU},
                 new Candidate() {Name = "Kristian Berlin Jensen", Email = "berlin@itu.dk", StudyProgram = "Bsc i Tysklandsstudier", University = UniversityEnum.KU}
             );
-
-            await context.SaveChangesAsync();
-        }
-
-        //Event seeding
-        if (context.Events.Count() > 1) return;
-
-        await context.Database.MigrateAsync();
-
-        if (!await context.Events.AnyAsync())
-        {
+          
             //var date0 = new System.DateTime(2022,03,14);
             //var date1 = new System.DateTime(2022,05,18);
             var date2 = new System.DateTime(2022,09,23);
