@@ -8,7 +8,13 @@ code {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #FF7837;
+    border-color: #FF7837;
 }
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #1D1C1C;
+        border-color: #1D1C1C;
+    }
