@@ -18,7 +18,7 @@ namespace Core {
         string StudyProgram,
 
         [Required]
-        UniversityEnum University,
+        string University,
 
         [Required]
         ICollection<EventDTO> Events,
