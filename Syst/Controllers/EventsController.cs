@@ -10,9 +10,11 @@ public class EventsController : ControllerBase
     private readonly ILogger<EventsController> _logger;
     private IEventRepository _repo;
 
+    //We use REST to make sure we have a reliable API
     public EventsController(ILogger<EventsController> logger, IEventRepository repo)
     {
         _logger = logger;
+        //First we create our repository so we can access our CRUD operations
         _repo = repo;
     }
 
@@ -39,6 +41,7 @@ public class EventsController : ControllerBase
         }
     }
 
+    //Create a new event
     [ProducesResponseType(409)]
     [ProducesResponseType(201)]
     [HttpPost]
@@ -49,12 +52,14 @@ public class EventsController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id }, id);
     }
 
+    //Update an event
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id, [FromBody] EventDTO oldEvent) =>
         (await _repo.Update(id,oldEvent)).ToActionResult();
     
+    //Delete an event
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpDelete("{id}")]
