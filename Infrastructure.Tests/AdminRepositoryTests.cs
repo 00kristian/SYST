@@ -101,4 +101,47 @@ public class AdminRepositoryTests
         //Assert
         Assert.Equal(Status.Updated, actual);
     }
+
+    [Fact]
+    public async void Update_returns_notFound_when_looking_for_admin_not_in_database()
+    {
+        //Arrange
+        var newAdmin = new AdminDTO{
+            Id = 5, 
+            Name = "Maj",
+            Email = "Maj@minecraft.net",
+            Events = new List<EventDTO>(){}
+        };
+
+        //Ac
+        var actual = await _repo.Update(5, newAdmin);
+
+        //Assert
+        Assert.Equal(Status.NotFound, actual);
+    }
+
+    [Fact]
+    public async void Delete_deletes_admin_with_id_1()
+    {
+
+        //Ac
+        var actual = await _repo.Delete(1);
+
+        //Assert
+        Assert.Equal(Status.Deleted, actual);
+    }
+
+    [Fact]
+    public async void Delete_returns_notFound_when_trying_to_delete_nonexisting_id()
+    {
+
+        //Ac
+        var actual = await _repo.Delete(42);
+
+        //Assert
+        Assert.Equal(Status.NotFound, actual);
+    }
+
+
+
 }
