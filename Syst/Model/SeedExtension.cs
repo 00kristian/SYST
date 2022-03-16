@@ -32,6 +32,14 @@ public static class SeedExtensions
                 new Admin() {Name = "Bob Bobsen", Email = "bob@bobsen.com", Events = new List<Event> {}}
             );
 
+            context.Candidates.AddRange(
+                new Candidate() {Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = UniversityEnum.ITU},
+                new Candidate() {Name = "Rene Dif", Email = "rene@dif.dk", StudyProgram = "Msc i Vand", University = UniversityEnum.CBS},
+                new Candidate() {Name = "Isabella Magnusdottir", Email = "isab3ll4@gmail.com", StudyProgram = "PHD i Sexologi", University = UniversityEnum.RUC},
+                new Candidate() {Name = "Camille Gonnsen", Email = "camg@itu.dk", StudyProgram = "Bsc i Rødhårethed", University = UniversityEnum.ITU},
+                new Candidate() {Name = "Kristian Berlin Jensen", Email = "berlin@itu.dk", StudyProgram = "Bsc i Tysklandsstudier", University = UniversityEnum.KU}
+            );
+
             await context.SaveChangesAsync();
         }
     }
