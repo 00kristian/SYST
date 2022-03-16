@@ -49,4 +49,14 @@ public class CandidatesController : ControllerBase
         if (created.Item1 == Status.Conflict) return new ConflictObjectResult(id);
         return CreatedAtAction(nameof(Get), new { id }, id);
     }
+    
+    //Deletes a candidate
+    [ProducesResponseType(404)]
+    [ProducesResponseType(204)]
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id){
+        var deleted = await _repo.Delete(id);
+        if (deleted == Status.NotFound) return new NotFoundObjectResult(id);
+        return deleted.ToActionResult();
+    }
 }
