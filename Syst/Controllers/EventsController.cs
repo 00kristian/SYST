@@ -19,7 +19,7 @@ public class EventsController : ControllerBase
     //Return all events stored in the database
     [ProducesResponseType(200)]
     [HttpGet(Name = "GetEvents")]
-    public async Task<IEnumerable<EventDTO>> Get()
+    public async Task<IEnumerable<EventDTO>> GetAll()
     {
         return await _repo.ReadAll(); 
     }
@@ -37,5 +37,30 @@ public class EventsController : ControllerBase
         } else {
             return new ActionResult<EventDTO>(res.Item2);
         }
+    }
+
+    [ProducesResponseType(409)]
+    [ProducesResponseType(201)]
+    [HttpPost]
+    public async Task<IActionResult> Post(EventDTO newEvent) {
+        var created = await _repo.Create(newEvent);
+        var id = created.Item2;
+        if (created.Item1 == Status.Conflict) return new ConflictObjectResult(id);
+        return CreatedAtAction(nameof(Get), new { id }, id);
+    }
+
+    [ProducesResponseType(404)]
+    [ProducesResponseType(204)]
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, [FromBody] EventDTO oldEvent) =>
+        (await _repo.Update(id,oldEvent)).ToActionResult();
+    
+    [ProducesResponseType(404)]
+    [ProducesResponseType(204)]
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id){
+        var deleted = await _repo.Delete(id);
+        if (deleted == Status.NotFound) return new NotFoundObjectResult(id);
+        return deleted.ToActionResult();
     }
 }
