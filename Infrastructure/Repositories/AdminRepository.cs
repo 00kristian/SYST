@@ -16,7 +16,7 @@ namespace Infrastructure
         public async Task<(Status, int id)> Create(AdminDTO adminDTO) {
 
             foreach (Admin a in _context.Admins) {
-                if (a.Name == a.Name) return (Status.Conflict, a.Id);
+                if (a.Id == adminDTO.Id) return (Status.Conflict, a.Id);
             }
                 var entity = new Admin
                 {
