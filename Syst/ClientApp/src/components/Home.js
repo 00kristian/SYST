@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router";
 
 export class Home extends Component {
   static displayName = Home.name;
@@ -13,46 +14,53 @@ render() {
                 <h1>Welcome to Systematic Event Tool!</h1>
                 <p>From this home page you'll be able to create, host and see and overview over events! Check it out!</p>
 
-                <h1 id="tabelLabel" >Events</h1> <button className="btn btn-primary">Create</button>
+                <h1 id="tabelLabel" >Events</h1>
+                <button className="btn btn-primary" onClick={this.rerouteToEventCreation}>Create</button>
                 {contents}
             </div>
-        );}
+    );
+    }
 
-        constructor(props) {
-          super(props);
-          this.state = { admins: [], loading: true };
-        }
+    rerouteToEventCreation = () => {
+        const { history } = this.props;
+        history.push("/CreateEvent");
+    }
+
+constructor(props) {
+    super(props);
+    this.state = { admins: [], loading: true };
+    
+}
       
-        componentDidMount() {
-          this.populateData();
-        }
+componentDidMount() {
+    this.populateData();
+}
 
-        static renderAdminsTable(admins) {
-          return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                </tr>
-              </thead>
-              <tbody>
-                {admins.map(admin =>
-                  <tr key={admin.id}>
-                    <td>{admin.id}</td>
-                    <td>{admin.name}</td>
-                    <td>{admin.email}</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          );
-        }
+static renderAdminsTable(admins) {
+    return (
+       <table className='table table-striped' aria-labelledby="tabelLabel">
+          <thead>
+             <tr>
+               <th>Id</th>
+               <th>Name</th>
+               <th>Email</th>
+             </tr>
+          </thead>
+          <tbody>
+            {admins.map(admin =>
+              <tr key={admin.id}>
+                <td>{admin.id}</td>
+                <td>{admin.name}</td>
+                <td>{admin.email}</td>
+              </tr>)}
+          </tbody>
+       </table>);
+}
 
-        async populateData() {
-          const response = await fetch('api/admins/1');
-          const data = await response.json();
-          this.setState({ admins: [data], loading: false });
-        }
+async populateData() {
+   const response = await fetch('api/admins/1');
+   const data = await response.json();
+   this.setState({ admins: [data], loading: false });
+    }
+
 }
