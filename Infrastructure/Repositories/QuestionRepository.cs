@@ -16,7 +16,7 @@ namespace Infrastructure
         public async Task<(Status, int id)> Create(QuestionDTO questionDTO) {
 
             foreach (Question q in _context.Questions) {
-                if (q.Representation == q.Representation) return (Status.Conflict, q.Id);
+                if (q.Id == questionDTO.Id) return (Status.Conflict, q.Id);
             }
                 var entity = new Question
                 {
@@ -88,5 +88,6 @@ namespace Infrastructure
             await _context.SaveChangesAsync();
             return Status.Deleted;
         }
+        
     }
 }
