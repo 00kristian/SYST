@@ -95,7 +95,7 @@ public class AdminRepositoryTests
             Events = new List<EventDTO>(){}
         };
 
-        //Ac
+        //Act
         var actual = await _repo.Update(1, newAdmin);
 
         //Assert
@@ -113,7 +113,7 @@ public class AdminRepositoryTests
             Events = new List<EventDTO>(){}
         };
 
-        //Ac
+        //Act
         var actual = await _repo.Update(5, newAdmin);
 
         //Assert
@@ -124,7 +124,7 @@ public class AdminRepositoryTests
     public async void Delete_deletes_admin_with_id_1()
     {
 
-        //Ac
+        //Act
         var actual = await _repo.Delete(1);
 
         //Assert
@@ -135,7 +135,7 @@ public class AdminRepositoryTests
     public async void Delete_returns_notFound_when_trying_to_delete_nonexisting_id()
     {
 
-        //Ac
+        //Act
         var actual = await _repo.Delete(42);
 
         //Assert

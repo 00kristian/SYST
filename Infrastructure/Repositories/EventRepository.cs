@@ -53,7 +53,8 @@ namespace Infrastructure
                 Name = e.Name!,
                 Id = e.Id,
                 Date = e.Date,
-                Location = e.Location!
+                Location = e.Location!,
+                Rating = e.Rating!
             }).ToListAsync();
 
         //Return a name given the event id 

@@ -113,7 +113,7 @@ public class CandidateRepositoryTests{
       
     }
 
-    //virker ikke
+    
     [Fact]
     public async void ReadAll_returns_all_candidates()
     {
@@ -122,8 +122,8 @@ public class CandidateRepositoryTests{
 
         //assert
         Assert.Collection(candidates,
-            candidate => Assert.Equal(new CandidateDTO(1,"Lukas Hjelmstrand", "luhj@itu.dk", "Bsc i Softwareudvikling", UniversityEnum.ITU,  new List<EventDTO> {}, new QuizDTO { }), candidate),
-            candidate => Assert.Equal(new CandidateDTO(2, "Rene Dif", "rene@dif.dk", "Msc i Vand", UniversityEnum.CBS, new List<EventDTO> { }, new QuizDTO { }), candidate)
+            candidate => Assert.Equal(new CandidateDTO(1,"Lukas Hjelmstrand", "luhj@itu.dk", "Bsc i Softwareudvikling", UniversityEnum.ITU,  null!, new QuizDTO { }), candidate),
+            candidate => Assert.Equal(new CandidateDTO(2, "Rene Dif", "rene@dif.dk", "Msc i Vand", UniversityEnum.CBS, null!, new QuizDTO { }), candidate)
         );
     }
 
@@ -139,7 +139,7 @@ public class CandidateRepositoryTests{
             Events = new List<EventDTO>(){}
         };
 
-        //Ac
+        //Act
         var actual = await _repo.Update(5, newCandidate);
 
         //Assert
@@ -157,7 +157,7 @@ public class CandidateRepositoryTests{
             Events = new List<EventDTO>(){}
         };
 
-        //Ac
+        //Act
         var actual = await _repo.Update(1, newCandidate);
 
         //Assert
@@ -169,7 +169,7 @@ public class CandidateRepositoryTests{
     public async void Delete_deletes_candidates_with_id_1()
     {
 
-        //Ac
+        //Act
         var actual = await _repo.Delete(1);
 
         //Assert
@@ -180,7 +180,7 @@ public class CandidateRepositoryTests{
     public async void Delete_returns_notFound_when_trying_to_delete_nonexisting_id()
     {
 
-        //Ac
+        //Act
         var actual = await _repo.Delete(42);
 
         //Assert

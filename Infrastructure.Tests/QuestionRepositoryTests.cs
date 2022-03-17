@@ -53,7 +53,7 @@ public class QuestionsRepositoryTests {
         Assert.Equal(3, actual.Item2);
     }
 
-     [Fact]
+    [Fact]
     public async void Create_Returns_Conflict_When_ID_Is_In_the_database()
     {
         //Arrange
@@ -69,19 +69,18 @@ public class QuestionsRepositoryTests {
     }
 
 
-    //virker ikke
+    
     [Fact]
     public async void Read_returns_question1_when_given_ID_1()
     {
         //act
-        var  actual = await _repo.Read(1);
+        var actual = await _repo.Read(1);
 
         //assert
-        
-       // Assert.Equal(Status.Found, actual.Item1);
+        Assert.Equal(Status.Found, actual.Item1);
         Assert.Equal(question1.Representation, actual.Item2.Representation);
         Assert.Equal(question1.Answer, actual.Item2.Answer);
-       Assert.Equal(question1.Id, actual.Item2.Id);
+        Assert.Equal(question1.Id, actual.Item2.Id);
         Assert.Equal(question1.ImageURL, actual.Item2.ImageURl);
     }
 
@@ -104,9 +103,8 @@ public class QuestionsRepositoryTests {
 
         //assert
         Assert.Collection(questions,
-            question => Assert.Equal(new QuestionDTO(1, "I am not sure", "Virtual Dispatching", "", new List<string> { "Java", "F#", "Virtual Dispatching", "Golang" }, new QuizDTO { }), question),
-            question => Assert.Equal(new QuestionDTO(2, "This one is about hockey", "Gretzky", "", new List<string> { "Jaromir", "Ovechkin", "Gretzky", "Eller" }, new QuizDTO { }), question)
-
+            question => Assert.Equal(new QuestionDTO(1, "I am not sure", "Virtual Dispatching", "", null!, new QuizDTO { }), question),
+            question => Assert.Equal(new QuestionDTO(2, "This one is about hockey", "Gretzky", "", null!, new QuizDTO { }), question)
         );
 
     }

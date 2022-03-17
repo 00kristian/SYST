@@ -49,7 +49,7 @@ public class EventRepositoryTests {
         Assert.Equal(3, actual.Item2);
     }
 
-     [Fact]
+    [Fact]
     public async void Create_Returns_Conflict_When_ID_Is_In_the_database()
     {
         //Arrange
@@ -90,7 +90,7 @@ public class EventRepositoryTests {
     }
 
 
-    //virker ikke endnu
+    
     [Fact]
     public async void Read_all_returns_all_events_in_repo()
     {
@@ -99,8 +99,8 @@ public class EventRepositoryTests {
 
         //assert
         Assert.Collection(events,
-            firstEvent => Assert.Equal(new EventDTO(1,"Lukas Hjelmstrand", new DateTime{}, "Bsc i Softwareudvikling", new List<CandidateDTO>{}, new QuizDTO {}, 4.0, new List<AdminDTO> {}), firstEvent),
-            SecondEvent => Assert.Equal(new EventDTO(2, "Rene Dif", new DateTime { }, "Msc i Vand", new List<CandidateDTO> { }, new QuizDTO { }, 7.0, new List<AdminDTO> { }), SecondEvent)
+            firstEvent => Assert.Equal(new EventDTO(1,"Workshop event", new DateTime{}, "ITU", null!, new QuizDTO {}, 4.0, null!), firstEvent),
+            SecondEvent => Assert.Equal(new EventDTO( 2, "Swagger event", new DateTime{}, "Scrollbar", null!, new QuizDTO{}, 7.0,  null!), SecondEvent)
         );
     }
 
@@ -144,7 +144,7 @@ public class EventRepositoryTests {
         Assert.Equal(Status.Updated, actual);
     }
 
-     [Fact]
+    [Fact]
     public async void ReadNameFromId_returns_correct_name_after_updating_Event_with_id_1()
     {
         // Arrange

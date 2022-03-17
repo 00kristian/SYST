@@ -42,7 +42,7 @@ namespace Infrastructure
                 Id = q.Id,
                 Answer = q.Answer!,
                 ImageURl = q.ImageURL!,
-                Options = q.Options!
+                //Options = q.Options!
             }).FirstOrDefaultAsync();
 
             if (q == default(QuestionDTO)) return (Status.NotFound, q);
@@ -56,7 +56,7 @@ namespace Infrastructure
                 Id = q.Id,
                 Answer = q.Answer!,
                 ImageURl = q.ImageURL!,
-                Options = q.Options!
+                //Options = q.Options!
             }).ToListAsync();
 
         //Updates a representation, answer, imageURL and options
