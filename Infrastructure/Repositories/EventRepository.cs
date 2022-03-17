@@ -16,7 +16,7 @@ namespace Infrastructure
         public async Task<(Status, int id)> Create(EventDTO eventDTO) {
 
             foreach (Event e in _context.Events) {
-                if (e.Name == e.Name) return (Status.Conflict, e.Id);
+                if (e.Id == eventDTO.Id) return (Status.Conflict, e.Id);
             }
                 var entity = new Event
                 {
@@ -39,7 +39,8 @@ namespace Infrastructure
                 Name = e.Name!,
                 Id = e.Id,
                 Date = e.Date,
-                Location = e.Location!
+                Location = e.Location!,
+                Rating = e.Rating!                
             }).FirstOrDefaultAsync();
 
             if (e == default(EventDTO)) return (Status.NotFound, e);
