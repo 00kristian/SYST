@@ -41,15 +41,15 @@ public static class SeedExtensions
                 new Candidate() {Name = "Kristian Berlin Jensen", Email = "berlin@itu.dk", StudyProgram = "Bsc i Tysklandsstudier", University = UniversityEnum.KU}
             );
           
-            //var date0 = new System.DateTime(2022,03,14);
-            //var date1 = new System.DateTime(2022,05,18);
+            var date0 = new System.DateTime(2022,03,14);
+            var date1 = new System.DateTime(2022,05,18);
             var date2 = new System.DateTime(2022,09,23);
 
             var quiz2 = new Quiz {Date = date2, Questions = new List<Question> {}, Events = new List<Event> {}, Candidates = new List<Candidate> {}};
 
             context.Events.AddRange(
-                //new Event() {Name = "IT Konference", Date = date0, Location = "Århus", Candidates = new List<Candidate> {}, Quiz = null, Rating = 3.7},
-                //new Event() {Name = "SDU - Match Making", Date = date1, Location = "Odense", Candidates = new List<Candidate> {}, Quiz = null, Rating = 2.5},
+                new Event() {Name = "IT Konference", Date = date0, Location = "Århus", Candidates = new List<Candidate> {}, Quiz = null, Rating = 3.7},
+                new Event() {Name = "SDU - Match Making", Date = date1, Location = "Odense", Candidates = new List<Candidate> {}, Quiz = null, Rating = 2.5},
                 new Event() {Name = "ITU - Job messe", Date = date2, Location = "København", Candidates = new List<Candidate> {}, Quiz = quiz2, Rating = 5.0}
             );
 
