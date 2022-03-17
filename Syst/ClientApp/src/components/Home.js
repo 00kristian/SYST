@@ -15,7 +15,7 @@ render() {
                 <p>From this home page you'll be able to create, host and see and overview over events! Check it out!</p>
 
                 <h1 id="tabelLabel" >Events</h1>
-                <button className="btn btn-primary" onClick={this.rerouteToEventCreation}>Create</button>
+                <button className="btn btn-primary rightbtn" onClick={this.rerouteToEventCreation}>Create</button>
                 {contents}
             </div>
     );
