@@ -7,27 +7,28 @@ export class CreateEvent extends Component {
     render() {
         return (
             <div>
-                <h1>Here you can create an event</h1>
+                <h2>Here you can create an event</h2>
+                <br/>
                 <form>
                     <label>
-                        <h3>Name</h3>
+                        <h5>Name</h5>
                         <input className="input-field"></input>
                     </label>
                     <br />
                     <br />
                     <label>
-                        <h3>Date</h3>
+                        <h5>Date</h5>
                         <input className="input-field"></input>
                     </label>
                     <br />
                     <br />
                     <label>
-                        <h3>Location</h3>
+                        <h5>Location</h5>
                         <input className="input-field"></input>
                     </label>
                 </form>
                 <br />
-                <h3>Quiz</h3>
+                <h5>Quiz</h5>
                 <button className="btn btn-primary" >Create quiz</button>
                 <br />
                 <br />

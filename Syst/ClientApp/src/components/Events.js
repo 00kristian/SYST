@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router";
 
-export class Home extends Component {
-    static displayName = Home.name;
-
+export class Events extends Component {
+    static displayName = Events.name;
+    
     constructor(props) {
         super(props);
         this.state = { events: [], loading: true };
@@ -17,24 +17,24 @@ export class Home extends Component {
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Date</th>
-                    <th>Location</th>
-                    <th>Rating</th>
-                </tr>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Rating</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {events.map(event =>
-                    <tr key={event.id}>
-                        <td>{event.id}</td>
-                        <td>{event.name}</td>
-                        <td>{event.date}</td>
-                        <td>{event.location}</td>
-                        <td>{event.rating}</td>
-                    </tr>
-                )}
+                    {events.map(event =>
+                        <tr key={event.id}>
+                            <td>{event.id}</td>
+                            <td>{event.name}</td>
+                            <td>{event.date}</td>
+                            <td>{event.location}</td>
+                            <td>{event.rating}</td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
         );
@@ -43,19 +43,22 @@ export class Home extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : Home.renderEventsTable(this.state.events);
+            : Events.renderEventsTable(this.state.events);
 
         return (
+            
             <div>
-                <h1>Welcome to Systematic Event Tool!</h1>
-                <p>From this home page you'll be able to create, host and see and overview over events! Check it out!</p>
-
-                <h1 id="tabelLabel" >Events
+                <h3 id="tabelLabel" >Upcoming Events
                     <button className="btn btn-primary rightbtn" onClick={this.rerouteToEventCreation}>Create</button>
-                </h1>
+                </h3>
+                {contents}
+                <br/>
+                <h3>Recent Events
+                    <button className="btn btn-primary rightbtn" >View All</button>
+                </h3>
                 {contents}
             </div>
-    );
+        );
     }
 
     rerouteToEventCreation = () => {
