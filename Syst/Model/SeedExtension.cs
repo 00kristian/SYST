@@ -14,7 +14,7 @@ public static class SeedExtensions
         {
             var context = scope.ServiceProvider.GetRequiredService<SystematicContext>();
 
-           // await SeedObjectsAsync(context);
+            await SeedObjectsAsync(context);
         }
         return host;
     }
@@ -22,9 +22,9 @@ public static class SeedExtensions
     private static async Task SeedObjectsAsync(SystematicContext context)
     {   
         //Admin seeding
-        if (context.Admins.Count() > 1) return;
+        if (context.Candidates.Count() > 1) return;
 
-        //await context.Database.MigrateAsync();
+        await context.Database.MigrateAsync();
 
         if (!await context.Admins.AnyAsync())
         {
