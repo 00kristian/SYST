@@ -37,7 +37,9 @@ public class CandidateRepositoryTests{
     public async void Create_Creates_New_Candidate_In_Repository()
     {
         //Arrange
-        var candidate1 = new CandidateDTO {Name = "Oscar", Email = "Eng@itu.dk", StudyProgram = "Bsc i League of Legends", University = UniversityEnum.ITU};
+
+        var candidate1 = new CandidateDTO {Name = "Oscar", Email = "Eng@itu.dk", StudyProgram = "Bsc i League of Legends", University = "ITU"};
+
 
         //Act
         var actual = await _repo.Create(candidate1);
@@ -97,7 +99,9 @@ public class CandidateRepositoryTests{
         Assert.Equal(candidate1.Name, actual.Item2.Name);
         Assert.Equal(candidate1.Email, actual.Item2.Email);
         Assert.Equal(candidate1.StudyProgram, actual.Item2.StudyProgram);
-        Assert.Equal(candidate1.University, actual.Item2.University);
+
+        Assert.Equal(candidate1.University.ToString(), actual.Item2.University);
+
     }
 
      [Fact]
@@ -122,8 +126,10 @@ public class CandidateRepositoryTests{
 
         //assert
         Assert.Collection(candidates,
-            candidate => Assert.Equal(new CandidateDTO(1,"Lukas Hjelmstrand", "luhj@itu.dk", "Bsc i Softwareudvikling", UniversityEnum.ITU,  null!, new QuizDTO { }), candidate),
-            candidate => Assert.Equal(new CandidateDTO(2, "Rene Dif", "rene@dif.dk", "Msc i Vand", UniversityEnum.CBS, null!, new QuizDTO { }), candidate)
+
+            candidate => Assert.Equal(new CandidateDTO(1,"Lukas Hjelmstrand", "luhj@itu.dk", "Bsc i Softwareudvikling", "ITU",  null!, new QuizDTO { }), candidate),
+            candidate => Assert.Equal(new CandidateDTO(2, "Rene Dif", "rene@dif.dk", "Msc i Vand", "CBS", null!, new QuizDTO { }), candidate)
+
         );
     }
 
@@ -154,7 +160,8 @@ public class CandidateRepositoryTests{
             Id = 1, 
             Name = "Gardal",
             Email = "G@hejsa.net",
-            Events = new List<EventDTO>(){}
+            Events = new List<EventDTO>(){},
+            University = "ITU"
         };
 
         //Act

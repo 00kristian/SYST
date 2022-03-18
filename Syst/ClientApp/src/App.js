@@ -6,6 +6,7 @@ import { FetchData } from './components/FetchData';
 import { Candidates } from './components/Candidates';
 
 import './custom.css'
+import { CreateEvent } from './components/CreateEvent';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -16,6 +17,7 @@ export default class App extends Component {
         <Route exact path='/' component={Home} />
         <Route path='/candidates' component={Candidates} />
         <Route path='/fetch-data' component={FetchData} />
+        <Route path='/CreateEvent' component={CreateEvent} />
       </Layout>
     );
   }
