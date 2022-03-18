@@ -90,5 +90,31 @@ namespace Infrastructure
             await _context.SaveChangesAsync();
             return Status.Deleted;
         }
+        
+        public async Task<IReadOnlyCollection<EventDTO>> ReadUpcoming() =>
+            await _context.Events.Select(e => new EventDTO()
+                {
+                    Name = e.Name!,
+                    Id = e.Id,
+                    Date = e.Date,
+                    Location = e.Location!,
+                    Rating = e.Rating!
+                }).Where(e => e.Date > DateTime.Today)
+                .OrderByDescending(e => e.Date)
+                .Take(5)
+                .ToListAsync();
+
+        public async Task<IReadOnlyCollection<EventDTO>> ReadRecent() =>
+            await _context.Events.Select(e => new EventDTO()
+                {
+                    Name = e.Name!,
+                    Id = e.Id,
+                    Date = e.Date,
+                    Location = e.Location!,
+                    Rating = e.Rating!
+                }).Where(e => e.Date < DateTime.Today)
+                .OrderBy(e => e.Date)
+                .Take(5)
+                .ToListAsync();
     }
 }

@@ -10,5 +10,9 @@ public interface IEventRepository
         Task<Status> Update(int id, EventDTO eventDTO);
         Task<Status> Delete(int id);
 
+        Task<IReadOnlyCollection<EventDTO>> ReadUpcoming();
+
+        Task<IReadOnlyCollection<EventDTO>> ReadRecent();
+
     }
 }
