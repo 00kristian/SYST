@@ -17,7 +17,7 @@ namespace Core {
         [Required]
         string Location,
 
-        [Required]
+        
         ICollection<CandidateDTO> Candidates,
 
         [Required]

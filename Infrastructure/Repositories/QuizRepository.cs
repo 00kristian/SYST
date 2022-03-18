@@ -15,6 +15,9 @@ namespace Infrastructure
         //Creates a quiz
         public async Task<(Status, int id)> Create(QuizDTO quizDTO)
         {
+             foreach (Quiz q in _context.Quizes) {
+                if (q.Id == quizDTO.Id) return (Status.Conflict, q.Id);
+            }
              var entity = new Quiz
                 {
                     Date = quizDTO.Date
@@ -29,8 +32,8 @@ namespace Infrastructure
 
         //Return a list of all quizes
          public async Task<IReadOnlyCollection<QuizDTO>> ReadAll() =>
-            await _context.Candidates.Select(c => new QuizDTO(){
-                Id = c.Id
+            await _context.Quizes.Select(q => new QuizDTO(){
+                Id = q.Id
             }).ToListAsync();
 
         //Deletes a quiz given the quiz id

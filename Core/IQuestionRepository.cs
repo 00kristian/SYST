@@ -10,5 +10,7 @@ public interface IQuestionRepository
         Task<Status> Update(int id, QuestionDTO questionDTO);
         Task<Status> Delete(int id);
 
+        Task<IReadOnlyCollection<QuestionDTO>> ReadAll();
+
     }
 }
