@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
+import { Candidates } from './components/Candidates';
 
 import './custom.css'
 import { CreateEvent } from './components/CreateEvent';
@@ -15,7 +15,7 @@ export default class App extends Component {
     return (
       <Layout>
         <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
+        <Route path='/candidates' component={Candidates} />
         <Route path='/fetch-data' component={FetchData} />
         <Route path='/CreateEvent' component={CreateEvent} />
       </Layout>

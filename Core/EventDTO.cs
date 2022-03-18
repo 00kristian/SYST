@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core {
 
+    //Event object that carries event data between processes
     public record struct EventDTO(
 
         [Required]

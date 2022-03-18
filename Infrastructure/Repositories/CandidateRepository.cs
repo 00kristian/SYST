@@ -12,6 +12,7 @@ namespace Infrastructure
             _context = context;
         }
 
+        //Creates an candidate
         public async Task<(Status, int id)> Create(CandidateDTO candidateDTO) {
 
             foreach (Candidate c in _context.Candidates) {
@@ -22,7 +23,7 @@ namespace Infrastructure
                     Name = candidateDTO.Name!,
                     Email = candidateDTO.Email!,
                     StudyProgram = candidateDTO.StudyProgram,
-                    University = candidateDTO.University,
+                    University = (UniversityEnum)Enum.Parse(typeof(UniversityEnum), candidateDTO.University),
                     
                 };
 
@@ -33,11 +34,13 @@ namespace Infrastructure
                 return (Status.Created, entity.Id);
         }
 
-        public async Task<(Status, int)> ReadIdFromName(string name) {
-            int id = await _context.Candidates.Where(c => c.Name == name).Select(c => c.Id).FirstOrDefaultAsync();
-            return (id == 0 ? Status.NotFound : Status.Found, id);
+        //Return a name given the candidate id 
+        public async Task<(Status, string?)> ReadNameFromId(int id) {
+            string? name = await _context.Candidates.Where(c => c.Id == id).Select(c => c.Name).FirstOrDefaultAsync();
+            return (name == null ? Status.NotFound : Status.Found, name);
         }
 
+        //Return an candidate given the candidate id
         public async Task<(Status, CandidateDTO)> Read(int id)
         {
             var c = await _context.Candidates.Where(c => c.Id == id).Select(c => new CandidateDTO(){
@@ -45,22 +48,24 @@ namespace Infrastructure
                 Id = c.Id,
                 Email = c.Email!,
                 StudyProgram = c.StudyProgram!,
-                University = c.University
+                University = c.University.ToString()
             }).FirstOrDefaultAsync();
 
             if (c == default(CandidateDTO)) return (Status.NotFound, c);
             else return (Status.Found, c);
         }
 
+        //Return a list of all canidates 
          public async Task<IReadOnlyCollection<CandidateDTO>> ReadAll() =>
             await _context.Candidates.Select(c => new CandidateDTO(){
                 Name = c.Name!,
                 Id = c.Id,
                 Email = c.Email!,
                 StudyProgram = c.StudyProgram!,
-                University = c.University
+                University = c.University.ToString()
             }).ToListAsync();
 
+        //Updates an candidate name, email, university and study program values
         public async Task<Status> Update(int id, CandidateDTO candidateDTO)
         {
             var c = await _context.Candidates.Where(c => c.Id == id).FirstOrDefaultAsync();
@@ -69,7 +74,7 @@ namespace Infrastructure
 
             c.Name = candidateDTO.Name;
             c.Email = candidateDTO.Email!;
-            c.University = candidateDTO.University;
+            c.University = (UniversityEnum)Enum.Parse(typeof(UniversityEnum), candidateDTO.University);
             c.StudyProgram = candidateDTO.StudyProgram;
 
             await _context.SaveChangesAsync();
@@ -77,6 +82,7 @@ namespace Infrastructure
             return Status.Updated;
         }
 
+        //Deletes a candidates given the candidate id
         public async Task<Status> Delete(int id){
 
             var c = await _context.Candidates.Where(c => c.Id == id).FirstOrDefaultAsync();

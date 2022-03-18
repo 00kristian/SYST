@@ -14,6 +14,8 @@ builder => {
 }));
 builder.Services.AddScoped<ISystematicContext, SystematicContext>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
+builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
+builder.Services.AddScoped<IEventRepository, EventRepository>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();

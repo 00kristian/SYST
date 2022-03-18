@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core {
 
+    //Candidate object that carries candiate data between processes
     public record struct CandidateDTO(
 
         [Required]
@@ -17,7 +18,7 @@ namespace Core {
         string StudyProgram,
 
         [Required]
-        UniversityEnum University,
+        string University,
 
         [Required]
         ICollection<EventDTO> Events,

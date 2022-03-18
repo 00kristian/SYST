@@ -5,61 +5,52 @@ namespace Syst.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class EventsController : ControllerBase
+public class CandidatesController : ControllerBase
 {
-    private readonly ILogger<EventsController> _logger;
-    private IEventRepository _repo;
+    private readonly ILogger<CandidatesController> _logger;
+    private ICandidateRepository _repo;
 
     //We use REST to make sure we have a reliable API
-    public EventsController(ILogger<EventsController> logger, IEventRepository repo)
+    public CandidatesController(ILogger<CandidatesController> logger, ICandidateRepository repo)
     {
         _logger = logger;
         //First we create our repository so we can access our CRUD operations
         _repo = repo;
     }
 
-    //Return all events stored in the database
+    //Return all candidates in the system
     [ProducesResponseType(200)]
-    [HttpGet(Name = "GetEvents")]
-    public async Task<IEnumerable<EventDTO>> GetAll()
-    {
-        return await _repo.ReadAll(); 
+    [HttpGet(Name = "GetCandidates")]
+    public async Task<IEnumerable<CandidateDTO>> Get() {
+        return await _repo.ReadAll();
     }
-
-
-    //Return an event given an id
+    
+    //Return a candidate given the candidate id
     [ProducesResponseType(404)]
-    [ProducesResponseType(typeof(EventDTO), 200)]
+    [ProducesResponseType(typeof(CandidateDTO), 200)]
     [HttpGet("{id}")]
-    public async Task<ActionResult<EventDTO>> Get(int id)
-    {
+    public async Task<ActionResult<CandidateDTO>> Get(int id)
+    {   
+        //Using our CRUD operation to get the specified candidate by id
         var res = await _repo.Read(id);
         if (res.Item1 == Status.NotFound) {
             return res.Item1.ToActionResult();
         } else {
-            return new ActionResult<EventDTO>(res.Item2);
+            return new ActionResult<CandidateDTO>(res.Item2);
         }
     }
 
-    //Create a new event
+    //Create a new candidate
     [ProducesResponseType(409)]
-    [ProducesResponseType(201)]
     [HttpPost]
-    public async Task<IActionResult> Post(EventDTO newEvent) {
-        var created = await _repo.Create(newEvent);
+    public async Task<IActionResult> Post(CandidateDTO candidate) {
+        var created = await _repo.Create(candidate);
         var id = created.Item2;
         if (created.Item1 == Status.Conflict) return new ConflictObjectResult(id);
         return CreatedAtAction(nameof(Get), new { id }, id);
     }
-
-    //Update an event
-    [ProducesResponseType(404)]
-    [ProducesResponseType(204)]
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] EventDTO oldEvent) =>
-        (await _repo.Update(id,oldEvent)).ToActionResult();
     
-    //Delete an event
+    //Deletes a candidate
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpDelete("{id}")]

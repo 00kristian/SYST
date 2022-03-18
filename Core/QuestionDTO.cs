@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core {
 
+    //Question object that carries question data between processes
     public record struct QuestionDTO(
 
         [Required]
