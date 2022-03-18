@@ -16,8 +16,8 @@ namespace Infrastructure
         public async Task<(Status, int id)> Create(CandidateDTO candidateDTO) {
 
             foreach (Candidate c in _context.Candidates) {
-                if (c.Name == candidateDTO.Name) return (Status.Conflict, c.Id); 
-                //er ovenstående funktion nødvendig? 
+                if (c.Email == candidateDTO.Email) return (Status.Conflict, c.Id); 
+                //Is this function necessary? Ask Iulia about multiple email entries in the db
             }
                 var entity = new Candidate
                 {

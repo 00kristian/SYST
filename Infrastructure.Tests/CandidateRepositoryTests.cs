@@ -49,20 +49,21 @@ public class CandidateRepositoryTests{
         Assert.Equal(3, actual.Item2);
     }
 
-  /*   [Fact]
+     [Fact]
     public async void Create_Returns_Conflict_When_Name_Is_In_the_database()
     {
         //Arrange
-        
+         var newCandidate = new CandidateDTO { Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "ITU"};
+
 
         //Act
-        var actual = await _repo.Create(newAdmin);
+        var actual = await _repo.Create(newCandidate);
 
         //Assert
         Assert.Equal(Status.Conflict, actual.Item1);
         Assert.Equal(1, actual.Item2);
     }
- */
+ 
     [Fact]
     public async void ReadNameFromID_returns_Rene_Dif_given_id_2()
     {
