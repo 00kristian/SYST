@@ -40,6 +40,22 @@ public class EventsController : ControllerBase
             return new ActionResult<EventDTO>(res.Item2);
         }
     }
+    
+    //Returns the recent events in the database
+    [ProducesResponseType(200)]
+    [HttpGet(Name = "GetRecentEvents")]
+    public async Task<IEnumerable<EventDTO>> GetRecent()
+    {
+        return await _repo.ReadRecent();
+    }
+    
+    //Returns the upcoming events in the database
+    [ProducesResponseType(200)]
+    [HttpGet(Name = "GetUpcomingEvents")]
+    public async Task<IEnumerable<EventDTO>> GetUpcoming()
+    {
+        return await _repo.ReadUpcoming();
+    }
 
     //Create a new event
     [ProducesResponseType(409)]
@@ -68,4 +84,5 @@ public class EventsController : ControllerBase
         if (deleted == Status.NotFound) return new NotFoundObjectResult(id);
         return deleted.ToActionResult();
     }
+    
 }
