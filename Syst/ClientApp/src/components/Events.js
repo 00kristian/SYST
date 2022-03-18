@@ -13,7 +13,35 @@ export class Events extends Component {
         this.populateData();
     }
 
-    static renderEventsTable(events) {
+    static renderUpcomingEventsTable(events) {
+        return (
+            <table className='table table-striped' aria-labelledby="tabelLabel">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Rating</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {events.map(event =>
+                        <tr key={event.id}>
+                            <td>{event.id}</td>
+                            <td>{event.name}</td>
+                            <td>{event.date}</td>
+                            <td>{event.location}</td>
+                            <td>{event.rating}</td>
+                            <td> <button className="btn btn-host rightbtn">Host</button> </td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+        );
+    }
+    static renderRecentEventsTable(events) {
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
@@ -41,22 +69,24 @@ export class Events extends Component {
     }
 
     render() {
-        let contents = this.state.loading
+        let UpcomingContents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : Events.renderEventsTable(this.state.events);
+            : Events.renderUpcomingEventsTable(this.state.events);
+        let RecentContents = this.state.loading
+            ? <p><em>Loading...</em></p>
+            : Events.renderRecentEventsTable(this.state.events);
 
         return (
-            
             <div>
                 <h3 id="tabelLabel" >Upcoming Events
                     <button className="btn btn-primary rightbtn" onClick={this.rerouteToEventCreation}>Create</button>
                 </h3>
-                {contents}
+                {UpcomingContents}
                 <br/>
                 <h3>Recent Events
                     <button className="btn btn-primary rightbtn" >View All</button>
                 </h3>
-                {contents}
+                {RecentContents}
             </div>
         );
     }
