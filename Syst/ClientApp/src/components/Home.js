@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router";
 
 export class Home extends Component {
     static displayName = Home.name;
@@ -47,12 +48,18 @@ export class Home extends Component {
         return (
             <div>
                 <h1>Welcome to Systematic Event Tool!</h1>
-                <p>From this home page you'll be able to create, host and see and overview over events! Check it out!</p>                
-                
-                <h1 id="tabelLabel" >Events</h1> <button className="btn btn-primary">Create</button>
+                <p>From this home page you'll be able to create, host and see and overview over events! Check it out!</p>
+
+                <h1 id="tabelLabel" >Events</h1>
+                <button className="btn btn-primary rightbtn" onClick={this.rerouteToEventCreation}>Create</button>
                 {contents}
             </div>
-        );
+    );
+    }
+
+    rerouteToEventCreation = () => {
+        const { history } = this.props;
+        history.push("/CreateEvent");
     }
 
     async populateData() {
