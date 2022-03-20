@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from "react-router";
 
 export class Events extends Component {
     static displayName = Events.name;

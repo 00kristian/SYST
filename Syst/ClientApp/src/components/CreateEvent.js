@@ -32,8 +32,13 @@ export class CreateEvent extends Component {
                 <button className="btn btn-primary" >Create quiz</button>
                 <br />
                 <br />
-                <button className="btn btn-primary rightbtn" >Create event</button>
+                <button className="btn btn-primary rightbtn" onClick={this.rerouteToConfirmation}>Create event</button>
             </div>
         );
+    }
+
+    rerouteToConfirmation = () => {
+        const { history } = this.props;
+        history.push("/Confirmation");
     }
 }

@@ -3,6 +3,16 @@ a {
   color: #0366d6;
 }
 
+.confirmationText {
+    padding: 2%;
+    text-align: center;
+}
+
+.figureConfirmation {
+    text-align: center;
+    padding: 2%;
+}
+
 code {
   color: #E01A76;
 }
@@ -30,6 +40,11 @@ code {
     }
     .rightbtn {
         float: right; 
+    }
+    .confirmationbtn {
+        padding: 0.5%;
+        padding-left: 4%;
+        padding-right: 4%;
     }
 .btn-host {
     color: #FF7837;
