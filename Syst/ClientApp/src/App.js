@@ -19,7 +19,7 @@ export default class App extends Component {
         <Route path='/candidates' component={Candidates} />
         <Route path='/fetch-data' component={FetchData} />
         <Route path='/CreateEvent' component={CreateEvent} />
-        <Route path='/eventdetail' component={EventDetail} />
+        <Route path='/eventdetail/:id' component={EventDetail} />
       </Layout>
     );
   }
