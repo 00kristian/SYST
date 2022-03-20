@@ -16,7 +16,31 @@ export class EventDetail extends Component {
     return (
         <div>
             <h1>{event.name}</h1>
-            <h1>{event.date}</h1>
+            <h2>{event.date}</h2>
+            <br/>
+            <h3>Participants</h3>
+            <table className='table table-striped' aria-labelledby="tabelLabel">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>University</th>
+                    <th>Degree</th>
+                </tr>
+                </thead>
+                <tbody>
+                {event.candidates.map(candidate =>
+                    <tr key={candidate.id}>
+                        <td>{candidate.id}</td>
+                        <td>{candidate.name}</td>
+                        <td>{candidate.email}</td>
+                        <td>{candidate.university}</td>
+                        <td>{candidate.studyProgram}</td>
+                    </tr>
+                )}
+                </tbody>
+            </table>
         </div>
     );
   }
