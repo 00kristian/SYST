@@ -14,7 +14,7 @@ public static class SeedExtensions
         {
             var context = scope.ServiceProvider.GetRequiredService<SystematicContext>();
 
-           // await SeedObjectsAsync(context);
+            await SeedObjectsAsync(context);
         }
         return host;
     }
@@ -22,9 +22,9 @@ public static class SeedExtensions
     private static async Task SeedObjectsAsync(SystematicContext context)
     {   
         //Admin seeding
-        if (context.Admins.Count() > 1) return;
+        if (context.Candidates.Count() > 1) return;
 
-        //await context.Database.MigrateAsync();
+        await context.Database.MigrateAsync();
 
         if (!await context.Admins.AnyAsync())
         {
@@ -33,13 +33,21 @@ public static class SeedExtensions
                 new Admin() {Name = "Bob Bobsen", Email = "bob@bobsen.com", Events = new List<Event> {}}
             );
 
+            var lukas = new Candidate() {Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = UniversityEnum.ITU};
+            var rene = new Candidate() {Name = "Rene Dif", Email = "rene@dif.dk", StudyProgram = "Msc i Vand", University = UniversityEnum.CBS};
+            var isabella = new Candidate() {Name = "Isabella Magnusdottir", Email = "isab3ll4@gmail.com", StudyProgram = "PHD i Sexologi", University = UniversityEnum.RUC};
+            var camille = new Candidate() {Name = "Camille Gonnsen", Email = "camg@itu.dk", StudyProgram = "Bsc i Rødhårethed", University = UniversityEnum.ITU};
+            var berlin = new Candidate() {Name = "Kristian Berlin Jensen", Email = "berlin@itu.dk", StudyProgram = "Bsc i Tysklandsstudier", University = UniversityEnum.KU};
+            
+
+
             context.Candidates.AddRange(
-                new Candidate() {Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = UniversityEnum.ITU},
-                new Candidate() {Name = "Rene Dif", Email = "rene@dif.dk", StudyProgram = "Msc i Vand", University = UniversityEnum.CBS},
-                new Candidate() {Name = "Isabella Magnusdottir", Email = "isab3ll4@gmail.com", StudyProgram = "PHD i Sexologi", University = UniversityEnum.RUC},
-                new Candidate() {Name = "Camille Gonnsen", Email = "camg@itu.dk", StudyProgram = "Bsc i Rødhårethed", University = UniversityEnum.ITU},
-                new Candidate() {Name = "Kristian Berlin Jensen", Email = "berlin@itu.dk", StudyProgram = "Bsc i Tysklandsstudier", University = UniversityEnum.KU}
-            );
+                lukas,
+                rene,
+                isabella,
+                camille,
+                berlin
+                );
           
             var date0 = new System.DateTime(2022,03,14);
             var date1 = new System.DateTime(2022,05,18);
@@ -48,9 +56,9 @@ public static class SeedExtensions
             var quiz2 = new Quiz {Date = date2, Questions = new List<Question> {}, Events = new List<Event> {}, Candidates = new List<Candidate> {}};
 
             context.Events.AddRange(
-                new Event() {Name = "IT Konference", Date = date0, Location = "Århus", Candidates = new List<Candidate> {}, Quiz = null, Rating = 3.7},
-                new Event() {Name = "SDU - Match Making", Date = date1, Location = "Odense", Candidates = new List<Candidate> {}, Quiz = null, Rating = 2.5},
-                new Event() {Name = "ITU - Job messe", Date = date2, Location = "København", Candidates = new List<Candidate> {}, Quiz = quiz2, Rating = 5.0}
+                new Event() {Name = "IT Konference", Date = date0, Location = "Århus", Candidates = new List<Candidate> {rene}, Quiz = null, Rating = 3.7},
+                new Event() {Name = "SDU - Match Making", Date = date1, Location = "Odense", Candidates = new List<Candidate> {isabella, berlin}, Quiz = null, Rating = 2.5},
+                new Event() {Name = "ITU - Job messe", Date = date2, Location = "København", Candidates = new List<Candidate> {lukas, isabella, camille, berlin}, Quiz = quiz2, Rating = 5.0}
             );
 
             await context.SaveChangesAsync();

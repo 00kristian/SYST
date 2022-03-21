@@ -1,237 +1,6 @@
 {
-  "Core.dll": {
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Core\\AdminDTO.cs": {
-      "Core.AdminDTO": {
-        "System.Int32 Core.AdminDTO::get_Id()": {
-          "Lines": {
-            "8": 7,
-            "9": 7
-          },
-          "Branches": []
-        },
-        "System.String Core.AdminDTO::get_Name()": {
-          "Lines": {
-            "11": 6,
-            "12": 6
-          },
-          "Branches": []
-        },
-        "System.String Core.AdminDTO::get_Email()": {
-          "Lines": {
-            "14": 6,
-            "15": 6
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.AdminDTO::get_Events()": {
-          "Lines": {
-            "17": 4,
-            "18": 4
-          },
-          "Branches": []
-        }
-      }
-    },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Core\\CandidateDTO.cs": {
-      "Core.CandidateDTO": {
-        "System.Int32 Core.CandidateDTO::get_Id()": {
-          "Lines": {
-            "8": 7,
-            "9": 7
-          },
-          "Branches": []
-        },
-        "System.String Core.CandidateDTO::get_Name()": {
-          "Lines": {
-            "11": 13,
-            "12": 13
-          },
-          "Branches": []
-        },
-        "System.String Core.CandidateDTO::get_Email()": {
-          "Lines": {
-            "14": 11,
-            "15": 11
-          },
-          "Branches": []
-        },
-        "System.String Core.CandidateDTO::get_StudyProgram()": {
-          "Lines": {
-            "17": 9,
-            "18": 9
-          },
-          "Branches": []
-        },
-        "UniversityEnum Core.CandidateDTO::get_University()": {
-          "Lines": {
-            "20": 9,
-            "21": 9
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.CandidateDTO::get_Events()": {
-          "Lines": {
-            "23": 4,
-            "24": 4
-          },
-          "Branches": []
-        },
-        "Core.QuizDTO Core.CandidateDTO::get_Quiz()": {
-          "Lines": {
-            "26": 2,
-            "27": 2
-          },
-          "Branches": []
-        }
-      }
-    },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Core\\EventDTO.cs": {
-      "Core.EventDTO": {
-        "System.Int32 Core.EventDTO::get_Id()": {
-          "Lines": {
-            "8": 12,
-            "9": 12
-          },
-          "Branches": []
-        },
-        "System.String Core.EventDTO::get_Name()": {
-          "Lines": {
-            "11": 15,
-            "12": 15
-          },
-          "Branches": []
-        },
-        "System.DateTime Core.EventDTO::get_Date()": {
-          "Lines": {
-            "14": 11,
-            "15": 11
-          },
-          "Branches": []
-        },
-        "System.String Core.EventDTO::get_Location()": {
-          "Lines": {
-            "17": 14,
-            "18": 14
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<Core.CandidateDTO> Core.EventDTO::get_Candidates()": {
-          "Lines": {
-            "21": 2
-          },
-          "Branches": []
-        },
-        "Core.QuizDTO Core.EventDTO::get_Quiz()": {
-          "Lines": {
-            "23": 2,
-            "24": 2
-          },
-          "Branches": []
-        },
-        "System.Double Core.EventDTO::get_Rating()": {
-          "Lines": {
-            "26": 11,
-            "27": 11
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<Core.AdminDTO> Core.EventDTO::get_Admins()": {
-          "Lines": {
-            "29": 2,
-            "30": 2
-          },
-          "Branches": []
-        }
-      }
-    },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Core\\QuestionDTO.cs": {
-      "Core.QuestionDTO": {
-        "System.Int32 Core.QuestionDTO::get_Id()": {
-          "Lines": {
-            "8": 12,
-            "9": 12
-          },
-          "Branches": []
-        },
-        "System.String Core.QuestionDTO::get_Representation()": {
-          "Lines": {
-            "11": 12,
-            "12": 12
-          },
-          "Branches": []
-        },
-        "System.String Core.QuestionDTO::get_Answer()": {
-          "Lines": {
-            "14": 12,
-            "15": 12
-          },
-          "Branches": []
-        },
-        "System.String Core.QuestionDTO::get_ImageURl()": {
-          "Lines": {
-            "17": 8,
-            "18": 8
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<System.String> Core.QuestionDTO::get_Options()": {
-          "Lines": {
-            "20": 4,
-            "21": 4
-          },
-          "Branches": []
-        },
-        "Core.QuizDTO Core.QuestionDTO::get_Quiz()": {
-          "Lines": {
-            "23": 2,
-            "24": 2
-          },
-          "Branches": []
-        }
-      }
-    },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Core\\QuizDTO.cs": {
-      "Core.QuizDTO": {
-        "System.Int32 Core.QuizDTO::get_Id()": {
-          "Lines": {
-            "8": 13,
-            "9": 13
-          },
-          "Branches": []
-        },
-        "System.DateTime Core.QuizDTO::get_Date()": {
-          "Lines": {
-            "11": 7,
-            "12": 7
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<Core.QuestionDTO> Core.QuizDTO::get_Questions()": {
-          "Lines": {
-            "14": 4,
-            "15": 4
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.QuizDTO::get_Events()": {
-          "Lines": {
-            "17": 4,
-            "18": 4
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<Core.CandidateDTO> Core.QuizDTO::get_Candidates()": {
-          "Lines": {
-            "20": 4,
-            "21": 4
-          },
-          "Branches": []
-        }
-      }
-    }
-  },
   "Infrastructure.dll": {
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Program.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Program.cs": {
       "Program": {
         "System.Void Program::<Main>$(System.String[])": {
           "Lines": {
@@ -250,7 +19,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Entities\\Admin.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Entities/Admin.cs": {
       "Infrastructure.Admin": {
         "System.Int32 Infrastructure.Admin::get_Id()": {
           "Lines": {
@@ -278,7 +47,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Entities\\Candidate.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Entities/Candidate.cs": {
       "Infrastructure.Candidate": {
         "System.Int32 Infrastructure.Candidate::get_Id()": {
           "Lines": {
@@ -330,7 +99,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Entities\\Event.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Entities/Event.cs": {
       "Infrastructure.Event": {
         "System.Int32 Infrastructure.Event::get_Id()": {
           "Lines": {
@@ -376,7 +145,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Entities\\Question.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Entities/Question.cs": {
       "Infrastructure.Question": {
         "System.Int32 Infrastructure.Question::get_Id()": {
           "Lines": {
@@ -416,7 +185,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Entities\\Quiz.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Entities/Quiz.cs": {
       "Infrastructure.Quiz": {
         "System.Int32 Infrastructure.Quiz::get_Id()": {
           "Lines": {
@@ -450,7 +219,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Entities\\SystematicContext.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Entities/SystematicContext.cs": {
       "Infrastructure.SystematicContext": {
         "Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Admin> Infrastructure.SystematicContext::get_Admins()": {
           "Lines": {
@@ -544,7 +313,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Entities\\SystematicContextFactory.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Entities/SystematicContextFactory.cs": {
       "Infrastructure.SystematicContextFactory": {
         "Infrastructure.SystematicContext Infrastructure.SystematicContextFactory::CreateDbContext(System.String[])": {
           "Lines": {
@@ -564,7 +333,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Repositories\\AdminRepository.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Repositories/AdminRepository.cs": {
       "Infrastructure.AdminRepository": {
         "System.Void Infrastructure.AdminRepository::.ctor(Infrastructure.ISystematicContext)": {
           "Lines": {
@@ -754,7 +523,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Repositories\\CandidateRepository.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Repositories/CandidateRepository.cs": {
       "Infrastructure.CandidateRepository": {
         "System.Void Infrastructure.CandidateRepository::.ctor(Infrastructure.ISystematicContext)": {
           "Lines": {
@@ -871,16 +640,16 @@
           "Branches": [
             {
               "Line": 55,
-              "Offset": 612,
-              "EndOffset": 614,
+              "Offset": 637,
+              "EndOffset": 639,
               "Path": 0,
               "Ordinal": 0,
               "Hits": 1
             },
             {
               "Line": 55,
-              "Offset": 612,
-              "EndOffset": 629,
+              "Offset": 637,
+              "EndOffset": 654,
               "Path": 1,
               "Ordinal": 1,
               "Hits": 1
@@ -965,7 +734,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Repositories\\EventRepository.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Repositories/EventRepository.cs": {
       "Infrastructure.EventRepository": {
         "System.Void Infrastructure.EventRepository::.ctor(Infrastructure.ISystematicContext)": {
           "Lines": {
@@ -1173,7 +942,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Repositories\\QuestionRepository.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Repositories/QuestionRepository.cs": {
       "Infrastructure.QuestionRepository": {
         "System.Void Infrastructure.QuestionRepository::.ctor(Infrastructure.ISystematicContext)": {
           "Lines": {
@@ -1356,7 +1125,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Repositories\\QuizRepository.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Repositories/QuizRepository.cs": {
       "Infrastructure.QuizRepository": {
         "System.Void Infrastructure.QuizRepository::.ctor(Infrastructure.ISystematicContext)": {
           "Lines": {
@@ -1526,7 +1295,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Migrations\\20220310162142_first.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Migrations/20220310162142_first.cs": {
       "Infrastructure.Migrations.first": {
         "System.Void Infrastructure.Migrations.first::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)": {
           "Lines": {
@@ -1694,7 +1463,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Migrations\\20220310162142_first.Designer.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Migrations/20220310162142_first.Designer.cs": {
       "Infrastructure.Migrations.first": {
         "System.Void Infrastructure.Migrations.first::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)": {
           "Lines": {
@@ -1907,7 +1676,7 @@
         }
       }
     },
-    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Infrastructure\\Migrations\\SystematicContextModelSnapshot.cs": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Migrations/SystematicContextModelSnapshot.cs": {
       "Infrastructure.Migrations.SystematicContextModelSnapshot": {
         "System.Void Infrastructure.Migrations.SystematicContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)": {
           "Lines": {
@@ -2115,6 +1884,237 @@
             "232": 0,
             "233": 0,
             "235": 0
+          },
+          "Branches": []
+        }
+      }
+    }
+  },
+  "Core.dll": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Core/AdminDTO.cs": {
+      "Core.AdminDTO": {
+        "System.Int32 Core.AdminDTO::get_Id()": {
+          "Lines": {
+            "8": 7,
+            "9": 7
+          },
+          "Branches": []
+        },
+        "System.String Core.AdminDTO::get_Name()": {
+          "Lines": {
+            "11": 6,
+            "12": 6
+          },
+          "Branches": []
+        },
+        "System.String Core.AdminDTO::get_Email()": {
+          "Lines": {
+            "14": 6,
+            "15": 6
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.AdminDTO::get_Events()": {
+          "Lines": {
+            "17": 4,
+            "18": 4
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Core/CandidateDTO.cs": {
+      "Core.CandidateDTO": {
+        "System.Int32 Core.CandidateDTO::get_Id()": {
+          "Lines": {
+            "8": 7,
+            "9": 7
+          },
+          "Branches": []
+        },
+        "System.String Core.CandidateDTO::get_Name()": {
+          "Lines": {
+            "11": 13,
+            "12": 13
+          },
+          "Branches": []
+        },
+        "System.String Core.CandidateDTO::get_Email()": {
+          "Lines": {
+            "14": 11,
+            "15": 11
+          },
+          "Branches": []
+        },
+        "System.String Core.CandidateDTO::get_StudyProgram()": {
+          "Lines": {
+            "17": 9,
+            "18": 9
+          },
+          "Branches": []
+        },
+        "System.String Core.CandidateDTO::get_University()": {
+          "Lines": {
+            "20": 10,
+            "21": 10
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.CandidateDTO::get_Events()": {
+          "Lines": {
+            "23": 4,
+            "24": 4
+          },
+          "Branches": []
+        },
+        "Core.QuizDTO Core.CandidateDTO::get_Quiz()": {
+          "Lines": {
+            "26": 2,
+            "27": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Core/EventDTO.cs": {
+      "Core.EventDTO": {
+        "System.Int32 Core.EventDTO::get_Id()": {
+          "Lines": {
+            "8": 12,
+            "9": 12
+          },
+          "Branches": []
+        },
+        "System.String Core.EventDTO::get_Name()": {
+          "Lines": {
+            "11": 15,
+            "12": 15
+          },
+          "Branches": []
+        },
+        "System.DateTime Core.EventDTO::get_Date()": {
+          "Lines": {
+            "14": 11,
+            "15": 11
+          },
+          "Branches": []
+        },
+        "System.String Core.EventDTO::get_Location()": {
+          "Lines": {
+            "17": 14,
+            "18": 14
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.CandidateDTO> Core.EventDTO::get_Candidates()": {
+          "Lines": {
+            "21": 2
+          },
+          "Branches": []
+        },
+        "Core.QuizDTO Core.EventDTO::get_Quiz()": {
+          "Lines": {
+            "23": 2,
+            "24": 2
+          },
+          "Branches": []
+        },
+        "System.Double Core.EventDTO::get_Rating()": {
+          "Lines": {
+            "26": 11,
+            "27": 11
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.AdminDTO> Core.EventDTO::get_Admins()": {
+          "Lines": {
+            "29": 2,
+            "30": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Core/QuestionDTO.cs": {
+      "Core.QuestionDTO": {
+        "System.Int32 Core.QuestionDTO::get_Id()": {
+          "Lines": {
+            "8": 12,
+            "9": 12
+          },
+          "Branches": []
+        },
+        "System.String Core.QuestionDTO::get_Representation()": {
+          "Lines": {
+            "11": 12,
+            "12": 12
+          },
+          "Branches": []
+        },
+        "System.String Core.QuestionDTO::get_Answer()": {
+          "Lines": {
+            "14": 12,
+            "15": 12
+          },
+          "Branches": []
+        },
+        "System.String Core.QuestionDTO::get_ImageURl()": {
+          "Lines": {
+            "17": 8,
+            "18": 8
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<System.String> Core.QuestionDTO::get_Options()": {
+          "Lines": {
+            "20": 4,
+            "21": 4
+          },
+          "Branches": []
+        },
+        "Core.QuizDTO Core.QuestionDTO::get_Quiz()": {
+          "Lines": {
+            "23": 2,
+            "24": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Core/QuizDTO.cs": {
+      "Core.QuizDTO": {
+        "System.Int32 Core.QuizDTO::get_Id()": {
+          "Lines": {
+            "8": 13,
+            "9": 13
+          },
+          "Branches": []
+        },
+        "System.DateTime Core.QuizDTO::get_Date()": {
+          "Lines": {
+            "11": 7,
+            "12": 7
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.QuestionDTO> Core.QuizDTO::get_Questions()": {
+          "Lines": {
+            "14": 4,
+            "15": 4
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.QuizDTO::get_Events()": {
+          "Lines": {
+            "17": 4,
+            "18": 4
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.CandidateDTO> Core.QuizDTO::get_Candidates()": {
+          "Lines": {
+            "20": 4,
+            "21": 4
           },
           "Branches": []
         }

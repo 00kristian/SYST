@@ -35,12 +35,19 @@ namespace Infrastructure
         //Return an event given the event id
         public async Task<(Status, EventDTO)> Read(int id)
         {
-            var e = await _context.Events.Where(e => e.Id == id).Select(e => new EventDTO(){
+            var e = await _context.Events.Include(e => e.Candidates).Where(e => e.Id == id).Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
                 Date = e.Date,
                 Location = e.Location!,
-                Rating = e.Rating!                
+                Rating = e.Rating!,
+                Candidates = e.Candidates != null ? e.Candidates.Select(c => new CandidateDTO(){
+                    Name = c.Name!,
+                    Id = c.Id,
+                    Email = c.Email!,
+                    StudyProgram = c.StudyProgram!,
+                    University = c.University.ToString()
+                }).ToList() : new List<CandidateDTO>()           
             }).FirstOrDefaultAsync();
 
             if (e == default(EventDTO)) return (Status.NotFound, e);
