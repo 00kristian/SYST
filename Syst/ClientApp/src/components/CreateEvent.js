@@ -33,6 +33,9 @@ export class CreateEvent extends Component {
                 <br />
                 <br />
                 <button className="btn btn-primary rightbtn" onClick={this.rerouteToConfirmation}>Create event</button>
+                <br />
+                <br />
+                <button className="btn btn-primary rightbtn" onClick={this.rerouteToEvents}>Cancel</button>
             </div>
         );
     }
@@ -40,5 +43,10 @@ export class CreateEvent extends Component {
     rerouteToConfirmation = () => {
         const { history } = this.props;
         history.push("/Confirmation");
+    }
+
+    rerouteToEvents = () => {
+        const { history } = this.props;
+        history.push("/Events");
     }
 }
