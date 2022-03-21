@@ -5,7 +5,7 @@ export class Events extends Component {
     
     constructor(props) {
         super(props);
-        this.state = { events: [], loading: true };
+        this.state = { recent: [], upcoming: [], loading: true };
     }
 
     componentDidMount() {
@@ -70,10 +70,10 @@ export class Events extends Component {
     render() {
         let UpcomingContents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : Events.renderUpcomingEventsTable(this.state.events);
+            : Events.renderUpcomingEventsTable(this.state.upcoming);
         let RecentContents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : Events.renderRecentEventsTable(this.state.events);
+            : Events.renderRecentEventsTable(this.state.recent);
 
         return (
             <div>
@@ -96,8 +96,10 @@ export class Events extends Component {
     }
 
     async populateData() {
-        const response = await fetch('api/events');
-        const data = await response.json();
-        this.setState({ events: data, loading: false });
+        const response1 = await fetch('api/eventsquery/recent');
+        const data1 = await response1.json();
+        const response2 = await fetch('api/eventsquery/upcoming');
+        const data2 = await response2.json();
+        this.setState({ recent: data1, upcoming: data2, loading: false });
     }
 }
