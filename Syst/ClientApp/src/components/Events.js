@@ -60,6 +60,11 @@ export class Events extends Component {
                             <td>{event.date}</td>
                             <td>{event.location}</td>
                             <td>{event.rating}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     )}
                 </tbody>
