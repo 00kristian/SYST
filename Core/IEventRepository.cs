@@ -3,7 +3,7 @@
 namespace Core {
 public interface IEventRepository
     {
-        Task<(Status, int id)> Create(EventDTO eventDTO);
+        Task<(Status, int id)> Create(CreateEventDTO eventDTO);
         Task<(Status, EventDTO)> Read(int id);
         Task<IReadOnlyCollection<EventDTO>> ReadAll();
         Task<(Status, string?)> ReadNameFromId(int id);
