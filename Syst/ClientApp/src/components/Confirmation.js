@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import figure from './Confirmation_figure.png';
+import figure from './confirmation-figure.png';
 
 export class Confirmation extends Component {
 
