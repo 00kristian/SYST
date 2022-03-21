@@ -17,6 +17,7 @@ export class EventDetail extends Component {
         <div>
             <h1>{event.name}</h1>
             <h2>{event.date}</h2>
+            <h2>{event.location}</h2>
             <button className="btn btn-primary rightbtn">Change quiz</button>
             <br/>
             <h3>Participants</h3>
@@ -42,6 +43,7 @@ export class EventDetail extends Component {
                 )}
                 </tbody>
             </table>
+            <a href={'/events'}> <button className="btn btn-primary rightbtn">Back</button> </a>
         </div>
     );
   }
