@@ -23,6 +23,7 @@ export class Home extends Component {
                     <th>Date</th>
                     <th>Location</th>
                     <th>Rating</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -35,6 +36,7 @@ export class Home extends Component {
                         <td>{event.date}</td>
                         <td>{event.location}</td>
                         <td>{event.rating}</td>
+                        <td><button className="btn btn-host rightbtn">Host</button></td>
                     </tr>
                 )}
                 </tbody>
@@ -66,7 +68,7 @@ export class Home extends Component {
     }
 
     async populateData() {
-        const response = await fetch('api/events');
+        const response = await fetch('api/eventsquery/upcoming');
         const data = await response.json();
         this.setState({ events: data, loading: false });
     }
