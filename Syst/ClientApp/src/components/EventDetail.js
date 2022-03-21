@@ -45,7 +45,6 @@ export class EventDetail extends Component {
             </table>
             <a href={'/events'}> <button className="btn btn-primary rightbtn">Back</button> </a>
         </div>
-        
     );
   }
 
