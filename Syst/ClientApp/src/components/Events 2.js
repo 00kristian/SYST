@@ -28,9 +28,7 @@ export class Events extends Component {
                 <tbody>
                     {events.map(event =>
                         <tr key={event.id}>
-                            <td>
-                                <a href={'/eventdetail/' + event.id}> {event.id} </a>
-                            </td>
+                            <td>{event.id}</td>
                             <td>{event.name}</td>
                             <td>{event.date}</td>
                             <td>{event.location}</td>
@@ -57,13 +55,16 @@ export class Events extends Component {
                 <tbody>
                     {events.map(event =>
                         <tr key={event.id}>
-                            <td>
-                                <a href={'/eventdetail/' + event.id}> {event.id} </a>
-                            </td>
+                            <td>{event.id}</td>
                             <td>{event.name}</td>
                             <td>{event.date}</td>
                             <td>{event.location}</td>
                             <td>{event.rating}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     )}
                 </tbody>

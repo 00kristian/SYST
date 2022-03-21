@@ -13,15 +13,13 @@ namespace Infrastructure
         }
 
         //Creates an event
-        public async Task<(Status, int id)> Create(EventDTO eventDTO) {
+        public async Task<(Status, int id)> Create(CreateEventDTO eventDTO) {
 
-            foreach (Event e in _context.Events) {
-                if (e.Id == eventDTO.Id) return (Status.Conflict, e.Id);
-            }
+            
                 var entity = new Event
                 {
                     Name = eventDTO.Name!,
-                    Date = eventDTO.Date!,
+                    Date = DateTime.Parse(eventDTO.Date!),
                     Location = eventDTO.Location, 
                 };
 
@@ -38,7 +36,7 @@ namespace Infrastructure
             var e = await _context.Events.Include(e => e.Candidates).Where(e => e.Id == id).Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
-                Date = e.Date,
+                Date = e.Date.ToShortDateString(),
                 Location = e.Location!,
                 Rating = e.Rating!,
                 Candidates = e.Candidates != null ? e.Candidates.Select(c => new CandidateDTO(){
@@ -59,7 +57,7 @@ namespace Infrastructure
             await _context.Events.Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
-                Date = e.Date,
+                Date = e.Date.ToShortDateString(),
                 Location = e.Location!,
                 Rating = e.Rating!
             }).ToListAsync();
@@ -78,7 +76,7 @@ namespace Infrastructure
             if (e == default(Event)) return Status.NotFound;
 
             e.Name = eventDTO.Name;
-            e.Date = eventDTO.Date!;
+            e.Date = DateTime.Parse(eventDTO.Date!);
             e.Location = eventDTO.Location;
 
             await _context.SaveChangesAsync();
@@ -100,29 +98,29 @@ namespace Infrastructure
         }
         
         public async Task<IReadOnlyCollection<EventDTO>> ReadUpcoming() =>
-            await _context.Events.Select(e => new EventDTO()
+            await _context.Events.Where(e => e.Date >= DateTime.Today)
+                .OrderByDescending(e => e.Date)
+                .Take(5).Select(e => new EventDTO()
                 {
                     Name = e.Name!,
                     Id = e.Id,
-                    Date = e.Date,
+                    Date = e.Date.ToShortDateString(),
                     Location = e.Location!,
                     Rating = e.Rating!
-                }).Where(e => e.Date > DateTime.Today)
-                .OrderByDescending(e => e.Date)
-                .Take(5)
+                })
                 .ToListAsync();
 
         public async Task<IReadOnlyCollection<EventDTO>> ReadRecent() =>
-            await _context.Events.Select(e => new EventDTO()
+            await _context.Events.Where(e => e.Date < DateTime.Today)
+                .OrderBy(e => e.Date)
+                .Take(5).Select(e => new EventDTO()
                 {
                     Name = e.Name!,
                     Id = e.Id,
-                    Date = e.Date,
+                    Date = e.Date.ToShortDateString(),
                     Location = e.Location!,
                     Rating = e.Rating!
-                }).Where(e => e.Date < DateTime.Today)
-                .OrderBy(e => e.Date)
-                .Take(5)
+                })
                 .ToListAsync();
     }
 }

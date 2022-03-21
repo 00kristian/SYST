@@ -12,7 +12,7 @@ namespace Core {
         string Name,
 
         [Required]
-        DateTime Date,
+        string Date,
 
         [Required]
         string Location,

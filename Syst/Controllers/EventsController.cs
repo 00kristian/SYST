@@ -45,7 +45,7 @@ public class EventsController : ControllerBase
     [ProducesResponseType(409)]
     [ProducesResponseType(201)]
     [HttpPost]
-    public async Task<IActionResult> Post(EventDTO newEvent) {
+    public async Task<IActionResult> Post(CreateEventDTO newEvent) {
         var created = await _repo.Create(newEvent);
         var id = created.Item2;
         if (created.Item1 == Status.Conflict) return new ConflictObjectResult(id);
