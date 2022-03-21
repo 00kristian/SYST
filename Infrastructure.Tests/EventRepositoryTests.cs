@@ -135,6 +135,7 @@ public class EventRepositoryTests {
             Name = "HackIt",
             Location = "KU",
             Rating = 9.0,
+            Date = "2022-10-10"
         };
     
         // Act
@@ -153,6 +154,7 @@ public class EventRepositoryTests {
             Name = "HackIt",
             Location = "KU",
             Rating = 9.0,
+            Date = "2022-10-10"
         };
     
         // Act
@@ -172,6 +174,7 @@ public class EventRepositoryTests {
             Name = "HackIt",
             Location = "KU",
             Rating = 9.0,
+            Date = "2022-10-10"
         };
     
         // Act
