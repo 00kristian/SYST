@@ -23,6 +23,7 @@ export class Home extends Component {
                     <th>Date</th>
                     <th>Location</th>
                     <th>Rating</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -35,6 +36,7 @@ export class Home extends Component {
                         <td>{event.date}</td>
                         <td>{event.location}</td>
                         <td>{event.rating}</td>
+                        <td><button className="btn btn-host rightbtn">Host</button></td>
                     </tr>
                 )}
                 </tbody>
@@ -52,8 +54,9 @@ export class Home extends Component {
                 <h1>Welcome to Systematic Event Tool!</h1>
                 <p>From this home page you'll be able to create, host and see and overview over events! Check it out!</p>
 
-                <h1 id="tabelLabel" >Events</h1>
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToEventCreation}>Create</button>
+                <h1 id="tabelLabel" >Events
+                    <button className="btn btn-primary rightbtn" onClick={this.rerouteToEventCreation}>Create</button>
+                </h1>
                 {contents}
             </div>
     );
@@ -65,7 +68,7 @@ export class Home extends Component {
     }
 
     async populateData() {
-        const response = await fetch('api/events');
+        const response = await fetch('api/eventsquery/upcoming');
         const data = await response.json();
         this.setState({ events: data, loading: false });
     }

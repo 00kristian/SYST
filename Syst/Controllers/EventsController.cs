@@ -68,4 +68,5 @@ public class EventsController : ControllerBase
         if (deleted == Status.NotFound) return new NotFoundObjectResult(id);
         return deleted.ToActionResult();
     }
+    
 }
