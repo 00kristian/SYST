@@ -16,7 +16,7 @@ namespace Infrastructure
         public async Task<(Status, int id)> Create(QuestionDTO questionDTO) {
 
             foreach (Question q in _context.Questions) {
-                if (q.Representation == q.Representation) return (Status.Conflict, q.Id);
+                if (q.Id == questionDTO.Id) return (Status.Conflict, q.Id);
             }
                 var entity = new Question
                 {
@@ -42,7 +42,7 @@ namespace Infrastructure
                 Id = q.Id,
                 Answer = q.Answer!,
                 ImageURl = q.ImageURL!,
-                Options = q.Options!
+                //Options = q.Options!
             }).FirstOrDefaultAsync();
 
             if (q == default(QuestionDTO)) return (Status.NotFound, q);
@@ -56,7 +56,7 @@ namespace Infrastructure
                 Id = q.Id,
                 Answer = q.Answer!,
                 ImageURl = q.ImageURL!,
-                Options = q.Options!
+                //Options = q.Options!
             }).ToListAsync();
 
         //Updates a representation, answer, imageURL and options
@@ -88,5 +88,6 @@ namespace Infrastructure
             await _context.SaveChangesAsync();
             return Status.Deleted;
         }
+        
     }
 }

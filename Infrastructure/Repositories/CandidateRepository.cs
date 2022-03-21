@@ -16,7 +16,8 @@ namespace Infrastructure
         public async Task<(Status, int id)> Create(CandidateDTO candidateDTO) {
 
             foreach (Candidate c in _context.Candidates) {
-                if (c.Name == c.Name) return (Status.Conflict, c.Id);
+                if (c.Email == candidateDTO.Email) return (Status.Conflict, c.Id); 
+                //Is this function necessary? Ask Iulia about multiple email entries in the db
             }
                 var entity = new Candidate
                 {
@@ -94,5 +95,7 @@ namespace Infrastructure
             await _context.SaveChangesAsync();
             return Status.Deleted;
         }
+
+        
     }
 }

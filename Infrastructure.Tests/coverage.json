@@ -1,0 +1,2124 @@
+{
+  "Infrastructure.dll": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Program.cs": {
+      "Program": {
+        "System.Void Program::<Main>$(System.String[])": {
+          "Lines": {
+            "4": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Entities/Admin.cs": {
+      "Infrastructure.Admin": {
+        "System.Int32 Infrastructure.Admin::get_Id()": {
+          "Lines": {
+            "4": 17
+          },
+          "Branches": []
+        },
+        "System.String Infrastructure.Admin::get_Name()": {
+          "Lines": {
+            "5": 14
+          },
+          "Branches": []
+        },
+        "System.String Infrastructure.Admin::get_Email()": {
+          "Lines": {
+            "6": 14
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Infrastructure.Event> Infrastructure.Admin::get_Events()": {
+          "Lines": {
+            "7": 12
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Entities/Candidate.cs": {
+      "Infrastructure.Candidate": {
+        "System.Int32 Infrastructure.Candidate::get_Id()": {
+          "Lines": {
+            "6": 21
+          },
+          "Branches": []
+        },
+        "System.String Infrastructure.Candidate::get_Name()": {
+          "Lines": {
+            "7": 25
+          },
+          "Branches": []
+        },
+        "System.String Infrastructure.Candidate::get_Email()": {
+          "Lines": {
+            "8": 23
+          },
+          "Branches": []
+        },
+        "System.String Infrastructure.Candidate::get_StudyProgram()": {
+          "Lines": {
+            "9": 23
+          },
+          "Branches": []
+        },
+        "UniversityEnum Infrastructure.Candidate::get_University()": {
+          "Lines": {
+            "10": 23
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Infrastructure.Event> Infrastructure.Candidate::get_EventsParticipatedIn()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "Infrastructure.Quiz Infrastructure.Candidate::get_Quiz()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<System.Boolean> Infrastructure.Candidate::get_Answers()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Entities/Event.cs": {
+      "Infrastructure.Event": {
+        "System.Int32 Infrastructure.Event::get_Id()": {
+          "Lines": {
+            "4": 32
+          },
+          "Branches": []
+        },
+        "System.String Infrastructure.Event::get_Name()": {
+          "Lines": {
+            "5": 31
+          },
+          "Branches": []
+        },
+        "System.DateTime Infrastructure.Event::get_Date()": {
+          "Lines": {
+            "6": 30
+          },
+          "Branches": []
+        },
+        "System.String Infrastructure.Event::get_Location()": {
+          "Lines": {
+            "7": 30
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Infrastructure.Candidate> Infrastructure.Event::get_Candidates()": {
+          "Lines": {
+            "8": 26
+          },
+          "Branches": []
+        },
+        "Infrastructure.Quiz Infrastructure.Event::get_Quiz()": {
+          "Lines": {
+            "9": 26
+          },
+          "Branches": []
+        },
+        "System.Double Infrastructure.Event::get_Rating()": {
+          "Lines": {
+            "10": 27
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Entities/Question.cs": {
+      "Infrastructure.Question": {
+        "System.Int32 Infrastructure.Question::get_Id()": {
+          "Lines": {
+            "4": 24
+          },
+          "Branches": []
+        },
+        "System.String Infrastructure.Question::get_Representation()": {
+          "Lines": {
+            "5": 21
+          },
+          "Branches": []
+        },
+        "System.String Infrastructure.Question::get_Answer()": {
+          "Lines": {
+            "6": 21
+          },
+          "Branches": []
+        },
+        "System.String Infrastructure.Question::get_ImageURL()": {
+          "Lines": {
+            "7": 21
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<System.String> Infrastructure.Question::get_Options()": {
+          "Lines": {
+            "8": 20
+          },
+          "Branches": []
+        },
+        "Infrastructure.Quiz Infrastructure.Question::get_Quiz()": {
+          "Lines": {
+            "9": 18
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Entities/Quiz.cs": {
+      "Infrastructure.Quiz": {
+        "System.Int32 Infrastructure.Quiz::get_Id()": {
+          "Lines": {
+            "4": 24
+          },
+          "Branches": []
+        },
+        "System.DateTime Infrastructure.Quiz::get_Date()": {
+          "Lines": {
+            "5": 20
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Infrastructure.Question> Infrastructure.Quiz::get_Questions()": {
+          "Lines": {
+            "6": 18
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Infrastructure.Event> Infrastructure.Quiz::get_Events()": {
+          "Lines": {
+            "7": 18
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Infrastructure.Candidate> Infrastructure.Quiz::get_Candidates()": {
+          "Lines": {
+            "8": 18
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Entities/SystematicContext.cs": {
+      "Infrastructure.SystematicContext": {
+        "Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Admin> Infrastructure.SystematicContext::get_Admins()": {
+          "Lines": {
+            "15": 108
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Candidate> Infrastructure.SystematicContext::get_Candidates()": {
+          "Lines": {
+            "16": 116
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Event> Infrastructure.SystematicContext::get_Events()": {
+          "Lines": {
+            "17": 125
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Question> Infrastructure.SystematicContext::get_Questions()": {
+          "Lines": {
+            "18": 114
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Quiz> Infrastructure.SystematicContext::get_Quizes()": {
+          "Lines": {
+            "19": 114
+          },
+          "Branches": []
+        },
+        "System.String Infrastructure.SystematicContext::get_DbPath()": {
+          "Lines": {
+            "20": 47
+          },
+          "Branches": []
+        },
+        "System.Void Infrastructure.SystematicContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "26": 2,
+            "29": 2,
+            "30": 2,
+            "31": 2,
+            "34": 2,
+            "35": 2,
+            "36": 2,
+            "39": 2,
+            "40": 2,
+            "41": 2,
+            "44": 2,
+            "45": 2,
+            "46": 2,
+            "49": 2,
+            "50": 2,
+            "53": 2,
+            "54": 2,
+            "55": 2,
+            "56": 2,
+            "57": 2,
+            "58": 2,
+            "59": 2,
+            "62": 2,
+            "63": 2,
+            "64": 2,
+            "65": 2,
+            "66": 2,
+            "67": 2,
+            "68": 2,
+            "69": 2,
+            "70": 2,
+            "71": 2,
+            "74": 2,
+            "75": 2,
+            "76": 2,
+            "77": 2,
+            "78": 2,
+            "79": 2,
+            "80": 2,
+            "81": 2,
+            "82": 2,
+            "83": 2,
+            "84": 2
+          },
+          "Branches": []
+        },
+        "System.Void Infrastructure.SystematicContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<Infrastructure.SystematicContext>)": {
+          "Lines": {
+            "22": 141
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Entities/SystematicContextFactory.cs": {
+      "Infrastructure.SystematicContextFactory": {
+        "Infrastructure.SystematicContext Infrastructure.SystematicContextFactory::CreateDbContext(System.String[])": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "17": 0,
+            "19": 0,
+            "20": 0,
+            "22": 0,
+            "23": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Repositories/AdminRepository.cs": {
+      "Infrastructure.AdminRepository": {
+        "System.Void Infrastructure.AdminRepository::.ctor(Infrastructure.ISystematicContext)": {
+          "Lines": {
+            "10": 6,
+            "11": 6,
+            "12": 6,
+            "13": 6
+          },
+          "Branches": []
+        }
+      },
+      "Infrastructure.AdminRepository/<Create>d__2": {
+        "System.Void Infrastructure.AdminRepository/<Create>d__2::MoveNext()": {
+          "Lines": {
+            "16": 2,
+            "18": 14,
+            "19": 4,
+            "20": 2,
+            "21": 1,
+            "22": 1,
+            "23": 1,
+            "24": 1,
+            "25": 1,
+            "27": 1,
+            "29": 1,
+            "31": 1,
+            "32": 2
+          },
+          "Branches": [
+            {
+              "Line": 18,
+              "Offset": 136,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 3
+            },
+            {
+              "Line": 19,
+              "Offset": 92,
+              "EndOffset": 94,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 19,
+              "Offset": 92,
+              "EndOffset": 117,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            },
+            {
+              "Line": 18,
+              "Offset": 136,
+              "EndOffset": 138,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.AdminRepository/<Delete>d__6": {
+        "System.Void Infrastructure.AdminRepository/<Delete>d__6::MoveNext()": {
+          "Lines": {
+            "69": 2,
+            "71": 2,
+            "73": 3,
+            "75": 1,
+            "77": 1,
+            "78": 1,
+            "79": 2
+          },
+          "Branches": [
+            {
+              "Line": 73,
+              "Offset": 319,
+              "EndOffset": 321,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 73,
+              "Offset": 319,
+              "EndOffset": 328,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.AdminRepository/<Read>d__4": {
+        "System.Void Infrastructure.AdminRepository/<Read>d__4::MoveNext()": {
+          "Lines": {
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0
+          },
+          "Branches": [
+            {
+              "Line": 49,
+              "Offset": 524,
+              "EndOffset": 526,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 49,
+              "Offset": 524,
+              "EndOffset": 541,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "Infrastructure.AdminRepository/<ReadNameFromId>d__3": {
+        "System.Void Infrastructure.AdminRepository/<ReadNameFromId>d__3::MoveNext()": {
+          "Lines": {
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0
+          },
+          "Branches": [
+            {
+              "Line": 37,
+              "Offset": 363,
+              "EndOffset": 365,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 37,
+              "Offset": 363,
+              "EndOffset": 368,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "Infrastructure.AdminRepository/<Update>d__5": {
+        "System.Void Infrastructure.AdminRepository/<Update>d__5::MoveNext()": {
+          "Lines": {
+            "55": 2,
+            "56": 2,
+            "58": 3,
+            "60": 1,
+            "61": 1,
+            "63": 1,
+            "65": 1,
+            "66": 2
+          },
+          "Branches": [
+            {
+              "Line": 58,
+              "Offset": 319,
+              "EndOffset": 321,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 58,
+              "Offset": 319,
+              "EndOffset": 328,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Repositories/CandidateRepository.cs": {
+      "Infrastructure.CandidateRepository": {
+        "System.Void Infrastructure.CandidateRepository::.ctor(Infrastructure.ISystematicContext)": {
+          "Lines": {
+            "10": 10,
+            "11": 10,
+            "12": 10,
+            "13": 10
+          },
+          "Branches": []
+        }
+      },
+      "Infrastructure.CandidateRepository/<Create>d__2": {
+        "System.Void Infrastructure.CandidateRepository/<Create>d__2::MoveNext()": {
+          "Lines": {
+            "16": 1,
+            "18": 9,
+            "19": 2,
+            "21": 2,
+            "22": 1,
+            "23": 1,
+            "24": 1,
+            "25": 1,
+            "26": 1,
+            "27": 1,
+            "28": 1,
+            "29": 1,
+            "31": 1,
+            "33": 1,
+            "35": 1,
+            "36": 1
+          },
+          "Branches": [
+            {
+              "Line": 18,
+              "Offset": 139,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 2
+            },
+            {
+              "Line": 19,
+              "Offset": 95,
+              "EndOffset": 97,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 19,
+              "Offset": 95,
+              "EndOffset": 120,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            },
+            {
+              "Line": 18,
+              "Offset": 139,
+              "EndOffset": 141,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.CandidateRepository/<Delete>d__7": {
+        "System.Void Infrastructure.CandidateRepository/<Delete>d__7::MoveNext()": {
+          "Lines": {
+            "87": 2,
+            "89": 2,
+            "91": 3,
+            "93": 1,
+            "95": 1,
+            "96": 1,
+            "97": 2
+          },
+          "Branches": [
+            {
+              "Line": 91,
+              "Offset": 319,
+              "EndOffset": 321,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 91,
+              "Offset": 319,
+              "EndOffset": 328,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.CandidateRepository/<Read>d__4": {
+        "System.Void Infrastructure.CandidateRepository/<Read>d__4::MoveNext()": {
+          "Lines": {
+            "46": 2,
+            "47": 2,
+            "48": 2,
+            "49": 2,
+            "50": 2,
+            "51": 2,
+            "52": 2,
+            "53": 2,
+            "55": 3,
+            "56": 1,
+            "57": 2
+          },
+          "Branches": [
+            {
+              "Line": 55,
+              "Offset": 637,
+              "EndOffset": 639,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 55,
+              "Offset": 637,
+              "EndOffset": 654,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.CandidateRepository/<ReadAll>d__5": {
+        "System.Void Infrastructure.CandidateRepository/<ReadAll>d__5::MoveNext()": {
+          "Lines": {
+            "61": 1,
+            "62": 1,
+            "63": 1,
+            "64": 1,
+            "65": 1,
+            "66": 1,
+            "67": 1
+          },
+          "Branches": []
+        }
+      },
+      "Infrastructure.CandidateRepository/<ReadNameFromId>d__3": {
+        "System.Void Infrastructure.CandidateRepository/<ReadNameFromId>d__3::MoveNext()": {
+          "Lines": {
+            "39": 2,
+            "40": 2,
+            "41": 2,
+            "42": 2
+          },
+          "Branches": [
+            {
+              "Line": 41,
+              "Offset": 363,
+              "EndOffset": 365,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 41,
+              "Offset": 363,
+              "EndOffset": 368,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.CandidateRepository/<Update>d__6": {
+        "System.Void Infrastructure.CandidateRepository/<Update>d__6::MoveNext()": {
+          "Lines": {
+            "71": 2,
+            "72": 2,
+            "74": 3,
+            "76": 1,
+            "77": 1,
+            "78": 1,
+            "79": 1,
+            "81": 1,
+            "83": 1,
+            "84": 2
+          },
+          "Branches": [
+            {
+              "Line": 74,
+              "Offset": 319,
+              "EndOffset": 321,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 74,
+              "Offset": 319,
+              "EndOffset": 328,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Repositories/EventRepository.cs": {
+      "Infrastructure.EventRepository": {
+        "System.Void Infrastructure.EventRepository::.ctor(Infrastructure.ISystematicContext)": {
+          "Lines": {
+            "10": 13,
+            "11": 13,
+            "12": 13,
+            "13": 13
+          },
+          "Branches": []
+        }
+      },
+      "Infrastructure.EventRepository/<Create>d__2": {
+        "System.Void Infrastructure.EventRepository/<Create>d__2::MoveNext()": {
+          "Lines": {
+            "16": 2,
+            "18": 17,
+            "19": 5,
+            "20": 3,
+            "21": 1,
+            "22": 1,
+            "23": 1,
+            "24": 1,
+            "25": 1,
+            "26": 1,
+            "28": 1,
+            "30": 1,
+            "32": 1,
+            "33": 2
+          },
+          "Branches": [
+            {
+              "Line": 18,
+              "Offset": 136,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            },
+            {
+              "Line": 19,
+              "Offset": 92,
+              "EndOffset": 94,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 19,
+              "Offset": 92,
+              "EndOffset": 117,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 3
+            },
+            {
+              "Line": 18,
+              "Offset": 136,
+              "EndOffset": 138,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.EventRepository/<Delete>d__7": {
+        "System.Void Infrastructure.EventRepository/<Delete>d__7::MoveNext()": {
+          "Lines": {
+            "83": 3,
+            "85": 3,
+            "87": 4,
+            "89": 2,
+            "91": 2,
+            "92": 2,
+            "93": 3
+          },
+          "Branches": [
+            {
+              "Line": 87,
+              "Offset": 319,
+              "EndOffset": 321,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 87,
+              "Offset": 319,
+              "EndOffset": 328,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            }
+          ]
+        }
+      },
+      "Infrastructure.EventRepository/<Read>d__3": {
+        "System.Void Infrastructure.EventRepository/<Read>d__3::MoveNext()": {
+          "Lines": {
+            "37": 3,
+            "38": 3,
+            "39": 3,
+            "40": 3,
+            "41": 3,
+            "42": 3,
+            "43": 3,
+            "44": 3,
+            "46": 5,
+            "47": 1,
+            "48": 3
+          },
+          "Branches": [
+            {
+              "Line": 46,
+              "Offset": 612,
+              "EndOffset": 614,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 2
+            },
+            {
+              "Line": 46,
+              "Offset": 612,
+              "EndOffset": 629,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.EventRepository/<ReadAll>d__4": {
+        "System.Void Infrastructure.EventRepository/<ReadAll>d__4::MoveNext()": {
+          "Lines": {
+            "52": 1,
+            "53": 1,
+            "54": 1,
+            "55": 1,
+            "56": 1,
+            "57": 1,
+            "58": 1
+          },
+          "Branches": []
+        }
+      },
+      "Infrastructure.EventRepository/<ReadNameFromId>d__5": {
+        "System.Void Infrastructure.EventRepository/<ReadNameFromId>d__5::MoveNext()": {
+          "Lines": {
+            "61": 3,
+            "62": 3,
+            "63": 3,
+            "64": 3
+          },
+          "Branches": [
+            {
+              "Line": 63,
+              "Offset": 363,
+              "EndOffset": 365,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 2
+            },
+            {
+              "Line": 63,
+              "Offset": 363,
+              "EndOffset": 368,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.EventRepository/<Update>d__6": {
+        "System.Void Infrastructure.EventRepository/<Update>d__6::MoveNext()": {
+          "Lines": {
+            "68": 3,
+            "69": 3,
+            "71": 4,
+            "73": 2,
+            "74": 2,
+            "75": 2,
+            "77": 2,
+            "79": 2,
+            "80": 3
+          },
+          "Branches": [
+            {
+              "Line": 71,
+              "Offset": 319,
+              "EndOffset": 321,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 71,
+              "Offset": 319,
+              "EndOffset": 328,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            }
+          ]
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Repositories/QuestionRepository.cs": {
+      "Infrastructure.QuestionRepository": {
+        "System.Void Infrastructure.QuestionRepository::.ctor(Infrastructure.ISystematicContext)": {
+          "Lines": {
+            "10": 9,
+            "11": 9,
+            "12": 9,
+            "13": 9
+          },
+          "Branches": []
+        }
+      },
+      "Infrastructure.QuestionRepository/<Create>d__2": {
+        "System.Void Infrastructure.QuestionRepository/<Create>d__2::MoveNext()": {
+          "Lines": {
+            "16": 2,
+            "18": 14,
+            "19": 4,
+            "20": 2,
+            "21": 1,
+            "22": 1,
+            "23": 1,
+            "24": 1,
+            "25": 1,
+            "26": 1,
+            "27": 1,
+            "28": 1,
+            "30": 1,
+            "32": 1,
+            "34": 1,
+            "35": 2
+          },
+          "Branches": [
+            {
+              "Line": 18,
+              "Offset": 136,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 3
+            },
+            {
+              "Line": 19,
+              "Offset": 92,
+              "EndOffset": 94,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 19,
+              "Offset": 92,
+              "EndOffset": 117,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            },
+            {
+              "Line": 18,
+              "Offset": 136,
+              "EndOffset": 138,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.QuestionRepository/<Delete>d__6": {
+        "System.Void Infrastructure.QuestionRepository/<Delete>d__6::MoveNext()": {
+          "Lines": {
+            "80": 2,
+            "82": 2,
+            "84": 3,
+            "86": 1,
+            "88": 1,
+            "89": 1,
+            "90": 2
+          },
+          "Branches": [
+            {
+              "Line": 84,
+              "Offset": 319,
+              "EndOffset": 321,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 84,
+              "Offset": 319,
+              "EndOffset": 328,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.QuestionRepository/<Read>d__3": {
+        "System.Void Infrastructure.QuestionRepository/<Read>d__3::MoveNext()": {
+          "Lines": {
+            "39": 2,
+            "40": 2,
+            "41": 2,
+            "42": 2,
+            "43": 2,
+            "44": 2,
+            "45": 2,
+            "46": 2,
+            "48": 3,
+            "49": 1,
+            "50": 2
+          },
+          "Branches": [
+            {
+              "Line": 48,
+              "Offset": 568,
+              "EndOffset": 570,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 48,
+              "Offset": 568,
+              "EndOffset": 585,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.QuestionRepository/<ReadAll>d__4": {
+        "System.Void Infrastructure.QuestionRepository/<ReadAll>d__4::MoveNext()": {
+          "Lines": {
+            "54": 1,
+            "55": 1,
+            "56": 1,
+            "57": 1,
+            "58": 1,
+            "59": 1,
+            "60": 1
+          },
+          "Branches": []
+        }
+      },
+      "Infrastructure.QuestionRepository/<Update>d__5": {
+        "System.Void Infrastructure.QuestionRepository/<Update>d__5::MoveNext()": {
+          "Lines": {
+            "64": 2,
+            "65": 2,
+            "67": 3,
+            "69": 1,
+            "70": 1,
+            "71": 1,
+            "72": 1,
+            "74": 1,
+            "76": 1,
+            "77": 2
+          },
+          "Branches": [
+            {
+              "Line": 67,
+              "Offset": 319,
+              "EndOffset": 321,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 67,
+              "Offset": 319,
+              "EndOffset": 328,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Repositories/QuizRepository.cs": {
+      "Infrastructure.QuizRepository": {
+        "System.Void Infrastructure.QuizRepository::.ctor(Infrastructure.ISystematicContext)": {
+          "Lines": {
+            "10": 9,
+            "11": 9,
+            "12": 9,
+            "13": 9
+          },
+          "Branches": []
+        }
+      },
+      "Infrastructure.QuizRepository/<Create>d__2": {
+        "System.Void Infrastructure.QuizRepository/<Create>d__2::MoveNext()": {
+          "Lines": {
+            "17": 2,
+            "18": 14,
+            "19": 4,
+            "20": 2,
+            "21": 1,
+            "22": 1,
+            "23": 1,
+            "24": 1,
+            "26": 1,
+            "28": 1,
+            "30": 1,
+            "31": 2
+          },
+          "Branches": [
+            {
+              "Line": 18,
+              "Offset": 136,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 3
+            },
+            {
+              "Line": 19,
+              "Offset": 92,
+              "EndOffset": 94,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 19,
+              "Offset": 92,
+              "EndOffset": 117,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            },
+            {
+              "Line": 18,
+              "Offset": 136,
+              "EndOffset": 138,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.QuizRepository/<Delete>d__4": {
+        "System.Void Infrastructure.QuizRepository/<Delete>d__4::MoveNext()": {
+          "Lines": {
+            "40": 2,
+            "42": 2,
+            "44": 3,
+            "46": 1,
+            "48": 1,
+            "49": 1,
+            "50": 2
+          },
+          "Branches": [
+            {
+              "Line": 44,
+              "Offset": 319,
+              "EndOffset": 321,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 44,
+              "Offset": 319,
+              "EndOffset": 328,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.QuizRepository/<Read>d__5": {
+        "System.Void Infrastructure.QuizRepository/<Read>d__5::MoveNext()": {
+          "Lines": {
+            "54": 2,
+            "56": 2,
+            "57": 2,
+            "58": 2,
+            "59": 2,
+            "60": 2,
+            "62": 3,
+            "63": 1,
+            "64": 2
+          },
+          "Branches": [
+            {
+              "Line": 62,
+              "Offset": 480,
+              "EndOffset": 482,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 62,
+              "Offset": 480,
+              "EndOffset": 497,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.QuizRepository/<ReadAll>d__3": {
+        "System.Void Infrastructure.QuizRepository/<ReadAll>d__3::MoveNext()": {
+          "Lines": {
+            "35": 1,
+            "36": 1,
+            "37": 1
+          },
+          "Branches": []
+        }
+      },
+      "Infrastructure.QuizRepository/<Update>d__6": {
+        "System.Void Infrastructure.QuizRepository/<Update>d__6::MoveNext()": {
+          "Lines": {
+            "68": 2,
+            "69": 2,
+            "71": 3,
+            "73": 1,
+            "75": 1,
+            "77": 1,
+            "78": 2
+          },
+          "Branches": [
+            {
+              "Line": 71,
+              "Offset": 319,
+              "EndOffset": 321,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 71,
+              "Offset": 319,
+              "EndOffset": 328,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Migrations/20220310162142_first.cs": {
+      "Infrastructure.Migrations.first": {
+        "System.Void Infrastructure.Migrations.first::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)": {
+          "Lines": {
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "90": 0,
+            "91": 0,
+            "92": 0,
+            "93": 0,
+            "94": 0,
+            "95": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "101": 0,
+            "102": 0,
+            "103": 0,
+            "104": 0,
+            "105": 0,
+            "106": 0,
+            "107": 0,
+            "108": 0,
+            "109": 0,
+            "110": 0,
+            "112": 0,
+            "113": 0,
+            "114": 0,
+            "115": 0,
+            "116": 0,
+            "117": 0,
+            "118": 0,
+            "119": 0,
+            "120": 0,
+            "121": 0,
+            "122": 0,
+            "123": 0,
+            "124": 0,
+            "125": 0,
+            "126": 0,
+            "127": 0,
+            "128": 0,
+            "129": 0,
+            "130": 0,
+            "131": 0,
+            "132": 0,
+            "133": 0,
+            "134": 0,
+            "136": 0,
+            "137": 0,
+            "138": 0,
+            "139": 0,
+            "141": 0,
+            "142": 0,
+            "143": 0,
+            "144": 0,
+            "146": 0,
+            "147": 0,
+            "148": 0,
+            "149": 0,
+            "151": 0,
+            "152": 0,
+            "153": 0,
+            "154": 0,
+            "156": 0,
+            "157": 0,
+            "158": 0,
+            "159": 0,
+            "160": 0
+          },
+          "Branches": []
+        },
+        "System.Void Infrastructure.Migrations.first::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)": {
+          "Lines": {
+            "163": 0,
+            "164": 0,
+            "165": 0,
+            "167": 0,
+            "168": 0,
+            "170": 0,
+            "171": 0,
+            "173": 0,
+            "174": 0,
+            "176": 0,
+            "177": 0,
+            "179": 0,
+            "180": 0,
+            "181": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Migrations/20220310162142_first.Designer.cs": {
+      "Infrastructure.Migrations.first": {
+        "System.Void Infrastructure.Migrations.first::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "19": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "25": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "90": 0,
+            "91": 0,
+            "92": 0,
+            "93": 0,
+            "94": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "101": 0,
+            "102": 0,
+            "103": 0,
+            "104": 0,
+            "105": 0,
+            "106": 0,
+            "107": 0,
+            "108": 0,
+            "109": 0,
+            "110": 0,
+            "111": 0,
+            "112": 0,
+            "113": 0,
+            "114": 0,
+            "115": 0,
+            "116": 0,
+            "117": 0,
+            "118": 0,
+            "119": 0,
+            "120": 0,
+            "121": 0,
+            "122": 0,
+            "123": 0,
+            "124": 0,
+            "125": 0,
+            "126": 0,
+            "127": 0,
+            "128": 0,
+            "129": 0,
+            "131": 0,
+            "132": 0,
+            "133": 0,
+            "134": 0,
+            "135": 0,
+            "136": 0,
+            "137": 0,
+            "138": 0,
+            "139": 0,
+            "140": 0,
+            "141": 0,
+            "142": 0,
+            "143": 0,
+            "144": 0,
+            "145": 0,
+            "146": 0,
+            "147": 0,
+            "148": 0,
+            "149": 0,
+            "150": 0,
+            "151": 0,
+            "152": 0,
+            "153": 0,
+            "154": 0,
+            "155": 0,
+            "156": 0,
+            "157": 0,
+            "158": 0,
+            "159": 0,
+            "161": 0,
+            "162": 0,
+            "163": 0,
+            "164": 0,
+            "165": 0,
+            "166": 0,
+            "167": 0,
+            "168": 0,
+            "169": 0,
+            "170": 0,
+            "171": 0,
+            "172": 0,
+            "173": 0,
+            "174": 0,
+            "175": 0,
+            "177": 0,
+            "178": 0,
+            "179": 0,
+            "180": 0,
+            "181": 0,
+            "182": 0,
+            "183": 0,
+            "184": 0,
+            "185": 0,
+            "186": 0,
+            "187": 0,
+            "188": 0,
+            "189": 0,
+            "190": 0,
+            "192": 0,
+            "193": 0,
+            "194": 0,
+            "195": 0,
+            "196": 0,
+            "197": 0,
+            "198": 0,
+            "199": 0,
+            "201": 0,
+            "202": 0,
+            "203": 0,
+            "204": 0,
+            "205": 0,
+            "206": 0,
+            "207": 0,
+            "208": 0,
+            "209": 0,
+            "210": 0,
+            "211": 0,
+            "212": 0,
+            "214": 0,
+            "215": 0,
+            "216": 0,
+            "217": 0,
+            "218": 0,
+            "219": 0,
+            "220": 0,
+            "221": 0,
+            "223": 0,
+            "224": 0,
+            "225": 0,
+            "226": 0,
+            "228": 0,
+            "229": 0,
+            "230": 0,
+            "231": 0,
+            "232": 0,
+            "233": 0,
+            "234": 0,
+            "235": 0,
+            "237": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Infrastructure/Migrations/SystematicContextModelSnapshot.cs": {
+      "Infrastructure.Migrations.SystematicContextModelSnapshot": {
+        "System.Void Infrastructure.Migrations.SystematicContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "17": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "23": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "90": 0,
+            "91": 0,
+            "92": 0,
+            "94": 0,
+            "95": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "101": 0,
+            "102": 0,
+            "103": 0,
+            "104": 0,
+            "105": 0,
+            "106": 0,
+            "107": 0,
+            "108": 0,
+            "109": 0,
+            "110": 0,
+            "111": 0,
+            "112": 0,
+            "113": 0,
+            "114": 0,
+            "115": 0,
+            "116": 0,
+            "117": 0,
+            "118": 0,
+            "119": 0,
+            "120": 0,
+            "121": 0,
+            "122": 0,
+            "123": 0,
+            "124": 0,
+            "125": 0,
+            "126": 0,
+            "127": 0,
+            "129": 0,
+            "130": 0,
+            "131": 0,
+            "132": 0,
+            "133": 0,
+            "134": 0,
+            "135": 0,
+            "136": 0,
+            "137": 0,
+            "138": 0,
+            "139": 0,
+            "140": 0,
+            "141": 0,
+            "142": 0,
+            "143": 0,
+            "144": 0,
+            "145": 0,
+            "146": 0,
+            "147": 0,
+            "148": 0,
+            "149": 0,
+            "150": 0,
+            "151": 0,
+            "152": 0,
+            "153": 0,
+            "154": 0,
+            "155": 0,
+            "156": 0,
+            "157": 0,
+            "159": 0,
+            "160": 0,
+            "161": 0,
+            "162": 0,
+            "163": 0,
+            "164": 0,
+            "165": 0,
+            "166": 0,
+            "167": 0,
+            "168": 0,
+            "169": 0,
+            "170": 0,
+            "171": 0,
+            "172": 0,
+            "173": 0,
+            "175": 0,
+            "176": 0,
+            "177": 0,
+            "178": 0,
+            "179": 0,
+            "180": 0,
+            "181": 0,
+            "182": 0,
+            "183": 0,
+            "184": 0,
+            "185": 0,
+            "186": 0,
+            "187": 0,
+            "188": 0,
+            "190": 0,
+            "191": 0,
+            "192": 0,
+            "193": 0,
+            "194": 0,
+            "195": 0,
+            "196": 0,
+            "197": 0,
+            "199": 0,
+            "200": 0,
+            "201": 0,
+            "202": 0,
+            "203": 0,
+            "204": 0,
+            "205": 0,
+            "206": 0,
+            "207": 0,
+            "208": 0,
+            "209": 0,
+            "210": 0,
+            "212": 0,
+            "213": 0,
+            "214": 0,
+            "215": 0,
+            "216": 0,
+            "217": 0,
+            "218": 0,
+            "219": 0,
+            "221": 0,
+            "222": 0,
+            "223": 0,
+            "224": 0,
+            "226": 0,
+            "227": 0,
+            "228": 0,
+            "229": 0,
+            "230": 0,
+            "231": 0,
+            "232": 0,
+            "233": 0,
+            "235": 0
+          },
+          "Branches": []
+        }
+      }
+    }
+  },
+  "Core.dll": {
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Core/AdminDTO.cs": {
+      "Core.AdminDTO": {
+        "System.Int32 Core.AdminDTO::get_Id()": {
+          "Lines": {
+            "8": 7,
+            "9": 7
+          },
+          "Branches": []
+        },
+        "System.String Core.AdminDTO::get_Name()": {
+          "Lines": {
+            "11": 6,
+            "12": 6
+          },
+          "Branches": []
+        },
+        "System.String Core.AdminDTO::get_Email()": {
+          "Lines": {
+            "14": 6,
+            "15": 6
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.AdminDTO::get_Events()": {
+          "Lines": {
+            "17": 4,
+            "18": 4
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Core/CandidateDTO.cs": {
+      "Core.CandidateDTO": {
+        "System.Int32 Core.CandidateDTO::get_Id()": {
+          "Lines": {
+            "8": 7,
+            "9": 7
+          },
+          "Branches": []
+        },
+        "System.String Core.CandidateDTO::get_Name()": {
+          "Lines": {
+            "11": 13,
+            "12": 13
+          },
+          "Branches": []
+        },
+        "System.String Core.CandidateDTO::get_Email()": {
+          "Lines": {
+            "14": 11,
+            "15": 11
+          },
+          "Branches": []
+        },
+        "System.String Core.CandidateDTO::get_StudyProgram()": {
+          "Lines": {
+            "17": 9,
+            "18": 9
+          },
+          "Branches": []
+        },
+        "System.String Core.CandidateDTO::get_University()": {
+          "Lines": {
+            "20": 10,
+            "21": 10
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.CandidateDTO::get_Events()": {
+          "Lines": {
+            "23": 4,
+            "24": 4
+          },
+          "Branches": []
+        },
+        "Core.QuizDTO Core.CandidateDTO::get_Quiz()": {
+          "Lines": {
+            "26": 2,
+            "27": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Core/EventDTO.cs": {
+      "Core.EventDTO": {
+        "System.Int32 Core.EventDTO::get_Id()": {
+          "Lines": {
+            "8": 12,
+            "9": 12
+          },
+          "Branches": []
+        },
+        "System.String Core.EventDTO::get_Name()": {
+          "Lines": {
+            "11": 15,
+            "12": 15
+          },
+          "Branches": []
+        },
+        "System.DateTime Core.EventDTO::get_Date()": {
+          "Lines": {
+            "14": 11,
+            "15": 11
+          },
+          "Branches": []
+        },
+        "System.String Core.EventDTO::get_Location()": {
+          "Lines": {
+            "17": 14,
+            "18": 14
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.CandidateDTO> Core.EventDTO::get_Candidates()": {
+          "Lines": {
+            "21": 2
+          },
+          "Branches": []
+        },
+        "Core.QuizDTO Core.EventDTO::get_Quiz()": {
+          "Lines": {
+            "23": 2,
+            "24": 2
+          },
+          "Branches": []
+        },
+        "System.Double Core.EventDTO::get_Rating()": {
+          "Lines": {
+            "26": 11,
+            "27": 11
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.AdminDTO> Core.EventDTO::get_Admins()": {
+          "Lines": {
+            "29": 2,
+            "30": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Core/QuestionDTO.cs": {
+      "Core.QuestionDTO": {
+        "System.Int32 Core.QuestionDTO::get_Id()": {
+          "Lines": {
+            "8": 12,
+            "9": 12
+          },
+          "Branches": []
+        },
+        "System.String Core.QuestionDTO::get_Representation()": {
+          "Lines": {
+            "11": 12,
+            "12": 12
+          },
+          "Branches": []
+        },
+        "System.String Core.QuestionDTO::get_Answer()": {
+          "Lines": {
+            "14": 12,
+            "15": 12
+          },
+          "Branches": []
+        },
+        "System.String Core.QuestionDTO::get_ImageURl()": {
+          "Lines": {
+            "17": 8,
+            "18": 8
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<System.String> Core.QuestionDTO::get_Options()": {
+          "Lines": {
+            "20": 4,
+            "21": 4
+          },
+          "Branches": []
+        },
+        "Core.QuizDTO Core.QuestionDTO::get_Quiz()": {
+          "Lines": {
+            "23": 2,
+            "24": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/lukas/Desktop/sch00l/SCRUM(udråbstegn)/SYST/Core/QuizDTO.cs": {
+      "Core.QuizDTO": {
+        "System.Int32 Core.QuizDTO::get_Id()": {
+          "Lines": {
+            "8": 13,
+            "9": 13
+          },
+          "Branches": []
+        },
+        "System.DateTime Core.QuizDTO::get_Date()": {
+          "Lines": {
+            "11": 7,
+            "12": 7
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.QuestionDTO> Core.QuizDTO::get_Questions()": {
+          "Lines": {
+            "14": 4,
+            "15": 4
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.QuizDTO::get_Events()": {
+          "Lines": {
+            "17": 4,
+            "18": 4
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.CandidateDTO> Core.QuizDTO::get_Candidates()": {
+          "Lines": {
+            "20": 4,
+            "21": 4
+          },
+          "Branches": []
+        }
+      }
+    }
+  }
+}

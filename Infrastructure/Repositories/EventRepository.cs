@@ -16,7 +16,7 @@ namespace Infrastructure
         public async Task<(Status, int id)> Create(EventDTO eventDTO) {
 
             foreach (Event e in _context.Events) {
-                if (e.Name == e.Name) return (Status.Conflict, e.Id);
+                if (e.Id == eventDTO.Id) return (Status.Conflict, e.Id);
             }
                 var entity = new Event
                 {
@@ -35,11 +35,19 @@ namespace Infrastructure
         //Return an event given the event id
         public async Task<(Status, EventDTO)> Read(int id)
         {
-            var e = await _context.Events.Where(e => e.Id == id).Select(e => new EventDTO(){
+            var e = await _context.Events.Include(e => e.Candidates).Where(e => e.Id == id).Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
                 Date = e.Date,
-                Location = e.Location!
+                Location = e.Location!,
+                Rating = e.Rating!,
+                Candidates = e.Candidates != null ? e.Candidates.Select(c => new CandidateDTO(){
+                    Name = c.Name!,
+                    Id = c.Id,
+                    Email = c.Email!,
+                    StudyProgram = c.StudyProgram!,
+                    University = c.University.ToString()
+                }).ToList() : new List<CandidateDTO>()           
             }).FirstOrDefaultAsync();
 
             if (e == default(EventDTO)) return (Status.NotFound, e);
