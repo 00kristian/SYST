@@ -39,7 +39,7 @@ public class EventRepositoryTests {
     public async void Create_Creates_Event_In_Repository()
     {
         //Arrange
-        var event3 = new EventDTO{Name="Swagger event", Date = new DateTime{}, Location="Scrollbar", Rating=7.0};
+        var event3 = new CreateEventDTO{Name="Swagger event", Date = "2022-03-21", Location="Scrollbar"};
 
         //Act
         var actual = await _repo.Create(event3);
@@ -49,20 +49,20 @@ public class EventRepositoryTests {
         Assert.Equal(3, actual.Item2);
     }
 
-    [Fact]
-    public async void Create_Returns_Conflict_When_ID_Is_In_the_database()
-    {
-        //Arrange
-        var event3 = new EventDTO{Id=2, Name="Swagger event", Date = new DateTime{}, Location="Scrollbar", Rating=7.0};
+    // [Fact]
+    // public async void Create_Returns_Conflict_When_ID_Is_In_the_database()
+    // {
+    //     //Arrange
+    //     var event3 = new CreateEventDTO{Name="Swagger event", Date = "2022-03-21", Location="Scrollbar"};
 
 
-        //Act
-        var actual = await _repo.Create(event3);
+    //     //Act
+    //     var actual = await _repo.Create(event3);
 
-        //Assert
-        Assert.Equal(Status.Conflict, actual.Item1);
-        Assert.Equal(2, actual.Item2);
-    }
+    //     //Assert
+    //     Assert.Equal(Status.Conflict, actual.Item1);
+    //     Assert.Equal(2, actual.Item2);
+    // }
 
     [Fact]
     public async void Read_returns_event1_when_given_ID_1()
@@ -74,7 +74,7 @@ public class EventRepositoryTests {
         
         Assert.Equal(Status.Found, actual.Item1);
         Assert.Equal(event1.Name, actual.Item2.Name);
-        Assert.Equal(event1.Date, actual.Item2.Date);
+        Assert.Equal(event1.Date.ToShortDateString(), actual.Item2.Date);
         Assert.Equal(event1.Location, actual.Item2.Location);
         Assert.Equal(event1.Rating, actual.Item2.Rating);
     }
@@ -99,8 +99,8 @@ public class EventRepositoryTests {
 
         //assert
         Assert.Collection(events,
-            firstEvent => Assert.Equal(new EventDTO(1,"Workshop event", new DateTime{}, "ITU", null!, new QuizDTO {}, 4.0, null!), firstEvent),
-            SecondEvent => Assert.Equal(new EventDTO( 2, "Swagger event", new DateTime{}, "Scrollbar", null!, new QuizDTO{}, 7.0,  null!), SecondEvent)
+            firstEvent => Assert.Equal(new EventDTO(1,"Workshop event", (new DateTime{}).ToShortDateString(), "ITU", null!, new QuizDTO {}, 4.0, null!), firstEvent),
+            SecondEvent => Assert.Equal(new EventDTO( 2, "Swagger event", (new DateTime{}).ToShortDateString(), "Scrollbar", null!, new QuizDTO{}, 7.0,  null!), SecondEvent)
         );
     }
 
@@ -135,6 +135,7 @@ public class EventRepositoryTests {
             Name = "HackIt",
             Location = "KU",
             Rating = 9.0,
+            Date = "2022-10-10"
         };
     
         // Act
@@ -153,6 +154,7 @@ public class EventRepositoryTests {
             Name = "HackIt",
             Location = "KU",
             Rating = 9.0,
+            Date = "2022-10-10"
         };
     
         // Act
@@ -172,6 +174,7 @@ public class EventRepositoryTests {
             Name = "HackIt",
             Location = "KU",
             Rating = 9.0,
+            Date = "2022-10-10"
         };
     
         // Act

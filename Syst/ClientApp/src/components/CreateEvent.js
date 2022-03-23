@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 export class CreateEvent extends Component {
     static displayName = CreateEvent.name;
 
+    constructor(props) {
+        super(props);
+        this.state = { name: "", date: "", location: ""};
+    }
 
     render() {
         return (
@@ -12,19 +16,19 @@ export class CreateEvent extends Component {
                 <form>
                     <label>
                         <h5>Name</h5>
-                        <input className="input-field"></input>
+                        <input className="input-field" onChange={(event) => this.state.name = event.target.value}></input>
                     </label>
                     <br />
                     <br />
                     <label>
                         <h5>Date</h5>
-                        <input className="input-field"></input>
+                        <input className="input-field" onChange={(event) => this.state.date = event.target.value}></input>
                     </label>
                     <br />
                     <br />
                     <label>
                         <h5>Location</h5>
-                        <input className="input-field"></input>
+                        <input className="input-field" onChange={(event) => this.state.location = event.target.value}></input>
                     </label>
                 </form>
                 <br />
@@ -41,6 +45,18 @@ export class CreateEvent extends Component {
     }
 
     rerouteToConfirmation = () => {
+        let event = {
+            "name": this.state.name,
+            "date": this.state.date,
+            "location": this.state.location
+        };
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(event)
+        };
+        fetch('api/events', requestOptions)
+        .then(response => response.json())
         const { history } = this.props;
         history.push("/Confirmation");
     }
