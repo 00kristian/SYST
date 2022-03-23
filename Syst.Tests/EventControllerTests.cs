@@ -183,7 +183,7 @@ public class EventControllerTests
     }
 
     [Fact]
-    public async void Post_existing_name_returns_StatusConflict() 
+    public async void Post_existing_id_returns_StatusConflict() 
     { 
         //Arrange
         var logger = new Mock<ILogger<EventsController>>();
