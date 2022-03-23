@@ -11,7 +11,7 @@ namespace Syst.Tests;
 public class EventControllerTests
 {
     //Create some objects to test on
-    /*static readonly QuizDTO quiz1 = new QuizDTO{
+    static readonly QuizDTO quiz1 = new QuizDTO{
         Id = 90,
         Date = new System.DateTime(2022,03,21),
         Questions = null,
@@ -22,7 +22,7 @@ public class EventControllerTests
     static readonly EventDTO event1 = new EventDTO{
         Id = 1,
         Name = "TechBBQ",
-        Date = new System.DateTime(2022,03,21),
+        Date = "03-21-2022",
         Location = "Copenhagen",
         Candidates = null,
         Quiz = quiz1,
@@ -33,7 +33,7 @@ public class EventControllerTests
     static readonly EventDTO event2 = new EventDTO{
         Id = 2,
         Name = "We Love Tech!",
-        Date = new System.DateTime(2022,05,30),
+        Date = "05-30-2022",
         Location = "London",
         Candidates = null,
         Quiz = quiz1,
@@ -43,8 +43,8 @@ public class EventControllerTests
 
     static readonly EventDTO event3 = new EventDTO{
         Id = 1,
-        Name = "TechBBQ",
-        Date = new System.DateTime(2024,12,24),
+        Name = "IT Fest",
+        Date = "12-24-2024",
         Location = "Copenhagen",
         Candidates = null,
         Quiz = quiz1,
@@ -170,12 +170,14 @@ public class EventControllerTests
         //Arrange
         var logger = new Mock<ILogger<EventsController>>();
         var repository = new Mock<IEventRepository>();
-        var events = new List<EventDTO> {event1};
-        repository.Setup(m => m.Create(event2)).Callback(() => events.Add(event2));
+        var event1 = new CreateEventDTO("TechTalk", "02-02-2022", "Rotterdam");
+        var events = new List<CreateEventDTO> {event1};
+        var createdEvent = new CreateEventDTO("IT Fest", "01-01-2025", "Copenhagen");
+        repository.Setup(m => m.Create(createdEvent)).Callback(() => events.Add(createdEvent));
         var controller = new EventsController(logger.Object, repository.Object);
 
         //Act
-        var response = await controller.Post(event2);
+        var response = await controller.Post(createdEvent);
 
         //Assert
         Assert.IsType<CreatedAtActionResult>(response);
@@ -189,17 +191,18 @@ public class EventControllerTests
         var logger = new Mock<ILogger<EventsController>>();
         var repository = new Mock<IEventRepository>();
         var events = new List<EventDTO> {event1};
-        repository.Setup(m => m.Create(event3)).ReturnsAsync(() => (Status.Conflict, 1));
+        var createdEvent = new CreateEventDTO("IT Fest", "01-01-2025", "Copenhagen");
+        repository.Setup(m => m.Create(createdEvent)).ReturnsAsync(() => (Status.Conflict, 1));
         var controller = new EventsController(logger.Object, repository.Object);
 
         //Act
-        var response = await controller.Post(event3);
+        var response = await controller.Post(createdEvent);
 
         //Assert
         Assert.IsType<ConflictObjectResult>(response);
         Assert.Equal(1, events.Count);
         
-    }*/
+    }
 
 
 }
