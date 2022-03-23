@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import figure from './confirmation-figure.png';
 
+
 export class Confirmation extends Component {
 
     static displayName = Confirmation.name;
