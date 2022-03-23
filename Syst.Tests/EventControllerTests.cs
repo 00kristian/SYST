@@ -4,6 +4,7 @@ using Moq;
 using Core;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Syst.Tests;
 
@@ -37,6 +38,17 @@ public class EventControllerTests
         Candidates = null,
         Quiz = quiz1,
         Rating = 4.8,
+        Admins = null
+    };
+
+    static readonly EventDTO event3 = new EventDTO{
+        Id = 1,
+        Name = "TechBBQ",
+        Date = new System.DateTime(2024,12,24),
+        Location = "Copenhagen",
+        Candidates = null,
+        Quiz = quiz1,
+        Rating = 1.2,
         Admins = null
     };
 
@@ -151,5 +163,43 @@ public class EventControllerTests
         //Assert
         Assert.IsType<NoContentResult>(response);
     }
+
+    [Fact]
+    public async void Post_adds_event_to_repository()
+    {
+        //Arrange
+        var logger = new Mock<ILogger<EventsController>>();
+        var repository = new Mock<IEventRepository>();
+        var events = new List<EventDTO> {event1};
+        repository.Setup(m => m.Create(event2)).Callback(() => events.Add(event2));
+        var controller = new EventsController(logger.Object, repository.Object);
+
+        //Act
+        var response = await controller.Post(event2);
+
+        //Assert
+        Assert.IsType<CreatedAtActionResult>(response);
+        Assert.Equal(2, events.Count);
+    }
+
+    [Fact]
+    public async void Post_existing_name_returns_StatusConflict() 
+    { 
+        //Arrange
+        var logger = new Mock<ILogger<EventsController>>();
+        var repository = new Mock<IEventRepository>();
+        var events = new List<EventDTO> {event1};
+        repository.Setup(m => m.Create(event3)).ReturnsAsync(() => (Status.Conflict, 1));
+        var controller = new EventsController(logger.Object, repository.Object);
+
+        //Act
+        var response = await controller.Post(event3);
+
+        //Assert
+        Assert.IsType<ConflictObjectResult>(response);
+        Assert.Equal(1, events.Count);
+        
+    }
+
 
 }
