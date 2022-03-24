@@ -19,10 +19,10 @@ export class Confirmation extends Component {
                 </div>
                 <div className={"confirmationText"}>
                 <h1>Your event has successfully been created</h1>
-                <h3>Event details</h3>
+                {/*<h3>Event details</h3>
                 <h5>Name</h5>
                 <h5>Date</h5>
-                <h5>Location</h5>
+                <h5>Location</h5>*/}
                 <button className={"btn-primary confirmationbtn"} onClick={this.rerouteToHomePage}>OK</button>
                 </div>
             </div>
