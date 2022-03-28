@@ -29,9 +29,7 @@ export class Home extends Component {
                 <tbody>
                 {events.map(event =>
                     <tr key={event.id}>
-                        <td>
-                            {event.id}
-                        </td>
+                        <td>{event.id}</td>
                         <td>{event.name}</td>
                         <td>{event.date}</td>
                         <td>{event.location}</td>
