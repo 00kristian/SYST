@@ -29,6 +29,7 @@ export class EventDetail extends Component {
                     <th>Email</th>
                     <th>University</th>
                     <th>Degree</th>
+                    <th>Graduation date</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,7 @@ export class EventDetail extends Component {
                         <td>{candidate.email}</td>
                         <td>{candidate.university}</td>
                         <td>{candidate.studyProgram}</td>
+                        <td>{candidate.graduationDate}</td>
                     </tr>
                 )}
                 </tbody>
