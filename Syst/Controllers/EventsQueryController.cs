@@ -12,7 +12,7 @@ public class EventsQueryController : ControllerBase
 
     //We use REST to make sure we have a reliable API
     public EventsQueryController(ILogger<EventsController> logger, IEventRepository repo)
-    {
+    { 
         _logger = logger;
         //First we create our repository so we can access our CRUD operations
         _repo = repo;

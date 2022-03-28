@@ -44,7 +44,8 @@ namespace Infrastructure
                     Id = c.Id,
                     Email = c.Email!,
                     StudyProgram = c.StudyProgram!,
-                    University = c.University.ToString()
+                    University = c.University.ToString(),
+                    GraduationDate = c.GraduationDate.ToShortDateString()
                 }).ToList() : new List<CandidateDTO>()           
             }).FirstOrDefaultAsync();
 

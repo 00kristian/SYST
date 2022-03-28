@@ -25,6 +25,7 @@ namespace Infrastructure
                     Email = candidateDTO.Email!,
                     StudyProgram = candidateDTO.StudyProgram,
                     University = (UniversityEnum)Enum.Parse(typeof(UniversityEnum), candidateDTO.University),
+                    GraduationDate = DateTime.Parse(candidateDTO.GraduationDate)
                     
                 };
 
@@ -49,7 +50,8 @@ namespace Infrastructure
                 Id = c.Id,
                 Email = c.Email!,
                 StudyProgram = c.StudyProgram!,
-                University = c.University.ToString()
+                University = c.University.ToString(),
+                GraduationDate = c.GraduationDate.ToShortDateString()
             }).FirstOrDefaultAsync();
 
             if (c == default(CandidateDTO)) return (Status.NotFound, c);
@@ -63,7 +65,8 @@ namespace Infrastructure
                 Id = c.Id,
                 Email = c.Email!,
                 StudyProgram = c.StudyProgram!,
-                University = c.University.ToString()
+                University = c.University.ToString(),
+                GraduationDate = c.GraduationDate.ToShortDateString()
             }).ToListAsync();
 
         //Updates an candidate name, email, university and study program values
@@ -77,6 +80,7 @@ namespace Infrastructure
             c.Email = candidateDTO.Email!;
             c.University = (UniversityEnum)Enum.Parse(typeof(UniversityEnum), candidateDTO.University);
             c.StudyProgram = candidateDTO.StudyProgram;
+            c.GraduationDate = DateTime.Parse(candidateDTO.GraduationDate);
 
             await _context.SaveChangesAsync();
 
