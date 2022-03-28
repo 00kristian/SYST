@@ -41,7 +41,7 @@ public static class SeedExtensions
             var date8 = new System.DateTime(2022,02,14);
             var date9 = new System.DateTime(2022,01,31);
             var date10 = new System.DateTime(2022,02,18);
-            var date11 = new System.DateTime(2022,12,24);
+            var date11 = new System.DateTime(2022,03,24);
             var date12 = new System.DateTime(2022,10,31);
 
             var lukas = new Candidate() {Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = UniversityEnum.ITU, GraduationDate = date0};

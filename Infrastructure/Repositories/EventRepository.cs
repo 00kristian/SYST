@@ -113,7 +113,7 @@ namespace Infrastructure
 
         public async Task<IReadOnlyCollection<EventDTO>> ReadRecent() =>
             await _context.Events.Where(e => e.Date < DateTime.Today)
-                .OrderBy(e => e.Date)
+                .OrderByDescending(e => e.Date)
                 .Take(5).Select(e => new EventDTO()
                 {
                     Name = e.Name!,

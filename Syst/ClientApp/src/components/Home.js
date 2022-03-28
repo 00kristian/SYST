@@ -30,12 +30,13 @@ export class Home extends Component {
                 {events.map(event =>
                     <tr key={event.id}>
                         <td>
-                            <a href={'/eventdetail/' + event.id}> {event.id} </a>
+                            {event.id}
                         </td>
                         <td>{event.name}</td>
                         <td>{event.date}</td>
                         <td>{event.location}</td>
                         <td>{event.rating}</td>
+                        <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-primary rightbtn">Details</button></a></td>
                         <td><button className="btn btn-host rightbtn">Host</button></td>
                     </tr>
                 )}
