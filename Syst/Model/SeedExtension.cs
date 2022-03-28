@@ -60,7 +60,6 @@ public static class SeedExtensions
                 peter
                 );
           
-<<<<<<< HEAD
             var date3 = new System.DateTime(2022,03,14);
             var date4 = new System.DateTime(2022,05,18);
             var date5 = new System.DateTime(2022,09,23);
@@ -71,30 +70,27 @@ public static class SeedExtensions
                 new Event() {Name = "IT Konference", Date = date3, Location = "Århus", Candidates = new List<Candidate> {maj, benjamin, emma}, Quiz = null, Rating = 3.7},
                 new Event() {Name = "SDU - Match Making", Date = date4, Location = "Odense", Candidates = new List<Candidate> {isabella, kristian, benjamin}, Quiz = null, Rating = 2.5},
                 new Event() {Name = "ITU - Job messe", Date = date5, Location = "København", Candidates = new List<Candidate> {lukas, isabella, camille, kristian, peter}, Quiz = quiz2, Rating = 5.0}
-=======
-            var date1 = new System.DateTime(2022,03,14);
-            var date2 = new System.DateTime(2022,03,26);
-            var date3 = new System.DateTime(2022,09,23);
-            var date4 = new System.DateTime(2022,06,30);
-            var date5 = new System.DateTime(2022,11,21);
-            var date6 = new System.DateTime(2022,02,14);
-            var date7 = new System.DateTime(2022,01,31);
-            var date8 = new System.DateTime(2022,02,18);
-            var date9 = new System.DateTime(2022,12,24);
-            var date10 = new System.DateTime(2022,10,31);
+            );
+
+            var date6 = new System.DateTime(2022,06,30);
+            var date7 = new System.DateTime(2022,11,21);
+            var date8 = new System.DateTime(2022,02,14);
+            var date9 = new System.DateTime(2022,01,31);
+            var date10 = new System.DateTime(2022,02,18);
+            var date11 = new System.DateTime(2022,12,24);
+            var date12 = new System.DateTime(2022,10,31);
 
             context.Events.AddRange(
-                new Event() {Name = "IT Konference", Date = date1, Location = "Århus", Candidates = new List<Candidate> {}, Quiz = null, Rating = 3.7},
-                new Event() {Name = "Match Making hos SDU", Date = date2, Location = "Odense", Candidates = new List<Candidate> {}, Quiz = null, Rating = 2.5},
-                new Event() {Name = "Job messe på ITU", Date = date3, Location = "København", Candidates = new List<Candidate> {}, Quiz = null, Rating = 5.0},
-                new Event() {Name = "IT-DAY København", Date = date4, Location = "København", Candidates = new List<Candidate> {}, Quiz = null, Rating = 4.6},
-                new Event() {Name = "JOB BootCamp", Date = date5, Location = "Århus", Candidates = new List<Candidate> {}, Quiz = null, Rating = 3.8},
-                new Event() {Name = "IT-DAY Odense", Date = date6, Location = "Odense", Candidates = new List<Candidate> {}, Quiz = null, Rating = 4.1},
-                new Event() {Name = "Career Week hos DTU", Date = date7, Location = "Kgs. Lyngby", Candidates = new List<Candidate> {}, Quiz = null, Rating = 4.4},
-                new Event() {Name = "IT week på RUC", Date = date8, Location = "Roskilde", Candidates = new List<Candidate> {}, Quiz = null, Rating = 3.1},
-                new Event() {Name = "Job messe i Århus", Date = date9, Location = "Århus", Candidates = new List<Candidate> {}, Quiz = null, Rating = 3.6},
+                new Event() {Name = "IT Konference", Date = date6, Location = "Århus", Candidates = new List<Candidate> {}, Quiz = null, Rating = 3.7},
+                new Event() {Name = "Match Making hos SDU", Date = date7, Location = "Odense", Candidates = new List<Candidate> {}, Quiz = null, Rating = 2.5},
+                new Event() {Name = "Job messe på ITU", Date = date8, Location = "København", Candidates = new List<Candidate> {}, Quiz = null, Rating = 5.0},
+                new Event() {Name = "IT-DAY København", Date = date9, Location = "København", Candidates = new List<Candidate> {}, Quiz = null, Rating = 4.6},
+                new Event() {Name = "JOB BootCamp", Date = date10, Location = "Århus", Candidates = new List<Candidate> {}, Quiz = null, Rating = 3.8},
+                new Event() {Name = "IT-DAY Odense", Date = date11, Location = "Odense", Candidates = new List<Candidate> {}, Quiz = null, Rating = 4.1},
+                new Event() {Name = "Career Week hos DTU", Date = date12, Location = "Kgs. Lyngby", Candidates = new List<Candidate> {}, Quiz = null, Rating = 4.4},
+                new Event() {Name = "IT week på RUC", Date = date11, Location = "Roskilde", Candidates = new List<Candidate> {}, Quiz = null, Rating = 3.1},
+                new Event() {Name = "Job messe i Århus", Date = date8, Location = "Århus", Candidates = new List<Candidate> {}, Quiz = null, Rating = 3.6},
                 new Event() {Name = "IT-DAY Aalborg", Date = date10, Location = "Aalborg", Candidates = new List<Candidate> {}, Quiz = null, Rating = 4.3}
->>>>>>> 75c8900c60d7aee516b8f731a2276314acb50163
             );
 
             await context.SaveChangesAsync();
