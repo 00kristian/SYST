@@ -62,3 +62,7 @@ code {
         border-radius: 4px;
         box-sizing: border-box;
     }
+
+.space{
+    padding-top: 4%;
+}
