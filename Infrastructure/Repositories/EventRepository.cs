@@ -100,7 +100,7 @@ namespace Infrastructure
         
         public async Task<IReadOnlyCollection<EventDTO>> ReadUpcoming() =>
             await _context.Events.Where(e => e.Date >= DateTime.Today)
-                .OrderByDescending(e => e.Date)
+                .OrderBy(e => e.Date)
                 .Take(5).Select(e => new EventDTO()
                 {
                     Name = e.Name!,
@@ -113,7 +113,7 @@ namespace Infrastructure
 
         public async Task<IReadOnlyCollection<EventDTO>> ReadRecent() =>
             await _context.Events.Where(e => e.Date < DateTime.Today)
-                .OrderBy(e => e.Date)
+                .OrderByDescending(e => e.Date)
                 .Take(5).Select(e => new EventDTO()
                 {
                     Name = e.Name!,
