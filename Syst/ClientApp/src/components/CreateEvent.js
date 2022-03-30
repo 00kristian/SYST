@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
 export class CreateEvent extends Component {
     static displayName = CreateEvent.name;
 
     constructor(props) {
         super(props);
-        this.state = { name: "", date: "", location: ""};
+        this.state = { name: "", date: new Date(), location: ""};
     }
 
     render() {
@@ -21,8 +25,11 @@ export class CreateEvent extends Component {
                     <br />
                     <br />
                     <label>
-                        <h5>Date</h5>
-                        <input className="input-field" onChange={(event) => this.state.date = event.target.value}></input>
+                        <h5>Date</h5><DatePicker selected={this.state.date} onChange={(date) => {
+                            this.state.date.setDate(date.getDate());
+                            this.state.date.setMonth(date.getMonth());
+                            this.state.date.setFullYear(date.getFullYear());
+                        }} />
                     </label>
                     <br />
                     <br />
@@ -47,7 +54,7 @@ export class CreateEvent extends Component {
     rerouteToConfirmation = () => {
         let event = {
             "name": this.state.name,
-            "date": this.state.date,
+            "date": this.state.date.toDateString(),
             "location": this.state.location
         };
         const requestOptions = {
