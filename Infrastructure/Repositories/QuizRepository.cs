@@ -20,7 +20,7 @@ namespace Infrastructure
             }
              var entity = new Quiz
                 {
-                    Date = quizDTO.Date
+                    Name = quizDTO.Name
                 };
 
                 _context.Quizes.Add(entity);
@@ -33,8 +33,11 @@ namespace Infrastructure
         //Return a list of all quizes
          public async Task<IReadOnlyCollection<QuizDTO>> ReadAll() =>
             await _context.Quizes.Select(q => new QuizDTO(){
-                Id = q.Id
+                Id = q.Id,
+                Name = q.Name!
             }).ToListAsync();
+            //TODO: Do we need this if we can get the quizes via events? 
+
 
         //Deletes a quiz given the quiz id
         public async Task<Status> Delete(int id){
@@ -55,7 +58,6 @@ namespace Infrastructure
             
             var quiz = await _context.Quizes.Where(q => q.Id == id).Select(q => new QuizDTO(){
                 Id = q.Id,
-                Date = q.Date
               
             }).FirstOrDefaultAsync();
 
@@ -70,7 +72,8 @@ namespace Infrastructure
 
             if (q == default(Quiz)) return Status.NotFound;
 
-            q.Date = quizDTO.Date;
+            q.Name = quizDTO.Name;
+           
 
             await _context.SaveChangesAsync();
 

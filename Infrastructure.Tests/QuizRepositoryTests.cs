@@ -13,8 +13,8 @@ public class QuizRepositoryTests {
     private readonly ISystematicContext _context; 
     private readonly IQuizRepository _repo;
 
-    Quiz quiz1 = new Quiz{Id = 1, Date = new DateTime{}, Questions = new List<Question>{}, Events = new List<Event>{}, Candidates = new List<Candidate>{}};
-    Quiz quiz2 = new Quiz{Id = 2, Date = new DateTime{}, Questions = new List<Question>{}, Events = new List<Event>{}, Candidates = new List<Candidate>{}};
+    Quiz quiz1 = new Quiz{Id = 1, Name="Lukki", Questions = new List<Question>{}, Events = new List<Event>{}, Candidates = new List<Candidate>{}};
+    Quiz quiz2 = new Quiz{Id = 2, Name = "Sals", Questions = new List<Question>{}, Events = new List<Event>{}, Candidates = new List<Candidate>{}};
 
     public QuizRepositoryTests(){
         var connection = new SqliteConnection("Filename=:memory:");
@@ -39,7 +39,7 @@ public class QuizRepositoryTests {
     public async void Create_Creates_Quiz_In_Repository()
     {
         //Arrange
-        var quiz3 = new QuizDTO{Id = 3, Date = new DateTime{}, Questions = new List<QuestionDTO>{}, Events = new List<EventDTO>{}, Candidates = new List<CandidateDTO>{}};
+        var quiz3 = new QuizDTO{Id = 3, Name="Gandalf", Questions = new List<QuestionDTO>{}, Events = new List<EventDTO>{}, Candidates = new List<CandidateDTO>{}};
 
         //Act
         var actual = await _repo.Create(quiz3);
@@ -53,7 +53,7 @@ public class QuizRepositoryTests {
     public async void Create_Returns_Conflict_When_ID_Is_In_the_database()
     {
         //Arrange
-        var quiz3 = new QuizDTO{Id = 1, Date = new DateTime{}, Questions = new List<QuestionDTO>{}, Events = new List<EventDTO>{}, Candidates = new List<CandidateDTO>{}};
+        var quiz3 = new QuizDTO{Id = 1, Name = "Nuddelhår", Questions = new List<QuestionDTO>{}, Events = new List<EventDTO>{}, Candidates = new List<CandidateDTO>{}};
 
 
         //Act
@@ -94,8 +94,8 @@ public class QuizRepositoryTests {
 
         //assert
         Assert.Collection(quizes,
-            quiz => Assert.Equal(new QuizDTO(1, new DateTime{}, null!, null!, null!), quiz),
-            quiz => Assert.Equal(new QuizDTO(2, new DateTime{}, null!, null!, null!), quiz)
+            quiz => Assert.Equal(new QuizDTO(1, "Lukki", null!, null!, null!), quiz),
+            quiz => Assert.Equal(new QuizDTO(2, "Sals", null!, null!, null!), quiz)
         );
 
     }

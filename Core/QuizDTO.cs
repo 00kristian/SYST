@@ -9,7 +9,7 @@ namespace Core {
         int Id,
 
         [Required]
-        DateTime Date,
+        string Name,
 
         [Required]
         ICollection<QuestionDTO> Questions,

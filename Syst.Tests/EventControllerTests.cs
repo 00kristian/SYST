@@ -13,7 +13,7 @@ public class EventControllerTests
     //Create some objects to test on
     static readonly QuizDTO quiz1 = new QuizDTO{
         Id = 90,
-        Date = new System.DateTime(2022,03,21),
+        Name = "Swag",
         Questions = null!,
         Events = null!,
         Candidates = null!
