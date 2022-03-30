@@ -3,6 +3,10 @@ import { Collapse, Container, Navbar, NavbarToggler, NavItem, NavLink } from 're
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 import logo from './Systematic_Logo.png';
+import Icon from '@mdi/react'
+import { mdiHome } from '@mdi/js'
+import { mdiCalendar } from '@mdi/js';
+import { mdiAccountGroup } from '@mdi/js';
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -34,13 +38,13 @@ export class NavMenu extends Component {
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
               <ul className="navbar-nav flex-grow">
                 <NavItem>
-                  <NavLink tag={Link} className="navitem text-dark" to="/">Home</NavLink>
+                  <NavLink tag={Link} className="navitem text-dark" to="/"><Icon path={mdiHome} size={1}/> Home</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink tag={Link} className="navitem text-dark" to="/Events">Events</NavLink>
+                    <NavLink tag={Link} className="navitem text-dark" to="/Events"><Icon path={mdiCalendar} size={1}/> Events</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="navitem text-dark" to="/candidates">Candidates</NavLink>
+                  <NavLink tag={Link} className="navitem text-dark" to="/candidates"><Icon path={mdiAccountGroup} size={1}/> Candidates</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={Link} className="navitem text-dark" to="/fetch-data">Fetch data</NavLink>
