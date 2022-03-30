@@ -13,21 +13,25 @@ namespace Infrastructure
         }
 
         //Creates a quiz
-        public async Task<(Status, int id)> Create(QuizDTO quizDTO)
+        public async Task<(Status, int id)> Create(QuizCreateDTO quizDTO)
         {
-             foreach (Quiz q in _context.Quizes) {
-                if (q.Id == quizDTO.Id) return (Status.Conflict, q.Id);
-            }
-             var entity = new Quiz
+            //TODO: test if dto is null
+            var entity = new Quiz
                 {
-                    Name = quizDTO.Name
+                    Name = quizDTO.Name,
+                    Questions = quizDTO.Questions.Select(qs => new Question {
+                        Representation = qs.Representation,
+                        Answer = qs.Answer,
+                        ImageURL = qs.ImageURl,
+                        Options = qs.Options
+                    }).ToList()
                 };
 
-                _context.Quizes.Add(entity);
+            _context.Quizes.Add(entity);
 
-                await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-                return (Status.Created, entity.Id);
+            return (Status.Created, entity.Id);
         }
 
         //Return a list of all quizes
@@ -66,14 +70,19 @@ namespace Infrastructure
         }
         
         //Updates a quiz date value
-        public async Task<Status> Update(int id, QuizDTO quizDTO)
+        public async Task<Status> Update(int id, QuizCreateDTO quizDTO)
         {
             var q = await _context.Quizes.Where(q => q.Id == id).FirstOrDefaultAsync();
 
             if (q == default(Quiz)) return Status.NotFound;
 
             q.Name = quizDTO.Name;
-           
+            q.Questions = quizDTO.Questions.Select(qs => new Question {
+                Representation = qs.Representation,
+                Answer = qs.Answer,
+                ImageURL = qs.ImageURl,
+                Options = qs.Options
+            }).ToList();
 
             await _context.SaveChangesAsync();
 

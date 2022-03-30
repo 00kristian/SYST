@@ -33,7 +33,7 @@ public class QuizController : ControllerBase
     [ProducesResponseType(409)]
     [ProducesResponseType(201)]
     [HttpPost]
-    public async Task<IActionResult> Post(QuizDTO newQuiz) {
+    public async Task<IActionResult> Post(QuizCreateDTO newQuiz) {
         var created = await _repo.Create(newQuiz);
         var id = created.Item2;
         if (created.Item1 == Status.Conflict) return new ConflictObjectResult(id);
@@ -59,7 +59,7 @@ public class QuizController : ControllerBase
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] QuizDTO newQuiz) =>
+    public async Task<IActionResult> Put(int id, [FromBody] QuizCreateDTO newQuiz) =>
         (await _repo.Update(id,newQuiz)).ToActionResult();
 
 
@@ -71,13 +71,5 @@ public class QuizController : ControllerBase
         var deleted = await _repo.Delete(id);
         if (deleted == Status.NotFound) return new NotFoundObjectResult(id);
         return deleted.ToActionResult();
-    }
-    
-
-
-
-
-
-
-
+    }    
 }

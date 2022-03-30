@@ -39,7 +39,7 @@ public class QuizRepositoryTests {
     public async void Create_Creates_Quiz_In_Repository()
     {
         //Arrange
-        var quiz3 = new QuizDTO{Id = 3, Name="Gandalf", Questions = new List<QuestionDTO>{}, Events = new List<EventDTO>{}, Candidates = new List<CandidateDTO>{}};
+        var quiz3 = new QuizCreateDTO{Name="Gandalf", Questions = new List<QuestionDTO>{}};
 
         //Act
         var actual = await _repo.Create(quiz3);
@@ -47,21 +47,6 @@ public class QuizRepositoryTests {
         //Assert
         Assert.Equal(Status.Created, actual.Item1);
         Assert.Equal(3, actual.Item2);
-    }
-
-    [Fact]
-    public async void Create_Returns_Conflict_When_ID_Is_In_the_database()
-    {
-        //Arrange
-        var quiz3 = new QuizDTO{Id = 1, Name = "Nuddelhår", Questions = new List<QuestionDTO>{}, Events = new List<EventDTO>{}, Candidates = new List<CandidateDTO>{}};
-
-
-        //Act
-        var actual = await _repo.Create(quiz3);
-
-        //Assert
-        Assert.Equal(Status.Conflict, actual.Item1);
-        Assert.Equal(1, actual.Item2);
     }
 
     [Fact]
@@ -104,8 +89,9 @@ public class QuizRepositoryTests {
     public async void Update_returns_status_Updated_when_given_existing_id()
     {
         // Arrange
-        var newQuiz = new QuizDTO{
-            Id = 5
+        var newQuiz = new QuizCreateDTO{
+            Name = "Soulja Boy",
+            Questions = new List<QuestionDTO> {new QuestionDTO {Representation = "MALAGA"}}
         };
     
         // Act
@@ -118,8 +104,8 @@ public class QuizRepositoryTests {
     [Fact]
     public async void Update_returns_not_found_when_given_nonexisiting_idAsync()
     {
-         var newQuiz = new QuizDTO{ 
-            Id=52
+         var newQuiz = new QuizCreateDTO{ 
+            Name = "52"
         };
     
         // Act
