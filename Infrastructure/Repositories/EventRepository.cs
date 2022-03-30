@@ -44,7 +44,8 @@ namespace Infrastructure
                     Id = c.Id,
                     Email = c.Email!,
                     StudyProgram = c.StudyProgram!,
-                    University = c.University.ToString()
+                    University = c.University.ToString(),
+                    GraduationDate = c.GraduationDate.ToShortDateString()
                 }).ToList() : new List<CandidateDTO>()           
             }).FirstOrDefaultAsync();
 
@@ -99,7 +100,7 @@ namespace Infrastructure
         
         public async Task<IReadOnlyCollection<EventDTO>> ReadUpcoming() =>
             await _context.Events.Where(e => e.Date >= DateTime.Today)
-                .OrderByDescending(e => e.Date)
+                .OrderBy(e => e.Date)
                 .Take(5).Select(e => new EventDTO()
                 {
                     Name = e.Name!,
@@ -112,7 +113,7 @@ namespace Infrastructure
 
         public async Task<IReadOnlyCollection<EventDTO>> ReadRecent() =>
             await _context.Events.Where(e => e.Date < DateTime.Today)
-                .OrderBy(e => e.Date)
+                .OrderByDescending(e => e.Date)
                 .Take(5).Select(e => new EventDTO()
                 {
                     Name = e.Name!,

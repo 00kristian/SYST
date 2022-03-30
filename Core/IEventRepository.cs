@@ -13,6 +13,5 @@ public interface IEventRepository
         Task<IReadOnlyCollection<EventDTO>> ReadUpcoming();
 
         Task<IReadOnlyCollection<EventDTO>> ReadRecent();
-
     }
 }

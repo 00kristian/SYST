@@ -1,8 +1,9 @@
+using Xunit;
+using System;
 using System.Collections.Generic;
-using Core;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Xunit;
+using Core;
 
 namespace Infrastructure.Tests;
 
@@ -11,8 +12,8 @@ public class CandidateRepositoryTests{
     private readonly ISystematicContext _context; 
     private readonly ICandidateRepository _repo;
 
-     Candidate candidate1 = new Candidate {Id=1, Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = UniversityEnum.ITU};
-     Candidate candidate2 = new Candidate {Id=2, Name = "Rene Dif", Email = "rene@dif.dk", StudyProgram = "Msc i Vand", University = UniversityEnum.CBS};
+     Candidate candidate1 = new Candidate {Id=1, Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = UniversityEnum.ITU, GraduationDate = new DateTime{}};
+     Candidate candidate2 = new Candidate {Id=2, Name = "Maj Frost Jensen", Email = "mfje@itu.dk", StudyProgram = "Msc i Computer Science", University = UniversityEnum.CBS, GraduationDate = new DateTime{}};
 
      public CandidateRepositoryTests(){
         var connection = new SqliteConnection("Filename=:memory:");
@@ -38,7 +39,7 @@ public class CandidateRepositoryTests{
     {
         //Arrange
 
-        var candidate1 = new CandidateDTO {Name = "Oscar", Email = "Eng@itu.dk", StudyProgram = "Bsc i League of Legends", University = "ITU"};
+        var candidate1 = new CandidateDTO {Name = "Oscar Nielsen", Email = "osni@itu.dk", StudyProgram = "Bsc Datalogi", University = "ITU",  GraduationDate =(new DateTime{}).ToShortDateString() };
 
 
         //Act
@@ -53,7 +54,7 @@ public class CandidateRepositoryTests{
     public async void Create_Returns_Conflict_When_Name_Is_In_the_database()
     {
         //Arrange
-         var newCandidate = new CandidateDTO { Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "ITU"};
+         var newCandidate = new CandidateDTO { Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "ITU", GraduationDate = (new DateTime{}).ToShortDateString()};
 
 
         //Act
@@ -65,7 +66,7 @@ public class CandidateRepositoryTests{
     }
  
     [Fact]
-    public async void ReadNameFromID_returns_Rene_Dif_given_id_2()
+    public async void ReadNameFromID_returns_Maj__Frost_Jensen_given_id_2()
     {
 
         //Act
@@ -73,7 +74,7 @@ public class CandidateRepositoryTests{
 
         //Assert
         Assert.Equal(Status.Found, actual.Item1);
-        Assert.Equal("Rene Dif", actual.Item2);
+        Assert.Equal("Maj Frost Jensen", actual.Item2);
     }
 
     [Fact]
@@ -102,6 +103,7 @@ public class CandidateRepositoryTests{
         Assert.Equal(candidate1.StudyProgram, actual.Item2.StudyProgram);
 
         Assert.Equal(candidate1.University.ToString(), actual.Item2.University);
+        Assert.Equal(candidate1.GraduationDate.ToShortDateString(), actual.Item2.GraduationDate);
 
     }
 
@@ -128,8 +130,8 @@ public class CandidateRepositoryTests{
         //assert
         Assert.Collection(candidates,
 
-            candidate => Assert.Equal(new CandidateDTO(1,"Lukas Hjelmstrand", "luhj@itu.dk", "Bsc i Softwareudvikling", "ITU",  null!, new QuizDTO { }), candidate),
-            candidate => Assert.Equal(new CandidateDTO(2, "Rene Dif", "rene@dif.dk", "Msc i Vand", "CBS", null!, new QuizDTO { }), candidate)
+            candidate => Assert.Equal(new CandidateDTO(1,"Lukas Hjelmstrand", "luhj@itu.dk", "Bsc i Softwareudvikling", "ITU",(new DateTime{}).ToShortDateString(),  null!, new QuizDTO { }), candidate),
+            candidate => Assert.Equal(new CandidateDTO(2, "Maj Frost Jensen", "mfje@itu.dk", "Msc i Computer Science", "CBS",(new DateTime{}).ToShortDateString(), null!, new QuizDTO { }), candidate)
 
         );
     }
@@ -141,9 +143,10 @@ public class CandidateRepositoryTests{
         //Arrange
         var newCandidate = new CandidateDTO{
             Id = 5, 
-            Name = "Maj",
-            Email = "Maj@minecraft.net",
-            Events = new List<EventDTO>(){}
+            Name = "Camille Gonnsen",
+            Email = "cgon@itu.dk",
+            Events = new List<EventDTO>(){},
+            GraduationDate = new DateTime{}.ToShortDateString()
         };
 
         //Act
@@ -159,10 +162,11 @@ public class CandidateRepositoryTests{
         //Arrange
         var newCandidate = new CandidateDTO{
             Id = 1, 
-            Name = "Gardal",
-            Email = "G@hejsa.net",
+            Name = "Sarah Christiansen",
+            Email = "sacc@itu.dk",
             Events = new List<EventDTO>(){},
-            University = "ITU"
+            University = "ITU",
+            GraduationDate = new DateTime{}.ToShortDateString()
         };
 
         //Act

@@ -7,7 +7,7 @@ docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=$password" -p 1433:1433 -d mcr.mic
 $database = "EventToolDB"
 $connectionString = "Server=localhost;Database=$database;User Id=sa;Password=$password;Trusted_Connection=False;Encrypt=False"
 
-Start-Sleep -s 20
+Start-Sleep -s 40
 
 cd ./Syst
 

@@ -14,9 +14,9 @@ public class EventControllerTests
     static readonly QuizDTO quiz1 = new QuizDTO{
         Id = 90,
         Date = new System.DateTime(2022,03,21),
-        Questions = null,
-        Events = null,
-        Candidates = null
+        Questions = null!,
+        Events = null!,
+        Candidates = null!
     };
 
     static readonly EventDTO event1 = new EventDTO{
@@ -24,10 +24,10 @@ public class EventControllerTests
         Name = "TechBBQ",
         Date = "03-21-2022",
         Location = "Copenhagen",
-        Candidates = null,
+        Candidates = null!,
         Quiz = quiz1,
         Rating = 3.5,
-        Admins = null
+        Admins = null!
     };
 
     static readonly EventDTO event2 = new EventDTO{
@@ -35,10 +35,10 @@ public class EventControllerTests
         Name = "We Love Tech!",
         Date = "05-30-2022",
         Location = "London",
-        Candidates = null,
+        Candidates = null!,
         Quiz = quiz1,
         Rating = 4.8,
-        Admins = null
+        Admins = null!
     };
 
     static readonly EventDTO event3 = new EventDTO{
@@ -46,10 +46,10 @@ public class EventControllerTests
         Name = "IT Fest",
         Date = "12-24-2024",
         Location = "Copenhagen",
-        Candidates = null,
+        Candidates = null!,
         Quiz = quiz1,
         Rating = 1.2,
-        Admins = null
+        Admins = null!
     };
 
 

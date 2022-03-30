@@ -4,29 +4,29 @@
       "Core.AdminDTO": {
         "System.Int32 Core.AdminDTO::get_Id()": {
           "Lines": {
-            "8": 7,
-            "9": 7
+            "8": 0,
+            "9": 0
           },
           "Branches": []
         },
         "System.String Core.AdminDTO::get_Name()": {
           "Lines": {
-            "11": 6,
-            "12": 6
+            "11": 0,
+            "12": 0
           },
           "Branches": []
         },
         "System.String Core.AdminDTO::get_Email()": {
           "Lines": {
-            "14": 6,
-            "15": 6
+            "14": 0,
+            "15": 0
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.AdminDTO::get_Events()": {
           "Lines": {
-            "17": 4,
-            "18": 4
+            "17": 0,
+            "18": 0
           },
           "Branches": []
         }
@@ -36,50 +36,50 @@
       "Core.CandidateDTO": {
         "System.Int32 Core.CandidateDTO::get_Id()": {
           "Lines": {
-            "8": 7,
-            "9": 7
+            "8": 0,
+            "9": 0
           },
           "Branches": []
         },
         "System.String Core.CandidateDTO::get_Name()": {
           "Lines": {
-            "11": 12,
-            "12": 12
+            "11": 0,
+            "12": 0
           },
           "Branches": []
         },
         "System.String Core.CandidateDTO::get_Email()": {
           "Lines": {
-            "14": 15,
-            "15": 15
+            "14": 0,
+            "15": 0
           },
           "Branches": []
         },
         "System.String Core.CandidateDTO::get_StudyProgram()": {
           "Lines": {
-            "17": 10,
-            "18": 10
+            "17": 0,
+            "18": 0
           },
           "Branches": []
         },
         "System.String Core.CandidateDTO::get_University()": {
           "Lines": {
-            "20": 11,
-            "21": 11
+            "20": 0,
+            "21": 0
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.CandidateDTO::get_Events()": {
           "Lines": {
-            "23": 4,
-            "24": 4
+            "23": 0,
+            "24": 0
           },
           "Branches": []
         },
         "Core.QuizDTO Core.CandidateDTO::get_Quiz()": {
           "Lines": {
-            "26": 2,
-            "27": 2
+            "26": 0,
+            "27": 0
           },
           "Branches": []
         }
@@ -89,22 +89,22 @@
       "Core.CreateEventDTO": {
         "System.String Core.CreateEventDTO::get_Name()": {
           "Lines": {
-            "8": 2,
-            "9": 2
+            "8": 3,
+            "9": 3
           },
           "Branches": []
         },
         "System.String Core.CreateEventDTO::get_Date()": {
           "Lines": {
-            "11": 2,
-            "12": 2
+            "11": 3,
+            "12": 3
           },
           "Branches": []
         },
         "System.String Core.CreateEventDTO::get_Location()": {
           "Lines": {
-            "14": 2,
-            "15": 2
+            "14": 3,
+            "15": 3
           },
           "Branches": []
         }
@@ -114,29 +114,29 @@
       "Core.EventDTO": {
         "System.Int32 Core.EventDTO::get_Id()": {
           "Lines": {
-            "8": 7,
-            "9": 7
+            "8": 3,
+            "9": 3
           },
           "Branches": []
         },
         "System.String Core.EventDTO::get_Name()": {
           "Lines": {
-            "11": 12,
-            "12": 12
+            "11": 7,
+            "12": 7
           },
           "Branches": []
         },
         "System.String Core.EventDTO::get_Date()": {
           "Lines": {
-            "14": 11,
-            "15": 11
+            "14": 3,
+            "15": 3
           },
           "Branches": []
         },
         "System.String Core.EventDTO::get_Location()": {
           "Lines": {
-            "17": 11,
-            "18": 11
+            "17": 7,
+            "18": 7
           },
           "Branches": []
         },
@@ -148,22 +148,22 @@
         },
         "Core.QuizDTO Core.EventDTO::get_Quiz()": {
           "Lines": {
-            "23": 2,
-            "24": 2
+            "23": 3,
+            "24": 3
           },
           "Branches": []
         },
         "System.Double Core.EventDTO::get_Rating()": {
           "Lines": {
-            "26": 9,
-            "27": 9
+            "26": 3,
+            "27": 3
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<Core.AdminDTO> Core.EventDTO::get_Admins()": {
           "Lines": {
-            "29": 2,
-            "30": 2
+            "29": 3,
+            "30": 3
           },
           "Branches": []
         }
@@ -173,43 +173,43 @@
       "Core.QuestionDTO": {
         "System.Int32 Core.QuestionDTO::get_Id()": {
           "Lines": {
-            "8": 12,
-            "9": 12
+            "8": 0,
+            "9": 0
           },
           "Branches": []
         },
         "System.String Core.QuestionDTO::get_Representation()": {
           "Lines": {
-            "11": 12,
-            "12": 12
+            "11": 0,
+            "12": 0
           },
           "Branches": []
         },
         "System.String Core.QuestionDTO::get_Answer()": {
           "Lines": {
-            "14": 12,
-            "15": 12
+            "14": 0,
+            "15": 0
           },
           "Branches": []
         },
         "System.String Core.QuestionDTO::get_ImageURl()": {
           "Lines": {
-            "17": 8,
-            "18": 8
+            "17": 0,
+            "18": 0
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<System.String> Core.QuestionDTO::get_Options()": {
           "Lines": {
-            "20": 4,
-            "21": 4
+            "20": 0,
+            "21": 0
           },
           "Branches": []
         },
         "Core.QuizDTO Core.QuestionDTO::get_Quiz()": {
           "Lines": {
-            "23": 2,
-            "24": 2
+            "23": 0,
+            "24": 0
           },
           "Branches": []
         }
@@ -219,36 +219,36 @@
       "Core.QuizDTO": {
         "System.Int32 Core.QuizDTO::get_Id()": {
           "Lines": {
-            "8": 13,
-            "9": 13
+            "8": 1,
+            "9": 1
           },
           "Branches": []
         },
         "System.DateTime Core.QuizDTO::get_Date()": {
           "Lines": {
-            "11": 7,
-            "12": 7
+            "11": 1,
+            "12": 1
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<Core.QuestionDTO> Core.QuizDTO::get_Questions()": {
           "Lines": {
-            "14": 4,
-            "15": 4
+            "14": 1,
+            "15": 1
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.QuizDTO::get_Events()": {
           "Lines": {
-            "17": 4,
-            "18": 4
+            "17": 1,
+            "18": 1
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<Core.CandidateDTO> Core.QuizDTO::get_Candidates()": {
           "Lines": {
-            "20": 4,
-            "21": 4
+            "20": 1,
+            "21": 1
           },
           "Branches": []
         }
@@ -279,25 +279,25 @@
       "Infrastructure.Admin": {
         "System.Int32 Infrastructure.Admin::get_Id()": {
           "Lines": {
-            "4": 17
+            "4": 0
           },
           "Branches": []
         },
         "System.String Infrastructure.Admin::get_Name()": {
           "Lines": {
-            "5": 14
+            "5": 0
           },
           "Branches": []
         },
         "System.String Infrastructure.Admin::get_Email()": {
           "Lines": {
-            "6": 14
+            "6": 0
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<Infrastructure.Event> Infrastructure.Admin::get_Events()": {
           "Lines": {
-            "7": 12
+            "7": 0
           },
           "Branches": []
         }
@@ -307,31 +307,31 @@
       "Infrastructure.Candidate": {
         "System.Int32 Infrastructure.Candidate::get_Id()": {
           "Lines": {
-            "6": 24
+            "6": 0
           },
           "Branches": []
         },
         "System.String Infrastructure.Candidate::get_Name()": {
           "Lines": {
-            "7": 25
+            "7": 0
           },
           "Branches": []
         },
         "System.String Infrastructure.Candidate::get_Email()": {
           "Lines": {
-            "8": 28
+            "8": 0
           },
           "Branches": []
         },
         "System.String Infrastructure.Candidate::get_StudyProgram()": {
           "Lines": {
-            "9": 25
+            "9": 0
           },
           "Branches": []
         },
         "UniversityEnum Infrastructure.Candidate::get_University()": {
           "Lines": {
-            "10": 25
+            "10": 0
           },
           "Branches": []
         },
@@ -359,43 +359,43 @@
       "Infrastructure.Event": {
         "System.Int32 Infrastructure.Event::get_Id()": {
           "Lines": {
-            "4": 25
+            "4": 0
           },
           "Branches": []
         },
         "System.String Infrastructure.Event::get_Name()": {
           "Lines": {
-            "5": 29
+            "5": 0
           },
           "Branches": []
         },
         "System.DateTime Infrastructure.Event::get_Date()": {
           "Lines": {
-            "6": 28
+            "6": 0
           },
           "Branches": []
         },
         "System.String Infrastructure.Event::get_Location()": {
           "Lines": {
-            "7": 28
+            "7": 0
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<Infrastructure.Candidate> Infrastructure.Event::get_Candidates()": {
           "Lines": {
-            "8": 24
+            "8": 0
           },
           "Branches": []
         },
         "Infrastructure.Quiz Infrastructure.Event::get_Quiz()": {
           "Lines": {
-            "9": 24
+            "9": 0
           },
           "Branches": []
         },
         "System.Double Infrastructure.Event::get_Rating()": {
           "Lines": {
-            "10": 25
+            "10": 0
           },
           "Branches": []
         }
@@ -405,37 +405,37 @@
       "Infrastructure.Question": {
         "System.Int32 Infrastructure.Question::get_Id()": {
           "Lines": {
-            "4": 24
+            "4": 0
           },
           "Branches": []
         },
         "System.String Infrastructure.Question::get_Representation()": {
           "Lines": {
-            "5": 21
+            "5": 0
           },
           "Branches": []
         },
         "System.String Infrastructure.Question::get_Answer()": {
           "Lines": {
-            "6": 21
+            "6": 0
           },
           "Branches": []
         },
         "System.String Infrastructure.Question::get_ImageURL()": {
           "Lines": {
-            "7": 21
+            "7": 0
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<System.String> Infrastructure.Question::get_Options()": {
           "Lines": {
-            "8": 20
+            "8": 0
           },
           "Branches": []
         },
         "Infrastructure.Quiz Infrastructure.Question::get_Quiz()": {
           "Lines": {
-            "9": 18
+            "9": 0
           },
           "Branches": []
         }
@@ -445,31 +445,31 @@
       "Infrastructure.Quiz": {
         "System.Int32 Infrastructure.Quiz::get_Id()": {
           "Lines": {
-            "4": 24
+            "4": 0
           },
           "Branches": []
         },
         "System.DateTime Infrastructure.Quiz::get_Date()": {
           "Lines": {
-            "5": 20
+            "5": 0
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<Infrastructure.Question> Infrastructure.Quiz::get_Questions()": {
           "Lines": {
-            "6": 18
+            "6": 0
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<Infrastructure.Event> Infrastructure.Quiz::get_Events()": {
           "Lines": {
-            "7": 18
+            "7": 0
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<Infrastructure.Candidate> Infrastructure.Quiz::get_Candidates()": {
           "Lines": {
-            "8": 18
+            "8": 0
           },
           "Branches": []
         }
@@ -479,91 +479,91 @@
       "Infrastructure.SystematicContext": {
         "Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Admin> Infrastructure.SystematicContext::get_Admins()": {
           "Lines": {
-            "15": 108
+            "15": 0
           },
           "Branches": []
         },
         "Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Candidate> Infrastructure.SystematicContext::get_Candidates()": {
           "Lines": {
-            "16": 118
+            "16": 0
           },
           "Branches": []
         },
         "Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Event> Infrastructure.SystematicContext::get_Events()": {
           "Lines": {
-            "17": 122
+            "17": 0
           },
           "Branches": []
         },
         "Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Question> Infrastructure.SystematicContext::get_Questions()": {
           "Lines": {
-            "18": 114
+            "18": 0
           },
           "Branches": []
         },
         "Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Quiz> Infrastructure.SystematicContext::get_Quizes()": {
           "Lines": {
-            "19": 114
+            "19": 0
           },
           "Branches": []
         },
         "System.String Infrastructure.SystematicContext::get_DbPath()": {
           "Lines": {
-            "20": 47
+            "20": 0
           },
           "Branches": []
         },
         "System.Void Infrastructure.SystematicContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)": {
           "Lines": {
-            "26": 2,
-            "29": 2,
-            "30": 2,
-            "31": 2,
-            "34": 2,
-            "35": 2,
-            "36": 2,
-            "39": 2,
-            "40": 2,
-            "41": 2,
-            "44": 2,
-            "45": 2,
-            "46": 2,
-            "49": 2,
-            "50": 2,
-            "53": 2,
-            "54": 2,
-            "55": 2,
-            "56": 2,
-            "57": 2,
-            "58": 2,
-            "59": 2,
-            "62": 2,
-            "63": 2,
-            "64": 2,
-            "65": 2,
-            "66": 2,
-            "67": 2,
-            "68": 2,
-            "69": 2,
-            "70": 2,
-            "71": 2,
-            "74": 2,
-            "75": 2,
-            "76": 2,
-            "77": 2,
-            "78": 2,
-            "79": 2,
-            "80": 2,
-            "81": 2,
-            "82": 2,
-            "83": 2,
-            "84": 2
+            "26": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "49": 0,
+            "50": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0
           },
           "Branches": []
         },
         "System.Void Infrastructure.SystematicContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<Infrastructure.SystematicContext>)": {
           "Lines": {
-            "22": 141
+            "22": 0
           },
           "Branches": []
         }
@@ -593,10 +593,10 @@
       "Infrastructure.AdminRepository": {
         "System.Void Infrastructure.AdminRepository::.ctor(Infrastructure.ISystematicContext)": {
           "Lines": {
-            "10": 6,
-            "11": 6,
-            "12": 6,
-            "13": 6
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0
           },
           "Branches": []
         }
@@ -604,19 +604,19 @@
       "Infrastructure.AdminRepository/<Create>d__2": {
         "System.Void Infrastructure.AdminRepository/<Create>d__2::MoveNext()": {
           "Lines": {
-            "16": 2,
-            "18": 14,
-            "19": 4,
-            "20": 2,
-            "21": 1,
-            "22": 1,
-            "23": 1,
-            "24": 1,
-            "25": 1,
-            "27": 1,
-            "29": 1,
-            "31": 1,
-            "32": 2
+            "16": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "27": 0,
+            "29": 0,
+            "31": 0,
+            "32": 0
           },
           "Branches": [
             {
@@ -625,7 +625,7 @@
               "EndOffset": 48,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 3
+              "Hits": 0
             },
             {
               "Line": 19,
@@ -633,7 +633,7 @@
               "EndOffset": 94,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 19,
@@ -641,7 +641,7 @@
               "EndOffset": 117,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 2
+              "Hits": 0
             },
             {
               "Line": 18,
@@ -649,7 +649,7 @@
               "EndOffset": 138,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -657,13 +657,13 @@
       "Infrastructure.AdminRepository/<Delete>d__6": {
         "System.Void Infrastructure.AdminRepository/<Delete>d__6::MoveNext()": {
           "Lines": {
-            "69": 2,
-            "71": 2,
-            "73": 3,
-            "75": 1,
-            "77": 1,
-            "78": 1,
-            "79": 2
+            "69": 0,
+            "71": 0,
+            "73": 0,
+            "75": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0
           },
           "Branches": [
             {
@@ -672,7 +672,7 @@
               "EndOffset": 321,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 73,
@@ -680,7 +680,7 @@
               "EndOffset": 328,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -749,14 +749,14 @@
       "Infrastructure.AdminRepository/<Update>d__5": {
         "System.Void Infrastructure.AdminRepository/<Update>d__5::MoveNext()": {
           "Lines": {
-            "55": 2,
-            "56": 2,
-            "58": 3,
-            "60": 1,
-            "61": 1,
-            "63": 1,
-            "65": 1,
-            "66": 2
+            "55": 0,
+            "56": 0,
+            "58": 0,
+            "60": 0,
+            "61": 0,
+            "63": 0,
+            "65": 0,
+            "66": 0
           },
           "Branches": [
             {
@@ -765,7 +765,7 @@
               "EndOffset": 321,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 58,
@@ -773,7 +773,7 @@
               "EndOffset": 328,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -783,10 +783,10 @@
       "Infrastructure.CandidateRepository": {
         "System.Void Infrastructure.CandidateRepository::.ctor(Infrastructure.ISystematicContext)": {
           "Lines": {
-            "10": 11,
-            "11": 11,
-            "12": 11,
-            "13": 11
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0
           },
           "Branches": []
         }
@@ -794,22 +794,22 @@
       "Infrastructure.CandidateRepository/<Create>d__2": {
         "System.Void Infrastructure.CandidateRepository/<Create>d__2::MoveNext()": {
           "Lines": {
-            "16": 2,
-            "18": 14,
-            "19": 4,
-            "21": 2,
-            "22": 1,
-            "23": 1,
-            "24": 1,
-            "25": 1,
-            "26": 1,
-            "27": 1,
-            "28": 1,
-            "29": 1,
-            "31": 1,
-            "33": 1,
-            "35": 1,
-            "36": 2
+            "16": 0,
+            "18": 0,
+            "19": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "31": 0,
+            "33": 0,
+            "35": 0,
+            "36": 0
           },
           "Branches": [
             {
@@ -818,7 +818,7 @@
               "EndOffset": 48,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 3
+              "Hits": 0
             },
             {
               "Line": 19,
@@ -826,7 +826,7 @@
               "EndOffset": 97,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 19,
@@ -834,7 +834,7 @@
               "EndOffset": 120,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 2
+              "Hits": 0
             },
             {
               "Line": 18,
@@ -842,7 +842,7 @@
               "EndOffset": 141,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -850,13 +850,13 @@
       "Infrastructure.CandidateRepository/<Delete>d__7": {
         "System.Void Infrastructure.CandidateRepository/<Delete>d__7::MoveNext()": {
           "Lines": {
-            "87": 2,
-            "89": 2,
-            "91": 3,
-            "93": 1,
-            "95": 1,
-            "96": 1,
-            "97": 2
+            "87": 0,
+            "89": 0,
+            "91": 0,
+            "93": 0,
+            "95": 0,
+            "96": 0,
+            "97": 0
           },
           "Branches": [
             {
@@ -865,7 +865,7 @@
               "EndOffset": 321,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 91,
@@ -873,7 +873,7 @@
               "EndOffset": 328,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -881,17 +881,17 @@
       "Infrastructure.CandidateRepository/<Read>d__4": {
         "System.Void Infrastructure.CandidateRepository/<Read>d__4::MoveNext()": {
           "Lines": {
-            "46": 2,
-            "47": 2,
-            "48": 2,
-            "49": 2,
-            "50": 2,
-            "51": 2,
-            "52": 2,
-            "53": 2,
-            "55": 3,
-            "56": 1,
-            "57": 2
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0
           },
           "Branches": [
             {
@@ -900,7 +900,7 @@
               "EndOffset": 639,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 55,
@@ -908,7 +908,7 @@
               "EndOffset": 654,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -916,13 +916,13 @@
       "Infrastructure.CandidateRepository/<ReadAll>d__5": {
         "System.Void Infrastructure.CandidateRepository/<ReadAll>d__5::MoveNext()": {
           "Lines": {
-            "61": 1,
-            "62": 1,
-            "63": 1,
-            "64": 1,
-            "65": 1,
-            "66": 1,
-            "67": 1
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0
           },
           "Branches": []
         }
@@ -930,10 +930,10 @@
       "Infrastructure.CandidateRepository/<ReadNameFromId>d__3": {
         "System.Void Infrastructure.CandidateRepository/<ReadNameFromId>d__3::MoveNext()": {
           "Lines": {
-            "39": 2,
-            "40": 2,
-            "41": 2,
-            "42": 2
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0
           },
           "Branches": [
             {
@@ -942,7 +942,7 @@
               "EndOffset": 365,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 41,
@@ -950,7 +950,7 @@
               "EndOffset": 368,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -958,16 +958,16 @@
       "Infrastructure.CandidateRepository/<Update>d__6": {
         "System.Void Infrastructure.CandidateRepository/<Update>d__6::MoveNext()": {
           "Lines": {
-            "71": 2,
-            "72": 2,
-            "74": 3,
-            "76": 1,
-            "77": 1,
-            "78": 1,
-            "79": 1,
-            "81": 1,
-            "83": 1,
-            "84": 2
+            "71": 0,
+            "72": 0,
+            "74": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "81": 0,
+            "83": 0,
+            "84": 0
           },
           "Branches": [
             {
@@ -976,7 +976,7 @@
               "EndOffset": 321,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 74,
@@ -984,7 +984,7 @@
               "EndOffset": 328,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -994,10 +994,10 @@
       "Infrastructure.EventRepository": {
         "System.Void Infrastructure.EventRepository::.ctor(Infrastructure.ISystematicContext)": {
           "Lines": {
-            "10": 12,
-            "11": 12,
-            "12": 12,
-            "13": 12
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0
           },
           "Branches": []
         }
@@ -1005,17 +1005,17 @@
       "Infrastructure.EventRepository/<Create>d__2": {
         "System.Void Infrastructure.EventRepository/<Create>d__2::MoveNext()": {
           "Lines": {
-            "16": 1,
-            "19": 1,
-            "20": 1,
-            "21": 1,
-            "22": 1,
-            "23": 1,
-            "24": 1,
-            "26": 1,
-            "28": 1,
-            "30": 1,
-            "31": 1
+            "16": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "26": 0,
+            "28": 0,
+            "30": 0,
+            "31": 0
           },
           "Branches": []
         }
@@ -1023,13 +1023,13 @@
       "Infrastructure.EventRepository/<Delete>d__7": {
         "System.Void Infrastructure.EventRepository/<Delete>d__7::MoveNext()": {
           "Lines": {
-            "88": 3,
-            "90": 3,
-            "92": 4,
-            "94": 2,
-            "96": 2,
-            "97": 2,
-            "98": 3
+            "88": 0,
+            "90": 0,
+            "92": 0,
+            "94": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0
           },
           "Branches": [
             {
@@ -1038,7 +1038,7 @@
               "EndOffset": 321,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 92,
@@ -1046,7 +1046,7 @@
               "EndOffset": 328,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 2
+              "Hits": 0
             }
           ]
         }
@@ -1054,24 +1054,24 @@
       "Infrastructure.EventRepository/<Read>d__3": {
         "System.Void Infrastructure.EventRepository/<Read>d__3::MoveNext()": {
           "Lines": {
-            "35": 3,
-            "36": 3,
-            "37": 3,
-            "38": 3,
-            "39": 3,
-            "40": 3,
-            "41": 3,
-            "42": 3,
-            "43": 3,
-            "44": 3,
-            "45": 3,
-            "46": 3,
-            "47": 3,
-            "48": 3,
-            "49": 3,
-            "51": 5,
-            "52": 1,
-            "53": 3
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0
           },
           "Branches": [
             {
@@ -1080,7 +1080,7 @@
               "EndOffset": 1184,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 2
+              "Hits": 0
             },
             {
               "Line": 51,
@@ -1088,7 +1088,7 @@
               "EndOffset": 1199,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -1096,13 +1096,13 @@
       "Infrastructure.EventRepository/<ReadAll>d__4": {
         "System.Void Infrastructure.EventRepository/<ReadAll>d__4::MoveNext()": {
           "Lines": {
-            "57": 1,
-            "58": 1,
-            "59": 1,
-            "60": 1,
-            "61": 1,
-            "62": 1,
-            "63": 1
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0
           },
           "Branches": []
         }
@@ -1110,10 +1110,10 @@
       "Infrastructure.EventRepository/<ReadNameFromId>d__5": {
         "System.Void Infrastructure.EventRepository/<ReadNameFromId>d__5::MoveNext()": {
           "Lines": {
-            "66": 3,
-            "67": 3,
-            "68": 3,
-            "69": 3
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0
           },
           "Branches": [
             {
@@ -1122,7 +1122,7 @@
               "EndOffset": 365,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 2
+              "Hits": 0
             },
             {
               "Line": 68,
@@ -1130,7 +1130,7 @@
               "EndOffset": 368,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -1174,15 +1174,15 @@
       "Infrastructure.EventRepository/<Update>d__6": {
         "System.Void Infrastructure.EventRepository/<Update>d__6::MoveNext()": {
           "Lines": {
-            "73": 3,
-            "74": 3,
-            "76": 4,
-            "78": 2,
-            "79": 2,
-            "80": 2,
-            "82": 2,
-            "84": 2,
-            "85": 3
+            "73": 0,
+            "74": 0,
+            "76": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "82": 0,
+            "84": 0,
+            "85": 0
           },
           "Branches": [
             {
@@ -1191,7 +1191,7 @@
               "EndOffset": 321,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 76,
@@ -1199,7 +1199,7 @@
               "EndOffset": 328,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 2
+              "Hits": 0
             }
           ]
         }
@@ -1209,10 +1209,10 @@
       "Infrastructure.QuestionRepository": {
         "System.Void Infrastructure.QuestionRepository::.ctor(Infrastructure.ISystematicContext)": {
           "Lines": {
-            "10": 9,
-            "11": 9,
-            "12": 9,
-            "13": 9
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0
           },
           "Branches": []
         }
@@ -1220,22 +1220,22 @@
       "Infrastructure.QuestionRepository/<Create>d__2": {
         "System.Void Infrastructure.QuestionRepository/<Create>d__2::MoveNext()": {
           "Lines": {
-            "16": 2,
-            "18": 14,
-            "19": 4,
-            "20": 2,
-            "21": 1,
-            "22": 1,
-            "23": 1,
-            "24": 1,
-            "25": 1,
-            "26": 1,
-            "27": 1,
-            "28": 1,
-            "30": 1,
-            "32": 1,
-            "34": 1,
-            "35": 2
+            "16": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "30": 0,
+            "32": 0,
+            "34": 0,
+            "35": 0
           },
           "Branches": [
             {
@@ -1244,7 +1244,7 @@
               "EndOffset": 48,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 3
+              "Hits": 0
             },
             {
               "Line": 19,
@@ -1252,7 +1252,7 @@
               "EndOffset": 94,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 19,
@@ -1260,7 +1260,7 @@
               "EndOffset": 117,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 2
+              "Hits": 0
             },
             {
               "Line": 18,
@@ -1268,7 +1268,7 @@
               "EndOffset": 138,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -1276,13 +1276,13 @@
       "Infrastructure.QuestionRepository/<Delete>d__6": {
         "System.Void Infrastructure.QuestionRepository/<Delete>d__6::MoveNext()": {
           "Lines": {
-            "80": 2,
-            "82": 2,
-            "84": 3,
-            "86": 1,
-            "88": 1,
-            "89": 1,
-            "90": 2
+            "80": 0,
+            "82": 0,
+            "84": 0,
+            "86": 0,
+            "88": 0,
+            "89": 0,
+            "90": 0
           },
           "Branches": [
             {
@@ -1291,7 +1291,7 @@
               "EndOffset": 321,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 84,
@@ -1299,7 +1299,7 @@
               "EndOffset": 328,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -1307,17 +1307,17 @@
       "Infrastructure.QuestionRepository/<Read>d__3": {
         "System.Void Infrastructure.QuestionRepository/<Read>d__3::MoveNext()": {
           "Lines": {
-            "39": 2,
-            "40": 2,
-            "41": 2,
-            "42": 2,
-            "43": 2,
-            "44": 2,
-            "45": 2,
-            "46": 2,
-            "48": 3,
-            "49": 1,
-            "50": 2
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0
           },
           "Branches": [
             {
@@ -1326,7 +1326,7 @@
               "EndOffset": 570,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 48,
@@ -1334,7 +1334,7 @@
               "EndOffset": 585,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -1342,13 +1342,13 @@
       "Infrastructure.QuestionRepository/<ReadAll>d__4": {
         "System.Void Infrastructure.QuestionRepository/<ReadAll>d__4::MoveNext()": {
           "Lines": {
-            "54": 1,
-            "55": 1,
-            "56": 1,
-            "57": 1,
-            "58": 1,
-            "59": 1,
-            "60": 1
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0
           },
           "Branches": []
         }
@@ -1356,16 +1356,16 @@
       "Infrastructure.QuestionRepository/<Update>d__5": {
         "System.Void Infrastructure.QuestionRepository/<Update>d__5::MoveNext()": {
           "Lines": {
-            "64": 2,
-            "65": 2,
-            "67": 3,
-            "69": 1,
-            "70": 1,
-            "71": 1,
-            "72": 1,
-            "74": 1,
-            "76": 1,
-            "77": 2
+            "64": 0,
+            "65": 0,
+            "67": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "74": 0,
+            "76": 0,
+            "77": 0
           },
           "Branches": [
             {
@@ -1374,7 +1374,7 @@
               "EndOffset": 321,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 67,
@@ -1382,7 +1382,7 @@
               "EndOffset": 328,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -1392,10 +1392,10 @@
       "Infrastructure.QuizRepository": {
         "System.Void Infrastructure.QuizRepository::.ctor(Infrastructure.ISystematicContext)": {
           "Lines": {
-            "10": 9,
-            "11": 9,
-            "12": 9,
-            "13": 9
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0
           },
           "Branches": []
         }
@@ -1403,18 +1403,18 @@
       "Infrastructure.QuizRepository/<Create>d__2": {
         "System.Void Infrastructure.QuizRepository/<Create>d__2::MoveNext()": {
           "Lines": {
-            "17": 2,
-            "18": 14,
-            "19": 4,
-            "20": 2,
-            "21": 1,
-            "22": 1,
-            "23": 1,
-            "24": 1,
-            "26": 1,
-            "28": 1,
-            "30": 1,
-            "31": 2
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "26": 0,
+            "28": 0,
+            "30": 0,
+            "31": 0
           },
           "Branches": [
             {
@@ -1423,7 +1423,7 @@
               "EndOffset": 48,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 3
+              "Hits": 0
             },
             {
               "Line": 19,
@@ -1431,7 +1431,7 @@
               "EndOffset": 94,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 19,
@@ -1439,7 +1439,7 @@
               "EndOffset": 117,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 2
+              "Hits": 0
             },
             {
               "Line": 18,
@@ -1447,7 +1447,7 @@
               "EndOffset": 138,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -1455,13 +1455,13 @@
       "Infrastructure.QuizRepository/<Delete>d__4": {
         "System.Void Infrastructure.QuizRepository/<Delete>d__4::MoveNext()": {
           "Lines": {
-            "40": 2,
-            "42": 2,
-            "44": 3,
-            "46": 1,
-            "48": 1,
-            "49": 1,
-            "50": 2
+            "40": 0,
+            "42": 0,
+            "44": 0,
+            "46": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0
           },
           "Branches": [
             {
@@ -1470,7 +1470,7 @@
               "EndOffset": 321,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 44,
@@ -1478,7 +1478,7 @@
               "EndOffset": 328,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -1486,15 +1486,15 @@
       "Infrastructure.QuizRepository/<Read>d__5": {
         "System.Void Infrastructure.QuizRepository/<Read>d__5::MoveNext()": {
           "Lines": {
-            "54": 2,
-            "56": 2,
-            "57": 2,
-            "58": 2,
-            "59": 2,
-            "60": 2,
-            "62": 3,
-            "63": 1,
-            "64": 2
+            "54": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0
           },
           "Branches": [
             {
@@ -1503,7 +1503,7 @@
               "EndOffset": 482,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 62,
@@ -1511,7 +1511,7 @@
               "EndOffset": 497,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -1519,9 +1519,9 @@
       "Infrastructure.QuizRepository/<ReadAll>d__3": {
         "System.Void Infrastructure.QuizRepository/<ReadAll>d__3::MoveNext()": {
           "Lines": {
-            "35": 1,
-            "36": 1,
-            "37": 1
+            "35": 0,
+            "36": 0,
+            "37": 0
           },
           "Branches": []
         }
@@ -1529,13 +1529,13 @@
       "Infrastructure.QuizRepository/<Update>d__6": {
         "System.Void Infrastructure.QuizRepository/<Update>d__6::MoveNext()": {
           "Lines": {
-            "68": 2,
-            "69": 2,
-            "71": 3,
-            "73": 1,
-            "75": 1,
-            "77": 1,
-            "78": 2
+            "68": 0,
+            "69": 0,
+            "71": 0,
+            "73": 0,
+            "75": 0,
+            "77": 0,
+            "78": 0
           },
           "Branches": [
             {
@@ -1544,7 +1544,7 @@
               "EndOffset": 321,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 0
             },
             {
               "Line": 71,
@@ -1552,7 +1552,7 @@
               "EndOffset": 328,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
+              "Hits": 0
             }
           ]
         }
@@ -2149,6 +2149,704 @@
             "235": 0
           },
           "Branches": []
+        }
+      }
+    }
+  },
+  "Syst.dll": {
+    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Syst\\Program.cs": {
+      "Program/<<Main>$>d__0": {
+        "System.Void Program/<<Main>$>d__0::MoveNext()": {
+          "Lines": {
+            "7": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "32": 0,
+            "33": 0,
+            "35": 0,
+            "36": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "48": 0,
+            "50": 0,
+            "52": 0
+          },
+          "Branches": [
+            {
+              "Line": 32,
+              "Offset": 345,
+              "EndOffset": 347,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 32,
+              "Offset": 345,
+              "EndOffset": 361,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Syst\\Model\\SeedExtension.cs": {
+      "Server.Model.SeedExtensions/<SeedAsync>d__0": {
+        "System.Void Server.Model.SeedExtensions/<SeedAsync>d__0::MoveNext()": {
+          "Lines": {
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0
+          },
+          "Branches": []
+        }
+      },
+      "Server.Model.SeedExtensions/<SeedObjectsAsync>d__1": {
+        "System.Void Server.Model.SeedExtensions/<SeedObjectsAsync>d__1::MoveNext()": {
+          "Lines": {
+            "23": 0,
+            "25": 0,
+            "27": 0,
+            "29": 0,
+            "30": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "56": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0
+          },
+          "Branches": [
+            {
+              "Line": 25,
+              "Offset": 61,
+              "EndOffset": 63,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 25,
+              "Offset": 61,
+              "EndOffset": 68,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 29,
+              "Offset": 321,
+              "EndOffset": 326,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 29,
+              "Offset": 321,
+              "EndOffset": 1374,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Syst\\Model\\StatusExtension.cs": {
+      "Syst.Extensions": {
+        "Microsoft.AspNetCore.Mvc.ActionResult Syst.Extensions::ToActionResult(Core.Status)": {
+          "Lines": {
+            "7": 4,
+            "8": 4,
+            "9": 0,
+            "10": 1,
+            "11": 1,
+            "12": 2,
+            "13": 0,
+            "14": 0,
+            "15": 4
+          },
+          "Branches": [
+            {
+              "Line": 7,
+              "Offset": 5,
+              "EndOffset": 40,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 7,
+              "Offset": 5,
+              "EndOffset": 48,
+              "Path": 2,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 7,
+              "Offset": 5,
+              "EndOffset": 56,
+              "Path": 3,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 7,
+              "Offset": 5,
+              "EndOffset": 64,
+              "Path": 5,
+              "Ordinal": 5,
+              "Hits": 2
+            },
+            {
+              "Line": 7,
+              "Offset": 5,
+              "EndOffset": 72,
+              "Path": 7,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 7,
+              "Offset": 5,
+              "EndOffset": 80,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 7,
+              "Offset": 5,
+              "EndOffset": 80,
+              "Path": 4,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 7,
+              "Offset": 5,
+              "EndOffset": 80,
+              "Path": 6,
+              "Ordinal": 6,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Syst\\WeatherForecast.cs": {
+      "Syst.WeatherForecast": {
+        "System.DateTime Syst.WeatherForecast::get_Date()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 Syst.WeatherForecast::get_TemperatureC()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 Syst.WeatherForecast::get_TemperatureF()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String Syst.WeatherForecast::get_Summary()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Syst\\Pages\\Error.cshtml.cs": {
+      "Syst.Pages.ErrorModel": {
+        "System.String Syst.Pages.ErrorModel::get_RequestId()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Syst.Pages.ErrorModel::get_ShowRequestId()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "System.Void Syst.Pages.ErrorModel::OnGet()": {
+          "Lines": {
+            "22": 0,
+            "23": 0,
+            "24": 0
+          },
+          "Branches": [
+            {
+              "Line": 23,
+              "Offset": 8,
+              "EndOffset": 10,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 23,
+              "Offset": 8,
+              "EndOffset": 14,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 23,
+              "Offset": 20,
+              "EndOffset": 22,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 23,
+              "Offset": 20,
+              "EndOffset": 34,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Syst.Pages.ErrorModel::.ctor(Microsoft.Extensions.Logging.ILogger`1<Syst.Pages.ErrorModel>)": {
+          "Lines": {
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Syst\\Pages\\Error.cshtml": {
+      "Syst.Pages.Pages_Error/<ExecuteAsync>d__0": {
+        "System.Void Syst.Pages.Pages_Error/<ExecuteAsync>d__0::MoveNext()": {
+          "Lines": {
+            "4": 0,
+            "10": 0,
+            "11": 0,
+            "13": 0,
+            "15": 0
+          },
+          "Branches": [
+            {
+              "Line": 10,
+              "Offset": 70,
+              "EndOffset": 72,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 10,
+              "Offset": 70,
+              "EndOffset": 136,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Syst\\Controllers\\AdminsController.cs": {
+      "Syst.Controllers.AdminsController": {
+        "System.Void Syst.Controllers.AdminsController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Syst.Controllers.AdminsController>,Core.IAdminRepository)": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "18": 0,
+            "19": 0
+          },
+          "Branches": []
+        }
+      },
+      "Syst.Controllers.AdminsController/<Get>d__3": {
+        "System.Void Syst.Controllers.AdminsController/<Get>d__3::MoveNext()": {
+          "Lines": {
+            "27": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "35": 0
+          },
+          "Branches": [
+            {
+              "Line": 30,
+              "Offset": 174,
+              "EndOffset": 176,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 30,
+              "Offset": 174,
+              "EndOffset": 201,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Syst\\Controllers\\CandidatesController.cs": {
+      "Syst.Controllers.CandidatesController": {
+        "System.Void Syst.Controllers.CandidatesController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Syst.Controllers.CandidatesController>,Core.ICandidateRepository)": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "18": 0,
+            "19": 0
+          },
+          "Branches": []
+        }
+      },
+      "Syst.Controllers.CandidatesController/<Delete>d__6": {
+        "System.Void Syst.Controllers.CandidatesController/<Delete>d__6::MoveNext()": {
+          "Lines": {
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0
+          },
+          "Branches": [
+            {
+              "Line": 59,
+              "Offset": 157,
+              "EndOffset": 159,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 59,
+              "Offset": 157,
+              "EndOffset": 178,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "Syst.Controllers.CandidatesController/<Get>d__3": {
+        "System.Void Syst.Controllers.CandidatesController/<Get>d__3::MoveNext()": {
+          "Lines": {
+            "24": 0,
+            "25": 0,
+            "26": 0
+          },
+          "Branches": []
+        }
+      },
+      "Syst.Controllers.CandidatesController/<Get>d__4": {
+        "System.Void Syst.Controllers.CandidatesController/<Get>d__4::MoveNext()": {
+          "Lines": {
+            "33": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "41": 0
+          },
+          "Branches": [
+            {
+              "Line": 36,
+              "Offset": 174,
+              "EndOffset": 176,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 174,
+              "EndOffset": 201,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "Syst.Controllers.CandidatesController/<Post>d__5": {
+        "System.Void Syst.Controllers.CandidatesController/<Post>d__5::MoveNext()": {
+          "Lines": {
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0
+          },
+          "Branches": [
+            {
+              "Line": 49,
+              "Offset": 191,
+              "EndOffset": 193,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 49,
+              "Offset": 191,
+              "EndOffset": 212,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Syst\\Controllers\\EventsController.cs": {
+      "Syst.Controllers.EventsController": {
+        "System.Void Syst.Controllers.EventsController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Syst.Controllers.EventsController>,Core.IEventRepository)": {
+          "Lines": {
+            "14": 8,
+            "15": 8,
+            "16": 8,
+            "18": 8,
+            "19": 8
+          },
+          "Branches": []
+        }
+      },
+      "Syst.Controllers.EventsController/<Delete>d__7": {
+        "System.Void Syst.Controllers.EventsController/<Delete>d__7::MoveNext()": {
+          "Lines": {
+            "66": 2,
+            "67": 2,
+            "68": 3,
+            "69": 1,
+            "70": 2
+          },
+          "Branches": [
+            {
+              "Line": 68,
+              "Offset": 157,
+              "EndOffset": 159,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 68,
+              "Offset": 157,
+              "EndOffset": 178,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Syst.Controllers.EventsController/<Get>d__4": {
+        "System.Void Syst.Controllers.EventsController/<Get>d__4::MoveNext()": {
+          "Lines": {
+            "35": 2,
+            "36": 2,
+            "37": 3,
+            "38": 1,
+            "39": 1,
+            "40": 1,
+            "42": 2
+          },
+          "Branches": [
+            {
+              "Line": 37,
+              "Offset": 174,
+              "EndOffset": 176,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 37,
+              "Offset": 174,
+              "EndOffset": 201,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Syst.Controllers.EventsController/<GetAll>d__3": {
+        "System.Void Syst.Controllers.EventsController/<GetAll>d__3::MoveNext()": {
+          "Lines": {
+            "25": 0,
+            "26": 0,
+            "27": 0
+          },
+          "Branches": []
+        }
+      },
+      "Syst.Controllers.EventsController/<Post>d__5": {
+        "System.Void Syst.Controllers.EventsController/<Post>d__5::MoveNext()": {
+          "Lines": {
+            "48": 2,
+            "49": 2,
+            "50": 2,
+            "51": 3,
+            "52": 1,
+            "53": 2
+          },
+          "Branches": [
+            {
+              "Line": 51,
+              "Offset": 191,
+              "EndOffset": 193,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 51,
+              "Offset": 191,
+              "EndOffset": 212,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Syst.Controllers.EventsController/<Put>d__6": {
+        "System.Void Syst.Controllers.EventsController/<Put>d__6::MoveNext()": {
+          "Lines": {
+            "60": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\krist\\OneDrive - ITU\\Desktop\\New folder\\SYST\\Syst\\Controllers\\EventsQueryController.cs": {
+      "Syst.Controllers.EventsQueryController": {
+        "System.Void Syst.Controllers.EventsQueryController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Syst.Controllers.EventsController>,Core.IEventRepository)": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "18": 0,
+            "19": 0
+          },
+          "Branches": []
+        }
+      },
+      "Syst.Controllers.EventsQueryController/<Get>d__3": {
+        "System.Void Syst.Controllers.EventsQueryController/<Get>d__3::MoveNext()": {
+          "Lines": {
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "33": 0,
+            "34": 0
+          },
+          "Branches": [
+            {
+              "Line": 28,
+              "Offset": 58,
+              "EndOffset": 60,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 28,
+              "Offset": 58,
+              "EndOffset": 185,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 30,
+              "Offset": 205,
+              "EndOffset": 210,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 30,
+              "Offset": 205,
+              "EndOffset": 338,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
         }
       }
     }

@@ -29,14 +29,13 @@ export class Home extends Component {
                 <tbody>
                 {events.map(event =>
                     <tr key={event.id}>
-                        <td>
-                            <a href={'/eventdetail/' + event.id}> {event.id} </a>
-                        </td>
+                        <td>{event.id}</td>
                         <td>{event.name}</td>
                         <td>{event.date}</td>
                         <td>{event.location}</td>
                         <td>{event.rating}</td>
-                        <td><button className="btn btn-host rightbtn">Host</button></td>
+                        <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host rightbtn">Details</button></a></td>
+                        <td><button className="btn btn-primary rightbtn">Host</button></td>
                     </tr>
                 )}
                 </tbody>
@@ -54,7 +53,7 @@ export class Home extends Component {
                 <h1>Welcome to Systematic Event Tool!</h1>
                 <p>From this home page you'll be able to create, host and see and overview over events! Check it out!</p>
 
-                <h1 id="tabelLabel" >Events
+                <h1 id="tabelLabel" >Upcoming Events
                     <button className="btn btn-primary rightbtn" onClick={this.rerouteToEventCreation}>Create</button>
                 </h1>
                 {contents}
