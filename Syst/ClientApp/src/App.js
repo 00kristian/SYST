@@ -11,6 +11,9 @@ import { EventDetail } from './components/EventDetail';
 
 import './custom.css'
 import { CreateEvent } from './components/CreateEvent';
+import { CandidateQuiz } from './components/CandidateQuiz';
+import { CandidateInformation } from './components/CandidateInformation';
+import { ConfirmationCandidate } from './components/ConformationCandidate';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -25,6 +28,9 @@ export default class App extends Component {
         <Route path='/Events' component={Events} />
         <Route path='/Confirmation' component={Confirmation} />
         <Route path='/eventdetail/:id' component={EventDetail} />
+        <Route path='/CandidateQuiz' component={CandidateQuiz} />
+        <Route path='/CandidateInformation' component={CandidateInformation} />
+        <Route path='/ConformationCandidate' component={ConfirmationCandidate} />
       </Layout>
     );
   }
