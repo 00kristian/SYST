@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Dropdown } from 'rsuite';
+//import 'rsuite/dist/styles/rsuite-default.css';
 
 import DatePicker from "react-datepicker";
 
@@ -17,7 +18,7 @@ export class CandidateInformation extends Component {
 
     render() {
         return (
-            <div>
+            <div className= "CandidateInformation">
                 <h2>Please write your contact information to enter the competition</h2>
                 <br/>
                 <form>
@@ -37,7 +38,9 @@ export class CandidateInformation extends Component {
                     <label>
                         <h5>University</h5>
                         <Dropdown title="Select University">
-                            <Dropdown.Item>ITU</Dropdown.Item>
+                            <Dropdown.Item>
+                                <button> ITU </button>
+                            </Dropdown.Item>
                             <Dropdown.Item>KU</Dropdown.Item>
                             <Dropdown.Item>DTU</Dropdown.Item>
                             <Dropdown.Item>AU</Dropdown.Item>

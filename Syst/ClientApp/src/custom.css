@@ -3,6 +3,8 @@ a {
   color: #0366d6;
 }
 
+
+
 .confirmationText {
     padding: 2%;
     text-align: center;
@@ -65,4 +67,9 @@ code {
 
 .space{
     padding-top: 4%;
+}
+
+.CandidateInformation{
+    padding: 12px 20px;
+    margin: 8px 0;
 }
