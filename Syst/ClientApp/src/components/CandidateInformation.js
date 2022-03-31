@@ -68,7 +68,7 @@ export class CandidateInformation extends Component {
                     <br />
                     <br />
                     <p><input type="checkbox"/> Accept that Systematic can store your information <a href='https://systematic.com/da-dk/kontakt/privacy-policyings/'>Read more</a></p>
-                    <p><input type="checkbox" onChange={(event) => console.log(this.state)}/> Accept Systematics newsletters........</p>
+                    <p><input type="checkbox"/> Accept Systematics newsletters........</p>
                 </form>
                 <br />
                 <button className="btn btn-primary rightbtn" onClick={this.rerouteToConfirmation}>Submit</button>
