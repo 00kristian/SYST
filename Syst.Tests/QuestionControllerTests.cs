@@ -72,7 +72,7 @@ public class QuestionsControllerTests
         //Arrange
         var logger = new Mock<ILogger<QuestionsController>>();
         var repository = new Mock<IQuestionRepository>();
-        repository.Setup(q => q.Read(69)).ReturnsAsync((Status.Found, default(QuestionDTO)));
+        repository.Setup(q => q.Read(69)).ReturnsAsync((Status.NotFound, default(QuestionDTO)));
         var controller = new QuestionsController(logger.Object, repository.Object);
 
         //Act
@@ -80,7 +80,6 @@ public class QuestionsControllerTests
 
         //Assert
         Assert.IsType<NotFoundResult>(actual.Result);
-
     }
 
     [Fact]
@@ -88,7 +87,38 @@ public class QuestionsControllerTests
     public async void Put_existing_question_updates_question()
     {
         //Arrange
-        
+        var logger = new Mock<ILogger<QuestionsController>>();
+        var repository = new Mock<IQuestionRepository>();
+        var oldQuestion = Q2;
+        var newQuestion = new QuestionDTO(2, "What will printet lastly?", "B", null, new List<string>{"Cat", "Dog", "Mouse", "Bunny"}, quiz1);
+        repository.Setup(q => q.Update(2, newQuestion)).Callback(() => {
+            oldQuestion.Answer = newQuestion.Answer;
+        }).ReturnsAsync(Status.Updated);
+        var controller = new QuestionsController(logger.Object, repository.Object);
+
+        //Act
+        var actual = await controller.Put(2, newQuestion);
+
+        //Assert
+        Assert.IsType<NoContentResult>(actual);
+        Assert.Equal(newQuestion.Answer, oldQuestion.Answer);
+    }
+
+    [Fact]
+
+    public async void Put_non_existing_question_returns_NotFound()
+    {
+        //Arrange
+        var logger = new Mock<ILogger<QuestionsController>>();
+        var repository = new Mock<IQuestionRepository>();
+        repository.Setup(q => q.Update(420, Q2)).ReturnsAsync((Status.NotFound));
+        var controller = new QuestionsController(logger.Object, repository.Object);
+
+        //Act
+        var actual = await controller.Put(420, Q2);
+
+        //Assert
+        Assert.IsType<NotFoundResult>(actual);
     }
 
 }
