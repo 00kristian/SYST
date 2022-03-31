@@ -65,4 +65,30 @@ public class QuestionsControllerTests
         Assert.Equal(expected, actual.Value);
     }
 
+    [Fact]
+
+    public async void Get_non_existing_id_return_NotFound()
+    {
+        //Arrange
+        var logger = new Mock<ILogger<QuestionsController>>();
+        var repository = new Mock<IQuestionRepository>();
+        repository.Setup(q => q.Read(69)).ReturnsAsync((Status.Found, default(QuestionDTO)));
+        var controller = new QuestionsController(logger.Object, repository.Object);
+
+        //Act
+        var actual = await controller.Get(69);
+
+        //Assert
+        Assert.IsType<NotFoundResult>(actual.Result);
+
+    }
+
+    [Fact]
+
+    public async void Put_existing_question_updates_question()
+    {
+        //Arrange
+        
+    }
+
 }
