@@ -13,28 +13,36 @@ namespace Infrastructure
         }
 
         //Creates a quiz
-        public async Task<(Status, int id)> Create(QuizDTO quizDTO)
+        public async Task<(Status, int id)> Create(QuizCreateDTO quizDTO)
         {
-             foreach (Quiz q in _context.Quizes) {
-                if (q.Id == quizDTO.Id) return (Status.Conflict, q.Id);
-            }
-             var entity = new Quiz
+            if (quizDTO == default(QuizCreateDTO)) return (Status.Conflict, 0);
+            //TODO: test if dto is null
+            var entity = new Quiz
                 {
-                    Date = quizDTO.Date
+                    Name = quizDTO.Name,
+                    Questions = quizDTO.Questions.Select(qs => new Question {
+                        Representation = qs.Representation,
+                        Answer = qs.Answer,
+                        ImageURL = qs.ImageURl,
+                        Options = qs.Options
+                    }).ToList()
                 };
 
-                _context.Quizes.Add(entity);
+            _context.Quizes.Add(entity);
 
-                await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-                return (Status.Created, entity.Id);
+            return (Status.Created, entity.Id);
         }
 
         //Return a list of all quizes
          public async Task<IReadOnlyCollection<QuizDTO>> ReadAll() =>
             await _context.Quizes.Select(q => new QuizDTO(){
-                Id = q.Id
+                Id = q.Id,
+                Name = q.Name!
             }).ToListAsync();
+            //TODO: Do we need this if we can get the quizes via events? 
+
 
         //Deletes a quiz given the quiz id
         public async Task<Status> Delete(int id){
@@ -55,7 +63,6 @@ namespace Infrastructure
             
             var quiz = await _context.Quizes.Where(q => q.Id == id).Select(q => new QuizDTO(){
                 Id = q.Id,
-                Date = q.Date
               
             }).FirstOrDefaultAsync();
 
@@ -64,13 +71,20 @@ namespace Infrastructure
         }
         
         //Updates a quiz date value
-        public async Task<Status> Update(int id, QuizDTO quizDTO)
+        public async Task<Status> Update(int id, QuizCreateDTO quizDTO)
         {
             var q = await _context.Quizes.Where(q => q.Id == id).FirstOrDefaultAsync();
 
             if (q == default(Quiz)) return Status.NotFound;
 
-            q.Date = quizDTO.Date;
+            q.Name = quizDTO.Name;
+            q.Questions = quizDTO.Questions.Select(qs => new Question {
+                Representation = qs.Representation,
+                Answer = qs.Answer,
+                ImageURL = qs.ImageURl,
+                Options = qs.Options
+            }).ToList();
+    
 
             await _context.SaveChangesAsync();
 

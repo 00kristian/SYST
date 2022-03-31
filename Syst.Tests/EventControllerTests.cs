@@ -13,7 +13,7 @@ public class EventControllerTests
     //Create some objects to test on
     static readonly QuizDTO quiz1 = new QuizDTO{
         Id = 90,
-        Date = new System.DateTime(2022,03,21),
+        Name = "Swag",
         Questions = null!,
         Events = null!,
         Candidates = null!
@@ -202,6 +202,20 @@ public class EventControllerTests
         Assert.IsType<ConflictObjectResult>(response);
         Assert.Equal(1, events.Count);
         
+    }
+
+    [Fact]
+    public void Get_all_returns_all_quizes()
+    {
+        var logger = new Mock<ILogger<EventsController>>();
+        var repository = new Mock<IEventRepository>();
+        var events = new List<EventDTO> {event1,event2};
+        repository.Setup(m => m.ReadAll()).ReturnsAsync(events);
+        var controller = new EventsController(logger.Object, repository.Object);
+
+        var respones = controller.GetAll();
+
+        Assert.Equal(events, respones.Result);
     }
 
 
