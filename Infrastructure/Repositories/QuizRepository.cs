@@ -15,6 +15,7 @@ namespace Infrastructure
         //Creates a quiz
         public async Task<(Status, int id)> Create(QuizCreateDTO quizDTO)
         {
+            if (quizDTO == default(QuizCreateDTO)) return (Status.Conflict, 0);
             //TODO: test if dto is null
             var entity = new Quiz
                 {
@@ -83,6 +84,7 @@ namespace Infrastructure
                 ImageURL = qs.ImageURl,
                 Options = qs.Options
             }).ToList();
+    
 
             await _context.SaveChangesAsync();
 
