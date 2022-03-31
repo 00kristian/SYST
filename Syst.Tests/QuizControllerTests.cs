@@ -29,7 +29,7 @@ public class QuizControllerTests{
 
 
 
-    //TODO: Test return all
+  
     [Fact]
     public void Get_all_returns_all_quizes()
     {

@@ -204,5 +204,19 @@ public class EventControllerTests
         
     }
 
+    [Fact]
+    public void Get_all_returns_all_quizes()
+    {
+        var logger = new Mock<ILogger<EventsController>>();
+        var repository = new Mock<IEventRepository>();
+        var events = new List<EventDTO> {event1,event2};
+        repository.Setup(m => m.ReadAll()).ReturnsAsync(events);
+        var controller = new EventsController(logger.Object, repository.Object);
+
+        var respones = controller.GetAll();
+
+        Assert.Equal(events, respones.Result);
+    }
+
 
 }
