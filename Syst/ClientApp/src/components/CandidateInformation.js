@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
-import { Dropdown } from 'rsuite';
-//import 'rsuite/dist/styles/rsuite-default.css';
 
+import Dropdown from 'react-dropdown';
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import DropdownItem from 'rsuite/esm/Dropdown/DropdownItem';
-import { DropdownMenu, DropdownMenuItem } from 'rsuite/esm/Picker';
+import 'react-dropdown/style.css'
 
 export class CandidateInformation extends Component {
     static displayName = CandidateInformation.name;
 
     constructor(props) {
         super(props);
-        this.state = { name: "", Email: "", University: "", StudyProgram: "", GraduationDate: new Date()};
+        this.state = { name: "", Email: "", University: "", StudyProgram: "", ShowSpecialUni : false, GraduationDate: new Date()};
     }
 
     render() {
+        const options = [
+            'ITU','KU','DTU','AU','SDU','RUC','AAU','CBS','Other'
+        ];
+        const defaultOption = options[0];
         return (
             <div className= "CandidateInformation">
                 <h2>Please write your contact information to enter the competition</h2>
@@ -24,38 +26,35 @@ export class CandidateInformation extends Component {
                 <form>
                     <label>
                         <h5>Name</h5>
-                        <input className="input-field" onChange={(candidate) => this.state.name = candidate.target.value}></input>
+                        <input className="input-field" onChange={(candidate) => this.state.name = candidate.target.value} placeholder="Name"></input>
                     </label>
                     <br />
                     <br />
                     <label>
                         <h5>Email</h5>
-                        <input className="input-field" onChange={(candidate) => this.state.Email = candidate.target.value}></input>
+                        <input className="input-field" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="Email"></input>
                         <p>Please enter your email address in format: yourname@example.com</p>
                     </label>
                     <br />
                     <br />
                     <label>
                         <h5>University</h5>
-                        <Dropdown title="Select University">
-                            <Dropdown.Item>
-                                <button> ITU </button>
-                            </Dropdown.Item>
-                            <Dropdown.Item>KU</Dropdown.Item>
-                            <Dropdown.Item>DTU</Dropdown.Item>
-                            <Dropdown.Item>AU</Dropdown.Item>
-                            <Dropdown.Item>SDU</Dropdown.Item>
-                            <Dropdown.Item>RUC</Dropdown.Item>
-                            <Dropdown.Item>AAU</Dropdown.Item>
-                            <Dropdown.Item>CBS</Dropdown.Item>
-                            <Dropdown.Item>Other</Dropdown.Item>
-                        </Dropdown>
+                        <Dropdown options={options} onChange={this.selectUni} value={defaultOption} placeholder="Select Your University" />
                     </label>
+                    {this.state.ShowSpecialUni ? (
+                        <div>
+                            <label>
+                                <input className="input-field" onChange={(uni) => this.state.University= uni.target.value} placeholder="University"></input>
+                            </label>
+                        </div>
+                    ) : (
+                    <div></div>
+                    )}
                     <br />
                     <br />
                     <label>
                         <h5>Study Program</h5>
-                        <input className="input-field" onChange={(candidate) => this.state.StudyProgram= candidate.target.value}></input>
+                        <input className="input-field" onChange={(candidate) => this.state.StudyProgram= candidate.target.value} placeholder="Study Program"></input>
                     </label>
                     <br />
                     <br />
@@ -69,12 +68,20 @@ export class CandidateInformation extends Component {
                     <br />
                     <br />
                     <p><input type="checkbox"/> Accept that Systematic can store your information <a href='https://systematic.com/da-dk/kontakt/privacy-policyings/'>Read more</a></p>
-                    <p><input type="checkbox"/> Accept Systematics newsletters........</p>
+                    <p><input type="checkbox" onChange={(event) => console.log(this.state)}/> Accept Systematics newsletters........</p>
                 </form>
                 <br />
                 <button className="btn btn-primary rightbtn" onClick={this.rerouteToConfirmation}>Submit</button>
             </div>
         );
+    }
+
+    selectUni = (option) => {
+        if (option.value == 'Other') {
+            this.setState({ShowSpecialUni: true});
+        } else {
+            this.setState({ShowSpecialUni: false, University: option.value});
+        }
     }
 
     rerouteToConfirmation = () => {
