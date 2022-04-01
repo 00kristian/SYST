@@ -68,8 +68,8 @@ code {
 }
 
 .CandidateInformation{
-    padding: 12px 20px;
-    margin: 8px 0;
+    display: flex;
+    justify-content: center;
 }
 
 .answerButton {
@@ -113,3 +113,13 @@ code {
 .ansRow {
     width: 650px;
 } 
+
+#header{
+    text-align: center;
+}
+
+#input{
+    padding-left: 30%;
+    padding-right: 30%;
+    padding-bottom: 10%;
+}

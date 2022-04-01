@@ -13,7 +13,7 @@ namespace Infrastructure
         }
 
         //Creates an candidate
-        public async Task<(Status, int id)> Create(CandidateDTO candidateDTO) {
+        public async Task<(Status, int id)> Create(CreateCandidateDTO candidateDTO) {
 
             foreach (Candidate c in _context.Candidates) {
                 if (c.Email == candidateDTO.Email) return (Status.Conflict, c.Id); 
@@ -24,7 +24,7 @@ namespace Infrastructure
                     Name = candidateDTO.Name!,
                     Email = candidateDTO.Email!,
                     StudyProgram = candidateDTO.StudyProgram,
-                    University = (UniversityEnum)Enum.Parse(typeof(UniversityEnum), candidateDTO.University),
+                    University = candidateDTO.University,
                     GraduationDate = DateTime.Parse(candidateDTO.GraduationDate)
                     
                 };
@@ -50,7 +50,7 @@ namespace Infrastructure
                 Id = c.Id,
                 Email = c.Email!,
                 StudyProgram = c.StudyProgram!,
-                University = c.University.ToString(),
+                University = c.University!,
                 GraduationDate = c.GraduationDate.ToShortDateString()
             }).FirstOrDefaultAsync();
 
@@ -65,7 +65,7 @@ namespace Infrastructure
                 Id = c.Id,
                 Email = c.Email!,
                 StudyProgram = c.StudyProgram!,
-                University = c.University.ToString(),
+                University = c.University!,
                 GraduationDate = c.GraduationDate.ToShortDateString()
             }).ToListAsync();
 
@@ -78,7 +78,7 @@ namespace Infrastructure
 
             c.Name = candidateDTO.Name;
             c.Email = candidateDTO.Email!;
-            c.University = (UniversityEnum)Enum.Parse(typeof(UniversityEnum), candidateDTO.University);
+            c.University = candidateDTO.University;
             c.StudyProgram = candidateDTO.StudyProgram;
             c.GraduationDate = DateTime.Parse(candidateDTO.GraduationDate);
 
