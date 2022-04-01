@@ -35,7 +35,7 @@ export class Home extends Component {
                         <td>{event.location}</td>
                         <td>{event.rating}</td>
                         <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host rightbtn">Details</button></a></td>
-                        <td><button className="btn btn-primary rightbtn">Host</button></td>
+                        <td><a href={'/CandidateQuiz/'}> <button className="btn btn-primary rightbtn">Host</button></a></td>
                     </tr>
                 )}
                 </tbody>

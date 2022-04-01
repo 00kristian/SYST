@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import figure from './confirmation-figure.png';
 
 
-export class Confirmation extends Component {
+export class ConfirmationCandidate extends Component {
 
-    static displayName = Confirmation.name;
+    static displayName = ConfirmationCandidate.name;
 
     constructor(props) {
         super(props);
-        this.state = { events: [], loading: true };
+        this.state = { candidate: [], loading: true };
     }
     
     render() {
@@ -18,12 +18,8 @@ export class Confirmation extends Component {
                     <img src={figure} alt="figure" width={230}/>
                 </div>
                 <div className={"confirmationText"}>
-                <h1>Your event has successfully been created</h1>
-                {/*<h3>Event details</h3>
-                <h5>Name</h5>
-                <h5>Date</h5>
-                <h5>Location</h5>*/}
-                <button className={"btn-primary confirmationbtn"} onClick={this.rerouteToHomePage}>OK</button>
+                <h1>Thank you for submitting</h1>
+                <a href='/CandidateQuiz'><button className={"btn-primary confirmationbtn"}>OK</button></a>
                 </div>
             </div>
         );
