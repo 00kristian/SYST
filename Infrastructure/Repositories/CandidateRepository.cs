@@ -13,7 +13,7 @@ namespace Infrastructure
         }
 
         //Creates an candidate
-        public async Task<(Status, int id)> Create(CandidateDTO candidateDTO) {
+        public async Task<(Status, int id)> Create(CreateCandidateDTO candidateDTO) {
 
             foreach (Candidate c in _context.Candidates) {
                 if (c.Email == candidateDTO.Email) return (Status.Conflict, c.Id); 

@@ -43,7 +43,7 @@ public class CandidatesController : ControllerBase
     //Create a new candidate
     [ProducesResponseType(409)]
     [HttpPost]
-    public async Task<IActionResult> Post(CandidateDTO candidate) {
+    public async Task<IActionResult> Post(CreateCandidateDTO candidate) {
         var created = await _repo.Create(candidate);
         var id = created.Item2;
         if (created.Item1 == Status.Conflict) return new ConflictObjectResult(id);

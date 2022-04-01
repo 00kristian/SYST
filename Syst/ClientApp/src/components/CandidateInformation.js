@@ -11,7 +11,7 @@ export class CandidateInformation extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { name: "", Email: "", University: "", StudyProgram: "", ShowSpecialUni : false, GraduationDate: new Date()};
+        this.state = { Name: "", Email: "", University: "", StudyProgram: "", ShowSpecialUni : false, GraduationDate: new Date()};
     }
 
     render() {
@@ -31,7 +31,7 @@ export class CandidateInformation extends Component {
                    
                     <label>
                         <h5>Name</h5>
-                        <input className="input-field" onChange={(candidate) => this.state.name = candidate.target.value} placeholder="Name"></input>
+                        <input className="input-field" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
                     </label>
                     <br />
                     <br />
@@ -77,7 +77,7 @@ export class CandidateInformation extends Component {
                     <p><input type="checkbox"/> Accept Systematics newsletters........</p>
                 </form>
                 <br />
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToConfirmation}>Submit</button>
+                <button className="btn btn-primary rightbtn" onClick={this.rerouteToCandidateConfirmation}>Submit</button>
                 </div>
             </div>
         );
@@ -91,9 +91,9 @@ export class CandidateInformation extends Component {
         }
     }
 
-    rerouteToConfirmation = () => {
+    rerouteToCandidateConfirmation = () => {
         let candidate = {
-            "name": this.state.name,
+            "name": this.state.Name,
             "email": this.state.Email,
             "university": this.state.University,
             "studyProgram": this.state.StudyProgram,
