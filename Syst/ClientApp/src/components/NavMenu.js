@@ -46,9 +46,6 @@ export class NavMenu extends Component {
                 <NavItem>
                   <NavLink tag={Link} className="navitem text-dark" to="/candidates"><Icon path={mdiAccountGroup} size={1}/> Candidates</NavLink>
                 </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="navitem text-dark" to="/fetch-data">Fetch data</NavLink>
-                </NavItem>
               </ul>
             </Collapse>
           </Container>
