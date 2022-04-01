@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import logo from './Systematic_Logo.png';
 import Dropdown from 'react-dropdown';
 import DatePicker from "react-datepicker";
 
@@ -11,22 +11,35 @@ export class CandidateInformation extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { name: "", Email: "", University: "", StudyProgram: "", ShowSpecialUni : false, GraduationDate: new Date()};
+        this.state = { Name: "", Email: "", University: "", StudyProgram: "", ShowSpecialUni : false, GraduationDate: new Date()};
     }
 
     render() {
         const options = [
-            'ITU','KU','DTU','AU','SDU','RUC','AAU','CBS','Other'
+            'IT-University of Copenhagen',
+            'University of Copenhagen',
+            'Technical University of Denmark',
+            'Aarhus University',
+            'University of Southern Denmark',
+            'Roskilde University',
+            'Aalborg University',
+            'Copenhagen Business School',
+            'Other'
         ];
         const defaultOption = options[0];
         return (
-            <div className= "CandidateInformation">
+            <div>
+                <div id="header">
+                <img src={logo} alt="Logo" width={500}/>
                 <h2>Please write your contact information to enter the competition</h2>
+                </div>
                 <br/>
+                <div id="input">
                 <form>
+
                     <label>
                         <h5>Name</h5>
-                        <input className="input-field" onChange={(candidate) => this.state.name = candidate.target.value} placeholder="Name"></input>
+                        <input className="input-field" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
                     </label>
                     <br />
                     <br />
@@ -67,11 +80,13 @@ export class CandidateInformation extends Component {
                     </label>
                     <br />
                     <br />
+
                     <p><input type="checkbox"/> Accept that Systematic can store your information <a href='https://systematic.com/da-dk/kontakt/privacy-policyings/'>Read more</a></p>
                     <p><input type="checkbox"/> Accept Systematics newsletters........</p>
                 </form>
                 <br />
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToConfirmation}>Submit</button>
+                <button className="btn btn-primary rightbtn" onClick={this.rerouteToCandidateConfirmation}>Submit</button>
+                </div>
             </div>
         );
     }
@@ -84,13 +99,13 @@ export class CandidateInformation extends Component {
         }
     }
 
-    rerouteToConfirmation = () => {
+    rerouteToCandidateConfirmation = () => {
         let candidate = {
-            "name": this.state.name,
+            "name": this.state.Name,
             "email": this.state.Email,
             "university": this.state.University,
             "studyProgram": this.state.StudyProgram,
-            "graduationDate": this.state.graduationDate.toDateString()
+            "graduationDate": this.state.GraduationDate.toDateString()
         };
         const requestOptions = {
             method: 'POST',

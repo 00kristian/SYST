@@ -45,15 +45,6 @@ public class SystematicContext : DbContext, ISystematicContext
         modelBuilder.Entity<Admin>()
         .HasMany<Event>(a => a.Events);
 
-        //Convert University enum
-        modelBuilder
-        .Entity<Candidate>()
-        .Property(s => s.University)
-        .HasMaxLength(50)
-        .HasConversion(
-            v => v.ToString(),
-            v => (UniversityEnum)Enum.Parse(typeof(UniversityEnum), v));
-
         //Makes sure we can store a list of answers in candidate
         modelBuilder.Entity<Candidate>()
         .Property(c => c.Answers)
