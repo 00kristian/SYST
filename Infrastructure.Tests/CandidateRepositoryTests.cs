@@ -101,7 +101,7 @@ public class CandidateRepositoryTests{
         Assert.Equal(candidate1.Email, actual.Item2.Email);
         Assert.Equal(candidate1.StudyProgram, actual.Item2.StudyProgram);
 
-        Assert.Equal(candidate1.University.ToString(), actual.Item2.University);
+        Assert.Equal(candidate1.University, actual.Item2.University);
         Assert.Equal(candidate1.GraduationDate.ToShortDateString(), actual.Item2.GraduationDate);
 
     }
