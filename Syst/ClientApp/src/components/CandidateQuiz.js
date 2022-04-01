@@ -28,22 +28,51 @@ export class CandidateQuiz extends Component {
                 <Row>
                     <Col>
                         <Container>
-                        <Row>
-                            <h3>This is a placeholder for the quiz representation</h3>
-                        </Row>
-                        <Row>
-                            <Col> 
-                                <div>
-                                    <button className="answerButton"> A </button>
-                                    <h5>Option A</h5>
-                                </div>
-                            </Col>
-                            <Col> <button className="answerButton"> B </button></Col>
-                        </Row>
-                        <Row>
-                            <Col> <button className="answerButton"> C </button></Col>
-                            <Col> <button className="answerButton"> D </button></Col>
-                        </Row>
+                            <br/>
+                            <br/>
+                            <Row>
+                                <h3>This is a placeholder for the quiz representation</h3>
+                            </Row>
+                            <br/>
+                            <Row className="ansRow">
+                                <Col> 
+                                    <div className="butNText">           
+                                        <button className="answerButton"> A </button>
+                                        <div className='vertical-center'>
+                                            <h5>Option A</h5>
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col> 
+                                    <div className="butNText">           
+                                        <button className="answerButton"> B </button>
+                                        <div className='vertical-center'>
+                                            <h5>Option B</h5>
+                                        </div>
+                                    </div>
+                                </Col>
+                            </Row>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <Row className="ansRow">
+                                <Col> 
+                                    <div className="butNText">           
+                                        <button className="answerButton"> C </button>
+                                        <div className='vertical-center'>
+                                            <h5>Option C</h5>
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col> 
+                                    <div className="butNText">           
+                                        <button className="answerButton"> D </button>
+                                        <div className='vertical-center'>
+                                            <h5>Option D</h5>
+                                        </div>
+                                    </div>
+                                </Col>
+                            </Row>
                         </Container>
                     </Col>
                     <Col>

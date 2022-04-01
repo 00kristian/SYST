@@ -99,3 +99,19 @@ code {
     margin-left: auto;
     margin-right: auto;
 }
+
+.butNText {
+    
+    display: flex;
+      
+}
+
+.vertical-center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.ansRow {
+    width: 650px;
+}
