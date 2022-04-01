@@ -18,6 +18,14 @@ public class QuestionsControllerTests
         Events = null!,
         Candidates = null!
     };
+
+    static readonly QuizDTO quiz2 = new QuizDTO{
+        Id = 33,
+        Date = new System.DateTime(2022,10,31),
+        Questions = new List<QuestionDTO>{},
+        Events = null!,
+        Candidates = null!
+    };
     static readonly QuestionDTO Q1 = new QuestionDTO{
         Id = 1,
         Representation = "What will the program print?",
@@ -121,4 +129,99 @@ public class QuestionsControllerTests
         Assert.IsType<NotFoundResult>(actual);
     }
 
+    [Fact]
+
+    public async void Delete_non_existing_question_returns_NotFound()
+    {
+        //Arrange
+        var logger = new Mock<ILogger<QuestionsController>>();
+        var repository = new Mock<IQuestionRepository>();
+        repository.Setup(q => q.Delete(13)).ReturnsAsync((Status.NotFound));
+        var controller = new QuestionsController(logger.Object, repository.Object);
+
+        //Act
+        var result = await controller.Delete(13);
+
+        //Assert
+        Assert.IsType<NotFoundObjectResult>(result);
+    }
+
+    [Fact]
+
+    public async void Delete_existing_question_returns_NoContent()
+    {
+        //Arrange
+        var logger = new Mock<ILogger<QuestionsController>>();
+        var repository = new Mock<IQuestionRepository>();
+        repository.Setup(q => q.Delete(3)).ReturnsAsync((Status.Deleted));
+        var controller = new QuestionsController(logger.Object, repository.Object);
+
+        //Act
+        var result = await controller.Delete(3);
+
+        //Assert
+        Assert.IsType<NoContentResult>(result);
+    }
+
+    [Fact]
+
+    public async void Post_adds_question_to_repository()
+    {
+        //Arrange
+        var logger = new Mock<ILogger<QuestionsController>>();
+        var repository = new Mock<IQuestionRepository>();
+        var Q4 = new QuestionDTO(4, "What will be printed next?", "D", null, new List<string>{"Skateboard", "Boat", "Car", "Bicycle"}, quiz2);
+        var questions = new List<QuestionDTO>{Q4};
+        var postQ5 = new QuestionDTO(5, "What will the outcome be?", "A", null, new List<string>{"Denmark", "Sweden", "Norway", "Finlan"}, quiz2);
+        repository.Setup(q => q.Create(postQ5)).Callback(() => questions.Add(postQ5));
+        var controller = new QuestionsController(logger.Object, repository.Object);
+
+        //Act
+        var result = await controller.Post(postQ5);
+
+        //Assert
+        Assert.Equal(2,questions.Count);
+        Assert.IsType<CreatedAtActionResult>(result);
+
+    }
+
+    [Fact]
+
+    public async void Post_existing_question_returns_StatusConflict()
+    {
+        //Arrange
+        var logger = new Mock<ILogger<QuestionsController>>();
+        var repository = new Mock<IQuestionRepository>();
+        var questions = new List<QuestionDTO>{Q1};
+        var postQ1 = new QuestionDTO(1, "What will the program print?", "A", null, new List<string>{"Hello World!", "World Hello!", "Hello! World", "World! Hello"}, quiz1);
+        repository.Setup(q => q.Create(postQ1)).ReturnsAsync(() => (Status.Conflict, 1));
+        var controller = new QuestionsController(logger.Object, repository.Object);
+
+        //Act
+        var result = await controller.Post(postQ1);
+
+        //Assert
+        Assert.Equal(1,questions.Count);
+        Assert.IsType<ConflictObjectResult>(result);
+
+    }
+
+    [Fact]
+
+        public async void Post_null_DTO_returns_StatusConflict()
+    {
+        //Arrange
+        var logger = new Mock<ILogger<QuestionsController>>();
+        var repository = new Mock<IQuestionRepository>();
+        var newQuestion = default(QuestionDTO);
+        repository.Setup(q => q.Create(newQuestion)).ReturnsAsync(() => (Status.Conflict, 0));
+        var controller = new QuestionsController(logger.Object, repository.Object);
+
+        //Act
+        var result = await controller.Post(newQuestion);
+
+        //Assert
+        Assert.IsType<ConflictObjectResult>(result);
+
+    }
 }
