@@ -28,7 +28,6 @@ namespace Core {
 
         [Required]
         QuizDTO Quiz
-
-
+        
     );
 }

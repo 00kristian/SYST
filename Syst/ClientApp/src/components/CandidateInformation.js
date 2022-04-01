@@ -16,7 +16,15 @@ export class CandidateInformation extends Component {
 
     render() {
         const options = [
-            'ITU','KU','DTU','AU','SDU','RUC','AAU','CBS','Other'
+            'IT-University of Copenhagen',
+            'University of Copenhagen',
+            'Technical University of Denmark',
+            'Aarhus University',
+            'University of Southern Denmark',
+            'Roskilde University',
+            'Aalborg University',
+            'Copenhagen Business School',
+            'Other'
         ];
         const defaultOption = options[0];
         return (

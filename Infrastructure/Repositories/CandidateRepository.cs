@@ -24,7 +24,7 @@ namespace Infrastructure
                     Name = candidateDTO.Name!,
                     Email = candidateDTO.Email!,
                     StudyProgram = candidateDTO.StudyProgram,
-                    University = (UniversityEnum)Enum.Parse(typeof(UniversityEnum), candidateDTO.University),
+                    University = candidateDTO.University,
                     GraduationDate = DateTime.Parse(candidateDTO.GraduationDate)
                     
                 };
@@ -78,7 +78,7 @@ namespace Infrastructure
 
             c.Name = candidateDTO.Name;
             c.Email = candidateDTO.Email!;
-            c.University = (UniversityEnum)Enum.Parse(typeof(UniversityEnum), candidateDTO.University);
+            c.University = candidateDTO.University;
             c.StudyProgram = candidateDTO.StudyProgram;
             c.GraduationDate = DateTime.Parse(candidateDTO.GraduationDate);
 

@@ -44,16 +44,16 @@ public static class SeedExtensions
             var date11 = new System.DateTime(2022,03,24);
             var date12 = new System.DateTime(2022,10,31);
 
-            var lukas = new Candidate() {Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = UniversityEnum.ITU, GraduationDate = date0};
-            var maj = new Candidate() {Name = "Maj Frost Jensen", Email = "mfje@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = UniversityEnum.ITU, GraduationDate = date0};
-            var isabella = new Candidate() {Name = "Isabella Magnusdottir", Email = "imag@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = UniversityEnum.ITU, GraduationDate = date2};
-            var camille = new Candidate() {Name = "Camille Gonnsen", Email = "cgon@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = UniversityEnum.ITU, GraduationDate = date1};
-            var kristian = new Candidate() {Name = "Kristian Berlin Jensen", Email = "krbj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = UniversityEnum.ITU, GraduationDate = date0};
-            var sarah = new Candidate() {Name = "Sarah Christiansen", Email = "sacc@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = UniversityEnum.ITU, GraduationDate = date2};
-            var emma = new Candidate() {Name = "Emma Hansen", Email = "emha@ku.dk", StudyProgram = "Bsc i Datalogi", University = UniversityEnum.KU, GraduationDate = date1};
-            var sebastian = new Candidate(){Name = "Sebastian Nielsen", Email = "seni@ruc.dk", StudyProgram = "Bsc i Humunistisk Teknologi", University= UniversityEnum.RUC, GraduationDate = date1}; 
-            var benjamin = new Candidate(){Name = "Benjamin Christensen", Email = "belc@itu.dk", StudyProgram = "Msc i Computer Science", University = UniversityEnum.ITU, GraduationDate = date2};
-            var peter = new Candidate(){Name = "Peter Hansen", Email = "peha@sdu.dk", StudyProgram = "Msc i Webkommunikation", University = UniversityEnum.SDU, GraduationDate = date2};
+            var lukas = new Candidate() {Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date0};
+            var maj = new Candidate() {Name = "Maj Frost Jensen", Email = "mfje@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date0};
+            var isabella = new Candidate() {Name = "Isabella Magnusdottir", Email = "imag@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date2};
+            var camille = new Candidate() {Name = "Camille Gonnsen", Email = "cgon@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date1};
+            var kristian = new Candidate() {Name = "Kristian Berlin Jensen", Email = "krbj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date0};
+            var sarah = new Candidate() {Name = "Sarah Christiansen", Email = "sacc@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date2};
+            var emma = new Candidate() {Name = "Emma Hansen", Email = "emha@ku.dk", StudyProgram = "Bsc i Datalogi", University = "University of Copenhagen", GraduationDate = date1};
+            var sebastian = new Candidate(){Name = "Sebastian Nielsen", Email = "seni@ruc.dk", StudyProgram = "Bsc i Humunistisk Teknologi", University= "Roskilde University", GraduationDate = date1}; 
+            var benjamin = new Candidate(){Name = "Benjamin Christensen", Email = "belc@itu.dk", StudyProgram = "Msc i Computer Science", University = "IT-University of Copenhagen", GraduationDate = date2};
+            var peter = new Candidate(){Name = "Peter Hansen", Email = "peha@sdu.dk", StudyProgram = "Msc i Webkommunikation", University = "University of Southern Denmark", GraduationDate = date2};
 
             context.Candidates.AddRange(
                 lukas,
