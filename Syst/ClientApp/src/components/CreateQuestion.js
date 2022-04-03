@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Dropdown from 'react-dropdown';
 
 
 export class CreateQuestion extends Component {
@@ -10,6 +11,9 @@ export class CreateQuestion extends Component {
     }
 
     render() {
+        const options = ["A", "B", "C", "D"];
+        const defaultOption = options[0];
+
         return (
             <div>
                 <h2>Here you can create a question </h2>
@@ -33,6 +37,7 @@ export class CreateQuestion extends Component {
                     <input className="input-field" onChange={(event) => this.state.Representation = event.target.value}></input>
                     </label>
                     <label>
+                    <br />
                     <h5 id='c'>Q1: Answer C</h5>
                     <input className="input-field" onChange={(event) => this.state.Representation = event.target.value}></input>
                     </label>
@@ -53,6 +58,8 @@ export class CreateQuestion extends Component {
                 <br />
                 <br />
                 <h5>Correct Answer</h5>
+                <Dropdown options={options} onChange={this.selectAnswer} value={defaultOption} placeholder="Choose Answer" />
+
 
                 <button className="btn btn-primary leftbtn" onClick={this.rerouteToEvents}>Confirm </button>
                 <button className="btn btn-primary rightbtn" onClick={this.rerouteToEvents}>Cancel</button>
@@ -83,6 +90,10 @@ export class CreateQuestion extends Component {
     rerouteToQuestions = () => {
         const { history } = this.props;
         history.push("/CreateQuestion");
+    }
+
+    selectAnswer = (option) => {
+        this.setState({Answer: option.value});        
     }
 
     
