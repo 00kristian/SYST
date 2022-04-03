@@ -6,7 +6,7 @@ export class CreateQuiz extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { Name: "", Representation: "", Answer: ""};
+        this.state = { Name: ""};
     }
 
     render() {
@@ -43,6 +43,7 @@ export class CreateQuiz extends Component {
 
                 <br />
                 <button className="btn btn-primary rightbtn " onClick={this.rerouteToEvents}>Cancel</button>
+                <button className="btn btn-primary rightbtn " onClick={this.rerouteToConfirmation}>Confirm</button>
             </div>
         );
     }
@@ -50,7 +51,7 @@ export class CreateQuiz extends Component {
     rerouteToConfirmation = () => {
         let event = {
             "name": this.state.Name,
-            "answer": this.state.Answer
+            
         };
         const requestOptions = {
             method: 'POST',

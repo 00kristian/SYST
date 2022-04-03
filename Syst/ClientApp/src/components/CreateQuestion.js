@@ -7,7 +7,7 @@ export class CreateQuestion extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { Name: "", Representation: "", Answer: ""};
+        this.state = {  Representation: "", Answer: "", Options: ["", "", "", ""], imageUrl: ""};
     }
 
     render() {
@@ -30,20 +30,20 @@ export class CreateQuestion extends Component {
                     <form >
                     <label>
                         <h5 id='a'>Q1: Answer A</h5>
-                        <input className="input-field" onChange={(event) => this.state.Representation = event.target.value}></input>
+                        <input className="input-field" onChange={(event) => this.state.Options[0] = event.target.value}></input>
                     </label>
                     <label>
                     <h5 id='b'>Q1: Answer B</h5>
-                    <input className="input-field" onChange={(event) => this.state.Representation = event.target.value}></input>
+                    <input className="input-field" onChange={(event) => this.state.Options[1] = event.target.value}></input>
                     </label>
                     <label>
                     <br />
                     <h5 id='c'>Q1: Answer C</h5>
-                    <input className="input-field" onChange={(event) => this.state.Representation = event.target.value}></input>
+                    <input className="input-field" onChange={(event) => this.state.Options[2] = event.target.value}></input>
                     </label>
                     <label>
                     <h5 id='d'>Q1: Answer D</h5>
-                    <input className="input-field" onChange={(event) => this.state.Representation = event.target.value}></input>
+                    <input className="input-field" onChange={(event) => this.state.Options[3] = event.target.value}></input>
                     </label>
                     </form>
 
@@ -61,16 +61,18 @@ export class CreateQuestion extends Component {
                 <Dropdown options={options} onChange={this.selectAnswer} value={defaultOption} placeholder="Choose Answer" />
 
 
-                <button className="btn btn-primary leftbtn" onClick={this.rerouteToEvents}>Confirm </button>
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToEvents}>Cancel</button>
+                <button className="btn btn-primary leftbtn" onClick={this.rerouteToCreateEvent}>Confirm </button>
+                <button className="btn btn-primary rightbtn" onClick={this.rerouteToQuiz}>Cancel</button>
             </div>
         );
     }
 
-    rerouteToConfirmation = () => {
+    rerouteToCreateEvent = () => {
         let event = {
-            "name": this.state.Name,
-            "answer": this.state.Answer
+            "representation": this.state.Representation,
+            "answer": this.state.Answer,
+            "Options": this.state.Options,
+            "imageUrl": this.state.imageUrl
         };
         const requestOptions = {
             method: 'POST',
@@ -80,16 +82,13 @@ export class CreateQuestion extends Component {
         fetch('api/questions', requestOptions)
         .then(response => response.json())
         const { history } = this.props;
-        history.push("/Confirmation");
+        history.push("/CreateQuiz");
     }
-    rerouteToEvents = () => {
-        const { history } = this.props;
-        history.push("/Events");
-    }
+   
 
-    rerouteToQuestions = () => {
+    rerouteToQuiz = () => {
         const { history } = this.props;
-        history.push("/CreateQuestion");
+        history.push("/CreateQuiz");
     }
 
     selectAnswer = (option) => {
