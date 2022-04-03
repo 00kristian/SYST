@@ -31,7 +31,7 @@ export class CandidateInformation extends Component {
             <div>
                 <div id="header">
                 <img src={logo} alt="Logo" width={500}/>
-                <h2>Please write your contact information to enter the competition</h2>
+                <h5>Please write your contact information to enter the competition</h5>
                 </div>
                 <br/>
                 <div id="input">
@@ -85,7 +85,7 @@ export class CandidateInformation extends Component {
                     <p><input type="checkbox"/> Accept Systematics newsletters........</p>
                 </form>
                 <br />
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToCandidateConfirmation}>Submit</button>
+                <a href={'/ConformationCandidate'}><button className="btn btn-primary rightbtn" onClick={this.rerouteToCandidateConfirmation}>Submit</button></a>
                 </div>
             </div>
         );
@@ -114,7 +114,5 @@ export class CandidateInformation extends Component {
         };
         fetch('api/candidates', requestOptions)
         .then(response => response.json())
-        const { history } = this.props;
-        history.push("/ConfirmationCandidate");
     }
 }
