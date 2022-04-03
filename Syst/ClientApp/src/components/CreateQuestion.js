@@ -21,6 +21,9 @@ export class CreateQuestion extends Component {
                     </label>
                     <br />
                     <br />
+                
+                
+                    <form >
                     <label>
                         <h5 id='a'>Q1: Answer A</h5>
                         <input className="input-field" onChange={(event) => this.state.Representation = event.target.value}></input>
@@ -37,8 +40,20 @@ export class CreateQuestion extends Component {
                     <h5 id='d'>Q1: Answer D</h5>
                     <input className="input-field" onChange={(event) => this.state.Representation = event.target.value}></input>
                     </label>
+                    </form>
+
+                    <br />
+                    <br />
+
+                    <button className="btn btn-primary leftbtn" >Upload Image </button>
+
+                
                 </form>
                 <br />
+                <br />
+                <br />
+                <h5>Correct Answer</h5>
+
                 <button className="btn btn-primary leftbtn" onClick={this.rerouteToEvents}>Confirm </button>
                 <button className="btn btn-primary rightbtn" onClick={this.rerouteToEvents}>Cancel</button>
             </div>
