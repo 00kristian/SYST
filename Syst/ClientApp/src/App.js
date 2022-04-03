@@ -7,6 +7,8 @@ import { Candidates } from './components/Candidates';
 import { Events } from './components/Events';
 import { Confirmation} from "./components/Confirmation";
 import { EventDetail } from './components/EventDetail';
+import { CreateQuiz } from './components/CreateQuiz';
+import { CreateQuestion } from './components/CreateQuestion';
 
 
 import './custom.css'
@@ -24,7 +26,12 @@ export default class App extends Component {
         <Route path='/CreateEvent' component={CreateEvent} />
         <Route path='/Events' component={Events} />
         <Route path='/Confirmation' component={Confirmation} />
-        <Route path='/eventdetail/:id' component={EventDetail} />
+        <Route path='/CreateQuiz' component={CreateQuiz} />
+        <Route path='/CreateQuestion' component={CreateQuestion} />
+        <Route path='/eventdetail/:id' component={EventDetail} 
+        
+
+        />
       </Layout>
     );
   }
