@@ -213,7 +213,7 @@ export class CandidateInformation extends Component {
             this.setState({validateUniversity : false})
         }
         
-        if(this.state.Name.length != 0 && this.state.Email.length != 0 && this.state.StudyProgram != 0 && this.state.validateUniversity !=0, this.state.validateCheckBox == true) {
+        if(this.state.Name.length != 0 && this.state.Email.length != 0 && this.state.StudyProgram != 0 && this.state.validateUniversity !=0 && this.state.validateCheckBox == true) {
             let candidate = {
                 "name": this.state.Name,
                 "email": this.state.Email,
