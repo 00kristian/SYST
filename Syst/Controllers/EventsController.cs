@@ -56,7 +56,7 @@ public class EventsController : ControllerBase
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] EventDTO newEvent) =>
+    public async Task<IActionResult> Put(int id, [FromBody] CreateEventDTO newEvent) =>
         (await _repo.Update(id, newEvent)).ToActionResult();
 
     //Update an event

@@ -63,26 +63,26 @@ export class CreateQuestion extends Component {
                 <br />
                 <br />
                 <button className="btn btn-primary leftbtn" onClick={this.rerouteToQuiz}>Cancel</button>
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToCreateEvent}>Create question</button>
+                <button className="btn btn-primary rightbtn" onClick={this.rerouteToCreateEvent}>Confirm</button>
             </div>
         );
     }
 
     rerouteToCreateEvent = () => {
-        let question = {
-            "representation": this.state.Representation,
-            "answer": this.state.Answer,
-            "Options": this.state.Options,
-            "imageUrl": this.state.imageUrl
-        };
-        console.log(question);
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(question)
-        };
-        fetch('api/questions', requestOptions)
-        .then(response => response.json())
+        // let question = {
+        //     "representation": this.state.Representation,
+        //     "answer": this.state.Answer,
+        //     "Options": this.state.Options,
+        //     "imageUrl": this.state.imageUrl
+        // };
+        // console.log(question);
+        // const requestOptions = {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(question)
+        // };
+        // fetch('api/questions', requestOptions)
+        // .then(response => response.json())
         const { history } = this.props;
         history.push("/CreateQuiz/"+this.props.match.params.quiz_id+ "/"+ this.props.match.params.quiz_id);
     }

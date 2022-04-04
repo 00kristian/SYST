@@ -70,7 +70,7 @@ namespace Infrastructure
         }
 
         //Updates an events name, date and location
-        public async Task<Status> Update(int id, EventDTO eventDTO)
+        public async Task<Status> Update(int id, CreateEventDTO eventDTO)
         {
             var e = await _context.Events.Where(e => e.Id == id).FirstOrDefaultAsync();
 

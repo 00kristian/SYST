@@ -9,35 +9,48 @@ export class CreateEvent extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { name: "", date: new Date(), location: ""};
+        this.state = { event : {name: "", date: new Date(), location: ""}, loading: true};
+    }
+
+    componentDidMount() {  
+        this.populateData();
+    }
+
+    static renderEvent(e) {
+        return (
+            <form>
+                <label>
+                    <h5>Name</h5>
+                    <input placeholder={e.name} className="input-field" onChange={(event) => e.name = event.target.value}></input>
+                </label>
+                <br />
+                <br />
+                <label>
+                    <h5>Date</h5><DatePicker value={e.date} selected={e.date} onChange={(date) => {
+                        e.date.setDate(date.getDate());
+                        e.date.setMonth(date.getMonth());
+                        e.date.setFullYear(date.getFullYear());
+                    }} />
+                </label>
+                <br />
+                <br />
+                <label>
+                    <h5>Location</h5>
+                    <input placeholder={e.location} className="input-field" onChange={(event) => e.location = event.target.value}></input>
+                </label>
+            </form>
+        );
     }
 
     render() {
+        let contents = this.state.loading
+      ? <p><em>Loading...</em></p>
+      : CreateEvent.renderEvent(this.state.event);
         return (
             <div>
                 <h2>Here you can create an event</h2>
                 <br/>
-                <form>
-                    <label>
-                        <h5>Name</h5>
-                        <input className="input-field" onChange={(event) => this.state.name = event.target.value}></input>
-                    </label>
-                    <br />
-                    <br />
-                    <label>
-                        <h5>Date</h5><DatePicker selected={this.state.date} onChange={(date) => {
-                            this.state.date.setDate(date.getDate());
-                            this.state.date.setMonth(date.getMonth());
-                            this.state.date.setFullYear(date.getFullYear());
-                        }} />
-                    </label>
-                    <br />
-                    <br />
-                    <label>
-                        <h5>Location</h5>
-                        <input className="input-field" onChange={(event) => this.state.location = event.target.value}></input>
-                    </label>
-                </form>
+                {contents}
                 <br />
                 <h5>Quiz</h5>
                 <button className="btn btn-primary" onClick={this.rerouteToCreateQuiz}>Create quiz</button>
@@ -52,20 +65,23 @@ export class CreateEvent extends Component {
     }
 
     rerouteToConfirmation = () => {
+        this.updateEvent();
+        const { history } = this.props;
+        history.push("/Confirmation");
+    }
+
+    updateEvent = () => {
         let event = {
-            "name": this.state.name,
-            "date": this.state.date.toDateString(),
-            "location": this.state.location
+            "name": this.state.event.name,
+            "date": this.state.event.date.toISOString(),
+            "location": this.state.event.location
         };
         const requestOptions = {
-            method: 'POST',
+            method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(event)
         };
-        fetch('api/events', requestOptions)
-        .then(response => response.json())
-        const { history } = this.props;
-        history.push("/Confirmation");
+        fetch('api/events/' + this.props.match.params.id, requestOptions);
     }
 
     rerouteToEvents = () => {
@@ -82,10 +98,30 @@ export class CreateEvent extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(quiz)
         };
-        let id = await fetch('api/quiz', requestOptions)
+        let quizid = await fetch('api/quiz', requestOptions)
         .then(response => response.json())
+
+        this.updateEvent();
+
+        const requestOptions2 = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        };
+
+        fetch('api/events/' + this.props.match.params.id + '/' + quizid, requestOptions2);
+
         const { history } = this.props;
-        history.push("/CreateQuiz/" + this.props.match.params.id +"/"+ id);
+        history.push("/CreateQuiz/" + this.props.match.params.id +"/"+ quizid);
+    }
+
+    async populateData() {
+        const response = await fetch('api/events/' + this.props.match.params.id);
+        const data = await response.json();
+        //TODO: fix that date isnt loaded properly
+        this.setState({  event : {name: data.name, date: new Date(), location: data.location}, loading: false });
     }
 
 }

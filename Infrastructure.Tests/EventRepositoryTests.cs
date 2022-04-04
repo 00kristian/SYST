@@ -130,11 +130,9 @@ public class EventRepositoryTests {
     public async void Update_returns_status_Updated_when_given_existing_id()
     {
         // Arrange
-        var newEvent = new EventDTO{
-            Id = 1, 
+        var newEvent = new CreateEventDTO{
             Name = "HackIt",
             Location = "KU",
-            Rating = 9.0,
             Date = "2022-10-10"
         };
     
@@ -149,11 +147,9 @@ public class EventRepositoryTests {
     public async void ReadNameFromId_returns_correct_name_after_updating_Event_with_id_1()
     {
         // Arrange
-        var newEvent = new EventDTO{
-            Id = 1, 
+        var newEvent = new CreateEventDTO{
             Name = "HackIt",
             Location = "KU",
-            Rating = 9.0,
             Date = "2022-10-10"
         };
     
@@ -170,10 +166,9 @@ public class EventRepositoryTests {
     public async void Update_returns_not_found_when_given_nonexisiting_id()
     {
         // Arrange
-        var newEvent = new EventDTO{
+        var newEvent = new CreateEventDTO{
             Name = "HackIt",
             Location = "KU",
-            Rating = 9.0,
             Date = "2022-10-10"
         };
     
