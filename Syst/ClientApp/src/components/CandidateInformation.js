@@ -181,37 +181,41 @@ export class CandidateInformation extends Component {
 
         this.setState({clickedOnSubmit : true});
 
-        if(this.state.University.length == 0){
-            this.setState({validateUniversity : true});
-        }
+    
 
         if(this.state.Name.length == 0){
             this.setState({validateName : true});
-        }
-
-        if(this.state.Email.length == 0){
-            this.setState({validateEmail : true});
-        }
-
-        if(this.state.StudyProgram.length == 0){
-            this.setState({validateStudyProgram : true});
         }
 
         if(!this.state.Name.length == 0){
             this.setState({validateName : false});
         }
 
+        if(this.state.Email.length == 0){
+            this.setState({validateEmail : true});
+        }
+
         if(!this.state.Email.length == 0){
             this.setState({validateEmail : false});
+        }
+
+        if(this.state.University.length == 0){
+            this.setState({validateUniversity : true});
+        }
+
+        if(!this.state.University.length == 0){
+            this.setState({validateUniversity : false})
+        }
+
+        if(this.state.StudyProgram.length == 0){
+            this.setState({validateStudyProgram : true});
         }
 
         if(!this.state.StudyProgram.length == 0){
             this.setState({validateStudyProgram : false});
         }
 
-        if(!this.state.validateUniversity == 0){
-            this.setState({validateUniversity : false})
-        }
+        
         
         if(!this.state.Name.length == 0 && !this.state.Email.length == 0 && !this.state.StudyProgram == 0 && !this.state.validateUniversity ==0 && this.state.validateCheckBox == true) {
             let candidate = {
