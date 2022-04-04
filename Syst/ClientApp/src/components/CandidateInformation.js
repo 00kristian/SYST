@@ -100,6 +100,7 @@ export class CandidateInformation extends Component {
     }
 
     rerouteToCandidateConfirmation = () => {
+        console.log("hey");
         let candidate = {
             "name": this.state.Name,
             "email": this.state.Email,
