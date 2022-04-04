@@ -6,41 +6,46 @@ export class CreateQuiz extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { Name: ""};
+        this.state = { Quiz: Object, loading: true};
     }
 
-    render() {
-        return (
-            <div>
+    componentDidMount() {
+        this.populateData();
+      }
+    
+
+   static renderQuiz(Quiz) { 
+       return (
+     <div>
                 <h2>Here you can create a quiz</h2>
                 <br/>
                 <form>
                     <label>
-                        <h5>Name</h5>
-                        <input className="input-field" onChange={(event) => this.state.Name = event.target.value}></input>
+                        <h5>Quiz name</h5>
+                        <input placeholder={Quiz.name} className="input-field" onChange={(event) => Quiz.name = event.target.value}></input>
                     </label>
                     <br />
                     <br />
                     
                 </form>
-                <br />
-                <h5>Question 1</h5>
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToQuestions}>Create Question</button>
-                <br />                
-                <br />
-                <h5>Question 2</h5>
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToQuestions}>Create Question</button>
-                <br />
-                <br />
-                <h5>Question 3</h5>
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToQuestions}>Create Question</button>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <button className="btn btn-primary" onClick={this.rerouteToQuestions}>Create quiz</button>
+            </div>
 
+       )
+
+   }
+    render() {
+    let contents = this.state.loading
+      ? <p><em>Loading...</em></p>
+      : CreateQuiz.renderQuiz(this.state.Quiz);
+        return (
+            <div>
+                {contents}
+                {this.newQuestion()}              
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
                 <br />
                 <button className="btn btn-primary rightbtn " onClick={this.rerouteToEvents}>Cancel</button>
                 <button className="btn btn-primary rightbtn " onClick={this.rerouteToConfirmation}>Confirm</button>
@@ -48,30 +53,52 @@ export class CreateQuiz extends Component {
         );
     }
 
+    newQuestion = () => {
+        const id = 1;
+        return (
+            <div>
+                <br />
+                <h5>Question {id}</h5>
+                <a href={"/CreateQuestion/"+this.props.match.params.event_id+"/" + this.props.match.params.id + "/" + id}><button className="btn btn-primary rightbtn">Create Question</button> </a>
+                <br />    
+            </div>
+        )
+    }
+
+
     rerouteToConfirmation = () => {
         let event = {
-            "name": this.state.Name,
-            
+            "name": this.state.Quiz.name
         };
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
             body: JSON.stringify(event)
         };
-        fetch('api/questions', requestOptions)
-        .then(response => response.json())
+        console.log(event);
+        fetch('api/quiz/' + this.props.match.params.id, requestOptions);
+
         const { history } = this.props;
-        history.push("/Confirmation");
+        history.push("/CreateEvent/"+ this.props.match.params.event_id);
     }
     rerouteToEvents = () => {
         const { history } = this.props;
         history.push("/Events");
     }
 
-    rerouteToQuestions = () => {
+    rerouteToQuestions = (id) => {
         const { history } = this.props;
-        history.push("/CreateQuestion");
+        history.push("/CreateQuestion/" + this.props.match.params.event_id + "/" + this.props.match.params.id + "/" + id);
     }
 
-    
+    async populateData() {
+        const response = await fetch('api/quiz/' + this.props.match.params.id);
+        const data = await response.json();
+        console.log(data);
+        this.setState({ Quiz: data, loading: false });
+    }
+
 }

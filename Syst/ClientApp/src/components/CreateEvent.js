@@ -73,8 +73,19 @@ export class CreateEvent extends Component {
         history.push("/Events");
     }
 
-    rerouteToCreateQuiz = () => {
+     rerouteToCreateQuiz = async () => {
+        let event = {
+            "name": "New quiz"
+        };
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(event)
+        };
+        let id = await fetch('api/quiz', requestOptions)
+        .then(response => response.json())
         const { history } = this.props;
-        history.push("/CreateQuiz");
+        history.push("/CreateQuiz/" + this.props.match.params.id +"/"+ id);
     }
+
 }

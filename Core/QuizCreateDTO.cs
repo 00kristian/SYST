@@ -5,9 +5,9 @@ namespace Core {
     //Quiz object that carries quiz data between processes
     public record struct QuizCreateDTO(
         [Required]
-        string Name,
+        string Name
 
-        [Required]
-        ICollection<QuestionDTO> Questions
+        // [Required]
+        // ICollection<CreateQuestionDTO> Questions
     );
 }

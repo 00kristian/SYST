@@ -113,9 +113,9 @@ public class QuestionsControllerTests
         //Arrange
         var logger = new Mock<ILogger<QuestionsController>>();
         var repository = new Mock<IQuestionRepository>();
-        var Q4 = new QuestionDTO(4, "What will be printed next?", "D", null, new List<string>{"Skateboard", "Boat", "Car", "Bicycle"}, quiz2);
-        var questions = new List<QuestionDTO>{Q4};
-        var postQ5 = new QuestionDTO(5, "What will the outcome be?", "A", null, new List<string>{"Denmark", "Sweden", "Norway", "Finlan"}, quiz2);
+        var Q4 = new CreateQuestionDTO("What will be printed next?", "D", new List<string>{"Skateboard", "Boat", "Car", "Bicycle"}, "img");
+        var questions = new List<CreateQuestionDTO>{Q4};
+        var postQ5 = new CreateQuestionDTO("What will the outcome be?", "A", new List<string>{"Denmark", "Sweden", "Norway", "Finlan"}, "img");
         repository.Setup(q => q.Create(postQ5)).Callback(() => questions.Add(postQ5));
         var controller = new QuestionsController(logger.Object, repository.Object);
 
@@ -136,7 +136,7 @@ public class QuestionsControllerTests
         var logger = new Mock<ILogger<QuestionsController>>();
         var repository = new Mock<IQuestionRepository>();
         var questions = new List<QuestionDTO>{Q1};
-        var postQ1 = new QuestionDTO(1, "What will the program print?", "A", null, new List<string>{"Hello World!", "World Hello!", "Hello! World", "World! Hello"}, quiz1);
+        var postQ1 = new CreateQuestionDTO("What will the program print?", "A", new List<string>{"Hello World!", "World Hello!", "Hello! World", "World! Hello"}, "$");
         repository.Setup(q => q.Create(postQ1)).ReturnsAsync(() => (Status.Conflict, 1));
         var controller = new QuestionsController(logger.Object, repository.Object);
 
@@ -156,7 +156,7 @@ public class QuestionsControllerTests
         //Arrange
         var logger = new Mock<ILogger<QuestionsController>>();
         var repository = new Mock<IQuestionRepository>();
-        var newQuestion = default(QuestionDTO);
+        var newQuestion = default(CreateQuestionDTO);
         repository.Setup(q => q.Create(newQuestion)).ReturnsAsync(() => (Status.Conflict, 0));
         var controller = new QuestionsController(logger.Object, repository.Object);
 

@@ -32,11 +32,13 @@ export default class App extends Component {
           <Container>
             <Route exact path='/' component={Home} />
             <Route path='/candidates' component={Candidates} />
-            <Route path='/CreateEvent' component={CreateEvent} />
+            <Route path='/CreateEvent/:id' component={CreateEvent} />
             <Route path='/Events' component={Events} />
             <Route path='/Confirmation' component={ConfirmationCandidate} />
-            <Route path='/CreateQuiz' component={CreateQuiz} />
-            <Route path='/CreateQuestion' component={CreateQuestion} />
+
+            <Route path='/CreateQuiz/:event_id/:id' component={CreateQuiz} />
+            <Route path='/CreateQuestion/:event_id/:quiz_id/:id' component={CreateQuestion} />
+
             <Route path='/eventdetail/:id' component={EventDetail} />
           </Container>
           </div>

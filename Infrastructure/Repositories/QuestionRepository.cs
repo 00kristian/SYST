@@ -13,18 +13,14 @@ namespace Infrastructure
         }
 
         //Creates a question
-        public async Task<(Status, int id)> Create(QuestionDTO questionDTO) {
-
-            foreach (Question q in _context.Questions) {
-                if (q.Id == questionDTO.Id) return (Status.Conflict, q.Id);
-            }
+        public async Task<(Status, int id)> Create(CreateQuestionDTO questionDTO) {
+            
                 var entity = new Question
                 {
                     Representation = questionDTO.Representation!,
                     Answer = questionDTO.Answer!,
                     ImageURL = questionDTO.ImageURl,
                     Options = questionDTO.Options
-                    
                 };
 
                 _context.Questions.Add(entity);
