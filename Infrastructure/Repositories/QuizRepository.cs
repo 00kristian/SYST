@@ -20,12 +20,12 @@ namespace Infrastructure
             var entity = new Quiz
                 {
                     Name = quizDTO.Name,
-                    Questions = quizDTO.Questions.Select(qs => new Question {
-                        Representation = qs.Representation,
-                        Answer = qs.Answer,
-                        ImageURL = qs.ImageURl,
-                        Options = qs.Options
-                    }).ToList()
+                    // Questions = quizDTO.Questions.Select(qs => new Question {
+                    //     Representation = qs.Representation,
+                    //     Answer = qs.Answer,
+                    //     ImageURL = qs.ImageURl,
+                    //     Options = qs.Options
+                    // }).ToList()
                 };
 
             _context.Quizes.Add(entity);
@@ -78,12 +78,12 @@ namespace Infrastructure
             if (q == default(Quiz)) return Status.NotFound;
 
             q.Name = quizDTO.Name;
-            q.Questions = quizDTO.Questions.Select(qs => new Question {
-                Representation = qs.Representation,
-                Answer = qs.Answer,
-                ImageURL = qs.ImageURl,
-                Options = qs.Options
-            }).ToList();
+            // q.Questions = quizDTO.Questions.Select(qs => new Question {
+            //     Representation = qs.Representation,
+            //     Answer = qs.Answer,
+            //     ImageURL = qs.ImageURl,
+            //     Options = qs.Options
+            // }).ToList();
     
 
             await _context.SaveChangesAsync();

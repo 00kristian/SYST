@@ -39,7 +39,7 @@ public class QuizRepositoryTests {
     public async void Create_Creates_Quiz_In_Repository()
     {
         //Arrange
-        var quiz3 = new QuizCreateDTO{Name="Gandalf", Questions = new List<QuestionDTO>{}};
+        var quiz3 = new QuizCreateDTO{Name="Gandalf"};
 
         //Act
         var actual = await _repo.Create(quiz3);
@@ -90,8 +90,7 @@ public class QuizRepositoryTests {
     {
         // Arrange
         var newQuiz = new QuizCreateDTO{
-            Name = "Soulja Boy",
-            Questions = new List<QuestionDTO> {new QuestionDTO {Representation = "MALAGA"}}
+            Name = "Soulja Boy"
         };
     
         // Act

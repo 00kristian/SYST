@@ -39,7 +39,6 @@ export class CreateQuiz extends Component {
                 <br />
                 <br />
                 <br />
-                <button className="btn btn-primary" onClick={this.rerouteToQuestions}>Create quiz</button>
 
                 <br />
                 <button className="btn btn-primary rightbtn " onClick={this.rerouteToEvents}>Cancel</button>
@@ -50,15 +49,14 @@ export class CreateQuiz extends Component {
 
     rerouteToConfirmation = () => {
         let event = {
-            "name": this.state.Name,
-            
+            "name": this.state.Name
         };
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(event)
         };
-        fetch('api/questions', requestOptions)
+        fetch('api/quiz', requestOptions)
         .then(response => response.json())
         const { history } = this.props;
         history.push("/Confirmation");
