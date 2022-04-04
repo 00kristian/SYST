@@ -20,7 +20,7 @@ export class CreateQuestion extends Component {
 
     render() {
 
-        const options = ["A", "B", "C", "D", "E", "F", "G"];
+        const options = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ", "Ø", "Å"];
         const defaultOption = options[0];
 
         return (
