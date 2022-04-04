@@ -41,7 +41,7 @@ public class QuizController : ControllerBase
     }
 
     
-    //Return an event given an id
+    //Return a quiz given an id
     [ProducesResponseType(404)]
     [ProducesResponseType(typeof(QuizDTO), 200)]
     [HttpGet("{id}")]
@@ -55,7 +55,7 @@ public class QuizController : ControllerBase
         }
     }
 
-      //Update an event
+      //Update a quiz
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("{id}")]
@@ -63,7 +63,7 @@ public class QuizController : ControllerBase
         (await _repo.Update(id,newQuiz)).ToActionResult();
 
 
-    //Delete an event
+    //Delete a quiz
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpDelete("{id}")]

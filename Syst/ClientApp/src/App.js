@@ -3,6 +3,8 @@ import { Home } from './components/Home';
 import { Candidates } from './components/Candidates';
 import { ConfirmationCandidate} from "./components/ConfirmationCandidate";
 import { EventDetail } from './components/EventDetail';
+import { CreateQuiz } from './components/CreateQuiz';
+import { CreateQuestion } from './components/CreateQuestion';
 import './custom.css'
 import { CreateEvent } from './components/CreateEvent';
 import { CandidateQuiz } from './components/CandidateQuiz';
@@ -33,6 +35,8 @@ export default class App extends Component {
             <Route path='/CreateEvent' component={CreateEvent} />
             <Route path='/Events' component={Events} />
             <Route path='/Confirmation' component={ConfirmationCandidate} />
+            <Route path='/CreateQuiz' component={CreateQuiz} />
+            <Route path='/CreateQuestion' component={CreateQuestion} />
             <Route path='/eventdetail/:id' component={EventDetail} />
           </Container>
           </div>
@@ -46,6 +50,13 @@ export default class App extends Component {
         <Route path='/CreateEvent' component={CreateEvent} />
         <Route path='/Events' component={Events} />
         <Route path='/Confirmation' component={Confirmation} />
+        <Route path='/CreateQuiz' component={CreateQuiz} />
+        <Route path='/CreateQuestion' component={CreateQuestion} />
+        <Route path='/eventdetail/:id' component={EventDetail} 
+        
+
+        />
+      </Layout>
         <Route path='/eventdetail/:id' component={EventDetail} />
       </Layout>*/
     );

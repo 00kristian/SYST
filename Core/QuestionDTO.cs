@@ -14,7 +14,7 @@ namespace Core {
         [Required, StringLength(50)]
         string Answer,
 
-        [Required, StringLength(50)]
+        [Required, StringLength(100)]
         string ImageURl,
 
         [Required]
