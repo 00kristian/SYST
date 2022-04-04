@@ -35,8 +35,10 @@ export default class App extends Component {
             <Route path='/CreateEvent/:id' component={CreateEvent} />
             <Route path='/Events' component={Events} />
             <Route path='/Confirmation' component={ConfirmationCandidate} />
+
             <Route path='/CreateQuiz/:event_id/:id' component={CreateQuiz} />
             <Route path='/CreateQuestion/:event_id/:quiz_id/:id' component={CreateQuestion} />
+
             <Route path='/eventdetail/:id' component={EventDetail} />
           </Container>
           </div>

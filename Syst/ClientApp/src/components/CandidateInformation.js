@@ -16,15 +16,17 @@ export class CandidateInformation extends Component {
 
     render() {
         const options = [
-            'IT-University of Copenhagen',
-            'University of Copenhagen',
-            'Technical University of Denmark',
-            'Aarhus University',
-            'University of Southern Denmark',
-            'Roskilde University',
+
             'Aalborg University',
+            'Aarhus University',
             'Copenhagen Business School',
+            'IT-University of Copenhagen',
+            'Roskilde University',
+            'Technical University of Denmark',
+            'University of Copenhagen',
+            'University of Southern Denmark',
             'Other'
+            
         ];
         const defaultOption = options[0];
         return (
@@ -52,7 +54,7 @@ export class CandidateInformation extends Component {
                     <br />
                     <label>
                         <h5>University</h5>
-                        <Dropdown options={options} onChange={this.selectUni} value={defaultOption} placeholder="Select Your University" />
+                        <Dropdown options={options} onChange={this.selectUni} value="Select your University"/>
                     </label>
                     {this.state.ShowSpecialUni ? (
                         <div>
@@ -85,7 +87,7 @@ export class CandidateInformation extends Component {
                     <p><input type="checkbox"/> Accept Systematics newsletters........</p>
                 </form>
                 <br />
-                <a href={'/ConformationCandidate'}><button className="btn btn-primary rightbtn" onClick={this.rerouteToCandidateConfirmation}>Submit</button></a>
+                    <button className="btn btn-primary rightbtn" onClick={this.rerouteToCandidateConfirmation}>Submit</button>
                 </div>
             </div>
         );
@@ -115,5 +117,8 @@ export class CandidateInformation extends Component {
         };
         fetch('api/candidates', requestOptions)
         .then(response => response.json())
+        const { history } = this.props;
+        history.push('/ConformationCandidate');
+
     }
 }
