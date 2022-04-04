@@ -197,19 +197,19 @@ export class CandidateInformation extends Component {
             this.setState({validateStudyProgram : true});
         }
 
-        if(this.state.Name.length != 0){
+        if(!this.state.Name.length == 0){
             this.setState({validateName : false});
         }
 
-        if(this.state.Email.length != 0){
+        if(!this.state.Email.length == 0){
             this.setState({validateEmail : false});
         }
 
-        if(this.state.StudyProgram.length != 0){
+        if(!this.state.StudyProgram.length == 0){
             this.setState({validateStudyProgram : false});
         }
 
-        if(this.state.validateUniversity != 0){
+        if(!this.state.validateUniversity == 0){
             this.setState({validateUniversity : false})
         }
         
