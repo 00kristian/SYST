@@ -205,7 +205,7 @@ public class EventControllerTests
     }
 
     [Fact]
-    public void Get_all_returns_all_quizes()
+    public void Get_all_returns_all_events()
     {
         var logger = new Mock<ILogger<EventsController>>();
         var repository = new Mock<IEventRepository>();
