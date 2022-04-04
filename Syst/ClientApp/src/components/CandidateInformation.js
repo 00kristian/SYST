@@ -85,7 +85,7 @@ export class CandidateInformation extends Component {
                     <p><input type="checkbox"/> Accept Systematics newsletters........</p>
                 </form>
                 <br />
-                <a href={'/ConformationCandidate'}><button className="btn btn-primary rightbtn" onClick={this.rerouteToCandidateConfirmation}>Submit</button></a>
+                    <button className="btn btn-primary rightbtn" onClick={this.rerouteToCandidateConfirmation}>Submit</button>
                 </div>
             </div>
         );
@@ -114,5 +114,7 @@ export class CandidateInformation extends Component {
         };
         fetch('api/candidates', requestOptions)
         .then(response => response.json())
+        const { history } = this.props;
+        history.push('/ConformationCandidate');
     }
 }
