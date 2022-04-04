@@ -66,3 +66,65 @@ code {
 .space{
     padding-top: 4%;
 }
+
+.CandidateInformation{
+    display: flex;
+    justify-content: center;
+}
+
+.answerButton {
+    width: 5rem;
+    height: 5rem;
+    margin: 2rem;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #FF7837;
+    border-color: #FF7837;
+    border: none;
+    font-size: x-large;
+}
+
+.answerButton:hover {
+    background-color: #e17640;
+}
+
+.answerButton:active {
+    background-color: #FF7837;
+}
+
+.centeredImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.butNText {
+
+    display: flex;
+
+}
+
+.vertical-center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.ansRow {
+    width: 650px;
+} 
+
+#header{
+    text-align: center;
+}
+
+#input{
+    padding-left: 30%;
+    padding-right: 30%;
+    padding-bottom: 10%;
+}
+
+#nextButton{
+    padding-bottom: 5%;
+    padding-right: 3%;
+}

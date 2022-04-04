@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class first : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,7 +29,7 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -45,7 +45,8 @@ namespace Infrastructure.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StudyProgram = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    University = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    University = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GraduationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     QuizId = table.Column<int>(type: "int", nullable: true),
                     Answers = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },

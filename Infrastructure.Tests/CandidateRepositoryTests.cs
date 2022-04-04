@@ -12,9 +12,8 @@ public class CandidateRepositoryTests{
     private readonly ISystematicContext _context; 
     private readonly ICandidateRepository _repo;
 
-     Candidate candidate1 = new Candidate {Id=1, Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = UniversityEnum.ITU, GraduationDate = new DateTime{}};
-     Candidate candidate2 = new Candidate {Id=2, Name = "Maj Frost Jensen", Email = "mfje@itu.dk", StudyProgram = "Msc i Computer Science", University = UniversityEnum.CBS, GraduationDate = new DateTime{}};
-
+     Candidate candidate1 = new Candidate {Id=1, Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "ITU", GraduationDate = new DateTime{}};
+     Candidate candidate2 = new Candidate {Id=2, Name = "Maj Frost Jensen", Email = "mfje@itu.dk", StudyProgram = "Msc i Computer Science", University = "CBS", GraduationDate = new DateTime{}};
      public CandidateRepositoryTests(){
         var connection = new SqliteConnection("Filename=:memory:");
         connection.Open();
@@ -39,7 +38,7 @@ public class CandidateRepositoryTests{
     {
         //Arrange
 
-        var candidate1 = new CandidateDTO {Name = "Oscar Nielsen", Email = "osni@itu.dk", StudyProgram = "Bsc Datalogi", University = "ITU",  GraduationDate =(new DateTime{}).ToShortDateString() };
+        var candidate1 = new CreateCandidateDTO {Name = "Oscar Nielsen", Email = "osni@itu.dk", StudyProgram = "Bsc Datalogi", University = "ITU",  GraduationDate =(new DateTime{}).ToShortDateString() };
 
 
         //Act
@@ -54,7 +53,7 @@ public class CandidateRepositoryTests{
     public async void Create_Returns_Conflict_When_Name_Is_In_the_database()
     {
         //Arrange
-         var newCandidate = new CandidateDTO { Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "ITU", GraduationDate = (new DateTime{}).ToShortDateString()};
+         var newCandidate = new CreateCandidateDTO { Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "ITU", GraduationDate = (new DateTime{}).ToShortDateString()};
 
 
         //Act
@@ -102,7 +101,7 @@ public class CandidateRepositoryTests{
         Assert.Equal(candidate1.Email, actual.Item2.Email);
         Assert.Equal(candidate1.StudyProgram, actual.Item2.StudyProgram);
 
-        Assert.Equal(candidate1.University.ToString(), actual.Item2.University);
+        Assert.Equal(candidate1.University, actual.Item2.University);
         Assert.Equal(candidate1.GraduationDate.ToShortDateString(), actual.Item2.GraduationDate);
 
     }

@@ -35,7 +35,7 @@ export class Home extends Component {
                         <td>{event.location}</td>
                         <td>{event.rating}</td>
                         <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host rightbtn">Details</button></a></td>
-                        <td><button className="btn btn-primary rightbtn">Host</button></td>
+                        <td onClick={()=> window.open('/CandidateQuiz', "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary rightbtn">Host</button></td>
                     </tr>
                 )}
                 </tbody>
@@ -71,4 +71,8 @@ export class Home extends Component {
         const data = await response.json();
         this.setState({ events: data, loading: false });
     }
+
+    handleHostClick = () => {
+        window.open('/CandidateQuiz');
+      };
 }
