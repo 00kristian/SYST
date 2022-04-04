@@ -7,7 +7,7 @@ export class CreateQuiz extends Component {
     constructor(props) {
         super(props);
         this.state = { Quiz: Object, loading: true,
-            Questions: [{Representation : "", Id : -1}]};
+            Questions: []};
     }
 
     async addQuestion() {
@@ -18,12 +18,13 @@ export class CreateQuiz extends Component {
             "imageUrl": ""
         };
         const requestOptions = {
-            method: 'POST',
+            method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(question)
         };
-        let index = await fetch('api/questions', requestOptions)
+        let index = await fetch('api/QuizQuestion/' + this.props.match.params.id, requestOptions)
         .then(response => response.json());
+        
         this.setState(({
             Questions: [...this.state.Questions, {Representation : "", Id : index}]
         }))
@@ -36,7 +37,15 @@ export class CreateQuiz extends Component {
     }
 
     componentDidMount() {
+        
         this.populateData();
+        console.log(this.state.Quiz)
+        for (const q in this.state.Quiz.questions) {
+            console.log(q.Id);
+            this.setState(({
+                Questions: [...this.state.Questions, {Representation : q.Representation, Id : q.Id}]
+            }))
+        }
       }
     
 
@@ -55,7 +64,7 @@ export class CreateQuiz extends Component {
                     {Questions.map((answer, index) =>
                         <div key={index}>
                             <label>
-                                <h5> <a href={"/CreateQuestion/"+eventId+"/" + quizId + "/" + Questions[index].index}>Question {index + 1} </a></h5>
+                                <h5> <a href={"/CreateQuestion/"+eventId+"/" + quizId + "/" + Questions[index].Id}>Question {index + 1} </a></h5>
                                 <label>{Questions[index].Representation}</label>
                             </label>
                         </div>

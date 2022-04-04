@@ -61,9 +61,13 @@ namespace Infrastructure
         public async Task<(Status, QuizDTO)> Read(int id)
         {
             
-            var quiz = await _context.Quizes.Where(q => q.Id == id).Select(q => new QuizDTO(){
+            var quiz = await _context.Quizes.Include(q => q.Questions).Where(q => q.Id == id).Select(q => new QuizDTO(){
                 Id = q.Id,
                 Name = q.Name!,
+                Questions = q.Questions!.Select(qs => new QuestionDTO {
+                    Id = qs.Id,
+                    Representation = qs.Representation!
+                }).ToList()
                 
             }).FirstOrDefaultAsync();
 
@@ -105,9 +109,9 @@ namespace Infrastructure
 
             var ques = new Question() {
                 Representation = question.Representation,
-                Answer = "",
-                ImageURL = "",
-                Options = new List<string>()
+                Answer = question.Answer,
+                ImageURL = question.ImageURl,
+                Options = question.Options
             };
 
             q.Questions.Add(ques);
