@@ -123,5 +123,19 @@ namespace Infrastructure
                     Rating = e.Rating!
                 })
                 .ToListAsync();
+
+        public async Task<Status> UpdateQuiz(int eventid, int quizid) {
+
+            var e = await _context.Events.Include(e => e.Quiz).Where(c => c.Id == eventid).FirstOrDefaultAsync();
+            if (e == default(Event)) return Status.NotFound;
+
+            var q = await _context.Quizes.Where(c => c.Id == quizid).FirstOrDefaultAsync();
+            if (q == default(Quiz)) return Status.NotFound;
+
+            e.Quiz = q;
+
+            await _context.SaveChangesAsync();
+            return Status.Updated;
+        }
     }
 }

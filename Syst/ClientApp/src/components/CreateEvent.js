@@ -73,7 +73,7 @@ export class CreateEvent extends Component {
         history.push("/Events");
     }
 
-     rerouteToCreateQuiz = async () => {
+    rerouteToCreateQuiz = async () => {
         let quiz = {
             "name": "New quiz"
         };

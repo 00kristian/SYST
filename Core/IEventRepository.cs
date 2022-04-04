@@ -13,5 +13,7 @@ public interface IEventRepository
         Task<IReadOnlyCollection<EventDTO>> ReadUpcoming();
 
         Task<IReadOnlyCollection<EventDTO>> ReadRecent();
+
+        Task<Status> UpdateQuiz(int eventid, int quizid);
     }
 }

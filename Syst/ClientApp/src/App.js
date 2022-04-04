@@ -26,10 +26,11 @@ export default class App extends Component {
           <Route path='/CandidateQuiz' component={CandidateQuiz} />
           <Route path='/CandidateInformation' component={CandidateInformation} />
           <Route path='/ConformationCandidate' component={ConfirmationCandidate} />
-
+        </Switch>
           <div>
           <NavMenu />
           <Container>
+          <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/candidates' component={Candidates} />
             <Route path='/CreateEvent/:id' component={CreateEvent} />
@@ -40,10 +41,10 @@ export default class App extends Component {
             <Route path='/CreateQuestion/:event_id/:quiz_id/:id' component={CreateQuestion} />
 
             <Route path='/eventdetail/:id' component={EventDetail} />
+          </Switch>
           </Container>
           </div>
 
-          </Switch>
       </div>
       /*<Layout>
         <Route exact path='/' component={Home} />

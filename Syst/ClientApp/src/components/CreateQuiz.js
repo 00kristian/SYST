@@ -26,26 +26,22 @@ export class CreateQuiz extends Component {
         .then(response => response.json());
         
         this.setState(({
-            Questions: [...this.state.Questions, {Representation : "", Id : index}]
+            Questions: [...this.state.Questions, {Representation : question.representation, Id : index}]
         }))
     }
 
-    removeQuestion(i) {
+    async removeQuestion(i) {
         let Questions = this.state.Questions;
-        Questions.splice(i, 1);
-        this.setState({ Questions });
+        await fetch('api/Questions/' + Questions[Questions.length - 1].Id, {method: 'DELETE'});
+
+        console.log(Questions);
+        Questions.pop();
+        this.setState({ Questions : Questions});
     }
 
     componentDidMount() {
         
         this.populateData();
-        console.log(this.state.Quiz)
-        for (const q in this.state.Quiz.questions) {
-            console.log(q.Id);
-            this.setState(({
-                Questions: [...this.state.Questions, {Representation : q.Representation, Id : q.Id}]
-            }))
-        }
       }
     
 
@@ -62,11 +58,9 @@ export class CreateQuiz extends Component {
                     <br />
                     <br />
                     {Questions.map((answer, index) =>
-                        <div key={index}>
-                            <label>
-                                <h5> <a href={"/CreateQuestion/"+eventId+"/" + quizId + "/" + Questions[index].Id}>Question {index + 1} </a></h5>
-                                <label>{Questions[index].Representation}</label>
-                            </label>
+                        <div key={index} className="flex">
+                            <h5> <a href={"/CreateQuestion/"+eventId+"/" + quizId + "/" + Questions[index].Id}>Question {index + 1} </a></h5>
+                            <label>{Questions[index].Representation}</label>    
                         </div>
                         )
                     }
@@ -129,8 +123,14 @@ export class CreateQuiz extends Component {
     async populateData() {
         const response = await fetch('api/quiz/' + this.props.match.params.id);
         const data = await response.json();
-        console.log(data);
         this.setState({ Quiz: data, loading: false });
+
+        for (const q in data.questions) {
+            let x = data.questions[q];
+            this.setState(({
+                Questions: [...this.state.Questions, {Representation : x.representation, Id : x.id}]
+            }))
+        }
     }
 
 }

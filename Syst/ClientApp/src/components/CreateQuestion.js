@@ -31,7 +31,7 @@ export class CreateQuestion extends Component {
         const defaultOption = options[0];
 
         return (
-            <div class="CreateQPage">
+            <div className="CreateQPage">
                 <h2>Here you can create a question </h2>
                 <br/>
                 <form>
