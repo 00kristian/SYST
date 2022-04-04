@@ -210,7 +210,7 @@ export class CandidateInformation extends Component {
         }
 
         if(this.state.validateUniversity != 0){
-            this.setState({validateUniversity : true})
+            this.setState({validateUniversity : false})
         }
         
         if(this.state.Name.length != 0 && this.state.Email.length != 0 && this.state.StudyProgram != 0 && this.state.validateUniversity !=0, this.state.validateCheckBox == true) {
