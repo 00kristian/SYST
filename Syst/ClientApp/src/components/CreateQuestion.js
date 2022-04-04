@@ -38,12 +38,12 @@ export class CreateQuestion extends Component {
                     {this.state.formValues.map((answer, index) =>
                         <div key={index}>
                             <label>
-                                <h5>Option {index+1}</h5>
+                                <h5>Option {options[index]}</h5>
                             <input className= "input-field" onChange={(event) => this.state.Options = event.target.value} />
                             </label>
                         </div>
                         )}
-                        <button className="btn" type="button" onClick={() => this.addFormFields()}>+</button>
+                        <button className="btn btn-primary" type="button" onClick={() => this.addFormFields()}>+</button>
                     <br />
                     
                     <button className="btn btn-primary leftbtn" >Upload Image</button>
