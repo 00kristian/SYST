@@ -8,14 +8,20 @@ export class CreateQuestion extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            formValues: [{Representation: "", Answer: "", Options: "", imageUrl: ""}]
+            inputValues: [{Representation: "", Answer: "", Options: "", imageUrl: ""}]
         };
     }
 
-    addFormFields() {
+    addOptionFields() {
         this.setState(({
-            formValues: [...this.state.formValues, {Answer: "", Options: ""}]
+            inputValues: [...this.state.inputValues, {Answer: "", Options: ""}]
         }))
+    }
+
+    removeOptionFields(i) {
+        let inputValues = this.state.inputValues;
+        inputValues.splice(i, 1);
+        this.setState({ inputValues });
     }
 
     render() {
@@ -35,7 +41,7 @@ export class CreateQuestion extends Component {
                     
                     <br />
                     <br />
-                    {this.state.formValues.map((answer, index) =>
+                    {this.state.inputValues.map((answer, index) =>
                         <div key={index}>
                             <label>
                                 <h5>Option {options[index]}</h5>
@@ -43,7 +49,8 @@ export class CreateQuestion extends Component {
                             </label>
                         </div>
                         )}
-                        <button className="btn btn-primary" type="button" onClick={() => this.addFormFields()}>+</button>
+                        <button className="btn btn-primary" type="button" onClick={() => this.addOptionFields()}>+</button>
+                        <button className="btn btn-primary" type="button" onClick={() => this.removeOptionFields()}>-</button>
                     <br />
                     
                     <button className="btn btn-primary leftbtn" >Upload Image</button>
