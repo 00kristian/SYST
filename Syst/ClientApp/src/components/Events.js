@@ -85,7 +85,7 @@ export class Events extends Component {
                 {UpcomingContents}
                 <br/>
                 <h3 className='space'>Recent Events
-                    <button className="btn btn-primary rightbtn" >View All</button>
+                    <button className="btn btn-primary rightbtn">View All</button>
                 </h3>
                 {RecentContents}
             </div>
