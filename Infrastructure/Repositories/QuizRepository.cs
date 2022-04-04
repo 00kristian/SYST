@@ -63,7 +63,8 @@ namespace Infrastructure
             
             var quiz = await _context.Quizes.Where(q => q.Id == id).Select(q => new QuizDTO(){
                 Id = q.Id,
-              
+                Name = q.Name!,
+                
             }).FirstOrDefaultAsync();
 
             if (quiz == default(QuizDTO)) return (Status.NotFound, quiz);

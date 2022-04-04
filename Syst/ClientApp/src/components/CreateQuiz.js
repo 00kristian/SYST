@@ -6,17 +6,22 @@ export class CreateQuiz extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { Name: ""};
+        this.state = { Quiz: Object, loading: true};
     }
 
-    render() {
-        return (
-            <div>
+    componentDidMount() {
+        this.populateData();
+      }
+    
+
+   static renderQuiz(Quiz) { 
+       return (
+     <div>
                 <h2>Here you can create a quiz</h2>
                 <br/>
                 <form>
                     <label>
-                        <h5>Name</h5>
+                        <h5>{Quiz.name}</h5>
                         <input className="input-field" onChange={(event) => this.state.Name = event.target.value}></input>
                     </label>
                     <br />
@@ -44,8 +49,21 @@ export class CreateQuiz extends Component {
                 <button className="btn btn-primary rightbtn " onClick={this.rerouteToEvents}>Cancel</button>
                 <button className="btn btn-primary rightbtn " onClick={this.rerouteToConfirmation}>Confirm</button>
             </div>
+
+       )
+
+   }
+    render() {
+    let contents = this.state.loading
+      ? <p><em>Loading...</em></p>
+      : CreateQuiz.renderQuiz(this.state.Quiz);
+        return (
+            <div>
+            {contents}
+            </div>
         );
     }
+
 
     rerouteToConfirmation = () => {
         let event = {
@@ -70,6 +88,18 @@ export class CreateQuiz extends Component {
         const { history } = this.props;
         history.push("/CreateQuestion");
     }
+
+    async populateData() {
+        const response = await fetch('api/quiz/' + this.props.match.params.id);
+        const data = await response.json();
+        console.log(data);
+        this.setState({ Quiz: data, loading: false });
+    }
+
+    
+
+
+
 
     
 }
