@@ -59,7 +59,7 @@ export class CreateQuiz extends Component {
             <div>
                 <br />
                 <h5>Question {id}</h5>
-                <a href={"/CreateQuestion/" + this.props.match.params.id + "/" + id}><button className="btn btn-primary rightbtn">Create Question</button> </a>
+                <a href={"/CreateQuestion/"+this.props.match.params.event_id+"/" + this.props.match.params.id + "/" + id}><button className="btn btn-primary rightbtn">Create Question</button> </a>
                 <br />    
             </div>
         )
@@ -82,7 +82,7 @@ export class CreateQuiz extends Component {
         fetch('api/quiz/' + this.props.match.params.id, requestOptions);
 
         const { history } = this.props;
-        history.push("/Events/");
+        history.push("/CreateEvent/"+ this.props.match.params.event_id);
     }
     rerouteToEvents = () => {
         const { history } = this.props;
@@ -91,7 +91,7 @@ export class CreateQuiz extends Component {
 
     rerouteToQuestions = (id) => {
         const { history } = this.props;
-        history.push("/CreateQuestion/" + this.props.match.params.id + "/" + id);
+        history.push("/CreateQuestion/" + this.props.match.params.event_id + "/" + this.props.match.params.id + "/" + id);
     }
 
     async populateData() {

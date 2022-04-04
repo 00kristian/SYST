@@ -84,13 +84,13 @@ export class CreateQuestion extends Component {
         fetch('api/questions', requestOptions)
         .then(response => response.json())
         const { history } = this.props;
-        history.push("/CreateQuiz");
+        history.push("/CreateQuiz/"+this.props.match.params.quiz_id+ "/"+ this.props.match.params.quiz_id);
     }
    
 
     rerouteToQuiz = () => {
         const { history } = this.props;
-        history.push("/CreateQuiz");
+        history.push("/CreateQuiz/" + this.props.match.params.event_id + "/" + this.props.match.params.quiz_id);
     }
 
     selectAnswer = (option) => {

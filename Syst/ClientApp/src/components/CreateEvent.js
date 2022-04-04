@@ -85,7 +85,7 @@ export class CreateEvent extends Component {
         let id = await fetch('api/quiz', requestOptions)
         .then(response => response.json())
         const { history } = this.props;
-        history.push("/CreateQuiz/" + id);
+        history.push("/CreateQuiz/" + this.props.match.params.id +"/"+ id);
     }
 
 }
