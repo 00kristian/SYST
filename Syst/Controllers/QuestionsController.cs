@@ -56,7 +56,7 @@ public class QuestionsController : ControllerBase
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] QuestionDTO oldQuestion) =>
+    public async Task<IActionResult> Put(int id, [FromBody] CreateQuestionDTO oldQuestion) =>
         (await _repo.Update(id,oldQuestion)).ToActionResult();
     
     //Delete an question

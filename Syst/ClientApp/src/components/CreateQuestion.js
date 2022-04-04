@@ -9,56 +9,76 @@ export class CreateQuestion extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputValues: [{Representation: "", Answer: "", Options: "", imageUrl: ""}]
+            loading: true,
+            Question: {
+                Representation: "",
+                Answer: "",
+                Options: [],
+                imageUrl: ""
+            },
+            Options: []
         };
+    }
+
+    componentDidMount() {  
+        this.populateData();
     }
 
     addOptionFields() {
         this.setState(({
-            inputValues: [...this.state.inputValues, {Answer: "", Options: ""}]
+            Options: [...this.state.Options, ""]
         }))
     }
 
     removeOptionFields(i) {
-        let inputValues = this.state.inputValues;
+        let inputValues = this.state.Options;
         inputValues.splice(i, 1);
-        this.setState({ inputValues });
+        this.setState({ Options });
+    }
+
+    static renderQuestion (ques, ops) {
+        const options = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ", "Ø", "Å"];
+        const defaultOption = options[0];
+
+        return (
+            <form>
+                <label>
+                    <h5>Question</h5>
+                    <input placeholder={ques.Representation} className="input-field" onChange={(event) => ques.Representation = event.target.value} />
+                </label>
+                
+                <br />
+                <br />
+                {ops.map((answer, index) =>
+                    <div key={index}>
+                        <label>
+                            <h5>Option {options[index]}</h5>
+                            <label>Correct answer?</label>
+                            <input type = "radio" name="correctAnswer" onClick={(event) => ques.Answer = ops[index]}/>
+                            <input placeholder={ops[index]} className= "input-field" onChange={(event) => ops[index] = event.target.value} />
+                        </label>
+                    </div>
+                    )
+                }
+            </form>
+        );
     }
 
     render() {
-
-        const options = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ", "Ø", "Å"];
-        const defaultOption = options[0];
+        let contents = this.state.loading
+        ? <p><em>Loading...</em></p>
+        : CreateQuestion.renderQuestion(this.state.Question, this.state.Options);
 
         return (
             <div className="CreateQPage">
                 <h2>Here you can create a question </h2>
                 <br/>
-                <form>
-                    <label>
-                        <h5>Question</h5>
-                        <input className="input-field" onChange={(event) => this.state.Representation = event.target.value} />
-                    </label>
-                    
-                    <br />
-                    <br />
-                    {this.state.inputValues.map((answer, index) =>
-                        <div key={index}>
-                            <label>
-                                <h5>Option {options[index]}</h5>
-                                <label>Correct answer?</label>
-                                <input type = "radio" name="correctAnswer" onClick={(event) => this.state.answer = event.target.value}/>
-                            <input className= "input-field" onChange={(event) => this.state.inputValues[index].Options = event.target.value} />
-                            </label>
-                        </div>
-                        )
-                    }
-                        <button className="btn btn-primary" type="button" onClick={() => this.removeOptionFields()}>-</button>
-                        <button className="btn btn-primary" type="button" onClick={() => this.addOptionFields()}>+</button>
-                    <br />
-                    <h5>Select an image for the question</h5>
-                    <button className="btn btn-primary leftbtn" >Upload Image</button>
-                </form>
+                {contents}
+                <button className="btn btn-primary" type="button" onClick={() => this.removeOptionFields()}>-</button>
+                    <button className="btn btn-primary" type="button" onClick={() => this.addOptionFields()}>+</button>
+                <br />
+                <h5>Select an image for the question</h5>
+                <button className="btn btn-primary leftbtn" >Upload Image</button>
                 <br />
                 <br />
                 <br />
@@ -69,20 +89,18 @@ export class CreateQuestion extends Component {
     }
 
     rerouteToCreateEvent = () => {
-        // let question = {
-        //     "representation": this.state.Representation,
-        //     "answer": this.state.Answer,
-        //     "Options": this.state.Options,
-        //     "imageUrl": this.state.imageUrl
-        // };
-        // console.log(question);
-        // const requestOptions = {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(question)
-        // };
-        // fetch('api/questions', requestOptions)
-        // .then(response => response.json())
+        let question = {
+            "representation": this.state.Question.Representation,
+            "answer": this.state.Question.Answer,
+            "Options": this.state.Options,
+            "imageURL": "https://techcrunch.com/wp-content/uploads/2015/04/codecode.jpg"
+        };
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(question)
+        };
+        fetch('api/questions/' + this.props.match.params.id, requestOptions);
         const { history } = this.props;
         history.push("/CreateQuiz/"+this.props.match.params.quiz_id+ "/"+ this.props.match.params.quiz_id);
     }
@@ -91,5 +109,25 @@ export class CreateQuestion extends Component {
     rerouteToQuiz = () => {
         const { history } = this.props;
         history.push("/CreateQuiz/" + this.props.match.params.event_id + "/" + this.props.match.params.quiz_id);
+    }
+
+    async populateData() {
+        const response = await fetch('api/questions/' + this.props.match.params.id);
+        const data = await response.json();
+
+        //TODO: load the correct answer radio button
+
+        for (const q in data.options) {
+            let x = data.options[q];
+            this.setState(({
+                Options: [...this.state.Options, x]
+            }))
+        }
+        this.setState({ Question: {
+            Representation: data.representation,
+            Answer: data.answer,
+            Options: data.options,
+            imageUrl: data.imageUrl
+        }, loading: false });
     }
 }

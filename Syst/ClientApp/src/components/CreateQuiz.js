@@ -59,7 +59,7 @@ export class CreateQuiz extends Component {
                         <div key={index} className="flex">
                             <h5> Question {index + 1} </h5>
                             <label>{Questions[index].Representation}</label>
-                            <button onClick={() => onCli(index)}> Modify </button>
+                            <button onClick={() => onCli(Questions[index].Id)}> Modify </button>
                         </div>
                         )
                     }

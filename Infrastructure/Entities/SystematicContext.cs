@@ -62,7 +62,7 @@ public class SystematicContext : DbContext, ISystematicContext
         .Property(q => q.Options)
         .HasConversion(
             v => JsonSerializer.Serialize(v!.Select(d => d.ToString()).ToList(), default(JsonSerializerOptions)),
-            v => JsonSerializer.Deserialize<List<string>>(v, default(JsonSerializerOptions))!.Select(d => (string)Enum.Parse(typeof(string), d)).ToList(),
+            v => JsonSerializer.Deserialize<List<string>>(v, default(JsonSerializerOptions))!.ToList(),
             new ValueComparer<ICollection<string>>(
             (c1, c2) => c1!.SequenceEqual(c2!),
             c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
