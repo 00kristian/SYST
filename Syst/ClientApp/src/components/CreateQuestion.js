@@ -7,16 +7,27 @@ export class CreateQuestion extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {  Representation: "", Answer: "", Options: ["", "", "", ""], imageUrl: ""};
+        this.state = {
+            formValues: [{Representation: "", Answer: "", Options: "", imageUrl: ""}]
+        };
+    }
+
+    addFormFields() {
+        this.setState(({
+            formValues: [...this.state.formValues, {Answer: "", Options: ""}]
+        }))
     }
 
     render() {
+
+        const options = ["A", "B", "C", "D", "E", "F", "G"];
+        const defaultOption = options[0];
+
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : CreateQuestion.createAnswers(options);
         
-        const options = ["A", "B", "C", "D", "E", "F", "G"];
-        const defaultOption = options[0];
+
 
         return (
             <div class="CreateQPage">
@@ -79,24 +90,44 @@ export class CreateQuestion extends Component {
     
     static createAnswers(options) {
             const answerNumber = "Answer " + options[0]
-            document.getElementById("answerNumber").innerHTML = "Answer " + options[0];
+            //document.getElementById("answerNumber").innerHTML = "Answer " + options[0];
             return (
                  <form>                
                  <label>
-                    <h5 id='a'>document.</h5>
+                    <h5 id='a'>Answer</h5>
                      <input className="input-field" onChange={(event) => this.state.Options[0] = event.target.value}></input>
                  </label>
                  <br />
-                 <button onClick={this.createAnswers}>+</button>
+                 <button onClick={this.addFormFields}>+</button>
+                {this.state.newAnswer ? (
+                    <div>
+                        <label>
+                            <h5 id='a'>Answer</h5>
+                            <input className="input-field" onChange={(event) => this.state.Options[1] = event.target.value}></input>
+                        </label>
+                    </div>
+                ) : ( 
+                null
+                )}
                  </form>
             )
     }
-    
-    addAnswer() => {
-        return (
-            
-        )
-        
-    }
+
+    // addAnswer = () => {
+    //     return (
+    //         <form>                
+    //         <label>
+    //            <h5 id='a'>Answer</h5>
+    //             <input className="input-field" onChange={(event) => this.state.Options[1] = event.target.value}></input>
+    //         </label>
+    //         <br />
+    //         <button onClick={this.addAnswer}>+</button>
+    //         </form>
+    //    )
+    // }
+
+    // addNewAnswer = () => {
+    //     this.setState({newAnswer: true});
+    // }
     
 }
