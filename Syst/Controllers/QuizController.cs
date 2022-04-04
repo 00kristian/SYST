@@ -10,7 +10,7 @@ public class QuizController : ControllerBase
 {
 
     private readonly ILogger<QuizController> _logger;
-     private IQuizRepository _repo;
+    private IQuizRepository _repo;
 
     //We use REST to make sure we have a reliable API
     public QuizController(ILogger<QuizController> logger, IQuizRepository repo)
@@ -21,7 +21,7 @@ public class QuizController : ControllerBase
     }
 
 
-       //Return all quiz stored in the database related to the event
+    //Return all quiz stored in the database related to the event
     [ProducesResponseType(200)]
     [HttpGet(Name = "GetQuizes")]
     public async Task<IEnumerable<QuizDTO>> GetAll()
@@ -29,7 +29,7 @@ public class QuizController : ControllerBase
         return await _repo.ReadAll(); 
     }
 
-     //Create a new quiz
+    //Create a new quiz
     [ProducesResponseType(409)]
     [ProducesResponseType(201)]
     [HttpPost]
@@ -54,8 +54,8 @@ public class QuizController : ControllerBase
             return new ActionResult<QuizDTO>(res.Item2);
         }
     }
-
-      //Update a quiz
+    
+    //Update a quiz
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("{id}")]
