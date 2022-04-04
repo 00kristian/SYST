@@ -48,10 +48,11 @@ export class CreateQuestion extends Component {
                                 <h5>Option {options[index]}</h5>
                                 <label>Correct answer?</label>
                                 <input type = "radio" name="correctAnswer" onClick={(event) => this.state.answer = event.target.value}/>
-                            <input className= "input-field" onChange={(event) => this.state.Options[index] = event.target.value} />
+                            <input className= "input-field" onChange={(event) => this.state.inputValues[index].Options = event.target.value} />
                             </label>
                         </div>
-                        )}
+                        )
+                    }
                         <button className="btn btn-primary" type="button" onClick={() => this.removeOptionFields()}>-</button>
                         <button className="btn btn-primary" type="button" onClick={() => this.addOptionFields()}>+</button>
                     <br />
@@ -68,17 +69,17 @@ export class CreateQuestion extends Component {
     }
 
     rerouteToCreateEvent = () => {
-        let event = {
+        let question = {
             "representation": this.state.Representation,
             "answer": this.state.Answer,
             "Options": this.state.Options,
             "imageUrl": this.state.imageUrl
         };
-        console.log(event);
+        console.log(question);
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(event)
+            body: JSON.stringify(question)
         };
         fetch('api/questions', requestOptions)
         .then(response => response.json())

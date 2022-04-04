@@ -74,13 +74,13 @@ export class CreateEvent extends Component {
     }
 
      rerouteToCreateQuiz = async () => {
-        let event = {
+        let quiz = {
             "name": "New quiz"
         };
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(event)
+            body: JSON.stringify(quiz)
         };
         let id = await fetch('api/quiz', requestOptions)
         .then(response => response.json())

@@ -91,5 +91,46 @@ namespace Infrastructure
 
             return Status.Updated;
         }
+
+        //TODO: Test this!
+        public async Task<(Status, int id)> AddQuestion(int id, CreateQuestionDTO question)
+        {
+            var q = await _context.Quizes.Include(q => q.Questions).Where(q => q.Id == id).FirstOrDefaultAsync();
+
+            if (q == default(Quiz)) return (Status.NotFound, -1);
+
+            if (q.Questions == null) {
+                q.Questions = new List<Question>();
+            }
+
+            var ques = new Question() {
+                Representation = question.Representation,
+                Answer = "",
+                ImageURL = "",
+                Options = new List<string>()
+            };
+
+            q.Questions.Add(ques);
+
+            await _context.SaveChangesAsync();
+
+            return (Status.Updated, ques.Id);
+        }
+
+        //TODO: Test this!
+        public async Task<Status> RemoveQuestion(int quizId, int questionId)
+        {
+            var quiz = await _context.Quizes.Include(q => q.Questions).Where(q => q.Id == quizId).FirstOrDefaultAsync();
+
+            if (quiz == default(Quiz)) return Status.NotFound;
+
+            var ques = quiz.Questions!.Where(q => q.Id == questionId).FirstOrDefault();
+
+            if (ques == default(Question)) return Status.NotFound;
+
+            quiz.Questions!.Remove(ques);
+
+            return(Status.Updated);
+        }
     }
 }
