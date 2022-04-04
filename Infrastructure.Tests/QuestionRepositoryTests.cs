@@ -43,7 +43,7 @@ public class QuestionsRepositoryTests {
     public async void Create_Creates_Question_In_Repository()
     {
         //Arrange
-        var question3 = new QuestionDTO{Representation="What's the difference between ... ", Answer="Not everything"};
+        var question3 = new CreateQuestionDTO{Representation="What's the difference between ... ", Answer="Not everything"};
 
         //Act
         var actual = await _repo.Create(question3);
@@ -53,20 +53,20 @@ public class QuestionsRepositoryTests {
         Assert.Equal(3, actual.Item2);
     }
 
-    [Fact]
-    public async void Create_Returns_Conflict_When_ID_Is_In_the_database()
-    {
-        //Arrange
-        var question3 = new QuestionDTO{Id=1, Representation="What's the difference between ... ", Answer="Not everything"};
+    // [Fact]
+    // public async void Create_Returns_Conflict_When_ID_Is_In_the_database()
+    // {
+    //     //Arrange
+    //     var question3 = new CreateQuestionDTO{Representation="What's the difference between ... ", Answer="Not everything"};
 
 
-        //Act
-        var actual = await _repo.Create(question3);
+    //     //Act
+    //     var actual = await _repo.Create(question3);
 
-        //Assert
-        Assert.Equal(Status.Conflict, actual.Item1);
-        Assert.Equal(1, actual.Item2);
-    }
+    //     //Assert
+    //     Assert.Equal(Status.Conflict, actual.Item1);
+    //     Assert.Equal(1, actual.Item2);
+    // }
 
 
     

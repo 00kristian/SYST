@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css'
 
 
 export class CreateQuestion extends Component {
@@ -74,6 +75,7 @@ export class CreateQuestion extends Component {
             "Options": this.state.Options,
             "imageUrl": this.state.imageUrl
         };
+        console.log(event);
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

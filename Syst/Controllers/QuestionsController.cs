@@ -45,7 +45,7 @@ public class QuestionsController : ControllerBase
     [ProducesResponseType(409)]
     [ProducesResponseType(201)]
     [HttpPost]
-    public async Task<IActionResult> Post(QuestionDTO newQuestion) {
+    public async Task<IActionResult> Post(CreateQuestionDTO newQuestion) {
         var created = await _repo.Create(newQuestion);
         var id = created.Item2;
         if (created.Item1 == Status.Conflict) return new ConflictObjectResult(id);
