@@ -19,15 +19,17 @@ export class CandidateInformation extends Component {
 
     render() {
         const options = [
-            'IT-University of Copenhagen',
-            'University of Copenhagen',
-            'Technical University of Denmark',
-            'Aarhus University',
-            'University of Southern Denmark',
-            'Roskilde University',
+
             'Aalborg University',
+            'Aarhus University',
             'Copenhagen Business School',
+            'IT-University of Copenhagen',
+            'Roskilde University',
+            'Technical University of Denmark',
+            'University of Copenhagen',
+            'University of Southern Denmark',
             'Other'
+            
         ];
         const defaultOption = options[0];
        

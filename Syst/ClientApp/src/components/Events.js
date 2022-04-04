@@ -104,5 +104,4 @@ export class Events extends Component {
         const data2 = await response2.json();
         this.setState({ recent: data1, upcoming: data2, loading: false });
     }
-
 }
