@@ -85,7 +85,7 @@ export class Events extends Component {
                 {UpcomingContents}
                 <br/>
                 <h3 className='space'>Recent Events
-                    <button className="btn btn-primary rightbtn" >View All</button>
+                    <button className="btn btn-primary rightbtn">View All</button>
                 </h3>
                 {RecentContents}
             </div>
@@ -104,4 +104,5 @@ export class Events extends Component {
         const data2 = await response2.json();
         this.setState({ recent: data1, upcoming: data2, loading: false });
     }
+
 }
