@@ -21,33 +21,13 @@ export class CreateQuiz extends Component {
                 <br/>
                 <form>
                     <label>
-                        <h5>{Quiz.name}</h5>
-                        <input className="input-field" onChange={(event) => this.state.Name = event.target.value}></input>
+                        <h5>Quiz name</h5>
+                        <input placeholder={Quiz.name} className="input-field" onChange={(event) => Quiz.name = event.target.value}></input>
                     </label>
                     <br />
                     <br />
                     
                 </form>
-                <br />
-                <h5>Question 1</h5>
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToQuestions}>Create Question</button>
-                <br />                
-                <br />
-                <h5>Question 2</h5>
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToQuestions}>Create Question</button>
-                <br />
-                <br />
-                <h5>Question 3</h5>
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToQuestions}>Create Question</button>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-
-                <br />
-                <button className="btn btn-primary rightbtn " onClick={this.rerouteToEvents}>Cancel</button>
-                <button className="btn btn-primary rightbtn " onClick={this.rerouteToConfirmation}>Confirm</button>
             </div>
 
        )
@@ -59,34 +39,59 @@ export class CreateQuiz extends Component {
       : CreateQuiz.renderQuiz(this.state.Quiz);
         return (
             <div>
-            {contents}
+                {contents}
+                {this.newQuestion()}              
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <button className="btn btn-primary rightbtn " onClick={this.rerouteToEvents}>Cancel</button>
+                <button className="btn btn-primary rightbtn " onClick={this.rerouteToConfirmation}>Confirm</button>
             </div>
         );
+    }
+
+    newQuestion = () => {
+        const id = 1;
+        return (
+            <div>
+                <br />
+                <h5>Question {id}</h5>
+                <a href={"/CreateQuestion/" + this.props.match.params.id + "/" + id}><button className="btn btn-primary rightbtn">Create Question</button> </a>
+                <br />    
+            </div>
+        )
     }
 
 
     rerouteToConfirmation = () => {
         let event = {
-            "name": this.state.Name
+            "name": this.state.Quiz.name
         };
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
             body: JSON.stringify(event)
         };
-        fetch('api/quiz', requestOptions)
-        .then(response => response.json())
+        console.log(event);
+        fetch('api/quiz/' + this.props.match.params.id, requestOptions);
+
         const { history } = this.props;
-        history.push("/Confirmation");
+        history.push("/Events/");
     }
     rerouteToEvents = () => {
         const { history } = this.props;
         history.push("/Events");
     }
 
-    rerouteToQuestions = () => {
+    rerouteToQuestions = (id) => {
         const { history } = this.props;
-        history.push("/CreateQuestion");
+        history.push("/CreateQuestion/" + this.props.match.params.id + "/" + id);
     }
 
     async populateData() {
@@ -96,10 +101,4 @@ export class CreateQuiz extends Component {
         this.setState({ Quiz: data, loading: false });
     }
 
-    
-
-
-
-
-    
 }
