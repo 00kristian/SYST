@@ -45,26 +45,23 @@ export class CreateQuestion extends Component {
                         <div key={index}>
                             <label>
                                 <h5>Option {options[index]}</h5>
-                            <input className= "input-field" onChange={(event) => this.state.Options = event.target.value} />
+                                <label>Correct answer?</label>
+                                <input type = "radio" name="correctAnswer" onClick={(event) => this.state.answer = event.target.value}/>
+                            <input className= "input-field" onChange={(event) => this.state.Options[index] = event.target.value} />
                             </label>
                         </div>
                         )}
-                        <button className="btn btn-primary" type="button" onClick={() => this.addOptionFields()}>+</button>
                         <button className="btn btn-primary" type="button" onClick={() => this.removeOptionFields()}>-</button>
+                        <button className="btn btn-primary" type="button" onClick={() => this.addOptionFields()}>+</button>
                     <br />
-                    
+                    <h5>Select an image for the question</h5>
                     <button className="btn btn-primary leftbtn" >Upload Image</button>
-                    
                 </form>
                 <br />
                 <br />
                 <br />
-                <h5>Correct Answer</h5>
-                <Dropdown options={options} onChange={this.selectAnswer} value={defaultOption} placeholder="Choose Answer" />
-
-
-                <button className="btn btn-primary leftbtn" onClick={this.rerouteToCreateEvent}>Confirm </button>
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToQuiz}>Cancel</button>
+                <button className="btn btn-primary leftbtn" onClick={this.rerouteToQuiz}>Cancel</button>
+                <button className="btn btn-primary rightbtn" onClick={this.rerouteToCreateEvent}>Create question</button>
             </div>
         );
     }
