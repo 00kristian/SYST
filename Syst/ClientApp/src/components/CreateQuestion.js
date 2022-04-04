@@ -11,48 +11,30 @@ export class CreateQuestion extends Component {
     }
 
     render() {
-        const options = ["A", "B", "C", "D"];
+        let contents = this.state.loading
+            ? <p><em>Loading...</em></p>
+            : CreateQuestion.createAnswers(options);
+        
+        const options = ["A", "B", "C", "D", "E", "F", "G"];
         const defaultOption = options[0];
 
         return (
-            <div>
+            <div class="CreateQPage">
                 <h2>Here you can create a question </h2>
                 <br/>
                 <form>
-                <label>
-                    <h5>Representation</h5>
-                    <input className="input-field" onChange={(event) => this.state.Representation = event.target.value}></input>
+                    <label>
+                        <h5>Question</h5>
+                        <input className="input-field" onChange={(event) => this.state.Representation = event.target.value}></input>
                     </label>
+                    
                     <br />
-                    <br />
-                
-                
-                    <form >
-                    <label>
-                        <h5 id='a'>Q1: Answer A</h5>
-                        <input className="input-field" onChange={(event) => this.state.Options[0] = event.target.value}></input>
-                    </label>
-                    <label>
-                    <h5 id='b'>Q1: Answer B</h5>
-                    <input className="input-field" onChange={(event) => this.state.Options[1] = event.target.value}></input>
-                    </label>
-                    <label>
-                    <br />
-                    <h5 id='c'>Q1: Answer C</h5>
-                    <input className="input-field" onChange={(event) => this.state.Options[2] = event.target.value}></input>
-                    </label>
-                    <label>
-                    <h5 id='d'>Q1: Answer D</h5>
-                    <input className="input-field" onChange={(event) => this.state.Options[3] = event.target.value}></input>
-                    </label>
-                    </form>
-
+                    {contents}
                     <br />
                     <br />
 
-                    <button className="btn btn-primary leftbtn" >Upload Image </button>
-
-                
+                    <button className="btn btn-primary leftbtn" >Upload Image</button>
+                    
                 </form>
                 <br />
                 <br />
@@ -94,6 +76,27 @@ export class CreateQuestion extends Component {
     selectAnswer = (option) => {
         this.setState({Answer: option.value});        
     }
-
+    
+    static createAnswers(options) {
+            const answerNumber = "Answer " + options[0]
+            document.getElementById("answerNumber").innerHTML = "Answer " + options[0];
+            return (
+                 <form>                
+                 <label>
+                    <h5 id='a'>document.</h5>
+                     <input className="input-field" onChange={(event) => this.state.Options[0] = event.target.value}></input>
+                 </label>
+                 <br />
+                 <button onClick={this.createAnswers}>+</button>
+                 </form>
+            )
+    }
+    
+    addAnswer() => {
+        return (
+            
+        )
+        
+    }
     
 }
