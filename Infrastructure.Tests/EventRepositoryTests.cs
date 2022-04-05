@@ -74,7 +74,7 @@ public class EventRepositoryTests {
         
         Assert.Equal(Status.Found, actual.Item1);
         Assert.Equal(event1.Name, actual.Item2.Name);
-        Assert.Equal(event1.Date.ToShortDateString(), actual.Item2.Date);
+        Assert.Equal(event1.Date.ToString("yyyy-MM-dd"), actual.Item2.Date);
         Assert.Equal(event1.Location, actual.Item2.Location);
         Assert.Equal(event1.Rating, actual.Item2.Rating);
     }
@@ -99,8 +99,8 @@ public class EventRepositoryTests {
 
         //assert
         Assert.Collection(events,
-            firstEvent => Assert.Equal(new EventDTO(1,"Workshop event", (new DateTime{}).ToShortDateString(), "ITU", null!, new QuizDTO {}, 4.0, null!), firstEvent),
-            SecondEvent => Assert.Equal(new EventDTO( 2, "Swagger event", (new DateTime{}).ToShortDateString(), "Scrollbar", null!, new QuizDTO{}, 7.0,  null!), SecondEvent)
+            firstEvent => Assert.Equal(new EventDTO(1,"Workshop event", (new DateTime{}).ToString("yyyy-MM-dd"), "ITU", null!, new QuizDTO {}, 4.0, null!), firstEvent),
+            SecondEvent => Assert.Equal(new EventDTO( 2, "Swagger event", (new DateTime{}).ToString("yyyy-MM-dd"), "Scrollbar", null!, new QuizDTO{}, 7.0,  null!), SecondEvent)
         );
     }
 
