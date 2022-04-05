@@ -83,12 +83,12 @@ export class CreateQuestion extends Component {
                 <br />
                 <br />
                 <button className="btn btn-primary leftbtn" onClick={this.rerouteToQuiz}>Cancel</button>
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToCreateEvent}>Confirm</button>
+                <button className="btn btn-primary rightbtn" onClick={this.confirm}>Confirm</button>
             </div>
         );
     }
 
-    rerouteToCreateEvent = () => {
+    confirm = () => {
         let question = {
             "representation": this.state.Question.Representation,
             "answer": this.state.Question.Answer,
@@ -102,7 +102,7 @@ export class CreateQuestion extends Component {
         };
         fetch('api/questions/' + this.props.match.params.id, requestOptions);
         const { history } = this.props;
-        history.push("/CreateQuiz/"+this.props.match.params.quiz_id+ "/"+ this.props.match.params.quiz_id);
+        history.push("/CreateQuiz/"+this.props.match.params.event_id+ "/"+ this.props.match.params.quiz_id);
     }
    
 

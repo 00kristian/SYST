@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import DatePicker from "react-datepicker";
+import {DatePicker} from './DatePicker';
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -26,11 +26,7 @@ export class CreateEvent extends Component {
                 <br />
                 <br />
                 <label>
-                    <h5>Date</h5><DatePicker value={e.date} selected={e.date} onChange={(date) => {
-                        e.date.setDate(date.getDate());
-                        e.date.setMonth(date.getMonth());
-                        e.date.setFullYear(date.getFullYear());
-                    }} />
+                    {DatePicker.Picker(e.date.toISOString().split('T')[0], ((date) => e.date = new Date(date)))}
                 </label>
                 <br />
                 <br />
@@ -56,7 +52,7 @@ export class CreateEvent extends Component {
                 <button className="btn btn-primary" onClick={this.rerouteToCreateQuiz}>Create quiz</button>
                 <br />
                 <br />
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToConfirmation}>Create event</button>
+                <button className="btn btn-primary rightbtn" onClick={this.rerouteToConfirmation}>Save event</button>
                 <br />
                 <br />
                 <button className="btn btn-primary rightbtn" onClick={this.rerouteToEvents}>Cancel</button>
@@ -67,7 +63,7 @@ export class CreateEvent extends Component {
     rerouteToConfirmation = () => {
         this.updateEvent();
         const { history } = this.props;
-        history.push("/Confirmation");
+        history.push("/eventdetail/" + this.props.match.params.id);
     }
 
     updateEvent = () => {
@@ -121,7 +117,7 @@ export class CreateEvent extends Component {
         const response = await fetch('api/events/' + this.props.match.params.id);
         const data = await response.json();
         //TODO: fix that date isnt loaded properly
-        this.setState({  event : {name: data.name, date: new Date(), location: data.location}, loading: false });
+        this.setState({  event : {name: data.name, date: new Date(data.date.split('T')[0]), location: data.location}, loading: false });
     }
 
 }

@@ -92,9 +92,25 @@ export class Events extends Component {
         );
     }
 
-    rerouteToEventCreation = () => {
+    rerouteToEventCreation = async () => {
+        let event = {
+            "name": "new event",
+            "date":  new Date().toISOString().split('T')[0],
+            "location": "Your mom's house"
+        };
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(event)
+        };
+        let id = await fetch('api/events', requestOptions)
+        .then(response => response.json())
         const { history } = this.props;
-        history.push("/CreateEvent");
+        history.push("/CreateEvent/"+id);
     }
 
     async populateData() {

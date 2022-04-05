@@ -36,7 +36,7 @@ namespace Infrastructure
             var e = await _context.Events.Include(e => e.Candidates).Where(e => e.Id == id).Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
-                Date = e.Date.ToShortDateString(),
+                Date = e.Date.ToString("yyyy-MM-dd"),
                 Location = e.Location!,
                 Rating = e.Rating!,
                 Candidates = e.Candidates != null ? e.Candidates.Select(c => new CandidateDTO(){
@@ -45,7 +45,7 @@ namespace Infrastructure
                     Email = c.Email!,
                     StudyProgram = c.StudyProgram!,
                     University = c.University!,
-                    GraduationDate = c.GraduationDate.ToShortDateString()
+                    GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd")
                 }).ToList() : new List<CandidateDTO>()           
             }).FirstOrDefaultAsync();
 
@@ -58,7 +58,7 @@ namespace Infrastructure
             await _context.Events.Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
-                Date = e.Date.ToShortDateString(),
+                Date = e.Date.ToString("yyyy-MM-dd"),
                 Location = e.Location!,
                 Rating = e.Rating!
             }).ToListAsync();
@@ -105,7 +105,7 @@ namespace Infrastructure
                 {
                     Name = e.Name!,
                     Id = e.Id,
-                    Date = e.Date.ToShortDateString(),
+                    Date = e.Date.ToString("yyyy-MM-dd"),
                     Location = e.Location!,
                     Rating = e.Rating!
                 })
@@ -118,7 +118,7 @@ namespace Infrastructure
                 {
                     Name = e.Name!,
                     Id = e.Id,
-                    Date = e.Date.ToShortDateString(),
+                    Date = e.Date.ToString("yyyy-MM-dd"),
                     Location = e.Location!,
                     Rating = e.Rating!
                 })
