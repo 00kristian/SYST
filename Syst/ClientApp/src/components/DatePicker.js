@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 
-import Picker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
 export class DatePicker extends Component {
     static Picker(startValue, changeFun) {
-        console.log(startValue);
         return (
             <div>
                 <input onInput={() => {

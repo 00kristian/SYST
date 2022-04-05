@@ -9,7 +9,7 @@ export class CreateEvent extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { event : {name: "", date: new Date(), location: ""}, loading: true};
+        this.state = { event : {name: "", date: new Date(), location: "", quiz: Object}, loading: true};
     }
 
     componentDidMount() {  
@@ -18,23 +18,27 @@ export class CreateEvent extends Component {
 
     static renderEvent(e) {
         return (
-            <form>
-                <label>
-                    <h5>Name</h5>
-                    <input placeholder={e.name} className="input-field" onChange={(event) => e.name = event.target.value}></input>
-                </label>
-                <br />
-                <br />
-                <label>
-                    {DatePicker.Picker(e.date.toISOString().split('T')[0], ((date) => e.date = new Date(date)))}
-                </label>
-                <br />
-                <br />
-                <label>
-                    <h5>Location</h5>
-                    <input placeholder={e.location} className="input-field" onChange={(event) => e.location = event.target.value}></input>
-                </label>
-            </form>
+            <div>
+                <form>
+                    <label>
+                        <h5>Name</h5>
+                        <input placeholder={e.name} className="input-field" onChange={(event) => e.name = event.target.value}></input>
+                    </label>
+                    <br />
+                    <br />
+                    <label>
+                        <h5>Date</h5>
+                        {DatePicker.Picker(e.date.toISOString().split('T')[0], ((date) => e.date = new Date(date)))}
+                    </label>
+                    <br />
+                    <br />
+                    <label>
+                        <h5>Location</h5>
+                        <input placeholder={e.location} className="input-field" onChange={(event) => e.location = event.target.value}></input>
+                    </label>
+                </form>
+            </div>
+
         );
     }
 
@@ -49,6 +53,13 @@ export class CreateEvent extends Component {
                 {contents}
                 <br />
                 <h5>Quiz</h5>
+                {(this.state.event.quiz.id > 0) ? (
+                    <div>
+                        {this.state.event.quiz.name}
+                    </div>
+                ) : (
+                    <div> </div>
+                )}
                 <button className="btn btn-primary" onClick={this.rerouteToCreateQuiz}>Create quiz</button>
                 <br />
                 <br />
@@ -116,8 +127,7 @@ export class CreateEvent extends Component {
     async populateData() {
         const response = await fetch('api/events/' + this.props.match.params.id);
         const data = await response.json();
-        //TODO: fix that date isnt loaded properly
-        this.setState({  event : {name: data.name, date: new Date(data.date.split('T')[0]), location: data.location}, loading: false });
+        this.setState({  event : {name: data.name, date: new Date(data.date.split('T')[0]), location: data.location, quiz: data.quiz}, loading: false });
     }
 
 }
