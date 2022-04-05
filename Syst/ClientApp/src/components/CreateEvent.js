@@ -3,20 +3,21 @@ import React, { Component } from 'react';
 import {DatePicker} from './DatePicker';
 
 import "react-datepicker/dist/react-datepicker.css";
+import { QuizPicker } from './QuizPicker';
 
 export class CreateEvent extends Component {
     static displayName = CreateEvent.name;
 
     constructor(props) {
         super(props);
-        this.state = { event : {name: "", date: new Date(), location: "", quiz: Object}, loading: true};
+        this.state = { event : {name: "", date: new Date(), location: "", quiz: Object}, loading: true, quizes: [], quizid: 0};
     }
 
     componentDidMount() {  
         this.populateData();
     }
 
-    static renderEvent(e) {
+    static renderEvent(e, quizes, quizFun) {
         return (
             <div>
                 <form>
@@ -37,6 +38,10 @@ export class CreateEvent extends Component {
                         <input placeholder={e.location} className="input-field" onChange={(event) => e.location = event.target.value}></input>
                     </label>
                 </form>
+
+                <br />
+                <h5>Quiz</h5>
+                {QuizPicker.Picker(quizes, e.quiz.id, (qid) => quizFun(qid))}
             </div>
 
         );
@@ -45,14 +50,12 @@ export class CreateEvent extends Component {
     render() {
         let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : CreateEvent.renderEvent(this.state.event);
+      : CreateEvent.renderEvent(this.state.event, this.state.quizes, (qid) => this.setState({quizid: qid}));
         return (
             <div>
                 <h2>Here you can create an event</h2>
                 <br/>
                 {contents}
-                <br />
-                <h5>Quiz</h5>
                 {(this.state.event.quiz.id > 0) ? (
                     <div>
                         <a href={"/CreateQuiz/" + this.props.match.params.id +"/"+ this.state.event.quiz.id}>{this.state.event.quiz.name} </a> 
@@ -73,6 +76,9 @@ export class CreateEvent extends Component {
 
     rerouteToConfirmation = () => {
         this.updateEvent();
+        if (this.state.quizid > 0) {
+            this.updateQuizId(this.state.quizid);
+        }
         const { history } = this.props;
         history.push("/eventdetail/" + this.props.match.params.id);
     }
@@ -110,7 +116,14 @@ export class CreateEvent extends Component {
 
         this.updateEvent();
 
-        const requestOptions2 = {
+        this.updateQuizId(quizid);
+
+        const { history } = this.props;
+        history.push("/CreateQuiz/" + this.props.match.params.id +"/"+ quizid);
+    }
+
+    async updateQuizId(id) {
+        const requestOptions = {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -118,16 +131,15 @@ export class CreateEvent extends Component {
             }
         };
 
-        fetch('api/events/' + this.props.match.params.id + '/' + quizid, requestOptions2);
-
-        const { history } = this.props;
-        history.push("/CreateQuiz/" + this.props.match.params.id +"/"+ quizid);
+        fetch('api/events/' + this.props.match.params.id + '/' + id, requestOptions);
     }
 
     async populateData() {
         const response = await fetch('api/events/' + this.props.match.params.id);
         const data = await response.json();
-        this.setState({  event : {name: data.name, date: new Date(data.date.split('T')[0]), location: data.location, quiz: data.quiz}, loading: false });
+        const response2 = await fetch('api/quiz');
+        const data2 = await response2.json();
+        this.setState({  event : {name: data.name, date: new Date(data.date.split('T')[0]), location: data.location, quiz: data.quiz}, loading: false, quizes: data2 });
     }
 
 }
