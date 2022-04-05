@@ -55,7 +55,7 @@ export class CreateEvent extends Component {
                 <h5>Quiz</h5>
                 {(this.state.event.quiz.id > 0) ? (
                     <div>
-                        {this.state.event.quiz.name}
+                        <a href={"/CreateQuiz/" + this.props.match.params.id +"/"+ this.state.event.quiz.id}>{this.state.event.quiz.name} </a> 
                     </div>
                 ) : (
                     <div> </div>
