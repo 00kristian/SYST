@@ -58,7 +58,7 @@ export class CreateEvent extends Component {
                 {contents}
                 {(this.state.event.quiz.id > 0) ? (
                     <div>
-                        <a href={"/CreateQuiz/" + this.props.match.params.id +"/"+ this.state.event.quiz.id}>{this.state.event.quiz.name} </a> 
+                        <button className="btn btn-primary" onClick={this.editQuiz}>Edit quiz</button>
                     </div>
                 ) : (
                     <div> </div>
@@ -102,6 +102,14 @@ export class CreateEvent extends Component {
         history.push("/Events");
     }
 
+    editQuiz = async () => {
+        const quizid = this.state.quizid;
+        this.updateEvent();
+        await this.updateQuizId(quizid);
+        const { history } = this.props;
+        history.push("/CreateQuiz/" + this.props.match.params.id +"/"+ quizid);
+    }
+
     rerouteToCreateQuiz = async () => {
         let quiz = {
             "name": "New quiz"
@@ -139,7 +147,7 @@ export class CreateEvent extends Component {
         const data = await response.json();
         const response2 = await fetch('api/quiz');
         const data2 = await response2.json();
-        this.setState({  event : {name: data.name, date: new Date(data.date.split('T')[0]), location: data.location, quiz: data.quiz}, loading: false, quizes: data2 });
+        this.setState({  event : {name: data.name, date: new Date(data.date.split('T')[0]), location: data.location, quiz: data.quiz}, loading: false, quizes: data2, quizid: data.quiz.id});
     }
 
 }
