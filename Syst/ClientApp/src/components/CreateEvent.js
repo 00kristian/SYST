@@ -69,7 +69,7 @@ export class CreateEvent extends Component {
                 <button className="btn btn-primary rightbtn" onClick={this.rerouteToConfirmation}>Save event</button>
                 <br />
                 <br />
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToEvents}>Cancel</button>
+                <button className="btn btn-primary rightbtn" onClick={this.deleteEvent}>Cancel</button>
             </div>
         );
     }
@@ -149,5 +149,21 @@ export class CreateEvent extends Component {
         const data2 = await response2.json();
         this.setState({  event : {name: data.name, date: new Date(data.date.split('T')[0]), location: data.location, quiz: data.quiz}, loading: false, quizes: data2, quizid: data.quiz.id});
     }
+
+
+    deleteEvent = async () => {
+        
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(this.props.match.params.id)
+        };
+        await fetch('api/events'+"/"+this.props.match.params.id, requestOptions);
+
+        const { history } = this.props;
+        history.push("/events");
+    }
+
+
 
 }

@@ -47,8 +47,8 @@ namespace Infrastructure
         //Deletes a quiz given the quiz id
         public async Task<Status> Delete(int id){
 
-            var c = await _context.Quizes.Where(c => c.Id == id).FirstOrDefaultAsync();
-            
+            var c = await _context.Quizes.Include(q => q.Events).Include(s => s.Questions).Include(c => c.Candidates).Where(c => c.Id == id).FirstOrDefaultAsync();
+           
             if (c == default(Quiz)) return Status.NotFound;
 
             _context.Quizes.Remove(c);

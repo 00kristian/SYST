@@ -62,7 +62,7 @@ public class EventsQueryControllerTests
 
     //Testing starts here
     [Fact]
-    public async void Get_recent_returns_Recent()
+    public  void Get_recent_returns_Recent()
     {
         //Assert
         var logger = new Mock<ILogger<EventsController>>();
@@ -80,7 +80,7 @@ public class EventsQueryControllerTests
 
 
     [Fact]
-    public async void Get_upcoming_returns_Upcoming()
+    public void Get_upcoming_returns_Upcoming()
     {
         //Assert
         var logger = new Mock<ILogger<EventsController>>();
@@ -90,7 +90,7 @@ public class EventsQueryControllerTests
         var controller = new EventsQueryController(logger.Object, repository.Object);
 
         //Act
-        var response = controller.Get("upcoming");
+        var response =  controller.Get("upcoming");
 
         //Assert
         Assert.Equal(upcomingEvents, response.Result);
@@ -98,7 +98,7 @@ public class EventsQueryControllerTests
 
 
     [Fact]
-    public async void Get_neither_recent_nor_upcoming_returns_All()
+    public  void Get_neither_recent_nor_upcoming_returns_All()
     {
         //Assert
         var logger = new Mock<ILogger<EventsController>>();
@@ -108,7 +108,7 @@ public class EventsQueryControllerTests
         var controller = new EventsQueryController(logger.Object, repository.Object);
 
         //Act
-        var response = controller.Get("");
+        var response =  controller.Get("");
 
         //Assert
         Assert.Equal(events, response.Result);
