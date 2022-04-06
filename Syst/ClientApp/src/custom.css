@@ -42,6 +42,7 @@ code {
         background-color: #FF7837;
         border-color: #FF7837;
     }
+    
     .rightbtn {
         float: right; 
     }
@@ -58,50 +59,26 @@ code {
         border-color:#193CBE;
  
     }
+    .minusbtn {
+        /*margin-left: 45.5%;*/
+        float:right;
+        color: #FF7837;
+        background-color: #fff;
+        border-color: #FF7837;
+    }
+
+    .minusbtn2 {
+        margin-left: 41%;
+        color: #FF7837;
+        background-color: #fff;
+        border-color: #FF7837;
+    }
     
-
-/*
-.btn-primary:hover {
-    color: #fff;
-    background-color: #1D1C1C;
-    border-color: #1D1C1C;
-}
-
-.btn-primary:active {
-    color: #fff;
-    background-color: #FF7837;
-    border-color: #FF7837;
-}
-
-.btn-primary:focus {
-    color: #fff;
-    background-color: #FF7837;
-    border-color: #FF7837;
-}
-
-.rightbtn {
-    float: right; 
-}
-
-.minusbtn {
-    margin-left: 45.5%;
-    color: #FF7837;
-    background-color: #fff;
-    border-color: #FF7837;
-}
-
-.minusbtn2 {
-    margin-left: 41%;
-    color: #FF7837;
-    background-color: #fff;
-    border-color: #FF7837;
-}
-
-.confirmationbtn {
-    padding: 0.5%;
-    padding-left: 4%;
-    padding-right: 4%;
-}*/
+    .confirmationbtn {
+        padding: 0.5%;
+        padding-left: 4%;
+        padding-right: 4%;
+    }
 
 
 .btn-host {
@@ -127,7 +104,7 @@ code {
         width: 250%
     }
 
-/*.btn-cancel {
+.btn-cancel {
     color: #FF7837;
     background-color: #fff;
     border-color: #FF7837;
@@ -136,18 +113,6 @@ code {
 .btn-modify {
     margin-left: 33%;
 }
-
-.input-field {
-    width: 600px;
-    background-color: #DCE2E6;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}*/
-
 
 .space{
     padding-top: 4%;
@@ -243,14 +208,8 @@ code {
     margin-right: 1.5%;
 }
 
-/*.flex {
+.flex {
     display: flex;
-}
-
-.CorrectLabel {
-    font-size: medium;
-    padding-left: 63%;
-    padding-right: 1%;
 }
 
 .imageLabel {
@@ -259,4 +218,4 @@ code {
 
 .questionLabel {
     margin-bottom: 2%;
-}*/
+}

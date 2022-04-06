@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css'
 
 
@@ -81,6 +80,7 @@ export class CreateQuestion extends Component {
                 <br/>
 
                 {contents}
+                
                 <button className="btn btn-primary" type="button" onClick={() => this.addOptionFields()}>+</button>
                 <button className="btn minusbtn" type="button" onClick={() => this.removeOptionFields()}>-</button>
                 <br />
