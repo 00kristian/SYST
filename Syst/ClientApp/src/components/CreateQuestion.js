@@ -57,7 +57,7 @@ export class CreateQuestion extends Component {
                                 <label className="CorrectLabel">Correct answer?</label>
                                 <input type = "radio" name="correctAnswer" onClick={(event) => ques.Answer = ops[index]}/>
                             </h5>
-                            <input placeholder={"Answer option"} className= "input-field" onChange={(event) => ops[index] = event.target.value} />
+                            <input placeholder={ops[index]} className= "input-field" onChange={(event) => ops[index] = event.target.value} />
                         </label>
                     </div>
                     )
