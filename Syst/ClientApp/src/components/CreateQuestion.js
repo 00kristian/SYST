@@ -30,10 +30,10 @@ export class CreateQuestion extends Component {
         }))
     }
 
-    removeOptionFields(i) {
+    removeOptionFields() {
         let inputValues = this.state.Options;
-        inputValues.splice(i, 1);
-        this.setState({ Options });
+        inputValues.pop();
+        this.setState({ Options : inputValues });
     }
 
     static renderQuestion (ques, ops) {
