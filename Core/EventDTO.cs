@@ -19,7 +19,6 @@ namespace Core {
         
         ICollection<CandidateDTO> Candidates,
 
-        [Required]
         QuizDTO Quiz,
 
         [Required]

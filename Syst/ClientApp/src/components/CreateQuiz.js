@@ -84,8 +84,8 @@ export class CreateQuiz extends Component {
                 <br />
                 <br />
                 <br />
-                <button className="btn btn-primary rightbtn " onClick={this.rerouteToEvents}>Cancel</button>
                 <button className="btn btn-primary rightbtn " onClick={this.rerouteToConfirmation}>Confirm</button>
+                <button className='btn btn-primary leftbtn' onClick={this.deleteQuiz}>Back</button>
             </div>
         );
     }
@@ -136,6 +136,19 @@ export class CreateQuiz extends Component {
                 Questions: [...this.state.Questions, {Representation : x.representation, Id : x.id}]
             }))
         }
+    }
+
+    deleteQuiz = async () => {
+        
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(this.props.match.params.id)
+        };
+        await fetch('api/quiz'+"/"+this.props.match.params.id, requestOptions);
+
+        const { history } = this.props;
+        history.push("/CreateEvent/"+ this.props.match.params.event_id);
     }
 
 }

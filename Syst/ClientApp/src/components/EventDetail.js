@@ -12,7 +12,7 @@ export class EventDetail extends Component {
     this.populateData();
   }
 
-  static renderEvent(event, edit, deleteQuiz) {
+  static renderEvent(event, edit, deleteEvent) {
     return (
         <div>
             <h1>{event.name}</h1>
@@ -46,7 +46,7 @@ export class EventDetail extends Component {
                 </tbody>
             </table>
             <a href={'/events'}> <button className="btn btn-primary rightbtn">Back</button> </a>
-            <a> <button className="btn btn-primary leftbtn" onClick={()=>deleteQuiz()}>Delete event</button> </a>
+            <a> <button className="btn btn-primary leftbtn" onClick={()=>deleteEvent()}>Delete event</button> </a>
 
         </div>
         
@@ -56,7 +56,7 @@ export class EventDetail extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : EventDetail.renderEvent(this.state.event, this.edit, this.deleteQuiz);
+      : EventDetail.renderEvent(this.state.event, this.edit, this.deleteEvent);
 
     return (
       <div>
@@ -77,7 +77,7 @@ export class EventDetail extends Component {
   }
 
 
-  deleteQuiz = async () => {
+  deleteEvent = async () => {
         
     const requestOptions = {
         method: 'DELETE',

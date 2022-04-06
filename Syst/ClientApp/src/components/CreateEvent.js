@@ -69,7 +69,7 @@ export class CreateEvent extends Component {
                 <button className="btn btn-primary rightbtn" onClick={this.rerouteToConfirmation}>Save event</button>
                 <br />
                 <br />
-                <button className="btn btn-primary rightbtn" onClick={this.deleteQuiz}>Cancel</button>
+                <button className="btn btn-primary rightbtn" onClick={this.deleteEvent}>Cancel</button>
             </div>
         );
     }
@@ -151,7 +151,7 @@ export class CreateEvent extends Component {
     }
 
 
-    deleteQuiz = async () => {
+    deleteEvent = async () => {
         
         const requestOptions = {
             method: 'DELETE',

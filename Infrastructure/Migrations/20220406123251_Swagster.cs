@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Swagster : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
