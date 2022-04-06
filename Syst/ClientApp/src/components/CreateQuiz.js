@@ -30,8 +30,9 @@ export class CreateQuiz extends Component {
         }))
     }
 
-    async removeQuestion(i) {
+    async removeQuestion() {
         let Questions = this.state.Questions;
+        if (Questions.length == 0) return;
         await fetch('api/Questions/' + Questions[Questions.length - 1].Id, {method: 'DELETE'});
 
         Questions.pop();
@@ -106,8 +107,8 @@ export class CreateQuiz extends Component {
         await fetch('api/quiz/' + this.props.match.params.id, requestOptions);
     }
 
-    rerouteToConfirmation = () => {
-        this.updateQuiz();
+    rerouteToConfirmation = async () => {
+        await this.updateQuiz();
 
         const { history } = this.props;
         history.push("/CreateEvent/"+ this.props.match.params.event_id);
@@ -118,7 +119,6 @@ export class CreateQuiz extends Component {
         history.push("/Events");
     }
 
-    //not used!
     rerouteToQuestions = (id) => {
         this.updateQuiz();
 

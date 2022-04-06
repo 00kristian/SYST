@@ -32,6 +32,7 @@ export class CreateQuestion extends Component {
 
     removeOptionFields() {
         let inputValues = this.state.Options;
+        if (inputValues.length == 0) return;
         inputValues.pop();
         this.setState({ Options : inputValues });
     }
@@ -89,7 +90,7 @@ export class CreateQuestion extends Component {
         );
     }
 
-    confirm = () => {
+    confirm = async () => {
         let question = {
             "representation": this.state.Question.Representation,
             "answer": this.state.Question.Answer,
@@ -101,7 +102,7 @@ export class CreateQuestion extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(question)
         };
-        fetch('api/questions/' + this.props.match.params.id, requestOptions);
+        await fetch('api/questions/' + this.props.match.params.id, requestOptions);
         const { history } = this.props;
         history.push("/CreateQuiz/"+this.props.match.params.event_id+ "/"+ this.props.match.params.quiz_id);
     }
