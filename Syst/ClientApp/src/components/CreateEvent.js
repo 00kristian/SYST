@@ -68,9 +68,8 @@ export class CreateEvent extends Component {
                 <br />
                 <button className="btn btn-primary rightbtn" onClick={this.rerouteToConfirmation}>Save event</button>
                 <br />
-                <button className="btn btn-primary rightbtn" onClick={this.deleteQuiz}>Delete Event</button>
                 <br />
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToEvents}>Cancel</button>
+                <button className="btn btn-primary rightbtn" onClick={this.deleteQuiz}>Cancel</button>
             </div>
         );
     }
@@ -159,7 +158,6 @@ export class CreateEvent extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(this.props.match.params.id)
         };
-        console.log(this.props.match.params.id)
         await fetch('api/events'+"/"+this.props.match.params.id, requestOptions);
 
         const { history } = this.props;
