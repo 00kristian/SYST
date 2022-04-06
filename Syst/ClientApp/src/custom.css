@@ -46,6 +46,20 @@ code {
     float: right; 
 }
 
+.minusbtn {
+    margin-left: 45.5%;
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #FF7837;
+}
+
+.minusbtn2 {
+    margin-left: 41%;
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #FF7837;
+}
+
 .confirmationbtn {
     padding: 0.5%;
     padding-left: 4%;
@@ -56,6 +70,16 @@ code {
     color: #FF7837;
     background-color: #fff;
     border-color: #fff;
+}
+
+.btn-cancel {
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #FF7837;
+}
+
+.btn-modify {
+    margin-left: 33%;
 }
 
 .input-field {
@@ -147,4 +171,18 @@ code {
 
 .flex {
     display: flex;
+}
+
+.CorrectLabel {
+    font-size: medium;
+    padding-left: 63%;
+    padding-right: 1%;
+}
+
+.imageLabel {
+    padding-top: 2%;
+}
+
+.questionLabel {
+    margin-bottom: 2%;
 }
