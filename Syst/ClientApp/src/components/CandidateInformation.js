@@ -140,7 +140,7 @@ export class CandidateInformation extends Component {
                         </div>
                     ) : (
                     <div>
-                        <p><input type="checkbox" onClick={this.checkedBox}/> Accept that Systematic can store your information <a href='https://systematic.com/da-dk/kontakt/privacy-policyings/'>Read more</a></p>
+                        <p><input type="checkbox" onClick={(event) => this.checkedBox(event)}/> Accept that Systematic can store your information <a href='https://systematic.com/da-dk/kontakt/privacy-policyings/'>Read more</a></p>
                     </div>
                     )}
                     <p><input type="checkbox" id='checkbox'/> Accept Systematics newsletters........</p>
@@ -169,55 +169,24 @@ export class CandidateInformation extends Component {
         }
     }
 
-    checkedBox = () => {
-        if(this.state.validateCheckBox == false){
-            this.setState({validateCheckBox : true})
-        }else {
-            this.setState({validateCheckBox : false})
-        }
+    checkedBox = (e) => {
+        this.setState({validateCheckBox : e.target.checked})
     }
 
     rerouteToCandidateConfirmation = () => {
 
         this.setState({clickedOnSubmit : true});
 
-    
-
-        if(this.state.Name.length == 0){
-            this.setState({validateName : true});
-        }
-
-        if(!this.state.Name.length == 0){
-            this.setState({validateName : false});
-        }
-
-        if(this.state.Email.length == 0){
-            this.setState({validateEmail : true});
-        }
-
-        if(!this.state.Email.length == 0){
-            this.setState({validateEmail : false});
-        }
-
-        if(this.state.University.length == 0){
-            this.setState({validateUniversity : true});
-        }
-
-        if(!this.state.University.length == 0){
-            this.setState({validateUniversity : false})
-        }
-
-        if(this.state.StudyProgram.length == 0){
-            this.setState({validateStudyProgram : true});
-        }
-
-        if(!this.state.StudyProgram.length == 0){
-            this.setState({validateStudyProgram : false});
-        }
+        const NameGood = this.state.Name.length != 0;
+        const EmailGood = this.state.Email.length != 0;
+        const UniversityGood = this.state.University.length != 0;
+        const StudyProgramGood = this.state.StudyProgram.length != 0;
+        const CheckBoxGood = this.state.validateCheckBox;
 
         
-        
-        if(!this.state.Name.length == 0 && !this.state.Email.length == 0 && !this.state.StudyProgram == 0 && !this.state.validateUniversity ==0 && this.state.validateCheckBox == true) {
+        if(NameGood && EmailGood && UniversityGood && StudyProgramGood && CheckBoxGood) {
+
+
             let candidate = {
                 "name": this.state.Name,
                 "email": this.state.Email,
