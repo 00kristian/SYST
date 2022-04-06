@@ -12,7 +12,7 @@ export class EventDetail extends Component {
     this.populateData();
   }
 
-  static renderEvent(event, edit) {
+  static renderEvent(event, edit, deleteQuiz) {
     return (
         <div>
             <h1>{event.name}</h1>
@@ -46,6 +46,8 @@ export class EventDetail extends Component {
                 </tbody>
             </table>
             <a href={'/events'}> <button className="btn btn-primary rightbtn">Back</button> </a>
+            <a> <button className="btn btn-primary leftbtn" onClick={()=>deleteQuiz()}>Delete event</button> </a>
+
         </div>
         
     );
@@ -54,7 +56,7 @@ export class EventDetail extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : EventDetail.renderEvent(this.state.event, this.edit);
+      : EventDetail.renderEvent(this.state.event, this.edit, this.deleteQuiz);
 
     return (
       <div>
@@ -73,4 +75,19 @@ export class EventDetail extends Component {
     const data = await response.json();
     this.setState({ event: data, loading: false });
   }
+
+
+  deleteQuiz = async () => {
+        
+    const requestOptions = {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(this.props.match.params.id)
+    };
+    console.log(this.props.match.params.id)
+    await fetch('api/events'+"/"+this.props.match.params.id, requestOptions);
+
+    const { history } = this.props;
+    history.push("/events");
+}
 }
