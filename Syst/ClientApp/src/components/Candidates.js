@@ -12,7 +12,9 @@ export class Candidates extends Component {
         this.populateData();
     }
 
-    static renderCandidatesTable(candidates) {
+    static renderCandidatesTable(candidates, delFun) {
+
+    
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
@@ -34,17 +36,19 @@ export class Candidates extends Component {
                         <td>{candidate.university}</td>
                         <td>{candidate.studyProgram}</td>
                         <td>{candidate.graduationDate}</td>
+                        <td><button className="btn btn-primary rightbtn" onClick={()=>delFun(candidate.id)}>Delete</button></td>
                     </tr>
                 )}
                 </tbody>
             </table>
         );
+
     }
 
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : Candidates.renderCandidatesTable(this.state.candidates);
+            : Candidates.renderCandidatesTable(this.state.candidates, this.clickToDeleteCandidate);
 
         return (
             <div>
@@ -52,6 +56,7 @@ export class Candidates extends Component {
                 {contents}
             </div>
         );
+
     }
 
     async populateData() {
@@ -59,4 +64,13 @@ export class Candidates extends Component {
         const data = await response.json();
         this.setState({ candidates: data, loading: false });
     }
-}
+
+    clickToDeleteCandidate = async (id) => {
+        await fetch('api/candidates/' + id, {
+            method: 'DELETE'
+        });
+        this.populateData();
+    }
+       
+} 
+ 

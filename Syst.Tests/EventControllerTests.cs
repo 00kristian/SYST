@@ -95,7 +95,11 @@ public class EventControllerTests
     {
         //Arrange
         var logger = new Mock<ILogger<EventsController>>();
-        var updater = event2;
+        var updater = new CreateEventDTO() {
+            Name = event2.Name,
+            Date = event2.Date,
+            Location = event2.Location
+        };
         var oldEvent = event1;
         var repository = new Mock<IEventRepository>();
 
@@ -122,11 +126,16 @@ public class EventControllerTests
         //Arrange
         var logger = new Mock<ILogger<EventsController>>();
         var repository = new Mock<IEventRepository>();
-        repository.Setup(m => m.Update(99, event2)).ReturnsAsync((Status.NotFound));
+        var updater = new CreateEventDTO() {
+            Name = event2.Name,
+            Date = event2.Date,
+            Location = event2.Location
+        };
+        repository.Setup(m => m.Update(99, updater)).ReturnsAsync((Status.NotFound));
         var controller = new EventsController(logger.Object, repository.Object);
 
         //Act
-        var response = await controller.Put(99, event2);
+        var response = await controller.Put(99, updater);
 
         //Assert
         Assert.IsType<NotFoundResult>(response);
@@ -183,6 +192,22 @@ public class EventControllerTests
         Assert.IsType<CreatedAtActionResult>(response);
         Assert.Equal(2, events.Count);
     }
+    [Fact]
+	public async void Post_null_DTO_returns_StatusConflict()
+	{
+		//Arrange
+		var logger = new Mock<ILogger<EventsController>>();
+		var repository = new Mock<IEventRepository>();
+		var newEvent = default(CreateEventDTO);
+		repository.Setup(m => m.Create(newEvent)).ReturnsAsync(() => (Status.Conflict, 0));
+		var controller = new EventsController(logger.Object, repository.Object);
+
+		//Act
+		var response = await controller.Post(newEvent);
+
+		//Assert
+		Assert.IsType<ConflictObjectResult>(response);
+	}
 
     [Fact]
     public async void Post_existing_id_returns_StatusConflict() 
@@ -205,7 +230,7 @@ public class EventControllerTests
     }
 
     [Fact]
-    public void Get_all_returns_all_quizes()
+    public void Get_all_returns_all_events()
     {
         var logger = new Mock<ILogger<EventsController>>();
         var repository = new Mock<IEventRepository>();

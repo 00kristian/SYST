@@ -38,7 +38,7 @@ public class CandidateRepositoryTests{
     {
         //Arrange
 
-        var candidate1 = new CreateCandidateDTO {Name = "Oscar Nielsen", Email = "osni@itu.dk", StudyProgram = "Bsc Datalogi", University = "ITU",  GraduationDate =(new DateTime{}).ToShortDateString() };
+        var candidate1 = new CreateCandidateDTO {Name = "Oscar Nielsen", Email = "osni@itu.dk", StudyProgram = "Bsc Datalogi", University = "ITU",  GraduationDate =(new DateTime{}).ToString("yyyy-MM-dd") };
 
 
         //Act
@@ -53,7 +53,7 @@ public class CandidateRepositoryTests{
     public async void Create_Returns_Conflict_When_Name_Is_In_the_database()
     {
         //Arrange
-         var newCandidate = new CreateCandidateDTO { Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "ITU", GraduationDate = (new DateTime{}).ToShortDateString()};
+         var newCandidate = new CreateCandidateDTO { Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "ITU", GraduationDate = (new DateTime{}).ToString("yyyy-MM-dd")};
 
 
         //Act
@@ -102,7 +102,7 @@ public class CandidateRepositoryTests{
         Assert.Equal(candidate1.StudyProgram, actual.Item2.StudyProgram);
 
         Assert.Equal(candidate1.University, actual.Item2.University);
-        Assert.Equal(candidate1.GraduationDate.ToShortDateString(), actual.Item2.GraduationDate);
+        Assert.Equal(candidate1.GraduationDate.ToString("yyyy-MM-dd"), actual.Item2.GraduationDate);
 
     }
 
@@ -129,8 +129,8 @@ public class CandidateRepositoryTests{
         //assert
         Assert.Collection(candidates,
 
-            candidate => Assert.Equal(new CandidateDTO(1,"Lukas Hjelmstrand", "luhj@itu.dk", "Bsc i Softwareudvikling", "ITU",(new DateTime{}).ToShortDateString(),  null!, new QuizDTO { }), candidate),
-            candidate => Assert.Equal(new CandidateDTO(2, "Maj Frost Jensen", "mfje@itu.dk", "Msc i Computer Science", "CBS",(new DateTime{}).ToShortDateString(), null!, new QuizDTO { }), candidate)
+            candidate => Assert.Equal(new CandidateDTO(1,"Lukas Hjelmstrand", "luhj@itu.dk", "Bsc i Softwareudvikling", "ITU",(new DateTime{}).ToString("yyyy-MM-dd"),  null!, new QuizDTO { }), candidate),
+            candidate => Assert.Equal(new CandidateDTO(2, "Maj Frost Jensen", "mfje@itu.dk", "Msc i Computer Science", "CBS",(new DateTime{}).ToString("yyyy-MM-dd"), null!, new QuizDTO { }), candidate)
 
         );
     }
@@ -145,7 +145,7 @@ public class CandidateRepositoryTests{
             Name = "Camille Gonnsen",
             Email = "cgon@itu.dk",
             Events = new List<EventDTO>(){},
-            GraduationDate = new DateTime{}.ToShortDateString()
+            GraduationDate = new DateTime{}.ToString("yyyy-MM-dd")
         };
 
         //Act
@@ -165,7 +165,7 @@ public class CandidateRepositoryTests{
             Email = "sacc@itu.dk",
             Events = new List<EventDTO>(){},
             University = "ITU",
-            GraduationDate = new DateTime{}.ToShortDateString()
+            GraduationDate = new DateTime{}.ToString("yyyy-MM-dd")
         };
 
         //Act

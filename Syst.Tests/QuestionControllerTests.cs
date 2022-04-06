@@ -176,7 +176,7 @@ public class QuestionsControllerTests
         var logger = new Mock<ILogger<QuestionsController>>();
         var repository = new Mock<IQuestionRepository>();
         var oldQuestion = Q2;
-        var newQuestion = new QuestionDTO(2, "What will printet lastly?", "B", null, new List<string>{"Cat", "Dog", "Mouse", "Bunny"}, quiz1);
+        var newQuestion = new CreateQuestionDTO("What will printet lastly?", "B", new List<string>{"Cat", "Dog", "Mouse", "Bunny"}, "img");
         repository.Setup(q => q.Update(2, newQuestion)).Callback(() => {
             oldQuestion.Answer = newQuestion.Answer;
         }).ReturnsAsync(Status.Updated);
@@ -197,11 +197,17 @@ public class QuestionsControllerTests
         //Arrange
         var logger = new Mock<ILogger<QuestionsController>>();
         var repository = new Mock<IQuestionRepository>();
-        repository.Setup(q => q.Update(420, Q2)).ReturnsAsync((Status.NotFound));
+        var Q2b = new CreateQuestionDTO() {
+            Representation = Q2.Representation,
+            Answer = Q2.Answer,
+            Options = Q2.Options,
+            ImageURl = Q2.ImageURl
+        };
+        repository.Setup(q => q.Update(420, Q2b)).ReturnsAsync((Status.NotFound));
         var controller = new QuestionsController(logger.Object, repository.Object);
 
         //Act
-        var actual = await controller.Put(420, Q2);
+        var actual = await controller.Put(420, Q2b);
 
         //Assert
         Assert.IsType<NotFoundResult>(actual);

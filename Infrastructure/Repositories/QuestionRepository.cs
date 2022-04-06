@@ -38,7 +38,7 @@ namespace Infrastructure
                 Id = q.Id,
                 Answer = q.Answer!,
                 ImageURl = q.ImageURL!,
-                //Options = q.Options!
+                Options = q.Options!
             }).FirstOrDefaultAsync();
 
             if (q == default(QuestionDTO)) return (Status.NotFound, q);
@@ -56,7 +56,7 @@ namespace Infrastructure
             }).ToListAsync();
 
         //Updates a representation, answer, imageURL and options
-        public async Task<Status> Update(int id, QuestionDTO questionDTO)
+        public async Task<Status> Update(int id, CreateQuestionDTO questionDTO)
         {
             var q = await _context.Questions.Where(q => q.Id == id).FirstOrDefaultAsync();
 

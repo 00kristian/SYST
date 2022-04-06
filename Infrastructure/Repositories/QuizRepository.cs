@@ -47,8 +47,8 @@ namespace Infrastructure
         //Deletes a quiz given the quiz id
         public async Task<Status> Delete(int id){
 
-            var c = await _context.Quizes.Where(c => c.Id == id).FirstOrDefaultAsync();
-            
+            var c = await _context.Quizes.Include(q => q.Events).Include(s => s.Questions).Include(c => c.Candidates).Where(c => c.Id == id).FirstOrDefaultAsync();
+           
             if (c == default(Quiz)) return Status.NotFound;
 
             _context.Quizes.Remove(c);
@@ -61,9 +61,13 @@ namespace Infrastructure
         public async Task<(Status, QuizDTO)> Read(int id)
         {
             
-            var quiz = await _context.Quizes.Where(q => q.Id == id).Select(q => new QuizDTO(){
+            var quiz = await _context.Quizes.Include(q => q.Questions).Where(q => q.Id == id).Select(q => new QuizDTO(){
                 Id = q.Id,
                 Name = q.Name!,
+                Questions = q.Questions!.Select(qs => new QuestionDTO {
+                    Id = qs.Id,
+                    Representation = qs.Representation!
+                }).ToList()
                 
             }).FirstOrDefaultAsync();
 
@@ -90,6 +94,47 @@ namespace Infrastructure
             await _context.SaveChangesAsync();
 
             return Status.Updated;
+        }
+
+        //TODO: Test this!
+        public async Task<(Status, int id)> AddQuestion(int id, CreateQuestionDTO question)
+        {
+            var q = await _context.Quizes.Include(q => q.Questions).Where(q => q.Id == id).FirstOrDefaultAsync();
+
+            if (q == default(Quiz)) return (Status.NotFound, -1);
+
+            if (q.Questions == null) {
+                q.Questions = new List<Question>();
+            }
+
+            var ques = new Question() {
+                Representation = question.Representation,
+                Answer = question.Answer,
+                ImageURL = question.ImageURl,
+                Options = question.Options
+            };
+
+            q.Questions.Add(ques);
+
+            await _context.SaveChangesAsync();
+
+            return (Status.Updated, ques.Id);
+        }
+
+        //TODO: Test this!
+        public async Task<Status> RemoveQuestion(int quizId, int questionId)
+        {
+            var quiz = await _context.Quizes.Include(q => q.Questions).Where(q => q.Id == quizId).FirstOrDefaultAsync();
+
+            if (quiz == default(Quiz)) return Status.NotFound;
+
+            var ques = quiz.Questions!.Where(q => q.Id == questionId).FirstOrDefault();
+
+            if (ques == default(Question)) return Status.NotFound;
+
+            quiz.Questions!.Remove(ques);
+
+            return(Status.Updated);
         }
     }
 }

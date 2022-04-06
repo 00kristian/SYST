@@ -85,7 +85,7 @@ export class Events extends Component {
                 {UpcomingContents}
                 <br/>
                 <h3 className='space'>Recent Events
-                    <button className="btn btn-primary rightbtn" >View All</button>
+                    <button className="btn btn-primary rightbtn">View All</button>
                 </h3>
                 {RecentContents}
             </div>
@@ -108,7 +108,8 @@ export class Events extends Component {
             body: JSON.stringify(event)
         };
         let id = await fetch('api/events', requestOptions)
-            .then(response => response.json())
+          .then(response => response.json())
+
         const { history } = this.props;
         history.push("/CreateEvent/"+id);
     }

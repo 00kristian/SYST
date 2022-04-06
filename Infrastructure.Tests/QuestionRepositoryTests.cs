@@ -113,8 +113,7 @@ public class QuestionsRepositoryTests {
     public async void Update_returns_status_Updated_when_given_existing_id()
     {
         // Arrange
-        var newQuestion = new QuestionDTO{
-            Id = 1, 
+        var newQuestion = new CreateQuestionDTO{
             Representation="New string",
             Answer="This is the new answer"
         };
@@ -130,8 +129,7 @@ public class QuestionsRepositoryTests {
     [Fact]
     public async void Update_returns_not_found_when_given_nonexisiting_idAsync()
     {
-         var newQuestion = new QuestionDTO{ 
-            Id=52,
+         var newQuestion = new CreateQuestionDTO{ 
             Representation="New string",
             Answer="This is the new answer"
         };

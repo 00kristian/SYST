@@ -26,6 +26,7 @@ code {
     margin-top: 1%;
 }
 
+
     .btn-primary:hover {
         color: #fff;
         background-color: #1D1C1C;
@@ -58,11 +59,57 @@ code {
  
     }
     
+
+/*
+.btn-primary:hover {
+    color: #fff;
+    background-color: #1D1C1C;
+    border-color: #1D1C1C;
+}
+
+.btn-primary:active {
+    color: #fff;
+    background-color: #FF7837;
+    border-color: #FF7837;
+}
+
+.btn-primary:focus {
+    color: #fff;
+    background-color: #FF7837;
+    border-color: #FF7837;
+}
+
+.rightbtn {
+    float: right; 
+}
+
+.minusbtn {
+    margin-left: 45.5%;
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #FF7837;
+}
+
+.minusbtn2 {
+    margin-left: 41%;
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #FF7837;
+}
+
+.confirmationbtn {
+    padding: 0.5%;
+    padding-left: 4%;
+    padding-right: 4%;
+}*/
+
+
 .btn-host {
     color: #FF7837;
     background-color: #fff;
     border-color: #fff;
 }
+
 
     .input-field {
         width: 100%;
@@ -79,6 +126,28 @@ code {
     .q-field {
         width: 250%
     }
+
+/*.btn-cancel {
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #FF7837;
+}
+
+.btn-modify {
+    margin-left: 33%;
+}
+
+.input-field {
+    width: 600px;
+    background-color: #DCE2E6;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}*/
+
 
 .space{
     padding-top: 4%;
@@ -146,10 +215,16 @@ code {
     padding-right: 3%;
 }
 
+
+#red-text{
+    color: red;
+}
+
 .CreateQPage {
     padding-right: 5%;
     padding-left: 5%;
 }
+
 
 .flex-container {
     display: flex;
@@ -167,3 +242,21 @@ code {
 .cText {
     margin-right: 1.5%;
 }
+
+/*.flex {
+    display: flex;
+}
+
+.CorrectLabel {
+    font-size: medium;
+    padding-left: 63%;
+    padding-right: 1%;
+}
+
+.imageLabel {
+    padding-top: 2%;
+}
+
+.questionLabel {
+    margin-bottom: 2%;
+}*/

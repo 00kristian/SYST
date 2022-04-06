@@ -51,7 +51,7 @@ namespace Infrastructure
                 Email = c.Email!,
                 StudyProgram = c.StudyProgram!,
                 University = c.University!,
-                GraduationDate = c.GraduationDate.ToShortDateString()
+                GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd")
             }).FirstOrDefaultAsync();
 
             if (c == default(CandidateDTO)) return (Status.NotFound, c);
@@ -66,7 +66,7 @@ namespace Infrastructure
                 Email = c.Email!,
                 StudyProgram = c.StudyProgram!,
                 University = c.University!,
-                GraduationDate = c.GraduationDate.ToShortDateString()
+                GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd")
             }).ToListAsync();
 
         //Updates an candidate name, email, university and study program values
