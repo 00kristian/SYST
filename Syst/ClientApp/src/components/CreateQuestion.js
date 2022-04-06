@@ -52,10 +52,11 @@ export class CreateQuestion extends Component {
                 {ops.map((answer, index) =>
                     <div key={index}>
                         <label>
-                            <h5>Option {options[index]}</h5>
-                            <label>Correct answer?</label>
-                            <input type = "radio" name="correctAnswer" onClick={(event) => ques.Answer = ops[index]}/>
-                            <input placeholder={ops[index]} className= "input-field" onChange={(event) => ops[index] = event.target.value} />
+                            <h5>Option {options[index]}
+                                <label className="CorrectLabel">Correct answer?</label>
+                                <input type = "radio" name="correctAnswer" onClick={(event) => ques.Answer = ops[index]}/>
+                            </h5>
+                            <input placeholder={"Answer option"} className= "input-field" onChange={(event) => ops[index] = event.target.value} />
                         </label>
                     </div>
                     )
@@ -74,15 +75,15 @@ export class CreateQuestion extends Component {
                 <h2>Here you can create a question </h2>
                 <br/>
                 {contents}
-                <button className="btn btn-primary" type="button" onClick={() => this.removeOptionFields()}>-</button>
-                    <button className="btn btn-primary" type="button" onClick={() => this.addOptionFields()}>+</button>
+                <button className="btn btn-primary" type="button" onClick={() => this.addOptionFields()}>+</button>
+                <button className="btn minusbtn" type="button" onClick={() => this.removeOptionFields()}>-</button>
                 <br />
-                <h5>Select an image for the question</h5>
+                <h5 className="imageLabel">Select an image for the question</h5>
                 <button className="btn btn-primary leftbtn" >Upload Image</button>
                 <br />
                 <br />
                 <br />
-                <button className="btn btn-primary leftbtn" onClick={this.rerouteToQuiz}>Cancel</button>
+                <button className="btn btn-cancel" onClick={this.rerouteToQuiz}>Cancel</button>
                 <button className="btn btn-primary rightbtn" onClick={this.confirm}>Confirm</button>
             </div>
         );
