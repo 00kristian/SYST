@@ -183,7 +183,11 @@ export class CandidateInformation extends Component {
         const StudyProgramGood = this.state.StudyProgram.length != 0;
         const CheckBoxGood = this.state.validateCheckBox;
 
-        
+        this.setState({validateName : !NameGood});
+        this.setState({validateEmail : !EmailGood});
+        this.setState({validateUniversity : !UniversityGood});
+        this.setState({validateStudyProgram : !StudyProgramGood});
+
         if(NameGood && EmailGood && UniversityGood && StudyProgramGood && CheckBoxGood) {
 
 
