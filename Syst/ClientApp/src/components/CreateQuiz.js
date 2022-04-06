@@ -56,10 +56,11 @@ export class CreateQuiz extends Component {
                     <br />
                     <br />
                     {Questions.map((answer, index) =>
-                        <div key={index} className="flex">
-                            <h5> Question {index + 1} </h5>
-                            <label>{Questions[index].Representation}</label>
-                            <button onClick={() => onCli(Questions[index].Id)}> Modify </button>
+                        <div key={index}>
+                            <h5> Question {index + 1}
+                                <button className="btn btn-primary btn-modify" onClick={() => onCli(Questions[index].Id)}> Modify </button>
+                            </h5>
+                            <label className="questionLabel">{Questions[index].Representation}</label>
                         </div>
                         )
                     }
@@ -76,15 +77,15 @@ export class CreateQuiz extends Component {
         return (
             <div>
                 {contents}
-                <button className="btn btn-primary" type="button" onClick={() => this.removeQuestion()}>-</button>
-                <button className="btn btn-primary" type="button" onClick={() => this.addQuestion()}>+</button>         
+                <button className="btn btn-primary" type="button" onClick={() => this.addQuestion()}>+</button> 
+                <button className="btn minusbtn2" type="button" onClick={() => this.removeQuestion()}>-</button>        
                 <br />
                 <br />
                 <br />
                 <br />
                 <br />
                 <br />
-                <button className="btn btn-primary rightbtn " onClick={this.rerouteToEvents}>Cancel</button>
+                <button className="btn btn-cancel" onClick={this.rerouteToEvents}>Cancel</button>
                 <button className="btn btn-primary rightbtn " onClick={this.rerouteToConfirmation}>Confirm</button>
             </div>
         );

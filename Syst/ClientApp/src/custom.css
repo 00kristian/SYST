@@ -53,6 +53,13 @@ code {
     border-color: #FF7837;
 }
 
+.minusbtn2 {
+    margin-left: 41%;
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #FF7837;
+}
+
 .confirmationbtn {
     padding: 0.5%;
     padding-left: 4%;
@@ -69,6 +76,10 @@ code {
     color: #FF7837;
     background-color: #fff;
     border-color: #FF7837;
+}
+
+.btn-modify {
+    margin-left: 33%;
 }
 
 .input-field {
@@ -170,4 +181,8 @@ code {
 
 .imageLabel {
     padding-top: 2%;
+}
+
+.questionLabel {
+    margin-bottom: 2%;
 }
