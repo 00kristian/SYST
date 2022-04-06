@@ -68,7 +68,7 @@ export class CreateEvent extends Component {
                 <br />
                 <button className="btn btn-primary rightbtn" onClick={this.rerouteToConfirmation}>Save event</button>
                 <br />
-                <button className="btn btn-primary rightbtn" onClick={this.deleteQuiz}>Delete Quiz</button>
+                <button className="btn btn-primary rightbtn" onClick={this.deleteQuiz}>Delete Event</button>
                 <br />
                 <button className="btn btn-primary rightbtn" onClick={this.rerouteToEvents}>Cancel</button>
             </div>
