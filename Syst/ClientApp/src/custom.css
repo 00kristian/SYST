@@ -1,8 +1,8 @@
 /* Provide sufficient contrast against white background */
+
 a {
   color: #0366d6;
 }
-
 
 .confirmationText {
     padding: 2%;
@@ -22,8 +22,45 @@ code {
     color: #fff;
     background-color: #FF7837;
     border-color: #FF7837;
+    margin-bottom: 1%;
+    margin-top: 1%;
 }
 
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #1D1C1C;
+        border-color: #1D1C1C;
+    }
+    .btn-primary:active {
+        color: #fff;
+        background-color: #FF7837;
+        border-color: #FF7837;
+    }
+    .btn-primary:focus {
+        color: #fff;
+        background-color: #FF7837;
+        border-color: #FF7837;
+    }
+    .rightbtn {
+        float: right; 
+    }
+    .confirmationbtn {
+        padding: 0.5%;
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+    
+    .btn-plus {
+        width:98.5%;
+        background-color: #193CBE;
+        color:white;
+        border-color:#193CBE;
+ 
+    }
+    
+
+/*
 .btn-primary:hover {
     color: #fff;
     background-color: #1D1C1C;
@@ -64,7 +101,8 @@ code {
     padding: 0.5%;
     padding-left: 4%;
     padding-right: 4%;
-}
+}*/
+
 
 .btn-host {
     color: #FF7837;
@@ -72,7 +110,24 @@ code {
     border-color: #fff;
 }
 
-.btn-cancel {
+
+    .input-field {
+        width: 100%;
+        background-color: #DCE2E6;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 2%;
+    }
+    
+    .q-field {
+        width: 250%
+    }
+
+/*.btn-cancel {
     color: #FF7837;
     background-color: #fff;
     border-color: #FF7837;
@@ -91,7 +146,8 @@ code {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-}
+}*/
+
 
 .space{
     padding-top: 4%;
@@ -169,7 +225,25 @@ code {
     padding-left: 5%;
 }
 
-.flex {
+
+.flex-container {
+    display: flex;
+    width: 1150px;
+}
+
+.flex-child {
+    flex: 1;
+}
+
+.correctAns {
+    text-align: right;
+}
+
+.cText {
+    margin-right: 1.5%;
+}
+
+/*.flex {
     display: flex;
 }
 
@@ -185,4 +259,4 @@ code {
 
 .questionLabel {
     margin-bottom: 2%;
-}
+}*/
