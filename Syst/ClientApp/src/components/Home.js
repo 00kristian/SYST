@@ -35,7 +35,7 @@ export class Home extends Component {
                         <td>{event.location}</td>
                         <td>{event.rating}</td>
                         <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host rightbtn">Details</button></a></td>
-                        <td><a href={'/CandidateQuiz/'}> <button className="btn btn-primary rightbtn">Host</button></a></td>
+                        <td onClick={()=> window.open('/CandidateQuiz', "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary rightbtn">Host</button></td>
                     </tr>
                 )}
                 </tbody>
@@ -61,9 +61,25 @@ export class Home extends Component {
     );
     }
 
-    rerouteToEventCreation = () => {
+    rerouteToEventCreation = async () => {
+        let event = {
+            "name": "new event",
+            "date":  new Date().toISOString().split('T')[0],
+            "location": "Your mom's house"
+        };
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(event)
+        };
+        let id = await fetch('api/events', requestOptions)
+        .then(response => response.json())
         const { history } = this.props;
-        history.push("/CreateEvent");
+        history.push("/CreateEvent/"+id);
     }
 
     async populateData() {
@@ -71,4 +87,8 @@ export class Home extends Component {
         const data = await response.json();
         this.setState({ events: data, loading: false });
     }
+
+    handleHostClick = () => {
+        window.open('/CandidateQuiz');
+      };
 }

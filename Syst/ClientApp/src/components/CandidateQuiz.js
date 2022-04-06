@@ -93,11 +93,13 @@ export class CandidateQuiz extends Component {
       : CandidateQuiz.renderCandidateQuiz(this.state.quiz);
 
     return (
-      <div >
+      <div>
         <img style={{width: 600}} className='centeredImage' src={logo} alt="logo" />
         <h1 style={this.centeredText}>Can you solve this quiz?</h1>
         {contents}
+        <div id='nextButton'>
         <a href={'/CandidateInformation'}><button className="btn btn-primary rightbtn">NEXT</button></a>
+        </div>
       </div>
     );
   }

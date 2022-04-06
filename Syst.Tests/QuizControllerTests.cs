@@ -84,9 +84,9 @@ public class QuizControllerTests{
         //Arrange
         var logger = new Mock<ILogger<QuizController>>();
         var repository = new Mock<IQuizRepository>();
-        var newQuiz = new QuizCreateDTO("Hejsan", new List<QuestionDTO>{default(QuestionDTO)} );
+        var newQuiz = new QuizCreateDTO("Hejsan");
         var quizes = new List <QuizCreateDTO> {newQuiz};
-        var createdQuiz = new QuizCreateDTO("Cams spørgsmål", new List<QuestionDTO>{default(QuestionDTO)} );
+        var createdQuiz = new QuizCreateDTO("Cams spørgsmål");
         repository.Setup(m => m.Create(createdQuiz)).Callback(()=> quizes.Add(createdQuiz));
         var controller = new QuizController(logger.Object, repository.Object);
 
@@ -125,7 +125,7 @@ public class QuizControllerTests{
         //arrange
         var logger = new Mock<ILogger<QuizController>>();
         var repository = new Mock<IQuizRepository>();
-        var newQuiz = new QuizCreateDTO("Swagsters", new List<QuestionDTO>{default(QuestionDTO)} );
+        var newQuiz = new QuizCreateDTO("Swagsters");
         repository.Setup(m => m.Update(2, newQuiz)).ReturnsAsync(Status.Updated);
         var controller = new QuizController(logger.Object, repository.Object);
 
@@ -143,7 +143,7 @@ public class QuizControllerTests{
         //arrange
         var logger = new Mock<ILogger<QuizController>>();
         var repository = new Mock<IQuizRepository>();
-        var newQuiz = new QuizCreateDTO("Swagsters", new List<QuestionDTO>{default(QuestionDTO)} );
+        var newQuiz = new QuizCreateDTO("Swagsters");
         repository.Setup(m => m.Update(99, newQuiz)).ReturnsAsync(Status.NotFound);
         var controller = new QuizController(logger.Object, repository.Object);
 

@@ -40,7 +40,7 @@ export class CreateEvent extends Component {
                 </form>
                 <br />
                 <h5>Quiz</h5>
-                <button className="btn btn-primary" >Create quiz</button>
+                <button className="btn btn-primary" onClick={this.rerouteToCreateQuiz}>Create quiz</button>
                 <br />
                 <br />
                 <button className="btn btn-primary rightbtn" onClick={this.rerouteToConfirmation}>Create event</button>
@@ -72,4 +72,20 @@ export class CreateEvent extends Component {
         const { history } = this.props;
         history.push("/Events");
     }
+
+     rerouteToCreateQuiz = async () => {
+        let event = {
+            "name": "New quiz"
+        };
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(event)
+        };
+        let id = await fetch('api/quiz', requestOptions)
+        .then(response => response.json())
+        const { history } = this.props;
+        history.push("/CreateQuiz/" + this.props.match.params.id +"/"+ id);
+    }
+
 }
