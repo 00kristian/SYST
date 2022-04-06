@@ -6,17 +6,46 @@ export class CreateQuiz extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { Quiz: Object, loading: true};
+        this.state = { Quiz: Object, loading: true,
+            Questions: []};
     }
 
-    componentDidMount() {
+    async addQuestion() {
+        let question = {
+            "representation": "New Question",
+            "answer": "",
+            "Options": [],
+            "imageUrl": ""
+        };
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(question)
+        };
+        let index = await fetch('api/QuizQuestion/' + this.props.match.params.id, requestOptions)
+        .then(response => response.json());
+        
+        this.setState(({
+            Questions: [...this.state.Questions, {Representation : question.representation, Id : index}]
+        }))
+    }
+
+    async removeQuestion(i) {
+        let Questions = this.state.Questions;
+        await fetch('api/Questions/' + Questions[Questions.length - 1].Id, {method: 'DELETE'});
+
+        Questions.pop();
+        this.setState({ Questions : Questions});
+    }
+
+    componentDidMount() {  
         this.populateData();
-      }
+    }
     
 
-   static renderQuiz(Quiz) { 
-       return (
-     <div>
+    static renderQuiz(Quiz, Questions, onCli) { 
+        return (
+            <div>
                 <h2>Here you can create a quiz</h2>
                 <br/>
                 <form>
@@ -26,21 +55,29 @@ export class CreateQuiz extends Component {
                     </label>
                     <br />
                     <br />
+                    {Questions.map((answer, index) =>
+                        <div key={index} className="flex">
+                            <h5> Question {index + 1} </h5>
+                            <label>{Questions[index].Representation}</label>
+                            <button onClick={() => onCli(Questions[index].Id)}> Modify </button>
+                        </div>
+                        )
+                    }
                     
                 </form>
             </div>
+        )
+    }
 
-       )
-
-   }
     render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : CreateQuiz.renderQuiz(this.state.Quiz);
+      : CreateQuiz.renderQuiz(this.state.Quiz, this.state.Questions, this.rerouteToQuestions);
         return (
             <div>
                 {contents}
-                {this.newQuestion()}              
+                <button className="btn btn-primary" type="button" onClick={() => this.removeQuestion()}>-</button>
+                <button className="btn btn-primary" type="button" onClick={() => this.addQuestion()}>+</button>         
                 <br />
                 <br />
                 <br />
@@ -53,21 +90,8 @@ export class CreateQuiz extends Component {
         );
     }
 
-    newQuestion = () => {
-        const id = 1;
-        return (
-            <div>
-                <br />
-                <h5>Question {id}</h5>
-                <a href={"/CreateQuestion/"+this.props.match.params.event_id+"/" + this.props.match.params.id + "/" + id}><button className="btn btn-primary rightbtn">Create Question</button> </a>
-                <br />    
-            </div>
-        )
-    }
-
-
-    rerouteToConfirmation = () => {
-        let event = {
+    updateQuiz = async () => {
+        let quiz = {
             "name": this.state.Quiz.name
         };
         const requestOptions = {
@@ -76,20 +100,27 @@ export class CreateQuiz extends Component {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify(event)
+            body: JSON.stringify(quiz)
         };
-        console.log(event);
-        fetch('api/quiz/' + this.props.match.params.id, requestOptions);
+        await fetch('api/quiz/' + this.props.match.params.id, requestOptions);
+    }
+
+    rerouteToConfirmation = () => {
+        this.updateQuiz();
 
         const { history } = this.props;
         history.push("/CreateEvent/"+ this.props.match.params.event_id);
     }
     rerouteToEvents = () => {
+
         const { history } = this.props;
         history.push("/Events");
     }
 
+    //not used!
     rerouteToQuestions = (id) => {
+        this.updateQuiz();
+
         const { history } = this.props;
         history.push("/CreateQuestion/" + this.props.match.params.event_id + "/" + this.props.match.params.id + "/" + id);
     }
@@ -97,8 +128,14 @@ export class CreateQuiz extends Component {
     async populateData() {
         const response = await fetch('api/quiz/' + this.props.match.params.id);
         const data = await response.json();
-        console.log(data);
         this.setState({ Quiz: data, loading: false });
+
+        for (const q in data.questions) {
+            let x = data.questions[q];
+            this.setState(({
+                Questions: [...this.state.Questions, {Representation : x.representation, Id : x.id}]
+            }))
+        }
     }
 
 }

@@ -33,10 +33,10 @@ namespace Infrastructure
         //Return an event given the event id
         public async Task<(Status, EventDTO)> Read(int id)
         {
-            var e = await _context.Events.Include(e => e.Candidates).Where(e => e.Id == id).Select(e => new EventDTO(){
+            var e = await _context.Events.Include(e => e.Quiz).Include(e => e.Candidates).Where(e => e.Id == id).Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
-                Date = e.Date.ToShortDateString(),
+                Date = e.Date.ToString("yyyy-MM-dd"),
                 Location = e.Location!,
                 Rating = e.Rating!,
                 Candidates = e.Candidates != null ? e.Candidates.Select(c => new CandidateDTO(){
@@ -45,8 +45,14 @@ namespace Infrastructure
                     Email = c.Email!,
                     StudyProgram = c.StudyProgram!,
                     University = c.University!,
-                    GraduationDate = c.GraduationDate.ToShortDateString()
-                }).ToList() : new List<CandidateDTO>()           
+                    GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd")
+                }).ToList() : new List<CandidateDTO>(),
+                Quiz = (e.Quiz != default(Quiz)) ? new QuizDTO() {
+                    Id = e.Quiz.Id,
+                    Name = e.Quiz.Name!
+                } : new QuizDTO() {
+                    Id = -1
+                }
             }).FirstOrDefaultAsync();
 
             if (e == default(EventDTO)) return (Status.NotFound, e);
@@ -58,7 +64,7 @@ namespace Infrastructure
             await _context.Events.Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
-                Date = e.Date.ToShortDateString(),
+                Date = e.Date.ToString("yyyy-MM-dd"),
                 Location = e.Location!,
                 Rating = e.Rating!
             }).ToListAsync();
@@ -70,7 +76,7 @@ namespace Infrastructure
         }
 
         //Updates an events name, date and location
-        public async Task<Status> Update(int id, EventDTO eventDTO)
+        public async Task<Status> Update(int id, CreateEventDTO eventDTO)
         {
             var e = await _context.Events.Where(e => e.Id == id).FirstOrDefaultAsync();
 
@@ -105,7 +111,7 @@ namespace Infrastructure
                 {
                     Name = e.Name!,
                     Id = e.Id,
-                    Date = e.Date.ToShortDateString(),
+                    Date = e.Date.ToString("yyyy-MM-dd"),
                     Location = e.Location!,
                     Rating = e.Rating!
                 })
@@ -118,10 +124,24 @@ namespace Infrastructure
                 {
                     Name = e.Name!,
                     Id = e.Id,
-                    Date = e.Date.ToShortDateString(),
+                    Date = e.Date.ToString("yyyy-MM-dd"),
                     Location = e.Location!,
                     Rating = e.Rating!
                 })
                 .ToListAsync();
+
+        public async Task<Status> UpdateQuiz(int eventid, int quizid) {
+
+            var e = await _context.Events.Include(e => e.Quiz).Where(c => c.Id == eventid).FirstOrDefaultAsync();
+            if (e == default(Event)) return Status.NotFound;
+
+            var q = await _context.Quizes.Where(c => c.Id == quizid).FirstOrDefaultAsync();
+            if (q == default(Quiz)) return Status.NotFound;
+
+            e.Quiz = q;
+
+            await _context.SaveChangesAsync();
+            return Status.Updated;
+        }
     }
 }

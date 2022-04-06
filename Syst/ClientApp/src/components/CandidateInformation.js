@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import logo from './Systematic_Logo.png';
 import Dropdown from 'react-dropdown';
 import DatePicker from "react-datepicker";
-import Popup from './Popup';
 
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-dropdown/style.css'
-import 'reactjs-popup/dist/index.css';
 
 export class CandidateInformation extends Component {
     static displayName = CandidateInformation.name;

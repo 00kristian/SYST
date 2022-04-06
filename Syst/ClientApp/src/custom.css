@@ -145,3 +145,6 @@ code {
     padding-left: 5%;
 }
 
+.flex {
+    display: flex;
+}

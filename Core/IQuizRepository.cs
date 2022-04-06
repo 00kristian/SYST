@@ -9,7 +9,9 @@ public interface IQuizRepository
         Task<(Status, QuizDTO)> Read(int id);
         Task<Status> Update(int id, QuizCreateDTO quizDTO);
         Task<Status> Delete(int id);
-         Task<IReadOnlyCollection<QuizDTO>> ReadAll();
+        Task<(Status, int id)> AddQuestion(int id, CreateQuestionDTO question);
+        Task<Status> RemoveQuestion(int quizId, int questionId);
+        Task<IReadOnlyCollection<QuizDTO>> ReadAll();
 
     }
 }
