@@ -7,9 +7,11 @@ namespace Infrastructure
     public class QuestionRepository : IQuestionRepository
     {
         ISystematicContext _context;
-        public QuestionRepository(ISystematicContext context)
+        string _hostEnvPath;
+        public QuestionRepository(ISystematicContext context, string hostEnvPath)
         {
             _context = context;
+            _hostEnvPath = hostEnvPath;
         }
 
         //Creates a question
@@ -78,6 +80,8 @@ namespace Infrastructure
             
             if (q == default(Question)) return Status.NotFound;
 
+            q.CleanUpImage(_hostEnvPath);
+
             _context.Questions.Remove(q);
 
             await _context.SaveChangesAsync();
@@ -89,6 +93,8 @@ namespace Infrastructure
             var q = await _context.Questions.Where(q => q.Id == id).FirstOrDefaultAsync();
 
             if (q == default(Question)) return Status.NotFound;
+
+            q.CleanUpImage(_hostEnvPath);
 
             q.ImageURL = imageUrl;
 

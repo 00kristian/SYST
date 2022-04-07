@@ -55,6 +55,7 @@ export class CreateQuiz extends Component {
                         <input placeholder={Quiz.name} className="input-field" onChange={(event) => Quiz.name = event.target.value}></input>
                     </label>
                     <br />
+                    <hr/>
                     <br />
                     {Questions.map((answer, index) =>
                         <div key={index}>

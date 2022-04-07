@@ -1,9 +1,4 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
 using Core;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Syst.Controllers
@@ -13,11 +8,11 @@ namespace Syst.Controllers
     {
         private static string DESTINATION = "Images/";
 
-        public static Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment;
+        public static IHostEnvironment _environment = null!;
 
         public IQuestionRepository _repo;
 
-        public ImageController(Microsoft.AspNetCore.Hosting.IHostingEnvironment environment, IQuestionRepository repo)
+        public ImageController(IHostEnvironment environment, IQuestionRepository repo)
         {
             _environment = environment;
 
@@ -33,11 +28,12 @@ namespace Syst.Controllers
             {
                 try
                 {
-                    if (!Directory.Exists(_environment.ContentRootPath + DESTINATION))
+                    var imagesPath = _environment.ContentRootPath + DESTINATION;
+                    if (!Directory.Exists(imagesPath))
                      {
-                        Directory.CreateDirectory(_environment.ContentRootPath + DESTINATION);
+                        Directory.CreateDirectory(imagesPath);
                     }
-                    using (FileStream filestream = System.IO.File.Create(_environment.ContentRootPath + DESTINATION + name))
+                    using (FileStream filestream = System.IO.File.Create(imagesPath + name))
                     {
                         file.CopyTo(filestream);
                         filestream.Flush();

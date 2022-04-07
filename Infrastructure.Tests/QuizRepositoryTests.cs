@@ -32,7 +32,7 @@ public class QuizRepositoryTests {
  
         context.SaveChanges();
         _context = context;
-        _repo = new QuizRepository(_context);
+        _repo = new QuizRepository(_context, "");
     }
 
     [Fact]

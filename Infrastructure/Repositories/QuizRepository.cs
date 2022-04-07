@@ -7,9 +7,13 @@ namespace Infrastructure
     public class QuizRepository : IQuizRepository
     {
         ISystematicContext _context;
-        public QuizRepository(ISystematicContext context)
+
+        string _hostEnvPath;
+        public QuizRepository(ISystematicContext context, string hostEnvPath)
         {
             _context = context;
+
+            _hostEnvPath = hostEnvPath;
         }
 
         //Creates a quiz
@@ -51,6 +55,14 @@ namespace Infrastructure
            
             if (c == default(Quiz)) return Status.NotFound;
 
+            if (c.Questions != null) {
+                foreach (var question in c.Questions)
+                {
+                    question.CleanUpImage(_hostEnvPath);
+                    _context.Questions.Remove(question);
+                }
+            }
+                
             _context.Quizes.Remove(c);
 
             await _context.SaveChangesAsync();
