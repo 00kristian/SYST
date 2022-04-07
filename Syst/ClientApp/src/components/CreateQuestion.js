@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css'
+import { ImageUpload } from './ImageUpload';
 
 
 export class CreateQuestion extends Component {
@@ -80,7 +80,7 @@ export class CreateQuestion extends Component {
                 <button className="btn minusbtn" type="button" onClick={() => this.removeOptionFields()}>-</button>
                 <br />
                 <h5 className="imageLabel">Select an image for the question</h5>
-                <button className="btn btn-primary leftbtn" >Upload Image</button>
+                {ImageUpload.Uploader(this.props.match.params.id, this.state.Question.imageUrl)}
                 <br />
                 <br />
                 <br />
@@ -129,7 +129,7 @@ export class CreateQuestion extends Component {
             Representation: data.representation,
             Answer: data.answer,
             Options: data.options,
-            imageUrl: data.imageUrl
+            imageUrl: data.imageURl
         }, loading: false });
     }
 }

@@ -64,7 +64,6 @@ namespace Infrastructure
 
             q.Representation = questionDTO.Representation;
             q.Answer = questionDTO.Answer!;
-            q.ImageURL = questionDTO.ImageURl;
             q.Options = questionDTO.Options;
 
             await _context.SaveChangesAsync();
@@ -84,6 +83,18 @@ namespace Infrastructure
             await _context.SaveChangesAsync();
             return Status.Deleted;
         }
-        
+
+        public async Task<Status> UpdateImage(int id, string imageUrl)
+        {
+            var q = await _context.Questions.Where(q => q.Id == id).FirstOrDefaultAsync();
+
+            if (q == default(Question)) return Status.NotFound;
+
+            q.ImageURL = imageUrl;
+
+            await _context.SaveChangesAsync();
+
+            return Status.Updated;
+        }
     }
 }

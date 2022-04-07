@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Core;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,13 +15,17 @@ namespace Syst.Controllers
 
         public static Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment;
 
-        public ImageController(Microsoft.AspNetCore.Hosting.IHostingEnvironment environment)
+        public IQuestionRepository _repo;
+
+        public ImageController(Microsoft.AspNetCore.Hosting.IHostingEnvironment environment, IQuestionRepository repo)
         {
             _environment = environment;
+
+            _repo = repo;
         }
     
-        [HttpPost]
-        public string Post(IFormFile file)
+        [HttpPost("{questionid}")]
+        public async Task<IActionResult> Post(int questionid, IFormFile file)
         {
             var name = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(file.FileName);
 
@@ -36,24 +41,26 @@ namespace Syst.Controllers
                     {
                         file.CopyTo(filestream);
                         filestream.Flush();
-                        return name;
+                        var res = await _repo.UpdateImage(questionid, name);
+                        if (res == Status.NotFound) return res.ToActionResult();
+        
+                        return CreatedAtAction(nameof(Get), new { name }, name);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    return ex.ToString();
+                    return Status.BadRequest.ToActionResult();
                 }
             }
             else
             {
-                return "Unsuccessful";
+                return Status.BadRequest.ToActionResult();
             }
 
         }
         [HttpGet("{filename}")]
         public IActionResult Get(string filename)
         {
-            System.Console.WriteLine(_environment.ContentRootPath + "Images/" + filename);
             var image = System.IO.File.OpenRead(_environment.ContentRootPath + "Images/" + filename);
             return File(image, "image/" + System.IO.Path.GetExtension(filename).Remove(0, 1));
         }   
