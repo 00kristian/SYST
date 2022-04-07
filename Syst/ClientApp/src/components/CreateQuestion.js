@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css'
 
 
@@ -37,15 +36,16 @@ export class CreateQuestion extends Component {
         this.setState({ Options : inputValues });
     }
 
+
     static renderQuestion (ques, ops) {
         const options = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ", "Ø", "Å"];
-        const defaultOption = options[0];
+
 
         return (
             <form>
                 <label>
                     <h5>Question</h5>
-                    <input placeholder={ques.Representation} className="input-field" onChange={(event) => ques.Representation = event.target.value} />
+                    <input placeholder={ques.Representation} className="input-field q-field" onChange={(event) => ques.Representation = event.target.value} />
                 </label>
                 
                 <br />
@@ -53,10 +53,13 @@ export class CreateQuestion extends Component {
                 {ops.map((answer, index) =>
                     <div key={index}>
                         <label>
-                            <h5>Option {options[index]}
-                                <label className="CorrectLabel">Correct answer?</label>
-                                <input type = "radio" name="correctAnswer" onClick={(event) => ques.Answer = ops[index]}/>
-                            </h5>
+                            <div className="flex-container">
+                            <h5>Option {options[index]}</h5>
+                                <div className="flex-child correctAns"> 
+                                  <label className="CorrectLabel">Correct answer?</label>
+                                  <input type = "radio" name="correctAnswer" onClick={(event) => ques.Answer = ops[index]}/>
+                                </div>
+                            </div>
                             <input placeholder={ops[index]} className= "input-field" onChange={(event) => ops[index] = event.target.value} />
                         </label>
                     </div>
@@ -75,12 +78,15 @@ export class CreateQuestion extends Component {
             <div className="CreateQPage">
                 <h2>Here you can create a question </h2>
                 <br/>
+
                 {contents}
+                
                 <button className="btn btn-primary" type="button" onClick={() => this.addOptionFields()}>+</button>
                 <button className="btn minusbtn" type="button" onClick={() => this.removeOptionFields()}>-</button>
                 <br />
                 <h5 className="imageLabel">Select an image for the question</h5>
                 <button className="btn btn-primary leftbtn" >Upload Image</button>
+
                 <br />
                 <br />
                 <br />
