@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from "react-router";
 
 export class Home extends Component {
     static displayName = Home.name;

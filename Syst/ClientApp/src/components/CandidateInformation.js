@@ -29,8 +29,7 @@ export class CandidateInformation extends Component {
             'Other'
             
         ];
-        const defaultOption = options[0];
-       
+        
         return (
             <div>
                 <div id="header">
@@ -162,7 +161,7 @@ export class CandidateInformation extends Component {
     }
 
     selectUni = (option) => {
-        if (option.value == 'Other') {
+        if (option.value === 'Other') {
             this.setState({ShowSpecialUni: true});
         } else {
             this.setState({ShowSpecialUni: false, University: option.value});
@@ -177,10 +176,10 @@ export class CandidateInformation extends Component {
 
         this.setState({clickedOnSubmit : true});
 
-        const NameGood = this.state.Name.length != 0;
-        const EmailGood = this.state.Email.length != 0;
-        const UniversityGood = this.state.University.length != 0;
-        const StudyProgramGood = this.state.StudyProgram.length != 0;
+        const NameGood = this.state.Name.length !== 0;
+        const EmailGood = this.state.Email.length !== 0;
+        const UniversityGood = this.state.University.length !== 0;
+        const StudyProgramGood = this.state.StudyProgram.length !== 0;
         const CheckBoxGood = this.state.validateCheckBox;
 
         this.setState({validateName : !NameGood});
