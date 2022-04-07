@@ -30,7 +30,7 @@ namespace Syst.Controllers
                 {
                     var imagesPath = _environment.ContentRootPath + DESTINATION;
                     if (!Directory.Exists(imagesPath))
-                     {
+                    {
                         Directory.CreateDirectory(imagesPath);
                     }
                     using (FileStream filestream = System.IO.File.Create(imagesPath + name))

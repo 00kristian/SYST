@@ -11,6 +11,7 @@ namespace Infrastructure
         public QuestionRepository(ISystematicContext context, string hostEnvPath)
         {
             _context = context;
+            //this is so we can clean up unused question images
             _hostEnvPath = hostEnvPath;
         }
 
