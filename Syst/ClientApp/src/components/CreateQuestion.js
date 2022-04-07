@@ -31,7 +31,7 @@ export class CreateQuestion extends Component {
 
     removeOptionFields() {
         let inputValues = this.state.Options;
-        if (inputValues.length == 0) return;
+        if (inputValues.length === 0) return;
         inputValues.pop();
         this.setState({ Options : inputValues });
     }
@@ -39,7 +39,6 @@ export class CreateQuestion extends Component {
 
     static renderQuestion (ques, ops) {
         const options = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ", "Ø", "Å"];
-
 
         return (
             <form>

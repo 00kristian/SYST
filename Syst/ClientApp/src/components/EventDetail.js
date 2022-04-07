@@ -46,8 +46,7 @@ export class EventDetail extends Component {
                 </tbody>
             </table>
             <a href={'/events'}> <button className="btn btn-primary rightbtn">Back</button> </a>
-            <a> <button className="btn btn-primary leftbtn" onClick={()=>deleteEvent()}>Delete event</button> </a>
-
+            <button className="btn btn-primary leftbtn" onClick={()=>deleteEvent()}>Delete event</button>
         </div>
         
     );
