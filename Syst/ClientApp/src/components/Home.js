@@ -65,7 +65,7 @@ export class Home extends Component {
         let event = {
             "name": "new event",
             "date":  new Date().toISOString().split('T')[0],
-            "location": "Your mom's house"
+            "location": "Location"
         };
         
         const requestOptions = {
