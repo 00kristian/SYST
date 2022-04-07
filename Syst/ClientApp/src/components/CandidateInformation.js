@@ -29,8 +29,7 @@ export class CandidateInformation extends Component {
             'Other'
             
         ];
-        const defaultOption = options[0];
-       
+        
         return (
             <div>
                 <div id="header">
@@ -44,14 +43,14 @@ export class CandidateInformation extends Component {
                         <div>
                             <label>
                                 <h5 id='red-text'>*Name</h5>
-                                <input className="input-field" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
+                                <input className="input-field" onChange={(candidate) => this.setState.Name = candidate.target.value} placeholder="Name"></input>
                             </label>
                         </div>
                     ) : (
                         <div>
                             <label>
                                 <h5>Name</h5>
-                                <input className="input-field" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
+                                <input className="input-field" onChange={(candidate) => this.setState.Name = candidate.target.value} placeholder="Name"></input>
                             </label>
                         </div>
                     )}
@@ -61,7 +60,7 @@ export class CandidateInformation extends Component {
                         <div>
                             <label>
                                 <h5 id='red-text'>*Email</h5>
-                                <input className="input-field" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="Email"></input>
+                                <input className="input-field" onChange={(candidate) => this.setState.Email = candidate.target.value } placeholder="Email"></input>
                                 <p>Please enter your email address in format: yourname@example.com</p>
                             </label>
                         </div>
@@ -69,7 +68,7 @@ export class CandidateInformation extends Component {
                         <div>
                             <label>
                                 <h5>Email</h5>
-                                <input className="input-field" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="Email"></input>
+                                <input className="input-field" onChange={(candidate) => this.setState.Email = candidate.target.value } placeholder="Email"></input>
                                 <p>Please enter your email address in format: yourname@example.com</p>
                             </label>
                     </div>
@@ -94,7 +93,7 @@ export class CandidateInformation extends Component {
                     {this.state.ShowSpecialUni ? (
                         <div>
                             <label>
-                                <input className="input-field" onChange={(uni) => this.state.University= uni.target.value} placeholder="University"></input>
+                                <input className="input-field" onChange={(uni) => this.setState.University= uni.target.value} placeholder="University"></input>
                             </label>
                         </div>
                     ) : (
@@ -112,14 +111,14 @@ export class CandidateInformation extends Component {
                         <div>
                             <label>
                                 <h5 id='red-text'>*Study Program</h5>
-                                <input className="input-field" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
+                                <input className="input-field" onChange={(candidate) => this.setState.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
                             </label>
                         </div>
                     ) : (
                         <div>
                             <label>
                                 <h5>Study Program</h5>
-                                <input className="input-field" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
+                                <input className="input-field" onChange={(candidate) => this.setState.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
                             </label>
                         </div>
                     )}
@@ -162,7 +161,7 @@ export class CandidateInformation extends Component {
     }
 
     selectUni = (option) => {
-        if (option.value == 'Other') {
+        if (option.value === 'Other') {
             this.setState({ShowSpecialUni: true});
         } else {
             this.setState({ShowSpecialUni: false, University: option.value});
@@ -177,10 +176,10 @@ export class CandidateInformation extends Component {
 
         this.setState({clickedOnSubmit : true});
 
-        const NameGood = this.state.Name.length != 0;
-        const EmailGood = this.state.Email.length != 0;
-        const UniversityGood = this.state.University.length != 0;
-        const StudyProgramGood = this.state.StudyProgram.length != 0;
+        const NameGood = this.state.Name.length !== 0;
+        const EmailGood = this.state.Email.length !== 0;
+        const UniversityGood = this.state.University.length !== 0;
+        const StudyProgramGood = this.state.StudyProgram.length !== 0;
         const CheckBoxGood = this.state.validateCheckBox;
 
         this.setState({validateName : !NameGood});

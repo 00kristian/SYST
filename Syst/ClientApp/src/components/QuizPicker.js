@@ -10,7 +10,7 @@ export class QuizPicker extends Component {
         const options = [];
         quizes.forEach(q => {
             options.push({value: q.id, label: q.name})
-            if (q.id == startvalue) {
+            if (q.id === startvalue) {
                 val = q.name;
             }
         });

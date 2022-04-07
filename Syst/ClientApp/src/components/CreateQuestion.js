@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css'
 
 
@@ -32,14 +31,13 @@ export class CreateQuestion extends Component {
 
     removeOptionFields() {
         let inputValues = this.state.Options;
-        if (inputValues.length == 0) return;
+        if (inputValues.length === 0) return;
         inputValues.pop();
         this.setState({ Options : inputValues });
     }
 
     static renderQuestion (ques, ops) {
         const options = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ", "Ø", "Å"];
-        const defaultOption = options[0];
 
         return (
             <form>
