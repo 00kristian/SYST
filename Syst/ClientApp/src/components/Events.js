@@ -96,7 +96,7 @@ export class Events extends Component {
         let event = {
             "name": "new event",
             "date":  new Date().toISOString().split('T')[0],
-            "location": "Location"
+            "location": "location"
         };
 
         const requestOptions = {
