@@ -46,11 +46,6 @@ code {
     .rightbtn {
         float: right; 
     }
-    .confirmationbtn {
-        padding: 0.5%;
-        padding-left: 4%;
-        padding-right: 4%;
-    }
     
     .btn-plus {
         width:98.5%;
