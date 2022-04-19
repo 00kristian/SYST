@@ -1,8 +1,8 @@
 /* Provide sufficient contrast against white background */
 
-a {
+/*a {
   color: #0366d6;
-}
+}*/
 
 .confirmationText {
     padding: 2%;
@@ -14,9 +14,9 @@ a {
     padding: 2%;
 }
 
-code {
+/*code {
   color: #E01A76;
-}
+}*/
 
 .btn-primary {
     color: #fff;
@@ -47,13 +47,14 @@ code {
         float: right; 
     }
     
-    .btn-plus {
+    /*.btn-plus {
         width:98.5%;
         background-color: #193CBE;
         color:white;
         border-color:#193CBE;
  
-    }
+    }*/
+
     .minusbtn {
         /*margin-left: 45.5%;*/
         float:right;
@@ -113,10 +114,10 @@ code {
     padding-top: 4%;
 }
 
-.CandidateInformation{
+/*.CandidateInformation{
     display: flex;
     justify-content: center;
-}
+}*/
 
 .answerButton {
     width: 5rem;
@@ -199,13 +200,13 @@ code {
     text-align: right;
 }
 
-.cText {
+/*.cText {
     margin-right: 1.5%;
-}
+}*/
 
-.flex {
+/*.flex {
     display: flex;
-}
+}*/
 
 .imageLabel {
     padding-top: 2%;
