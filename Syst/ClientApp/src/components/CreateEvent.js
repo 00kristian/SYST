@@ -23,7 +23,7 @@ export class CreateEvent extends Component {
                 <form>
                     <label>
                         <h5>Name</h5>
-                        <input placeholder={e.name} className="input-field" onChange={(event) => e.name = event.target.value}></input>
+                        <input placeholder={e.name} className="input-layout" onChange={(event) => e.name = event.target.value}></input>
                     </label>
                     <br />
                     <br />
@@ -35,7 +35,7 @@ export class CreateEvent extends Component {
                     <br />
                     <label>
                         <h5>Location</h5>
-                        <input placeholder={e.location} className="input-field" onChange={(event) => e.location = event.target.value}></input>
+                        <input placeholder={e.location} className="input-layout" onChange={(event) => e.location = event.target.value}></input>
                     </label>
                 </form>
 
@@ -66,10 +66,10 @@ export class CreateEvent extends Component {
                 <br />
                 <button className="btn btn-primary" onClick={this.rerouteToCreateQuiz}>Create quiz</button>
                 <br />
-                <button className="btn btn-primary rightbtn" onClick={this.rerouteToConfirmation}>Save event</button>
+                <button className="btn btn-primary btn-right" onClick={this.rerouteToConfirmation}>Save event</button>
                 <br />
                 <br />
-                <button className="btn btn-primary rightbtn" onClick={this.deleteEvent}>Cancel</button>
+                <button className="btn btn-primary btn-right" onClick={this.deleteEvent}>Cancel</button>
             </div>
         );
     }

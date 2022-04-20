@@ -46,7 +46,7 @@ export class CreateQuestion extends Component {
             <form>
                 <label>
                     <h5>Question</h5>
-                    <input placeholder={ques.Representation} className="input-field q-field" onChange={(event) => ques.Representation = event.target.value} />
+                    <input placeholder={ques.Representation} className="input-layout input-question" onChange={(event) => ques.Representation = event.target.value} />
                 </label>
                 
                 <br />
@@ -55,14 +55,14 @@ export class CreateQuestion extends Component {
                 {ops.map((answer, index) =>
                     <div key={index}>
                         <label>
-                            <div className="flex-container">
+                            <div className="div-option">
                             <h5>Option {options[index]}</h5>
-                                <div className="flex-child correctAns"> 
-                                  <label className="CorrectLabel">Correct answer?</label>
+                                <div className="div-correct_answer"> 
+                                  <label className="label-correct_answer">Correct answer?</label>
                                   <input type = "radio" name="correctAnswer" onClick={(event) => ques.Answer = ops[index]}/>
                                 </div>
                             </div>
-                            <input placeholder={ops[index]} className= "input-field" onChange={(event) => ops[index] = event.target.value} />
+                            <input placeholder={ops[index]} className= "input-layout" onChange={(event) => ops[index] = event.target.value} />
                         </label>
                     </div>
                     )
@@ -77,7 +77,7 @@ export class CreateQuestion extends Component {
         : CreateQuestion.renderQuestion(this.state.Question, this.state.Options);
 
         return (
-            <div className="CreateQPage">
+            <div className="page-padding">
                 <Container>
                     <Row>
                         <Col>
@@ -85,13 +85,13 @@ export class CreateQuestion extends Component {
                             <br/>
                             {contents}
                             <button className="btn btn-primary" type="button" onClick={() => this.addOptionFields()}>+</button>
-                            <button className="btn minusbtn" type="button" onClick={() => this.removeOptionFields()}>-</button>
+                            <button className="btn btn-minus_question" type="button" onClick={() => this.removeOptionFields()}>-</button>
                         </Col>
                         <Col>
                             <br />
                             <br />
                             <br />
-                            <h5 className="imageLabel">Select an image for the question</h5>
+                            <h5 className="obj-top_padding">Select an image for the question</h5>
                             <br/>
                             {ImageUpload.Uploader(this.props.match.params.id, this.state.Question.imageUrl)}
                         </Col>
@@ -101,7 +101,7 @@ export class CreateQuestion extends Component {
                 <br />
                 <br />
                 <button className="btn btn-cancel" onClick={this.rerouteToQuiz}>Cancel</button>
-                <button className="btn btn-primary rightbtn" onClick={this.confirm}>Confirm</button>
+                <button className="btn btn-primary btn-right" onClick={this.confirm}>Confirm</button>
             </div>
         );
     }

@@ -34,19 +34,19 @@ export class CandidateQuiz extends Component {
                                 <h3>This is a placeholder for the quiz representation</h3>
                             </Row>
                             <br/>
-                            <Row className="ansRow">
+                            <Row className="row-layout">
                                 <Col> 
-                                    <div className="butNText">           
-                                        <button className="answerButton"> A </button>
-                                        <div className='vertical-center'>
+                                    <div className="div-flex">           
+                                        <button className="btn-answer"> A </button>
+                                        <div className='div-quiz_layout'>
                                             <h5>Option A</h5>
                                         </div>
                                     </div>
                                 </Col>
                                 <Col> 
-                                    <div className="butNText">           
-                                        <button className="answerButton"> B </button>
-                                        <div className='vertical-center'>
+                                    <div className="div-flex">           
+                                        <button className="btn-answer"> B </button>
+                                        <div className='div-quiz_layout'>
                                             <h5>Option B</h5>
                                         </div>
                                     </div>
@@ -55,19 +55,19 @@ export class CandidateQuiz extends Component {
                             <br/>
                             <br/>
                             <br/>
-                            <Row className="ansRow">
+                            <Row className="row-layout">
                                 <Col> 
-                                    <div className="butNText">           
-                                        <button className="answerButton"> C </button>
-                                        <div className='vertical-center'>
+                                    <div className="div-flex">           
+                                        <button className="btn-answer"> C </button>
+                                        <div className='div-quiz_layout'>
                                             <h5>Option C</h5>
                                         </div>
                                     </div>
                                 </Col>
                                 <Col> 
-                                    <div className="butNText">           
-                                        <button className="answerButton"> D </button>
-                                        <div className='vertical-center'>
+                                    <div className="div-flex">           
+                                        <button className="btn-answer"> D </button>
+                                        <div className='div-quiz_layout'>
                                             <h5>Option D</h5>
                                         </div>
                                     </div>
@@ -94,11 +94,11 @@ export class CandidateQuiz extends Component {
 
     return (
       <div>
-        <img style={{width: 600}} className='centeredImage' src={logo} alt="logo" />
+        <img style={{width: 600}} className='img-center' src={logo} alt="logo" />
         <h1 style={this.centeredText}>Can you solve this quiz?</h1>
         {contents}
-        <div id='nextButton'>
-        <a href={'/CandidateInformation'}><button className="btn btn-primary rightbtn">NEXT</button></a>
+        <div className='btn-next'>
+        <a href={'/CandidateInformation'}><button className="btn btn-primary btn-right">NEXT</button></a>
         </div>
       </div>
     );

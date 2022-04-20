@@ -52,7 +52,7 @@ export class CreateQuiz extends Component {
                 <form>
                     <label>
                         <h5>Quiz name</h5>
-                        <input placeholder={Quiz.name} className="input-field" onChange={(event) => Quiz.name = event.target.value}></input>
+                        <input placeholder={Quiz.name} className="input-layout" onChange={(event) => Quiz.name = event.target.value}></input>
                     </label>
                     <br />
                     <hr/>
@@ -63,7 +63,7 @@ export class CreateQuiz extends Component {
                             <h5> Question {index + 1}
                                 <button className="btn btn-primary btn-modify" onClick={() => onCli(Questions[index].Id)}> Modify </button>
                             </h5>
-                            <label className="questionLabel">{Questions[index].Representation}</label>
+                            <label className="obj-bottom_margin">{Questions[index].Representation}</label>
                         </div>
                         )
                     }
@@ -81,15 +81,15 @@ export class CreateQuiz extends Component {
             <div>
                 {contents}
                 <button className="btn btn-primary" type="button" onClick={() => this.addQuestion()}>+</button> 
-                <button className="btn minusbtn2" type="button" onClick={() => this.removeQuestion()}>-</button>        
+                <button className="btn btn-minus_quiz" type="button" onClick={() => this.removeQuestion()}>-</button>        
                 <br />
                 <br />
                 <br />
                 <br />
                 <br />
                 <br />
-                <button className="btn btn-primary rightbtn " onClick={this.rerouteToConfirmation}>Confirm</button>
-                <button className='btn btn-primary leftbtn' onClick={this.deleteQuiz}>Back</button>
+                <button className="btn btn-primary btn-right" onClick={this.rerouteToConfirmation}>Confirm</button>
+                <button className="btn btn-primary" onClick={this.deleteQuiz}>Back</button>
             </div>
         );
     }

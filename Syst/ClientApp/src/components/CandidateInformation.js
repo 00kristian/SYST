@@ -32,25 +32,25 @@ export class CandidateInformation extends Component {
         
         return (
             <div>
-                <div id="header">
+                <div className='div-header'>
                 <img src={logo} alt="Logo" width={500}/>
                 <h5>Please write your contact information to enter the competition</h5>
                 </div>
                 <br/>
-                <div id="input">
+                <div className='div-input_layout'>
                 <form>
                     {this.state.validateName ? (
                         <div>
                             <label>
-                                <h5 id='red-text'>*Name</h5>
-                                <input className="input-field" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
+                                <h5 className='txt-red'>*Name</h5>
+                                <input className="input-layout" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
                             </label>
                         </div>
                     ) : (
                         <div>
                             <label>
                                 <h5>Name</h5>
-                                <input className="input-field" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
+                                <input className="input-layout" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
                             </label>
                         </div>
                     )}
@@ -59,8 +59,8 @@ export class CandidateInformation extends Component {
                     {this.state.validateEmail ? (
                         <div>
                             <label>
-                                <h5 id='red-text'>*Email</h5>
-                                <input className="input-field" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="Email"></input>
+                                <h5 className='txt-red'>*Email</h5>
+                                <input className="input-layout" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="Email"></input>
                                 <p>Please enter your email address in format: yourname@example.com</p>
                             </label>
                         </div>
@@ -68,7 +68,7 @@ export class CandidateInformation extends Component {
                         <div>
                             <label>
                                 <h5>Email</h5>
-                                <input className="input-field" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="Email"></input>
+                                <input className="input-layout" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="Email"></input>
                                 <p>Please enter your email address in format: yourname@example.com</p>
                             </label>
                     </div>
@@ -78,7 +78,7 @@ export class CandidateInformation extends Component {
 
                     {this.state.validateUniversity ? (
                         <label>
-                        <h5 id='red-text'> *University</h5>
+                        <h5 className='txt-red'> *University</h5>
                         <Dropdown options={options} onChange={this.selectUni} value="Select your University"/>
                     </label>
                     ) : (
@@ -93,7 +93,7 @@ export class CandidateInformation extends Component {
                     {this.state.ShowSpecialUni ? (
                         <div>
                             <label>
-                                <input className="input-field" onChange={(uni) => this.state.University= uni.target.value} placeholder="University"></input>
+                                <input className="input-layout" onChange={(uni) => this.state.University= uni.target.value} placeholder="University"></input>
                             </label>
                         </div>
                     ) : (
@@ -110,15 +110,15 @@ export class CandidateInformation extends Component {
                     {this.state.validateStudyProgram ? (
                         <div>
                             <label>
-                                <h5 id='red-text'>*Study Program</h5>
-                                <input className="input-field" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
+                                <h5 className='txt-red'>*Study Program</h5>
+                                <input className="input-layout" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
                             </label>
                         </div>
                     ) : (
                         <div>
                             <label>
                                 <h5>Study Program</h5>
-                                <input className="input-field" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
+                                <input className="input-layout" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
                             </label>
                         </div>
                     )}
@@ -135,7 +135,7 @@ export class CandidateInformation extends Component {
                     <br />
                     {(!this.state.validateCheckBox && this.state.clickedOnSubmit) ? (
                         <div>
-                            <p id='red-text'><input id="checkbox" type="checkbox" onClick={this.checkedBox}/> *Accept that Systematic can store your information <a href='https://systematic.com/da-dk/kontakt/privacy-policyings/'>Read more</a></p>
+                            <p className='txt-red'><input id="checkbox" type="checkbox" onClick={this.checkedBox}/> *Accept that Systematic can store your information <a href='https://systematic.com/da-dk/kontakt/privacy-policyings/'>Read more</a></p>
                         </div>
                     ) : (
                     <div>
@@ -148,13 +148,13 @@ export class CandidateInformation extends Component {
                     {(this.state.validateName || this.state.validateEmail || this.state.validateStudyProgram) ? (
                         <div>
                             <label>
-                                <p id='red-text'>*Need to be filled out</p>
+                                <p className='txt-red'>*Need to be filled out</p>
                             </label>
                         </div>
                     ) : (
                     <div></div>
                     )}
-                    <button className="btn btn-primary rightbtn" onClick={this.rerouteToCandidateConfirmation}>Submit</button>
+                    <button className="btn btn-primary btn-right" onClick={this.rerouteToCandidateConfirmation}>Submit</button>
                 </div>
             </div>
         );

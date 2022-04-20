@@ -1,21 +1,63 @@
-/* Provide sufficient contrast against white background */
+/*---------------Buttons---------------*/
 
-a {
-  color: #0366d6;
+.btn-answer {
+    width: 5rem;
+    height: 5rem;
+    margin: 2rem;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #FF7837;
+    border-color: #FF7837;
+    border: none;
+    font-size: x-large;
+}
+    .btn-answer:hover {
+        background-color: #e17640;
+    } 
+    .btn-answer:active {
+        background-color: #FF7837;
+    }
+
+.btn-cancel {
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #FF7837;
 }
 
-.confirmationText {
-    padding: 2%;
-    text-align: center;
+.btn-confirmation {
+    padding: 0.5%;
+    padding-left: 4%;
+    padding-right: 4%;
 }
 
-.figureConfirmation {
-    text-align: center;
-    padding: 2%;
+.btn-host {
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #fff;
 }
 
-code {
-  color: #E01A76;
+.btn-minus_question {
+    float: right;
+    margin-right: 1.5%;
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #FF7837;
+}
+
+.btn-minus_quiz {
+    margin-left: 41%;
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #FF7837;
+}
+
+.btn-modify {
+    margin-left: 33%;
+}
+
+.btn-next{
+    padding-bottom: 5%;
+    padding-right: 3%;
 }
 
 .btn-primary {
@@ -25,8 +67,6 @@ code {
     margin-bottom: 1%;
     margin-top: 1%;
 }
-
-
     .btn-primary:hover {
         color: #fff;
         background-color: #1D1C1C;
@@ -43,179 +83,105 @@ code {
         border-color: #FF7837;
     }
     
-    .rightbtn {
-        float: right; 
-    }
-    .confirmationbtn {
-        padding: 0.5%;
-        padding-left: 4%;
-        padding-right: 4%;
-    }
-    
-    .btn-plus {
-        width:98.5%;
-        background-color: #193CBE;
-        color:white;
-        border-color:#193CBE;
- 
-    }
-    .minusbtn {
-        /*margin-left: 45.5%;*/
-        float:right;
-        color: #FF7837;
-        background-color: #fff;
-        border-color: #FF7837;
-    }
-
-    .minusbtn2 {
-        margin-left: 41%;
-        color: #FF7837;
-        background-color: #fff;
-        border-color: #FF7837;
-    }
-    
-    .confirmationbtn {
-        padding: 0.5%;
-        padding-left: 4%;
-        padding-right: 4%;
-    }
-
-
-.btn-host {
-    color: #FF7837;
-    background-color: #fff;
-    border-color: #fff;
+.btn-right {
+    float: right; 
 }
 
+/*---------------Divs---------------*/
 
-    .input-field {
-        width: 100%;
-        background-color: #DCE2E6;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-        margin-bottom: 2%;
-    }
-    
-    .q-field {
-        width: 250%
-    }
-
-.btn-cancel {
-    color: #FF7837;
-    background-color: #fff;
-    border-color: #FF7837;
-}
-
-.btn-modify {
-    margin-left: 33%;
-}
-
-.space{
-    padding-top: 4%;
-}
-
-.CandidateInformation{
-    display: flex;
-    justify-content: center;
-}
-
-.answerButton {
-    width: 5rem;
-    height: 5rem;
-    margin: 2rem;
-    border-radius: 50%;
-    color: #fff;
-    background-color: #FF7837;
-    border-color: #FF7837;
-    border: none;
-    font-size: x-large;
-}
-
-.answerButton:hover {
-    background-color: #e17640;
-}
-
-.answerButton:active {
-    background-color: #FF7837;
-}
-
-.centeredImage {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.butNText {
-
-    display: flex;
-
-}
-
-.vertical-center {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.ansRow {
-    width: 650px;
-} 
-
-#header{
+.div-center {
+    padding: 2%;
     text-align: center;
 }
 
-#input{
+.div-correct_answer {
+    text-align: right;
+    flex: 1;
+    margin-right: 2px;
+}
+
+.div-flex {
+    display: flex;
+}
+
+.div-header{
+    text-align: center;
+}
+
+.div-input_layout{
     padding-left: 30%;
     padding-right: 30%;
     padding-bottom: 10%;
 }
 
-#nextButton{
-    padding-bottom: 5%;
-    padding-right: 3%;
-}
-
-
-#red-text{
-    color: red;
-}
-
-.CreateQPage {
-    padding-right: 5%;
-    padding-left: 5%;
-}
-
-
-.flex-container {
+.div-option {
     display: flex;
     width: 1150px;
 }
 
-.flex-child {
-    flex: 1;
-}
-
-.correctAns {
-    text-align: right;
-}
-
-.cText {
-    margin-right: 1.5%;
-}
-
-.flex {
+.div-quiz_layout {
     display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.imageLabel {
-    padding-top: 2%;
+/*---------------Images---------------*/
+
+.img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.questionLabel {
+/*---------------Inputs---------------*/
+
+.input-layout {
+    width: 100%;
+    background-color: #DCE2E6;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
     margin-bottom: 2%;
+}
+    
+.input-question {
+    width: 250%
+}
+
+/*---------------Labels---------------*/
+
+.label-correct_answer {
+    margin-right: 5px;
+}
+
+/*---------------Objects---------------*/
+
+.obj-bottom_margin {
+    margin-bottom: 2%;
+}
+
+.obj-top_padding{
+    padding-top: 4%;
+}
+
+/*---------------Pages---------------*/
+
+.page-padding {
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+/*---------------Rows---------------*/
+
+.row-layout {
+    width: 650px;
+}
+
+/*---------------Text---------------*/
+
+.txt-red{
+    color: red;
 }
