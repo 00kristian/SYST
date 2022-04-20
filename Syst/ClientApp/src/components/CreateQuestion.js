@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import 'react-dropdown/style.css'
+import { ImageUpload } from './ImageUpload';
+import { Container, Row, Col } from 'react-grid';
 
 
 export class CreateQuestion extends Component {
@@ -48,6 +50,7 @@ export class CreateQuestion extends Component {
                 </label>
                 
                 <br />
+                <hr/>
                 <br />
                 {ops.map((answer, index) =>
                     <div key={index}>
@@ -75,17 +78,25 @@ export class CreateQuestion extends Component {
 
         return (
             <div className="CreateQPage">
-                <h2>Here you can create a question </h2>
-                <br/>
-
-                {contents}
-                
-                <button className="btn btn-primary" type="button" onClick={() => this.addOptionFields()}>+</button>
-                <button className="btn minusbtn" type="button" onClick={() => this.removeOptionFields()}>-</button>
-                <br />
-                <h5 className="imageLabel">Select an image for the question</h5>
-                <button className="btn btn-primary leftbtn" >Upload Image</button>
-
+                <Container>
+                    <Row>
+                        <Col>
+                            <h2>Here you can create a question </h2>
+                            <br/>
+                            {contents}
+                            <button className="btn btn-primary" type="button" onClick={() => this.addOptionFields()}>+</button>
+                            <button className="btn minusbtn" type="button" onClick={() => this.removeOptionFields()}>-</button>
+                        </Col>
+                        <Col>
+                            <br />
+                            <br />
+                            <br />
+                            <h5 className="imageLabel">Select an image for the question</h5>
+                            <br/>
+                            {ImageUpload.Uploader(this.props.match.params.id, this.state.Question.imageUrl)}
+                        </Col>
+                    </Row>
+                </Container>
                 <br />
                 <br />
                 <br />
@@ -134,7 +145,7 @@ export class CreateQuestion extends Component {
             Representation: data.representation,
             Answer: data.answer,
             Options: data.options,
-            imageUrl: data.imageUrl
+            imageUrl: data.imageURl
         }, loading: false });
     }
 }

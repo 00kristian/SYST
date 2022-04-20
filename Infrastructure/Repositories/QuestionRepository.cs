@@ -7,9 +7,12 @@ namespace Infrastructure
     public class QuestionRepository : IQuestionRepository
     {
         ISystematicContext _context;
-        public QuestionRepository(ISystematicContext context)
+        string _hostEnvPath;
+        public QuestionRepository(ISystematicContext context, string hostEnvPath)
         {
             _context = context;
+            //this is so we can clean up unused question images
+            _hostEnvPath = hostEnvPath;
         }
 
         //Creates a question
@@ -64,7 +67,6 @@ namespace Infrastructure
 
             q.Representation = questionDTO.Representation;
             q.Answer = questionDTO.Answer!;
-            q.ImageURL = questionDTO.ImageURl;
             q.Options = questionDTO.Options;
 
             await _context.SaveChangesAsync();
@@ -79,11 +81,27 @@ namespace Infrastructure
             
             if (q == default(Question)) return Status.NotFound;
 
+            q.CleanUpImage(_hostEnvPath);
+
             _context.Questions.Remove(q);
 
             await _context.SaveChangesAsync();
             return Status.Deleted;
         }
-        
+
+        public async Task<Status> UpdateImage(int id, string imageUrl)
+        {
+            var q = await _context.Questions.Where(q => q.Id == id).FirstOrDefaultAsync();
+
+            if (q == default(Question)) return Status.NotFound;
+
+            q.CleanUpImage(_hostEnvPath);
+
+            q.ImageURL = imageUrl;
+
+            await _context.SaveChangesAsync();
+
+            return Status.Updated;
+        }
     }
 }
