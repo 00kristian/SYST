@@ -36,6 +36,34 @@
                 "${workspaceFolder}/Syst/Syst.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "run server",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "run",
+                "--project",
+                "${workspaceFolder}/Syst/Syst.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "type": "npm",
+            "script": "build",
+            "path": "Syst/ClientApp/",
+            "group": "build",
+            "problemMatcher": [],
+            "label": "npm: build - Syst/ClientApp",
+            "detail": "react-scripts build"
+        },
+        {
+            "type": "npm",
+            "script": "start",
+            "path": "Syst/ClientApp/",
+            "problemMatcher": [],
+            "label": "npm: start - Syst/ClientApp",
+            "detail": "rimraf ./build && react-scripts start"
         }
     ]
 }
