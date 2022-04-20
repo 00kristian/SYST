@@ -32,7 +32,7 @@ export class CreateQuiz extends Component {
 
     async removeQuestion() {
         let Questions = this.state.Questions;
-        if (Questions.length == 0) return;
+        if (Questions.length === 0) return;
         await fetch('api/Questions/' + Questions[Questions.length - 1].Id, {method: 'DELETE'});
 
         Questions.pop();
@@ -57,6 +57,7 @@ export class CreateQuiz extends Component {
                     <br />
                     <hr/>
                     <br />
+                    <h5>Questions:</h5>
                     {Questions.map((answer, index) =>
                         <div key={index}>
                             <h5> Question {index + 1}

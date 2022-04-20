@@ -33,20 +33,20 @@ export class CreateQuestion extends Component {
 
     removeOptionFields() {
         let inputValues = this.state.Options;
-        if (inputValues.length == 0) return;
+        if (inputValues.length === 0) return;
         inputValues.pop();
         this.setState({ Options : inputValues });
     }
 
+
     static renderQuestion (ques, ops) {
         const options = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ", "Ø", "Å"];
-        const defaultOption = options[0];
 
         return (
             <form>
                 <label>
                     <h5>Question</h5>
-                    <input placeholder={ques.Representation} className="input-field" onChange={(event) => ques.Representation = event.target.value} />
+                    <input placeholder={ques.Representation} className="input-field q-field" onChange={(event) => ques.Representation = event.target.value} />
                 </label>
                 
                 <br />
@@ -55,10 +55,13 @@ export class CreateQuestion extends Component {
                 {ops.map((answer, index) =>
                     <div key={index}>
                         <label>
-                            <h5>Option {options[index]}
-                                <label className="CorrectLabel">Correct answer?</label>
-                                <input type = "radio" name="correctAnswer" onClick={(event) => ques.Answer = ops[index]}/>
-                            </h5>
+                            <div className="flex-container">
+                            <h5>Option {options[index]}</h5>
+                                <div className="flex-child correctAns"> 
+                                  <label className="CorrectLabel">Correct answer?</label>
+                                  <input type = "radio" name="correctAnswer" onClick={(event) => ques.Answer = ops[index]}/>
+                                </div>
+                            </div>
                             <input placeholder={ops[index]} className= "input-field" onChange={(event) => ops[index] = event.target.value} />
                         </label>
                     </div>

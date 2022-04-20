@@ -96,9 +96,9 @@ export class Events extends Component {
         let event = {
             "name": "new event",
             "date":  new Date().toISOString().split('T')[0],
-            "location": "Your mom's house"
+            "location": "location"
         };
-        
+
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -108,7 +108,8 @@ export class Events extends Component {
             body: JSON.stringify(event)
         };
         let id = await fetch('api/events', requestOptions)
-        .then(response => response.json())
+          .then(response => response.json())
+
         const { history } = this.props;
         history.push("/CreateEvent/"+id);
     }

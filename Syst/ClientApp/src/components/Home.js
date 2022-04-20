@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from "react-router";
 
 export class Home extends Component {
     static displayName = Home.name;
@@ -65,7 +64,7 @@ export class Home extends Component {
         let event = {
             "name": "new event",
             "date":  new Date().toISOString().split('T')[0],
-            "location": "Your mom's house"
+            "location": "location"
         };
         
         const requestOptions = {
