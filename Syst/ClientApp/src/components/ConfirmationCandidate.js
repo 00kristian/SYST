@@ -14,12 +14,12 @@ export class ConfirmationCandidate extends Component {
     render() {
        return (
             <div>
-                <div className={"div-center"}>
+                <div className="div-center">
                     <img src={figure} alt="figure" width={230}/>
                 </div>
-                <div className={"div-center"}>
+                <div className="div-center">
                 <h1>Thank you for submitting</h1>
-                <a href='/CandidateQuiz'><button className={"btn btn-primary btn-confirmation"}>OK</button></a>
+                <a href='/CandidateQuiz'><button className="btn btn-primary btn-confirmation">OK</button></a>
                 </div>
             </div>
         );
