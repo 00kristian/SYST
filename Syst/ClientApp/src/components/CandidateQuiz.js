@@ -97,7 +97,7 @@ export class CandidateQuiz extends Component {
         <img style={{width: 600}} className='img-center' src={logo} alt="logo" />
         <h1 style={this.centeredText}>Can you solve this quiz?</h1>
         {contents}
-        <div id='nextButton'>
+        <div className='btn-next'>
         <a href={'/CandidateInformation'}><button className="btn btn-primary btn-right">NEXT</button></a>
         </div>
       </div>
