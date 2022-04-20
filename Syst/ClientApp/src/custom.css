@@ -1,6 +1,63 @@
-.div-center {
-    padding: 2%;
-    text-align: center;
+/*---------------Buttons---------------*/
+
+.btn-answer {
+    width: 5rem;
+    height: 5rem;
+    margin: 2rem;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #FF7837;
+    border-color: #FF7837;
+    border: none;
+    font-size: x-large;
+}
+    .btn-answer:hover {
+        background-color: #e17640;
+    } 
+    .btn-answer:active {
+        background-color: #FF7837;
+    }
+
+.btn-cancel {
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #FF7837;
+}
+
+.btn-confirmation {
+    padding: 0.5%;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.btn-host {
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #fff;
+}
+
+.btn-minus_question {
+    float: right;
+    margin-right: 1.5%;
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #FF7837;
+}
+
+.btn-minus_quiz {
+    margin-left: 41%;
+    color: #FF7837;
+    background-color: #fff;
+    border-color: #FF7837;
+}
+
+.btn-modify {
+    margin-left: 33%;
+}
+
+.btn-next{
+    padding-bottom: 5%;
+    padding-right: 3%;
 }
 
 .btn-primary {
@@ -10,7 +67,6 @@
     margin-bottom: 1%;
     margin-top: 1%;
 }
-
     .btn-primary:hover {
         color: #fff;
         background-color: #1D1C1C;
@@ -27,108 +83,26 @@
         border-color: #FF7837;
     }
     
-    .btn-right {
-        float: right; 
-    }
-
-    .btn-minus_question {
-        float: right;
-        margin-right: 1.5%;
-        color: #FF7837;
-        background-color: #fff;
-        border-color: #FF7837;
-    }
-
-    .btn-minus_quiz {
-        margin-left: 41%;
-        color: #FF7837;
-        background-color: #fff;
-        border-color: #FF7837;
-    }
-    
-    .btn-confirmation {
-        padding: 0.5%;
-        padding-left: 4%;
-        padding-right: 4%;
-    }
-
-
-.btn-host {
-    color: #FF7837;
-    background-color: #fff;
-    border-color: #fff;
+.btn-right {
+    float: right; 
 }
 
+/*---------------Divs---------------*/
 
-    .input-layout {
-        width: 100%;
-        background-color: #DCE2E6;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-        margin-bottom: 2%;
-    }
-    
-    .input-question {
-        width: 250%
-    }
-
-.btn-cancel {
-    color: #FF7837;
-    background-color: #fff;
-    border-color: #FF7837;
+.div-center {
+    padding: 2%;
+    text-align: center;
 }
 
-.btn-modify {
-    margin-left: 33%;
-}
-
-.obj-top_padding{
-    padding-top: 4%;
-}
-
-.btn-answer {
-    width: 5rem;
-    height: 5rem;
-    margin: 2rem;
-    border-radius: 50%;
-    color: #fff;
-    background-color: #FF7837;
-    border-color: #FF7837;
-    border: none;
-    font-size: x-large;
-}
-
-.btn-answer:hover {
-    background-color: #e17640;
-}
-
-.btn-answer:active {
-    background-color: #FF7837;
-}
-
-.img-center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.div-correct_answer {
+    text-align: right;
+    flex: 1;
+    margin-right: 2px;
 }
 
 .div-flex {
     display: flex;
 }
-
-.div-quiz_layout {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.row-layout {
-    width: 650px;
-} 
 
 .div-header{
     text-align: center;
@@ -140,37 +114,74 @@
     padding-bottom: 10%;
 }
 
-.btn-next{
-    padding-bottom: 5%;
-    padding-right: 3%;
+.div-option {
+    display: flex;
+    width: 1150px;
 }
 
-
-.txt-red{
-    color: red;
+.div-quiz_layout {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
+
+/*---------------Images---------------*/
+
+.img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*---------------Inputs---------------*/
+
+.input-layout {
+    width: 100%;
+    background-color: #DCE2E6;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 2%;
+}
+    
+.input-question {
+    width: 250%
+}
+
+/*---------------Labels---------------*/
+
+.label-correct_answer {
+    margin-right: 5px;
+}
+
+/*---------------Objects---------------*/
+
+.obj-bottom_margin {
+    margin-bottom: 2%;
+}
+
+.obj-top_padding{
+    padding-top: 4%;
+}
+
+/*---------------Pages---------------*/
 
 .page-padding {
     padding-right: 5%;
     padding-left: 5%;
 }
 
+/*---------------Rows---------------*/
 
-.div-option {
-    display: flex;
-    width: 1150px;
+.row-layout {
+    width: 650px;
 }
 
-.div-correct_answer {
-    text-align: right;
-    flex: 1;
-    margin-right: 2px;
-}
+/*---------------Text---------------*/
 
-.label-correct_answer {
-    margin-right: 5px;
-}
-
-.obj-bottom_margin {
-    margin-bottom: 2%;
+.txt-red{
+    color: red;
 }
