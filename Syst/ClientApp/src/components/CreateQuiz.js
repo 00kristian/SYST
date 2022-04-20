@@ -55,6 +55,7 @@ export class CreateQuiz extends Component {
                         <input placeholder={Quiz.name} className="input-layout" onChange={(event) => Quiz.name = event.target.value}></input>
                     </label>
                     <br />
+                    <hr/>
                     <br />
                     <h5>Questions:</h5>
                     {Questions.map((answer, index) =>

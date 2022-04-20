@@ -350,3 +350,4 @@ MigrationBackup/
 .ionide/
 
 Syst/Images/
+.vscode/

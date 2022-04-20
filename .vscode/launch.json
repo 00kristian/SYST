@@ -1,0 +1,44 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+            "name": "Server",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/Syst/bin/Debug/net6.0/Syst.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Syst",
+            "stopAtEntry": false,
+            // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
+            "serverReadyAction": {
+                "action": "debugWithChrome",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {   
+            "name": "Client",
+            "type": "pwa-chrome",
+            "request": "attach",
+            "url": "https://localhost:44419",
+            "webRoot": "${workspaceFolder}/Syst/ClientApp"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Client/Server",
+            "configurations": ["Server", "Client"],
+            "stopAll": true
+        }
+    ]
+}

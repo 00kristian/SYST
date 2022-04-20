@@ -16,8 +16,10 @@ builder.Services.AddScoped<ISystematicContext, SystematicContext>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
-builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
-builder.Services.AddScoped<IQuizRepository, QuizRepository>();
+//add environment path so we can delete images
+var envPath = builder.Environment.ContentRootPath;
+builder.Services.AddScoped<IQuestionRepository, QuestionRepository>(r => new QuestionRepository(r.GetRequiredService<ISystematicContext>(), envPath));
+builder.Services.AddScoped<IQuizRepository, QuizRepository>(r => new QuizRepository(r.GetRequiredService<ISystematicContext>(), envPath));
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
