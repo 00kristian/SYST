@@ -36,7 +36,7 @@ export class Candidates extends Component {
                         <td>{candidate.university}</td>
                         <td>{candidate.studyProgram}</td>
                         <td>{candidate.graduationDate}</td>
-                        <td><button className="btn btn-primary rightbtn" onClick={()=>delFun(candidate.id)}>Delete</button></td>
+                        <td><button className="btn btn-primary btn-right" onClick={()=>delFun(candidate.id)}>Delete</button></td>
                     </tr>
                 )}
                 </tbody>

@@ -1,22 +1,7 @@
-/* Provide sufficient contrast against white background */
-
-/*a {
-  color: #0366d6;
-}*/
-
-.confirmationText {
+.div-center {
     padding: 2%;
     text-align: center;
 }
-
-.figureConfirmation {
-    text-align: center;
-    padding: 2%;
-}
-
-/*code {
-  color: #E01A76;
-}*/
 
 .btn-primary {
     color: #fff;
@@ -25,7 +10,6 @@
     margin-bottom: 1%;
     margin-top: 1%;
 }
-
 
     .btn-primary:hover {
         color: #fff;
@@ -43,34 +27,26 @@
         border-color: #FF7837;
     }
     
-    .rightbtn {
+    .btn-right {
         float: right; 
     }
-    
-    /*.btn-plus {
-        width:98.5%;
-        background-color: #193CBE;
-        color:white;
-        border-color:#193CBE;
- 
-    }*/
 
-    .minusbtn {
-        /*margin-left: 45.5%;*/
-        float:right;
+    .btn-minus_question {
+        float: right;
+        margin-right: 1.5%;
         color: #FF7837;
         background-color: #fff;
         border-color: #FF7837;
     }
 
-    .minusbtn2 {
+    .btn-minus_quiz {
         margin-left: 41%;
         color: #FF7837;
         background-color: #fff;
         border-color: #FF7837;
     }
     
-    .confirmationbtn {
+    .btn-confirmation {
         padding: 0.5%;
         padding-left: 4%;
         padding-right: 4%;
@@ -84,7 +60,7 @@
 }
 
 
-    .input-field {
+    .input-layout {
         width: 100%;
         background-color: #DCE2E6;
         padding: 12px 20px;
@@ -96,7 +72,7 @@
         margin-bottom: 2%;
     }
     
-    .q-field {
+    .input-question {
         width: 250%
     }
 
@@ -110,16 +86,11 @@
     margin-left: 33%;
 }
 
-.space{
+.obj-top_padding{
     padding-top: 4%;
 }
 
-/*.CandidateInformation{
-    display: flex;
-    justify-content: center;
-}*/
-
-.answerButton {
+.btn-answer {
     width: 5rem;
     height: 5rem;
     margin: 2rem;
@@ -131,33 +102,31 @@
     font-size: x-large;
 }
 
-.answerButton:hover {
+.btn-answer:hover {
     background-color: #e17640;
 }
 
-.answerButton:active {
+.btn-answer:active {
     background-color: #FF7837;
 }
 
-.centeredImage {
+.img-center {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.butNText {
-
+.div-flex {
     display: flex;
-
 }
 
-.vertical-center {
+.div-quiz_layout {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
-.ansRow {
+.row-layout {
     width: 650px;
 } 
 
@@ -181,37 +150,27 @@
     color: red;
 }
 
-.CreateQPage {
+.page-padding {
     padding-right: 5%;
     padding-left: 5%;
 }
 
 
-.flex-container {
+.div-option {
     display: flex;
     width: 1150px;
 }
 
-.flex-child {
-    flex: 1;
-}
-
-.correctAns {
+.div-correct_answer {
     text-align: right;
+    flex: 1;
+    margin-right: 2px;
 }
 
-/*.cText {
-    margin-right: 1.5%;
-}*/
-
-/*.flex {
-    display: flex;
-}*/
-
-.imageLabel {
-    padding-top: 2%;
+.label-correct_answer {
+    margin-right: 5px;
 }
 
-.questionLabel {
+.obj-bottom_margin {
     margin-bottom: 2%;
 }
