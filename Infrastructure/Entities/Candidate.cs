@@ -11,6 +11,7 @@ namespace Infrastructure{
         public DateTime GraduationDate {get; set;}
         public ICollection<Event>? EventsParticipatedIn {get; set;}
         public Quiz? Quiz {get; set;}
+        public bool IsUpvoted {get; set;}
         public ICollection<bool>? Answers {get; set;}
 
     }

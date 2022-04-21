@@ -21,6 +21,9 @@ namespace Core {
         string University,
 
         [Required]
-        string GraduationDate
+        string GraduationDate,
+
+        [Required]
+        bool IsUpvoted
     );
 } 
