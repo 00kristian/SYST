@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-grid';
+import { Pager } from './Pager';
 import logo from './Systematic_Logo.png';
 
 export class CandidateQuiz extends Component {
@@ -7,7 +8,7 @@ export class CandidateQuiz extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { quiz: Object, loading: true };
+    this.state = { quiz: Object, loading: true, currentQuestion: 0};
   }
 
   componentDidMount() {
@@ -42,18 +43,17 @@ export class CandidateQuiz extends Component {
 
     return (
         <div>
-            <Container>
-                <Row>
-                    <Col>
-                        <div className='question-options'>
-                            {ops}
-                        </div>
-                    </Col>
-                    <Col>
-                        <img style={{width: 400}} src={path + "/api/Image/" + question.imageURl} alt="quizPic" />
-                    </Col>
-                </Row>
-            </Container>
+            <h4 style={this.centeredText}>{question.representation}</h4>
+            <Row>
+                <Col>
+                    <div className='question-options'>
+                        {ops}
+                    </div>
+                </Col>
+                <Col>
+                    <img style={{width: 400}} src={path + "/api/Image/" + question.imageURl} alt="quizPic" />
+                </Col>        
+            </Row>
       </div>
 
     );
@@ -62,23 +62,30 @@ export class CandidateQuiz extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : CandidateQuiz.renderCandidateQuestion(this.state.quiz.questions[0]);
+      : (<Container>         
+            {CandidateQuiz.renderCandidateQuestion(this.state.quiz.questions[this.state.currentQuestion])}
+            <Row>
+                {Pager.Pager(this.state.currentQuestion, this.state.quiz.questions, ((at) => this.setState({currentQuestion: at})), this.finish)}
+            </Row>
+        </Container>);
 
     return (
       <div>
         <img style={{width: 600}} className='img-center' src={logo} alt="logo" />
         <h1 style={this.centeredText}>Can you solve this quiz?</h1>
         {contents}
-        <div className='btn-next'>
-        <a href={'/CandidateInformation'}><button className="btn btn-primary btn-right">NEXT</button></a>
-        </div>
       </div>
     );
+  }
+
+  finish = async () => {
+    const { history } = this.props;
+    history.push("/CandidateInformation");
   }
 
   async populateData() {
     const response = await fetch('api/quiz/' + 1);
     const data = await response.json();
-    this.setState({ quiz: data, loading: false });
+    this.setState({ quiz: data, loading: false});
   }
 }

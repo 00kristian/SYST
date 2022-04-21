@@ -199,3 +199,7 @@
     overflow-wrap: break-word;
     width: 170px;
 }
+.horizontal-centered-div {
+    width: 50%;
+    margin: 0 auto;
+}
