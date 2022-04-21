@@ -33,7 +33,6 @@ export class CandidateInformation extends Component {
         return (
             <div>
                 <div className='div-header'>
-                <img src={logo} alt="Logo" width={500}/>
                 <h5>Please write your contact information to enter the competition</h5>
                 </div>
                 <br/>
