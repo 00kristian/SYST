@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './Systematic_Logo.png';
 import Dropdown from 'react-dropdown';
 import DatePicker from "react-datepicker";
 
@@ -11,7 +10,7 @@ export class CandidateInformation extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { Name: "", Email: "", University: "", StudyProgram: "", ShowSpecialUni : false, validateName : false, validateEmail : false, validateStudyProgram : false, validateCheckBox : false, clickedOnSubmit : false, validateUniversity : false, GraduationDate: new Date()};
+        this.state = {Answers: props.Answers, Name: "", Email: "", University: "", StudyProgram: "", ShowSpecialUni : false, validateName : false, validateEmail : false, validateStudyProgram : false, validateCheckBox : false, clickedOnSubmit : false, validateUniversity : false, GraduationDate: new Date()};
     }
     
 
