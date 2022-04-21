@@ -12,6 +12,8 @@ export class CandidateQuiz extends Component {
     this.state = { quiz: Object, loading: true, currentQuestion: 0};
   }
 
+  QUIZID = 1;
+
   componentDidMount() {
     this.populateData();
   }
@@ -64,7 +66,7 @@ export class CandidateQuiz extends Component {
       : 
        (<Container>         
             {this.state.currentQuestion >= this.state.quiz.questions.length ?
-            <CandidateInformation Answers={this.state.answers}/>
+            <CandidateInformation Answers={this.state.answers} QuizId={this.QUIZID}/>
             :
             CandidateQuiz.renderCandidateQuestion(this.state.quiz.questions[this.state.currentQuestion], this.answer)
             }

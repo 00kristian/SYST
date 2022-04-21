@@ -163,7 +163,7 @@ export class CandidateInformation extends Component {
         this.setState({validateCheckBox : e.target.checked})
     }
 
-    rerouteToCandidateConfirmation = () => {
+    rerouteToCandidateConfirmation = async () => {
 
         this.setState({clickedOnSubmit : true});
 
@@ -194,10 +194,24 @@ export class CandidateInformation extends Component {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(candidate)
             };
-            fetch('api/candidates', requestOptions)
+            let candid = await  fetch('api/candidates', requestOptions)
             .then(response => response.json())
-            const { history } = this.props;
-            history.push('/CandidateQuiz');
+
+            let Answer = {
+                quizid: this.props.QuizId,
+                answers: this.state.Answers
+            }
+
+            const requestOptions2 = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Answer)
+            };
+
+            fetch('api/candidates/answer/' + candid, requestOptions2)
+            .then(response => response.json())
+
+            window.location.reload(true);
         }
     }
 }

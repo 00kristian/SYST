@@ -109,8 +109,12 @@ namespace Infrastructure
             
             if (c == default(Candidate)) return Status.NotFound;
 
+            var q = await _context.Quizes.Where(q => q.Id == answer.QuizId).FirstOrDefaultAsync();
+            
+            if (q == default(Quiz)) return Status.NotFound;
+
             var ans = new Answer() {
-                QuizId = answer.QuizId,
+                Quiz = q,
                 Answers = answer.Answers
             };
             if (c.Answers == null) c.Answers = new List<Answer>();
