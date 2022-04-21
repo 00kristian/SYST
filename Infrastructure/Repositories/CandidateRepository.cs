@@ -25,7 +25,8 @@ namespace Infrastructure
                     Email = candidateDTO.Email!,
                     StudyProgram = candidateDTO.StudyProgram,
                     University = candidateDTO.University,
-                    GraduationDate = DateTime.Parse(candidateDTO.GraduationDate)
+                    GraduationDate = DateTime.Parse(candidateDTO.GraduationDate),
+                    IsUpvoted = candidateDTO.IsUpvoted
                     
                 };
 
@@ -51,7 +52,8 @@ namespace Infrastructure
                 Email = c.Email!,
                 StudyProgram = c.StudyProgram!,
                 University = c.University!,
-                GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd")
+                GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd"),
+                IsUpvoted = c.IsUpvoted
             }).FirstOrDefaultAsync();
 
             if (c == default(CandidateDTO)) return (Status.NotFound, c);
@@ -66,7 +68,8 @@ namespace Infrastructure
                 Email = c.Email!,
                 StudyProgram = c.StudyProgram!,
                 University = c.University!,
-                GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd")
+                GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd"),
+                IsUpvoted = c.IsUpvoted
             }).ToListAsync();
 
         //Updates an candidate name, email, university and study program values
@@ -81,6 +84,7 @@ namespace Infrastructure
             c.University = candidateDTO.University;
             c.StudyProgram = candidateDTO.StudyProgram;
             c.GraduationDate = DateTime.Parse(candidateDTO.GraduationDate);
+            c.IsUpvoted = candidateDTO.IsUpvoted;
 
             await _context.SaveChangesAsync();
 
