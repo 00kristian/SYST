@@ -17,7 +17,10 @@ export class EventDetail extends Component {
         <div>
             <h1>{event.name}</h1>
             <h2>{event.date}</h2>
-            <h2>{event.location}</h2>
+            <h2 className='txt-left'>{event.location}</h2>
+            <h2 className='txt-right'>Rating: {event.rating}</h2>
+            <br/>
+            <br/>
             <button onClick={() => editEvent()} className="btn btn-primary">Edit event</button>
             <button onClick={() => editRating()} className="btn btn-primary btn-right">Edit rating</button>
             <br/>

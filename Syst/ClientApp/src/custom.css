@@ -182,6 +182,16 @@
 
 /*---------------Text---------------*/
 
-.txt-red{
+.txt-red {
     color: red;
+}
+
+.txt-left{
+    text-align: left;
+    float: left;
+}
+
+.txt-right{
+    text-align: right;
+    float: right;
 }
