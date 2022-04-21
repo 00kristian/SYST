@@ -205,7 +205,7 @@ export class CandidateInformation extends Component {
             fetch('api/candidates', requestOptions)
             .then(response => response.json())
             const { history } = this.props;
-            history.push('/ConformationCandidate');
+            history.push('/CandidateQuiz');
         }
     }
 }

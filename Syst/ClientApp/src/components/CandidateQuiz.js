@@ -64,7 +64,7 @@ export class CandidateQuiz extends Component {
       : 
        (<Container>         
             {this.state.currentQuestion >= this.state.quiz.questions.length ?
-            new CandidateInformation().render()
+            <CandidateInformation/>
             :
             CandidateQuiz.renderCandidateQuestion(this.state.quiz.questions[this.state.currentQuestion], this.next)
             }
