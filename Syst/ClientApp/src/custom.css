@@ -3,7 +3,9 @@
 .btn-answer {
     width: 5rem;
     height: 5rem;
-    margin: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
     border-radius: 50%;
     color: #fff;
     background-color: #FF7837;
@@ -101,7 +103,7 @@
 }
 
 .div-flex {
-    display: flex;
+    display:-webkit-inline-flex;
 }
 
 .div-header{
@@ -120,9 +122,10 @@
 }
 
 .div-quiz_layout {
-    display: flex;
+    display:flex;
     justify-content: center;
     flex-direction: column;
+
 }
 
 /*---------------Images---------------*/
@@ -184,4 +187,15 @@
 
 .txt-red{
     color: red;
+}
+
+/*---------------Misc---------------*/
+.question-options {
+    display: grid;
+    grid-template-columns: 300px 300px;
+    
+  }
+.question-text {
+    overflow-wrap: break-word;
+    width: 170px;
 }

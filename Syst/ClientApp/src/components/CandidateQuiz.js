@@ -21,64 +21,36 @@ export class CandidateQuiz extends Component {
         margin: 15
     };
 
-  static renderCandidateQuiz(quiz) {
+  static renderCandidateQuestion(question) {
+    const path = window.location.href.replace(window.location.pathname, "");
+    const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ", "Ø", "Å"];
+
+    let ops = [];
+    let i = 0;
+    question.options.forEach(op => {
+        ops.push(
+            <Col> 
+                <div className="div-flex">           
+                    <button className="btn-answer"> {letters[i++]} </button>
+                    <div className='div-quiz_layout'>
+                        <h5 className='question-text'> {op}</h5>
+                    </div>
+                </div>
+            </Col>
+        );
+    });
+
     return (
         <div>
             <Container>
                 <Row>
                     <Col>
-                        <Container>
-                            <br/>
-                            <br/>
-                            <Row>
-                                <h3>This is a placeholder for the quiz representation</h3>
-                            </Row>
-                            <br/>
-                            <Row className="row-layout">
-                                <Col> 
-                                    <div className="div-flex">           
-                                        <button className="btn-answer"> A </button>
-                                        <div className='div-quiz_layout'>
-                                            <h5>Option A</h5>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col> 
-                                    <div className="div-flex">           
-                                        <button className="btn-answer"> B </button>
-                                        <div className='div-quiz_layout'>
-                                            <h5>Option B</h5>
-                                        </div>
-                                    </div>
-                                </Col>
-                            </Row>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <Row className="row-layout">
-                                <Col> 
-                                    <div className="div-flex">           
-                                        <button className="btn-answer"> C </button>
-                                        <div className='div-quiz_layout'>
-                                            <h5>Option C</h5>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col> 
-                                    <div className="div-flex">           
-                                        <button className="btn-answer"> D </button>
-                                        <div className='div-quiz_layout'>
-                                            <h5>Option D</h5>
-                                        </div>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </Container>
+                        <div className='question-options'>
+                            {ops}
+                        </div>
                     </Col>
                     <Col>
-                        {//placeholder image
-                        }
-                        <img style={{height: 600}} src="https://images-ext-1.discordapp.net/external/HCEa_uu9JSzZOqkiNqbczN8PzGe6dkusshmtRzfBrIE/https/backoffice.systematic.com/media/hunhjd0w/screeningsp%25C3%25B8rgsm%25C3%25A5l4.png" alt="quizPic" />
+                        <img style={{width: 400}} src={path + "/api/Image/" + question.imageURl} alt="quizPic" />
                     </Col>
                 </Row>
             </Container>
@@ -90,7 +62,7 @@ export class CandidateQuiz extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : CandidateQuiz.renderCandidateQuiz(this.state.quiz);
+      : CandidateQuiz.renderCandidateQuestion(this.state.quiz.questions[0]);
 
     return (
       <div>
@@ -105,8 +77,8 @@ export class CandidateQuiz extends Component {
   }
 
   async populateData() {
-    const response = await fetch('api/events/' + this.props.match.params.id);
+    const response = await fetch('api/quiz/' + 1);
     const data = await response.json();
-    this.setState({ event: data, loading: false });
+    this.setState({ quiz: data, loading: false });
   }
 }

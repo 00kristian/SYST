@@ -45,7 +45,6 @@ namespace Infrastructure
                 Id = q.Id,
                 Name = q.Name!
             }).ToListAsync();
-            //TODO: Do we need this if we can get the quizes via events? 
 
 
         //Deletes a quiz given the quiz id
@@ -77,8 +76,11 @@ namespace Infrastructure
                 Id = q.Id,
                 Name = q.Name!,
                 Questions = q.Questions!.Select(qs => new QuestionDTO {
+                    Representation = qs.Representation!,
                     Id = qs.Id,
-                    Representation = qs.Representation!
+                    Answer = qs.Answer!,
+                    ImageURl = qs.ImageURL!,
+                    Options = qs.Options!
                 }).ToList()
                 
             }).FirstOrDefaultAsync();
