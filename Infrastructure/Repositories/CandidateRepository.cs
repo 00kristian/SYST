@@ -104,6 +104,20 @@ namespace Infrastructure
             return Status.Deleted;
         }
 
-        
+        public async Task<Status> AddAnswer(int candidateId, AnswerDTO answer) {
+            var c = await _context.Candidates.Include(c => c.Answers).Where(c => c.Id == candidateId).FirstOrDefaultAsync();
+            
+            if (c == default(Candidate)) return Status.NotFound;
+
+            var ans = new Answer() {
+                QuizId = answer.QuizId,
+                Answers = answer.Answers
+            };
+            if (c.Answers == null) c.Answers = new List<Answer>();
+            c.Answers.Add(ans);
+
+            await _context.SaveChangesAsync();
+            return Status.Updated;
+        }
     }
 }

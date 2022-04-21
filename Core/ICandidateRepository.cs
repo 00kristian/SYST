@@ -11,6 +11,6 @@ public interface ICandidateRepository
         Task<(Status, string?)> ReadNameFromId(int id);
         Task<Status> Update(int id, CandidateDTO candidateDTO);
         Task<Status> Delete(int id);
-
+        Task<Status> AddAnswer(int candidateId, AnswerDTO answer);
     }
 }

@@ -12,7 +12,6 @@ namespace Infrastructure{
         public ICollection<Event>? EventsParticipatedIn {get; set;}
         public Quiz? Quiz {get; set;}
         public bool IsUpvoted {get; set;}
-        public ICollection<bool>? Answers {get; set;}
-
+        public virtual ICollection<Answer>? Answers {get; set;}
     }
 }

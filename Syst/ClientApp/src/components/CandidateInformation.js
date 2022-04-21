@@ -16,7 +16,6 @@ export class CandidateInformation extends Component {
 
     render() {
         const options = [
-
             'Aalborg University',
             'Aarhus University',
             'Copenhagen Business School',
@@ -25,8 +24,7 @@ export class CandidateInformation extends Component {
             'Technical University of Denmark',
             'University of Copenhagen',
             'University of Southern Denmark',
-            'Other'
-            
+            'Other'  
         ];
         
         return (
@@ -99,11 +97,6 @@ export class CandidateInformation extends Component {
                     )}
                     <br />
                     <br />
-
-
-
-
-
 
                     {this.state.validateStudyProgram ? (
                         <div>

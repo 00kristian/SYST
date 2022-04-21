@@ -24,9 +24,9 @@ export class CandidateQuiz extends Component {
     let i = 0;
     question.options.forEach(op => {
         ops.push(
-            <Col> 
+            <Col key={i}> 
                 <div className="div-flex">           
-                    <button onClick={answerFun} className="btn-answer"> {letters[i++]} </button>
+                    <button onClick={() => answerFun(op)} className="btn-answer"> {letters[i++]} </button>
                     <div className='div-quiz_layout'>
                         <h5 className='question-text'> {op}</h5>
                     </div>
@@ -64,13 +64,11 @@ export class CandidateQuiz extends Component {
       : 
        (<Container>         
             {this.state.currentQuestion >= this.state.quiz.questions.length ?
-            <CandidateInformation/>
+            <CandidateInformation Answers={this.state.answers}/>
             :
-            CandidateQuiz.renderCandidateQuestion(this.state.quiz.questions[this.state.currentQuestion], this.next)
+            CandidateQuiz.renderCandidateQuestion(this.state.quiz.questions[this.state.currentQuestion], this.answer)
             }
-            <Row>
-                {Pager.Pager(this.state.currentQuestion, this.state.quiz.questions, ((at) => this.setState({currentQuestion: at})))}
-            </Row>
+            {Pager.Pager(this.state.currentQuestion, this.state.quiz.questions, ((at) => this.setState({currentQuestion: at})))}  
         </Container>);
 
     return (
@@ -79,6 +77,11 @@ export class CandidateQuiz extends Component {
         {contents}
       </div>
     );
+  }
+
+  answer = async (option) => {
+    this.state.answers[this.state.currentQuestion] = option;
+    this.next();
   }
 
   next = async () => {
@@ -100,6 +103,6 @@ export class CandidateQuiz extends Component {
   async populateData() {
     const response = await fetch('api/quiz/' + 1);
     const data = await response.json();
-    this.setState({ quiz: data, loading: false});
+    this.setState({ quiz: data, loading: false, answers: Array(data.questions.length)});
   }
 }
