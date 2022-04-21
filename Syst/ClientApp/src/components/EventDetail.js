@@ -12,13 +12,14 @@ export class EventDetail extends Component {
     this.populateData();
   }
 
-  static renderEvent(event, edit, deleteEvent) {
+  static renderEvent(event, editEvent, editRating, deleteEvent) {
     return (
         <div>
             <h1>{event.name}</h1>
             <h2>{event.date}</h2>
             <h2>{event.location}</h2>
-            <button onClick={() => edit()} className="btn btn-primary btn-right">Edit event</button>
+            <button onClick={() => editEvent()} className="btn btn-primary">Edit event</button>
+            <button onClick={() => editRating()} className="btn btn-primary btn-right">Edit rating</button>
             <br/>
             <h3>Participants</h3>
             <table className='table table-striped' aria-labelledby="tabelLabel">
@@ -55,7 +56,7 @@ export class EventDetail extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : EventDetail.renderEvent(this.state.event, this.edit, this.deleteEvent);
+      : EventDetail.renderEvent(this.state.event, this.editEvent, this.editRating, this.deleteEvent);
 
     return (
       <div>
@@ -64,9 +65,14 @@ export class EventDetail extends Component {
     );
   }
 
-  edit = () => {
+  editEvent = () => {
     const { history } = this.props;
     history.push("/CreateEvent/" + this.props.match.params.id);
+  }
+
+  editRating = () => {
+    const { history } = this.props;
+    history.push("/EventRating/" + this.props.match.params.id);
   }
 
   async populateData() {
@@ -88,5 +94,5 @@ export class EventDetail extends Component {
 
     const { history } = this.props;
     history.push("/events");
-}
+  }
 }
