@@ -8,12 +8,6 @@ export class EventRating extends Component {
         super(props);
         this.state = {loading: true };
     }
-
-    static renderRating(){
-        return (
-            <h1>Hello again!</h1>
-        );
-    }
     
     render() {
         const QuestionCandidates = [
@@ -48,7 +42,8 @@ export class EventRating extends Component {
 
         return (
             <div>
-                <h2>Rating</h2>
+                <h2 className='div-center'>Event Rating</h2>
+                <br/>
                 <p>1. How many relevant candidates did we meet?</p>
                 <Dropdown options={QuestionCandidates} value="Select Rating" />
                 <br/>
@@ -60,9 +55,21 @@ export class EventRating extends Component {
                 <br/>
                 <p>4. How much time did we invest in preparing for the event?</p>
                 <Dropdown options={QuestionTime} value="Select Rating" />
+                <br/>
+                <button onClick={() => this.cancelRating()} className='btn btn-cancel'>Cancel</button>
+                <button onClick={() => this.submitRating()} className='btn btn-primary btn-right'>Submit</button>
            
             </div>
         );
     }
 
+    cancelRating = () => {
+        const { history } = this.props;
+        history.push("/Events");
+    }
+
+    submitRating = () => {
+        const { history } = this.props;
+        history.push("/Events");
+    }
 }
