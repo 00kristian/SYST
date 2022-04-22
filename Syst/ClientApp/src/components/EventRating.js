@@ -6,7 +6,8 @@ export class EventRating extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {QCandidateRating: 0, QApplicationRating: 0, QCostRating: 0, QTimeRating: 0, OverAllRating: 0};
+        this.state = {event: { rating: 0, QCandidateRating: 0, QApplicationRating: 0, QCostRating: 0, QTimeRating: 0, OverAllRating: 0 }
+    };
     }
     
     render() {
@@ -77,7 +78,7 @@ export class EventRating extends Component {
 
     submitRating = (QCandidateRating, QApplicationRating, QCostRating, QTimeRating ) => {
         this.setState({
-            OverAllRating: this.state.QCandidateRating + this.state.QApplicationRating + this.state.QCostRating + this.state.QTimeRating
+            OverAllRating: (this.state.QCandidateRating + this.state.QApplicationRating + this.state.QCostRating + this.state.QTimeRating) / 4
         });
         //const { history } = this.props;
         //history.push("/Events");
