@@ -6,8 +6,7 @@ export class EventRating extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {event: { rating: 0, QCandidateRating: 0, QApplicationRating: 0, QCostRating: 0, QTimeRating: 0, OverAllRating: 0 }
-    };
+        this.state = {event: {QCandidateRating: 0, QApplicationRating: 0, QCostRating: 0, QTimeRating: 0, OverAllRating: 0 }};
     }
     
     render() {
@@ -58,7 +57,7 @@ export class EventRating extends Component {
                 <Dropdown options={QuestionTime} onChange={(QuestionTime) => this.setState({ QTimeRating: QuestionTime.value })} value="Select Rating" />
                 <br/>
                 <button onClick={() => this.cancelRating()} className='btn btn-cancel'>Cancel</button>
-                <button onClick={() => this.submitRating()} className='btn btn-primary btn-right'>Submit</button>
+                <button onClick={() => this.updateRating()} className='btn btn-primary btn-right'>Submit</button>
 
                 <p>Rating: {this.state.OverAllRating}</p>
                 <p>QCandidateRating: {this.state.QCandidateRating}</p>
@@ -80,7 +79,26 @@ export class EventRating extends Component {
         this.setState({
             OverAllRating: (this.state.QCandidateRating + this.state.QApplicationRating + this.state.QCostRating + this.state.QTimeRating) / 4
         });
-        //const { history } = this.props;
-        //history.push("/Events");
+        this.updateRating();
+        const { history } = this.props;
+        //history.push("/eventdetail/" + this.props.match.params.id);
+        history.push("/events");
     }
+
+    updateRating = () => {
+        let event = {
+            "overAllRating": this.state.event.OverAllRating
+        };
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(event)
+        };
+        fetch('api/events/' + this.props.match.params.id, requestOptions)
+        .then(response => response.json())
+        const { history } = this.props;
+        //history.push("/eventdetail/" + this.props.match.params.id);
+        history.push("/events");
+    }
+
 }
