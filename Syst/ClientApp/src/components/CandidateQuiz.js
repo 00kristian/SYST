@@ -12,7 +12,8 @@ export class CandidateQuiz extends Component {
     this.state = { quiz: Object, loading: true, currentQuestion: 0};
   }
 
-  QUIZID = 1;
+  EVENTID = this.props.match.params.event_id;
+  QUIZID = this.props.match.params.quiz_id;
 
   componentDidMount() {
     this.populateData();
@@ -66,7 +67,7 @@ export class CandidateQuiz extends Component {
       : 
        (<Container>         
             {this.state.currentQuestion >= this.state.quiz.questions.length ?
-            <CandidateInformation Answers={this.state.answers} QuizId={this.QUIZID}/>
+            <CandidateInformation Answers={this.state.answers} QuizId={this.QUIZID} EventId={this.EVENTID}/>
             :
             CandidateQuiz.renderCandidateQuestion(this.state.quiz.questions[this.state.currentQuestion], this.answer)
             }
@@ -103,7 +104,7 @@ export class CandidateQuiz extends Component {
   }
 
   async populateData() {
-    const response = await fetch('api/quiz/' + 1);
+    const response = await fetch('api/quiz/' + this.QUIZID);
     const data = await response.json();
     this.setState({ quiz: data, loading: false, answers: Array(data.questions.length)});
   }

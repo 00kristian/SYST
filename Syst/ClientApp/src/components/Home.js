@@ -34,7 +34,7 @@ export class Home extends Component {
                         <td>{event.location}</td>
                         <td>{event.rating}</td>
                         <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host btn-right">Details</button></a></td>
-                        <td onClick={()=> window.open('/CandidateQuiz', "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">Host</button></td>
+                        <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">Host</button></td>
                     </tr>
                 )}
                 </tbody>

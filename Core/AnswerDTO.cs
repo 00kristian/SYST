@@ -8,6 +8,8 @@ namespace Core {
         [Required]
         int QuizId,
 
+        int EventId,
+
         string[]? Answers
     );
 }        

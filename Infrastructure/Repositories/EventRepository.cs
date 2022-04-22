@@ -61,12 +61,18 @@ namespace Infrastructure
 
         //Return a list of all events
          public async Task<IReadOnlyCollection<EventDTO>> ReadAll() =>
-            await _context.Events.Select(e => new EventDTO(){
+            await _context.Events.Include(e => e.Quiz).Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
                 Date = e.Date.ToString("yyyy-MM-dd"),
                 Location = e.Location!,
-                Rating = e.Rating!
+                Rating = e.Rating!,
+                Quiz = (e.Quiz != default(Quiz)) ? new QuizDTO() {
+                    Id = e.Quiz.Id,
+                    Name = e.Quiz.Name!
+                } : new QuizDTO() {
+                    Id = -1
+                }
             }).ToListAsync();
 
         //Return a name given the event id 
@@ -105,7 +111,7 @@ namespace Infrastructure
         }
         
         public async Task<IReadOnlyCollection<EventDTO>> ReadUpcoming() =>
-            await _context.Events.Where(e => e.Date >= DateTime.Today)
+            await _context.Events.Include(e => e.Quiz).Where(e => e.Date >= DateTime.Today)
                 .OrderBy(e => e.Date)
                 .Take(5).Select(e => new EventDTO()
                 {
@@ -113,12 +119,18 @@ namespace Infrastructure
                     Id = e.Id,
                     Date = e.Date.ToString("yyyy-MM-dd"),
                     Location = e.Location!,
-                    Rating = e.Rating!
+                    Rating = e.Rating!,
+                    Quiz = (e.Quiz != default(Quiz)) ? new QuizDTO() {
+                        Id = e.Quiz.Id,
+                        Name = e.Quiz.Name!
+                    } : new QuizDTO() {
+                        Id = -1
+                    }
                 })
                 .ToListAsync();
 
         public async Task<IReadOnlyCollection<EventDTO>> ReadRecent() =>
-            await _context.Events.Where(e => e.Date < DateTime.Today)
+            await _context.Events.Include(e => e.Quiz).Where(e => e.Date < DateTime.Today)
                 .OrderByDescending(e => e.Date)
                 .Take(5).Select(e => new EventDTO()
                 {
@@ -126,7 +138,13 @@ namespace Infrastructure
                     Id = e.Id,
                     Date = e.Date.ToString("yyyy-MM-dd"),
                     Location = e.Location!,
-                    Rating = e.Rating!
+                    Rating = e.Rating!,
+                    Quiz = (e.Quiz != default(Quiz)) ? new QuizDTO() {
+                        Id = e.Quiz.Id,
+                        Name = e.Quiz.Name!
+                    } : new QuizDTO() {
+                        Id = -1
+                    }
                 })
                 .ToListAsync();
 

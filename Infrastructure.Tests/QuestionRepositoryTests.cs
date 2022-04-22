@@ -103,8 +103,8 @@ public class QuestionsRepositoryTests {
 
         //assert
         Assert.Collection(questions,
-            question => Assert.Equal(new QuestionDTO(1, "I am not sure", "Virtual Dispatching", "", null!), question),
-            question => Assert.Equal(new QuestionDTO(2, "This one is about hockey", "Gretzky", "", null!), question)
+            question => Assert.Equal(new QuestionDTO(1, "I am not sure", "Virtual Dispatching", "", question.Options), question),
+            question => Assert.Equal(new QuestionDTO(2, "This one is about hockey", "Gretzky", "", question.Options), question)
         );
 
     }

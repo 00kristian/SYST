@@ -105,7 +105,7 @@ namespace Infrastructure
         }
 
         public async Task<Status> AddAnswer(int candidateId, AnswerDTO answer) {
-            var c = await _context.Candidates.Include(c => c.Answers).Where(c => c.Id == candidateId).FirstOrDefaultAsync();
+            var c = await _context.Candidates.Include(c => c.Answers).Include(c => c.EventsParticipatedIn).Where(c => c.Id == candidateId).FirstOrDefaultAsync();
             
             if (c == default(Candidate)) return Status.NotFound;
 
@@ -118,7 +118,10 @@ namespace Infrastructure
                 Answers = answer.Answers
             };
             if (c.Answers == null) c.Answers = new List<Answer>();
-            c.Answers.Add(ans);
+            c.Answers.Add(ans); //add the answer to the candidate
+
+            var e = await _context.Events.Where(e => e.Id == answer.EventId).FirstOrDefaultAsync();
+            if (e != default(Event)) c.EventsParticipatedIn!.Add(e); //add the candidate to the event
 
             await _context.SaveChangesAsync();
             return Status.Updated;

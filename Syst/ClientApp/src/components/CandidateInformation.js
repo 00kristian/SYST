@@ -199,6 +199,7 @@ export class CandidateInformation extends Component {
 
             let Answer = {
                 quizid: this.props.QuizId,
+                eventid: this.props.EventId,
                 answers: this.state.Answers
             }
 
