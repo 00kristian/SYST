@@ -1,5 +1,6 @@
 using Core;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Syst.Controllers;
 
@@ -21,7 +22,8 @@ public class CandidatesController : ControllerBase
     //Return all candidates in the system
     [ProducesResponseType(200)]
     [HttpGet(Name = "GetCandidates")]
-    public async Task<IEnumerable<CandidateDTO>> Get() {
+    public async Task<IEnumerable<CandidateDTO>> Get() 
+    {
         return await _repo.ReadAll();
     }
     
@@ -43,7 +45,8 @@ public class CandidatesController : ControllerBase
     //Create a new candidate
     [ProducesResponseType(409)]
     [HttpPost]
-    public async Task<IActionResult> Post(CreateCandidateDTO candidate) {
+    public async Task<IActionResult> Post(CreateCandidateDTO candidate) 
+    {
         var created = await _repo.Create(candidate);
         var id = created.Item2;
         if (created.Item1 == Status.Conflict) return new ConflictObjectResult(id);
@@ -54,9 +57,21 @@ public class CandidatesController : ControllerBase
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id){
+    public async Task<IActionResult> Delete(int id)
+    {
         var deleted = await _repo.Delete(id);
         if (deleted == Status.NotFound) return new NotFoundObjectResult(id);
         return deleted.ToActionResult();
+    }
+    
+    //Updates a candidate
+    [ProducesResponseType(404)]
+    [ProducesResponseType(202)]
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, CandidateDTO candidate)
+    {
+        var updated = await _repo.Update(id, candidate);
+        if (updated == Status.NotFound) return new NotFoundObjectResult(id);
+        return updated.ToActionResult();
     }
 }
