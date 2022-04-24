@@ -127,10 +127,8 @@
 
 /*---------------Images---------------*/
 
-.img-center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.img-host-logo {
+    padding:1%;
 }
 
 /*---------------Inputs---------------*/
@@ -138,7 +136,7 @@
 .input-layout {
     width: 100%;
     background-color: #DCE2E6;
-    padding: 12px 20px;
+    padding: 12px 15px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -146,9 +144,16 @@
     box-sizing: border-box;
     margin-bottom: 2%;
 }
-    
+
 .input-question {
     width: 250%
+}
+
+.input-candInfoPage{
+    width: 40vw;
+    padding: 2% 15px;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 /*---------------Labels---------------*/
@@ -184,4 +189,19 @@
 
 .txt-red{
     color: red;
+}
+
+.txt-example {
+    color: grey;
+}
+
+.txt-center {
+    text-align: center;
+}
+
+/*---------------DropDown---------------*/
+.dropdown-length{
+    width: 40vw;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }

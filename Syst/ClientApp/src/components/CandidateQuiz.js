@@ -94,7 +94,7 @@ export class CandidateQuiz extends Component {
 
     return (
       <div>
-        <img style={{width: 600}} className='img-center' src={logo} alt="logo" />
+          <div className="txt-center"><img className="img-host-logo" src={logo} alt="Logo" width="45%"/></div>
         <h1 style={this.centeredText}>Can you solve this quiz?</h1>
         {contents}
         <div className='btn-next'>
