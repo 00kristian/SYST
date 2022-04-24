@@ -39,7 +39,7 @@ export class CandidateInformation extends Component {
         return (
             <div>
                 <div className='div-header'>
-                <img src={logo} alt="Logo" width={500}/>
+                <img className="img-host-logo" src={logo} alt="Logo" width="45%"/>
                 <h5>Please write your contact information to enter the competition</h5>
                 </div>
                 <br/>
@@ -49,63 +49,59 @@ export class CandidateInformation extends Component {
                         <div>
                             <label>
                                 <h5 className='txt-red'>* Name</h5>
-                                <input className="input-layout" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
+                                <input className="input-layout input-candInfoPage" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
                             </label>
                         </div>
                     ) : (
                         <div>
                             <label>
                                 <h5>Name</h5>
-                                <input className="input-layout" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
+                                <input className="input-layout input-candInfoPage" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
                             </label>
                         </div>
                     )}
                     <br />
-                    <br />
                     {this.state.validateEmail ? (
                         <div>
                             <label>
-                                <h5 className='txt-red'>* Email</h5>
-                                <input className="input-layout" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="Email"></input>
-                                <p>Please enter your email address in format: yourname@example.com</p>
+                                <h5 className='txt-red'>* E-mail</h5>
+                                <input className="input-layout input-candInfoPage" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="E-mail"></input>
+                                <p className="txt-example">e.g. <i>example@mail.com</i></p>
                             </label>
                         </div>
                     ) : (
                         <div>
                             <label>
-                                <h5>Email</h5>
-                                <input className="input-layout" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="Email"></input>
-                                <p>Please enter your email address in format: yourname@example.com</p>
+                                <h5>E-mail</h5>
+                                <input className="input-layout input-candInfoPage" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="E-mail"></input>
+                                <p className="txt-example">e.g. <i>example@mail.com</i></p>
                             </label>
                     </div>
                     )}
-                    <br />
                     <br />
 
                     {this.state.validateUniversity ? (
                         <label>
                         <h5 className='txt-red'> * University</h5>
-                        <Dropdown options={options} onChange={this.selectUni} value="Select your University"/>
+                        <Dropdown className="dropdown-length" options={options} onChange={this.selectUni} value="Select your university"/>
                     </label>
                     ) : (
                         <label>
                         <h5>University</h5>
-                        <Dropdown options={options} onChange={this.selectUni} value="Select your University"/>
+                        <Dropdown className="dropdown-length" options={options} onChange={this.selectUni} value="Select your university"/>
                     </label>
                     )}
 
                     <br />
-                    <br />
                     {this.state.ShowSpecialUni ? (
                         <div>
                             <label>
-                                <input className="input-layout" onChange={(uni) => this.state.University= uni.target.value} placeholder="University"></input>
+                                <input className="input-layout input-candInfoPage" onChange={(uni) => this.state.University= uni.target.value} placeholder="University"></input>
                             </label>
                         </div>
                     ) : (
                     <div></div>
                     )}
-                    <br />
                     <br />
 
 
@@ -117,30 +113,31 @@ export class CandidateInformation extends Component {
                         <div>
                             <label>
                                 <h5 className='txt-red'>* Degree</h5>
-                                <Dropdown options={educations} onChange={this.selectDegree} value="Select your program"/>                            
+                                <Dropdown className="dropdown-length"  options={educations} onChange={this.selectDegree} value="Select your program"/>                            
                             </label>
                             <br />
                             <br />
                             <label>
                                 <h5 className='txt-red'>* Study Program</h5>
-                                <input className="input-layout" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
+                                <input className="input-layout input-candInfoPage" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
+                                <p className="txt-example">e.g. <i>Computer Science</i> or <i>Law</i></p>
                             </label>
                         </div>
                     ) : (
                         <div>
                             <label>
                                 <h5>Degree</h5>
-                                <Dropdown options={educations} onChange={this.selectDegree} value="Select your program"/>
+                                <Dropdown className="dropdown-length" options={educations} onChange={this.selectDegree} value="Select your program"/>
                             </label>
                             <br />
                             <br />
                             <label>
                                 <h5>Study Program</h5>
-                                <input className="input-layout" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
+                                <input className="input-layout input-candInfoPage" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
+                                <p className="txt-example">e.g. <i>Computer Science</i> or <i>Law</i></p>
                             </label>
                         </div>
                     )}
-                    <br />
                     <br />
                     <label>
                         <h5>Graduation Date</h5><DatePicker selected={this.state.GraduationDate} onChange={(graduationDate) => {
