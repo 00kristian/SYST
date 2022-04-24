@@ -36,7 +36,7 @@ export class Candidates extends Component {
                         <td>{candidate.name}</td>
                         <td>{candidate.email}</td>
                         <td>{candidate.university}</td>
-                        <td>{candidate.studyProgram}</td>
+                        <td>{candidate.currentDegree} in {candidate.studyProgram}</td>
                         <td>{candidate.graduationDate}</td>
                         <td><button className="btn btn-primary btn-right"><Icon path={mdiThumbUp} size={1}/></button></td>
                         <td><button className="btn btn-primary btn-right" onClick={()=>delFun(candidate.id)}><Icon path={mdiThumbDown} size={1}/></button></td>

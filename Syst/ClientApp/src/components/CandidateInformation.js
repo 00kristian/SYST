@@ -11,7 +11,7 @@ export class CandidateInformation extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { Name: "", Email: "", University: "", StudyProgram: "", ShowSpecialUni : false, validateName : false, validateEmail : false, validateStudyProgram : false, validateCheckBox : false, clickedOnSubmit : false, validateUniversity : false, GraduationDate: new Date()};
+        this.state = { Name: "", Email: "", University: "", CurrentDegree: "", StudyProgram: "", ShowSpecialUni : false, validateName : false, validateEmail : false, validateStudyProgram : false, validateCheckBox : false, clickedOnSubmit : false, validateUniversity : false, GraduationDate: new Date()};
     }
     
 
@@ -30,6 +30,12 @@ export class CandidateInformation extends Component {
             
         ];
         
+        const educations = [
+            'BSc',
+            'MSc',
+            'PhD'
+        ];
+        
         return (
             <div>
                 <div className='div-header'>
@@ -42,7 +48,7 @@ export class CandidateInformation extends Component {
                     {this.state.validateName ? (
                         <div>
                             <label>
-                                <h5 className='txt-red'>*Name</h5>
+                                <h5 className='txt-red'>* Name</h5>
                                 <input className="input-layout" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
                             </label>
                         </div>
@@ -59,7 +65,7 @@ export class CandidateInformation extends Component {
                     {this.state.validateEmail ? (
                         <div>
                             <label>
-                                <h5 className='txt-red'>*Email</h5>
+                                <h5 className='txt-red'>* Email</h5>
                                 <input className="input-layout" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="Email"></input>
                                 <p>Please enter your email address in format: yourname@example.com</p>
                             </label>
@@ -78,7 +84,7 @@ export class CandidateInformation extends Component {
 
                     {this.state.validateUniversity ? (
                         <label>
-                        <h5 className='txt-red'> *University</h5>
+                        <h5 className='txt-red'> * University</h5>
                         <Dropdown options={options} onChange={this.selectUni} value="Select your University"/>
                     </label>
                     ) : (
@@ -110,12 +116,24 @@ export class CandidateInformation extends Component {
                     {this.state.validateStudyProgram ? (
                         <div>
                             <label>
-                                <h5 className='txt-red'>*Study Program</h5>
+                                <h5 className='txt-red'>* Degree</h5>
+                                <Dropdown options={educations} onChange={this.selectDegree} value="Select your program"/>                            
+                            </label>
+                            <br />
+                            <br />
+                            <label>
+                                <h5 className='txt-red'>* Study Program</h5>
                                 <input className="input-layout" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
                             </label>
                         </div>
                     ) : (
                         <div>
+                            <label>
+                                <h5>Degree</h5>
+                                <Dropdown options={educations} onChange={this.selectDegree} value="Select your program"/>
+                            </label>
+                            <br />
+                            <br />
                             <label>
                                 <h5>Study Program</h5>
                                 <input className="input-layout" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
@@ -135,7 +153,7 @@ export class CandidateInformation extends Component {
                     <br />
                     {(!this.state.validateCheckBox && this.state.clickedOnSubmit) ? (
                         <div>
-                            <p className='txt-red'><input id="checkbox" type="checkbox" onClick={this.checkedBox}/> *Accept that Systematic can store your information <a href='https://systematic.com/da-dk/kontakt/privacy-policyings/'>Read more</a></p>
+                            <p className='txt-red'><input id="checkbox" type="checkbox" onClick={this.checkedBox}/> * Accept that Systematic can store your information <a href='https://systematic.com/da-dk/kontakt/privacy-policyings/'>Read more</a></p>
                         </div>
                     ) : (
                     <div>
@@ -148,7 +166,7 @@ export class CandidateInformation extends Component {
                     {(this.state.validateName || this.state.validateEmail || this.state.validateStudyProgram) ? (
                         <div>
                             <label>
-                                <p className='txt-red'>*Need to be filled out</p>
+                                <p className='txt-red'>* Need to be filled out</p>
                             </label>
                         </div>
                     ) : (
@@ -167,33 +185,44 @@ export class CandidateInformation extends Component {
             this.setState({ShowSpecialUni: false, University: option.value});
         }
     }
+    
+    selectDegree = (education) => {this.setState({CurrentDegree: education.value});}
 
     checkedBox = (e) => {
         this.setState({validateCheckBox : e.target.checked})
     }
 
     rerouteToCandidateConfirmation = () => {
+        
+        console.log("Nu starter den")
+        
+        console.log(this.state.currentDegree)
+        console.log(this.state)
 
         this.setState({clickedOnSubmit : true});
 
         const NameGood = this.state.Name.length !== 0;
         const EmailGood = this.state.Email.length !== 0;
         const UniversityGood = this.state.University.length !== 0;
+        const DegreeGood = this.state.CurrentDegree.length !== 0;
         const StudyProgramGood = this.state.StudyProgram.length !== 0;
         const CheckBoxGood = this.state.validateCheckBox;
 
         this.setState({validateName : !NameGood});
         this.setState({validateEmail : !EmailGood});
         this.setState({validateUniversity : !UniversityGood});
+        this.setState({validateDegree : !DegreeGood})
         this.setState({validateStudyProgram : !StudyProgramGood});
 
-        if(NameGood && EmailGood && UniversityGood && StudyProgramGood && CheckBoxGood) {
+        if(NameGood && EmailGood && UniversityGood && DegreeGood && StudyProgramGood && CheckBoxGood) {
 
-
+            console.log("Den er god")
+            
             let candidate = {
                 "name": this.state.Name,
                 "email": this.state.Email,
                 "university": this.state.University,
+                "currentDegree": this.state.CurrentDegree,
                 "studyProgram": this.state.StudyProgram,
                 "graduationDate": this.state.GraduationDate.toDateString()
             };

@@ -13,7 +13,10 @@ namespace Core {
 
         [Required, EmailAddress]
         string Email,
-
+    
+        [Required]
+        string CurrentDegree, 
+        
         [Required]
         string StudyProgram,
 
@@ -31,7 +34,6 @@ namespace Core {
 
         [Required]
         bool IsUpvoted
-
-
+        
     );
 }
