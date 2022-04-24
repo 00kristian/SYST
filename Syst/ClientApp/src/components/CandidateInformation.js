@@ -117,7 +117,7 @@ export class CandidateInformation extends Component {
                         <div>
                             <label>
                                 <h5 className='txt-red'>* Degree</h5>
-                                <Dropdown options={educations} onChange={this.currentDegree} value="Select your program"/>                            
+                                <Dropdown options={educations} onChange={this.selectDegree} value="Select your program"/>                            
                             </label>
                             <br />
                             <br />
@@ -130,7 +130,7 @@ export class CandidateInformation extends Component {
                         <div>
                             <label>
                                 <h5>Degree</h5>
-                                <Dropdown options={educations} onChange={this.currentDegree} value="Select your program"/>
+                                <Dropdown options={educations} onChange={this.selectDegree} value="Select your program"/>
                             </label>
                             <br />
                             <br />
@@ -185,12 +185,19 @@ export class CandidateInformation extends Component {
             this.setState({ShowSpecialUni: false, University: option.value});
         }
     }
+    
+    selectDegree = (education) => {this.setState({CurrentDegree: education.value});}
 
     checkedBox = (e) => {
         this.setState({validateCheckBox : e.target.checked})
     }
 
     rerouteToCandidateConfirmation = () => {
+        
+        console.log("Nu starter den")
+        
+        console.log(this.state.currentDegree)
+        console.log(this.state)
 
         this.setState({clickedOnSubmit : true});
 
@@ -209,7 +216,8 @@ export class CandidateInformation extends Component {
 
         if(NameGood && EmailGood && UniversityGood && DegreeGood && StudyProgramGood && CheckBoxGood) {
 
-
+            console.log("Den er god")
+            
             let candidate = {
                 "name": this.state.Name,
                 "email": this.state.Email,

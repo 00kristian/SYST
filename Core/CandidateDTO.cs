@@ -34,7 +34,6 @@ namespace Core {
 
         [Required]
         bool IsUpvoted
-
-
+        
     );
 }

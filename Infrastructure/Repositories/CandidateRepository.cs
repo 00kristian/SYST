@@ -23,7 +23,7 @@ namespace Infrastructure
                 {
                     Name = candidateDTO.Name!,
                     Email = candidateDTO.Email!,
-                    CurrentDegree = candidateDTO.CurrentDegree, 
+                    CurrentDegree = candidateDTO.CurrentDegree,     
                     StudyProgram = candidateDTO.StudyProgram,
                     University = candidateDTO.University,
                     GraduationDate = DateTime.Parse(candidateDTO.GraduationDate),

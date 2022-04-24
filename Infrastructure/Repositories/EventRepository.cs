@@ -43,6 +43,7 @@ namespace Infrastructure
                     Name = c.Name!,
                     Id = c.Id,
                     Email = c.Email!,
+                    CurrentDegree = c.CurrentDegree!,
                     StudyProgram = c.StudyProgram!,
                     University = c.University!,
                     GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd")

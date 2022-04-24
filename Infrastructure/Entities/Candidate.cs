@@ -6,7 +6,6 @@ namespace Infrastructure{
         public int Id {get; set;}
         public string? Name {get; set;}
         public string? Email {get; set;}
-
         public string? CurrentDegree { get; set; }
         public string? StudyProgram {get; set;}
         public string? University {get; set;}
