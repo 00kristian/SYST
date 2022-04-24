@@ -67,6 +67,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Answers")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CurrentDegree")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 

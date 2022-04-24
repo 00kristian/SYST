@@ -13,7 +13,10 @@ namespace Core {
 
         [Required, EmailAddress]
         string Email,
-
+    
+        [Required]
+        string CurrentDegree, 
+        
         [Required]
         string StudyProgram,
 

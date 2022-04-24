@@ -130,8 +130,8 @@ public class CandidateRepositoryTests{
         //assert
         Assert.Collection(candidates,
 
-            candidate => Assert.Equal(new CandidateDTO(1,"Lukas Hjelmstrand", "luhj@itu.dk", "Bsc i Softwareudvikling", "ITU",(new DateTime{}).ToString("yyyy-MM-dd"),  null!, new QuizDTO { }, false), candidate),
-            candidate => Assert.Equal(new CandidateDTO(2, "Maj Frost Jensen", "mfje@itu.dk", "Msc i Computer Science", "CBS",(new DateTime{}).ToString("yyyy-MM-dd"), null!, new QuizDTO { }, true), candidate)
+            candidate => Assert.Equal(new CandidateDTO(1,"Lukas Hjelmstrand", "luhj@itu.dk", "BSc", "Softwareudvikling", "ITU",(new DateTime{}).ToString("yyyy-MM-dd"),  null!, new QuizDTO { }, false), candidate),
+            candidate => Assert.Equal(new CandidateDTO(2, "Maj Frost Jensen", "mfje@itu.dk","MSc", "Computer Science", "CBS",(new DateTime{}).ToString("yyyy-MM-dd"), null!, new QuizDTO { }, true), candidate)
 
         );
     }
