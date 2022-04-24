@@ -116,11 +116,13 @@ export class CandidateInformation extends Component {
                     <br />
                     <br />
                     <label>
-                        <h5>Graduation Date</h5><DatePicker selected={this.state.GraduationDate} onChange={(graduationDate) => {
-                            this.state.GraduationDate.setDate(graduationDate.getDate());
-                            this.state.GraduationDate.setMonth(graduationDate.getMonth());
-                            this.state.GraduationDate.setFullYear(graduationDate.getFullYear());
-                        }} />
+                        <h5>Graduation Month</h5>
+                        <input onInput={(v) => {
+                            this.setState({GraduationDate: new Date(v.target.value + "-01")});
+                        }} 
+                        defaultValue={Date.now}
+                        type="month"
+                        min="2018-01" max="2030-12"></input>
                     </label>
                     <br />
                     <br />
