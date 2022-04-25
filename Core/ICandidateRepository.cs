@@ -10,6 +10,8 @@ public interface ICandidateRepository
         Task<IReadOnlyCollection<CandidateDTO>> ReadAll();
         Task<(Status, string?)> ReadNameFromId(int id);
         Task<Status> Update(int id, CandidateDTO candidateDTO);
+
+        Task<Status> UpdateUpVote (int id);
         Task<Status> Delete(int id);
         Task<Status> AddAnswer(int candidateId, AnswerDTO answer);
     }

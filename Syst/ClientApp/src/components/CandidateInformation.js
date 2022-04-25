@@ -209,6 +209,7 @@ export class CandidateInformation extends Component {
                 "university": this.state.University,
                 "currentDegree": this.state.CurrentDegree,
                 "studyProgram": this.state.StudyProgram,
+                "upVote": this.state.upVote,
                 "graduationDate": this.state.GraduationDate.toDateString()
             };
     
@@ -217,6 +218,7 @@ export class CandidateInformation extends Component {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(candidate)
             };
+
             let candid = await  fetch('api/candidates', requestOptions)
             .then(response => response.json())
 

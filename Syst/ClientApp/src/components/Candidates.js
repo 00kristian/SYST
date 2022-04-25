@@ -14,7 +14,7 @@ export class Candidates extends Component {
         this.populateData();
     }
 
-    static renderCandidatesTable(candidates, delFun) {
+    static renderCandidatesTable(candidates, downvoteFun, upvoteFun) {
 
     
         return (
@@ -38,8 +38,8 @@ export class Candidates extends Component {
                         <td>{candidate.university}</td>
                         <td>{candidate.currentDegree} in {candidate.studyProgram}</td>
                         <td>{candidate.graduationDate}</td>
-                        <td><button className="btn btn-primary btn-right"><Icon path={mdiThumbUp} size={1}/></button></td>
-                        <td><button className="btn btn-primary btn-right" onClick={()=>delFun(candidate.id)}><Icon path={mdiThumbDown} size={1}/></button></td>
+                        <td><button className="btn btn-primary btn-right" onClick={() => upvoteFun(candidate.id)}><Icon path={mdiThumbUp} size={1}/></button></td>
+                        <td><button className="btn btn-primary btn-right" onClick={()=>downvoteFun(candidate.id)}><Icon path={mdiThumbDown} size={1}/></button></td>
                     </tr>
                 )}
                 </tbody>
@@ -51,7 +51,7 @@ export class Candidates extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : Candidates.renderCandidatesTable(this.state.candidates, this.clickToDeleteCandidate);
+            : Candidates.renderCandidatesTable(this.state.candidates, this.clickToDownvoteCandidate, this.clickToUpvoteCandidate);
 
         return (
             <div>
@@ -68,10 +68,30 @@ export class Candidates extends Component {
         this.setState({ candidates: data, loading: false });
     }
 
-    clickToDeleteCandidate = async (id) => {
+    clickToDownvoteCandidate = async (id) => {
         await fetch('api/candidates/' + id, {
             method: 'DELETE'
         });
+        this.populateData();
+    }
+
+    getCandidateById = async (id) =>{
+        await fetch('api/candidates/' + id, {
+            method: 'GET'
+        })
+        this.populateData();    
+    }
+    
+    clickToUpvoteCandidate =  async (id) => {
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+           
+        };
+        await fetch("api/candidates"+"/upvote/"+ id, requestOptions)
+        
+        
         this.populateData();
     }
        
