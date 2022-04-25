@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 export class EventDetail extends Component {
   static displayName = EventDetail.name;
@@ -46,7 +48,15 @@ export class EventDetail extends Component {
                 </tbody>
             </table>
             <a href={'/events'}> <button className="btn btn-primary btn-right">Back</button> </a>
-            <button className="btn btn-primary" onClick={()=>deleteEvent()}>Delete event</button>
+            <Popup trigger = {<button className="btn btn-primary">Delete event</button>} modal nested>
+              {close => (
+                <div>
+                  <p>Are you sure you want to delete this event?</p>
+                  <button className="btn btn-primary btn-yes" onClick={()=>deleteEvent()}>Yes</button>
+                  <button className="btn btn-primary"onClick={() => {close();}}>No</button>
+                  </div>
+              )}
+            </Popup>
         </div>
         
     );
