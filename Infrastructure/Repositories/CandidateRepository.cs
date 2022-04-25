@@ -23,6 +23,7 @@ namespace Infrastructure
                 {
                     Name = candidateDTO.Name!,
                     Email = candidateDTO.Email!,
+                    CurrentDegree = candidateDTO.CurrentDegree,     
                     StudyProgram = candidateDTO.StudyProgram,
                     University = candidateDTO.University,
                     GraduationDate = DateTime.Parse(candidateDTO.GraduationDate),
@@ -50,6 +51,7 @@ namespace Infrastructure
                 Name = c.Name!,
                 Id = c.Id,
                 Email = c.Email!,
+                CurrentDegree = c.CurrentDegree!, 
                 StudyProgram = c.StudyProgram!,
                 University = c.University!,
                 GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd"),
@@ -66,6 +68,7 @@ namespace Infrastructure
                 Name = c.Name!,
                 Id = c.Id,
                 Email = c.Email!,
+                CurrentDegree = c.CurrentDegree!, 
                 StudyProgram = c.StudyProgram!,
                 University = c.University!,
                 GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd"),
@@ -82,6 +85,7 @@ namespace Infrastructure
             c.Name = candidateDTO.Name;
             c.Email = candidateDTO.Email!;
             c.University = candidateDTO.University;
+            c.CurrentDegree = candidateDTO.CurrentDegree;
             c.StudyProgram = candidateDTO.StudyProgram;
             c.GraduationDate = DateTime.Parse(candidateDTO.GraduationDate);
             c.IsUpvoted = candidateDTO.IsUpvoted;

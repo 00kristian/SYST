@@ -27,6 +27,12 @@ export class CandidateInformation extends Component {
             'Other'  
         ];
         
+        const educations = [
+            'BSc',
+            'MSc',
+            'PhD'
+        ];
+        
         return (
             <div>
                 <div className='div-header'>
@@ -38,82 +44,91 @@ export class CandidateInformation extends Component {
                     {this.state.validateName ? (
                         <div>
                             <label>
-                                <h5 className='txt-red'>*Name</h5>
-                                <input className="input-layout" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
+                                <h5 className='txt-red'>* Name</h5>
+                                <input className="input-layout input-candInfoPage" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
                             </label>
                         </div>
                     ) : (
                         <div>
                             <label>
                                 <h5>Name</h5>
-                                <input className="input-layout" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
+                                <input className="input-layout input-candInfoPage" onChange={(candidate) => this.state.Name = candidate.target.value} placeholder="Name"></input>
                             </label>
                         </div>
                     )}
-                    <br />
                     <br />
                     {this.state.validateEmail ? (
                         <div>
                             <label>
-                                <h5 className='txt-red'>*Email</h5>
-                                <input className="input-layout" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="Email"></input>
-                                <p>Please enter your email address in format: yourname@example.com</p>
+                                <h5 className='txt-red'>* E-mail</h5>
+                                <input className="input-layout input-candInfoPage" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="E-mail"></input>
+                                <p className="txt-example">e.g. <i>example@mail.com</i></p>
                             </label>
                         </div>
                     ) : (
                         <div>
                             <label>
-                                <h5>Email</h5>
-                                <input className="input-layout" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="Email"></input>
-                                <p>Please enter your email address in format: yourname@example.com</p>
+                                <h5>E-mail</h5>
+                                <input className="input-layout input-candInfoPage" onChange={(candidate) => this.state.Email = candidate.target.value } placeholder="E-mail"></input>
+                                <p className="txt-example">e.g. <i>example@mail.com</i></p>
                             </label>
                     </div>
                     )}
                     <br />
-                    <br />
 
                     {this.state.validateUniversity ? (
                         <label>
-                        <h5 className='txt-red'> *University</h5>
-                        <Dropdown options={options} onChange={this.selectUni} value="Select your University"/>
+                        <h5 className='txt-red'> * University</h5>
+                        <Dropdown className="dropdown-length" options={options} onChange={this.selectUni} value="Select your university"/>
                     </label>
                     ) : (
                         <label>
                         <h5>University</h5>
-                        <Dropdown options={options} onChange={this.selectUni} value="Select your University"/>
+                        <Dropdown className="dropdown-length" options={options} onChange={this.selectUni} value="Select your university"/>
                     </label>
                     )}
 
                     <br />
-                    <br />
                     {this.state.ShowSpecialUni ? (
                         <div>
                             <label>
-                                <input className="input-layout" onChange={(uni) => this.state.University= uni.target.value} placeholder="University"></input>
+                                <input className="input-layout input-candInfoPage" onChange={(uni) => this.state.University= uni.target.value} placeholder="University"></input>
                             </label>
                         </div>
                     ) : (
                     <div></div>
                     )}
                     <br />
-                    <br />
 
                     {this.state.validateStudyProgram ? (
                         <div>
                             <label>
-                                <h5 className='txt-red'>*Study Program</h5>
-                                <input className="input-layout" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
+                                <h5 className='txt-red'>* Degree</h5>
+                                <Dropdown className="dropdown-length"  options={educations} onChange={this.selectDegree} value="Select your program"/>                            
+                            </label>
+                            <br />
+                            <br />
+                            <label>
+                                <h5 className='txt-red'>* Study Program</h5>
+                                <input className="input-layout input-candInfoPage" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
+                                <p className="txt-example">e.g. <i>Computer Science</i> or <i>Law</i></p>
                             </label>
                         </div>
                     ) : (
                         <div>
                             <label>
+                                <h5>Degree</h5>
+                                <Dropdown className="dropdown-length" options={educations} onChange={this.selectDegree} value="Select your program"/>
+                            </label>
+                            <br />
+                            <br />
+                            <label>
                                 <h5>Study Program</h5>
-                                <input className="input-layout" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
+                                <input className="input-layout input-candInfoPage" onChange={(candidate) => this.state.StudyProgram = candidate.target.value} placeholder="Study Program"></input>
+                                <p className="txt-example">e.g. <i>Computer Science</i> or <i>Law</i></p>
                             </label>
                         </div>
                     )}
-                    <br />
                     <br />
                     <label>
                         <h5>Graduation Month</h5>
@@ -128,7 +143,7 @@ export class CandidateInformation extends Component {
                     <br />
                     {(!this.state.validateCheckBox && this.state.clickedOnSubmit) ? (
                         <div>
-                            <p className='txt-red'><input id="checkbox" type="checkbox" onClick={this.checkedBox}/> *Accept that Systematic can store your information <a href='https://systematic.com/da-dk/kontakt/privacy-policyings/'>Read more</a></p>
+                            <p className='txt-red'><input id="checkbox" type="checkbox" onClick={this.checkedBox}/> * Accept that Systematic can store your information <a href='https://systematic.com/da-dk/kontakt/privacy-policyings/'>Read more</a></p>
                         </div>
                     ) : (
                     <div>
@@ -141,7 +156,7 @@ export class CandidateInformation extends Component {
                     {(this.state.validateName || this.state.validateEmail || this.state.validateStudyProgram) ? (
                         <div>
                             <label>
-                                <p className='txt-red'>*Need to be filled out</p>
+                                <p className='txt-red'>* Need to be filled out</p>
                             </label>
                         </div>
                     ) : (
@@ -160,6 +175,8 @@ export class CandidateInformation extends Component {
             this.setState({ShowSpecialUni: false, University: option.value});
         }
     }
+    
+    selectDegree = (education) => {this.setState({CurrentDegree: education.value});}
 
     checkedBox = (e) => {
         this.setState({validateCheckBox : e.target.checked})
@@ -172,21 +189,25 @@ export class CandidateInformation extends Component {
         const NameGood = this.state.Name.length !== 0;
         const EmailGood = this.state.Email.length !== 0;
         const UniversityGood = this.state.University.length !== 0;
+        const DegreeGood = this.state.CurrentDegree.length !== 0;
         const StudyProgramGood = this.state.StudyProgram.length !== 0;
         const CheckBoxGood = this.state.validateCheckBox;
 
         this.setState({validateName : !NameGood});
         this.setState({validateEmail : !EmailGood});
         this.setState({validateUniversity : !UniversityGood});
+        this.setState({validateDegree : !DegreeGood})
         this.setState({validateStudyProgram : !StudyProgramGood});
 
-        if(NameGood && EmailGood && UniversityGood && StudyProgramGood && CheckBoxGood) {
+        if(NameGood && EmailGood && UniversityGood && DegreeGood && StudyProgramGood && CheckBoxGood) {
 
-
+            console.log("Den er god")
+            
             let candidate = {
                 "name": this.state.Name,
                 "email": this.state.Email,
                 "university": this.state.University,
+                "currentDegree": this.state.CurrentDegree,
                 "studyProgram": this.state.StudyProgram,
                 "graduationDate": this.state.GraduationDate.toDateString()
             };
