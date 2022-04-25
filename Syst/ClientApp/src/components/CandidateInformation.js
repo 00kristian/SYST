@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './Systematic_Logo.png';
 import Dropdown from 'react-dropdown';
 import DatePicker from "react-datepicker";
 
@@ -11,13 +10,12 @@ export class CandidateInformation extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { Name: "", Email: "", University: "", CurrentDegree: "", StudyProgram: "", ShowSpecialUni : false, validateName : false, validateEmail : false, validateStudyProgram : false, validateCheckBox : false, clickedOnSubmit : false, validateUniversity : false, GraduationDate: new Date()};
+        this.state = {Answers: props.Answers, Name: "", Email: "", University: "", StudyProgram: "", ShowSpecialUni : false, validateName : false, validateEmail : false, validateStudyProgram : false, validateCheckBox : false, clickedOnSubmit : false, validateUniversity : false, GraduationDate: new Date()};
     }
     
 
     render() {
         const options = [
-
             'Aalborg University',
             'Aarhus University',
             'Copenhagen Business School',
@@ -26,8 +24,7 @@ export class CandidateInformation extends Component {
             'Technical University of Denmark',
             'University of Copenhagen',
             'University of Southern Denmark',
-            'Other'
-            
+            'Other'  
         ];
         
         const educations = [
@@ -39,7 +36,6 @@ export class CandidateInformation extends Component {
         return (
             <div>
                 <div className='div-header'>
-                <img className="img-host-logo" src={logo} alt="Logo" width="45%"/>
                 <h5>Please write your contact information to enter the competition</h5>
                 </div>
                 <br/>
@@ -104,11 +100,6 @@ export class CandidateInformation extends Component {
                     )}
                     <br />
 
-
-
-
-
-
                     {this.state.validateStudyProgram ? (
                         <div>
                             <label>
@@ -140,11 +131,13 @@ export class CandidateInformation extends Component {
                     )}
                     <br />
                     <label>
-                        <h5>Graduation Date</h5><DatePicker selected={this.state.GraduationDate} onChange={(graduationDate) => {
-                            this.state.GraduationDate.setDate(graduationDate.getDate());
-                            this.state.GraduationDate.setMonth(graduationDate.getMonth());
-                            this.state.GraduationDate.setFullYear(graduationDate.getFullYear());
-                        }} />
+                        <h5>Graduation Month</h5>
+                        <input onInput={(v) => {
+                            this.setState({GraduationDate: new Date(v.target.value + "-01")});
+                        }} 
+                        defaultValue={Date.now}
+                        type="month"
+                        min="2018-01" max="2030-12"></input>
                     </label>
                     <br />
                     <br />
@@ -189,12 +182,7 @@ export class CandidateInformation extends Component {
         this.setState({validateCheckBox : e.target.checked})
     }
 
-    rerouteToCandidateConfirmation = () => {
-        
-        console.log("Nu starter den")
-        
-        console.log(this.state.currentDegree)
-        console.log(this.state)
+    rerouteToCandidateConfirmation = async () => {
 
         this.setState({clickedOnSubmit : true});
 
@@ -229,10 +217,28 @@ export class CandidateInformation extends Component {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(candidate)
             };
-            fetch('api/candidates', requestOptions)
+            let candid = await  fetch('api/candidates', requestOptions)
             .then(response => response.json())
-            const { history } = this.props;
-            history.push('/ConformationCandidate');
+
+            let Answer = {
+                quizid: this.props.QuizId,
+                eventid: this.props.EventId,
+                answers: this.state.Answers
+            }
+
+            const requestOptions2 = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Answer)
+            };
+
+            console.log(candidate);
+            console.log(Answer);
+
+            fetch('api/candidates/answer/' + candid, requestOptions2)
+            .then(response => response.json())
+
+            window.location.reload(true);
         }
     }
 }

@@ -15,10 +15,10 @@ namespace Infrastructure
         //Creates an candidate
         public async Task<(Status, int id)> Create(CreateCandidateDTO candidateDTO) {
 
-            foreach (Candidate c in _context.Candidates) {
-                if (c.Email == candidateDTO.Email) return (Status.Conflict, c.Id); 
+            var dupe = _context.Candidates.Where(c => c.Email == candidateDTO.Email).FirstOrDefault();
+            if (dupe != default(Candidate)) return (Status.Conflict, dupe.Id);
                 //Is this function necessary? Ask Iulia about multiple email entries in the db
-            }
+            
                 var entity = new Candidate
                 {
                     Name = candidateDTO.Name!,
@@ -108,6 +108,27 @@ namespace Infrastructure
             return Status.Deleted;
         }
 
-        
+        public async Task<Status> AddAnswer(int candidateId, AnswerDTO answer) {
+            var c = await _context.Candidates.Include(c => c.Answers).Include(c => c.EventsParticipatedIn).Where(c => c.Id == candidateId).FirstOrDefaultAsync();
+            
+            if (c == default(Candidate)) return Status.NotFound;
+
+            var q = await _context.Quizes.Where(q => q.Id == answer.QuizId).FirstOrDefaultAsync();
+            
+            if (q == default(Quiz)) return Status.NotFound;
+
+            var ans = new Answer() {
+                Quiz = q,
+                Answers = answer.Answers
+            };
+            if (c.Answers == null) c.Answers = new List<Answer>();
+            c.Answers.Add(ans); //add the answer to the candidate
+
+            var e = await _context.Events.Where(e => e.Id == answer.EventId).FirstOrDefaultAsync();
+            if (e != default(Event)) c.EventsParticipatedIn!.Add(e); //add the candidate to the event
+
+            await _context.SaveChangesAsync();
+            return Status.Updated;
+        }
     }
 }
