@@ -85,7 +85,6 @@ namespace Infrastructure
             e.Name = eventDTO.Name;
             e.Date = DateTime.Parse(eventDTO.Date!);
             e.Location = eventDTO.Location;
-            e.Rating = eventDTO.Rating;
 
             await _context.SaveChangesAsync();
 

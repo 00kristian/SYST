@@ -12,8 +12,6 @@ namespace Core {
         string Date,
 
         [Required]
-        string Location,
-
-        double Rating
+        string Location
     );
 }
