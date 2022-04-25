@@ -13,16 +13,16 @@ render() {
         const QuestionCandidates = [
             {value: 1.0, label: '1 - None'},
             {value: 2.0, label: '2 - Fewer than expected'},
-            {value: 3.0, label: '3 - As many as expected'},
-            {value: 4.0, label: '4 - A few more than expected'},
-            {value: 5.0, label: '5 - Far more than expected'}
+            {value: 3.0, label: '3 - As expected'},
+            {value: 4.0, label: '4 - More than expected'},
+            {value: 5.0, label: '5 - Beyond our expectations'}
         ];
         const QuestionApplications = [
             {value: 1.0, label: '1 - None' },
             {value: 2.0, label: '2 - Fewer than expected' },
-            {value: 3.0, label: '3 - As many as expected' },
-            {value: 4.0, label: '4 - A few more than expected' },
-            {value: 5.0, label: '5 - Far more than expected' }
+            {value: 3.0, label: '3 - As expected' },
+            {value: 4.0, label: '4 - More than expected' },
+            {value: 5.0, label: '5 - Beyond our expectations' }
         ];
         const QuestionCost = [
             {value: 1.0, label: '1 - More than 41.000 kr.'},
@@ -32,9 +32,9 @@ render() {
             {value: 5.0, label: '5 - Free or included in partnership' }
         ];
         const QuestionTime = [
-            {value: 1.0, label: '1 - Far more than expected' },
-            {value: 2.0, label: '2 - A few more than expected' },
-            {value: 3.0, label: '3 - As many as expected' },
+            {value: 1.0, label: '1 - Beyond our expectations' },
+            {value: 2.0, label: '2 - More than expected' },
+            {value: 3.0, label: '3 - As expected' },
             {value: 4.0, label: '4 - Fewer than expected' },
             {value: 5.0, label: '5 - None' }
         ];
