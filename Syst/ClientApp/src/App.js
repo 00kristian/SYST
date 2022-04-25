@@ -4,7 +4,7 @@ import { Candidates } from './components/Candidates';
 import { ConfirmationCandidate} from "./components/ConfirmationCandidate";
 import { EventDetail } from './components/EventDetail';
 import { CreateQuiz } from './components/CreateQuiz';
-import { CreateQuestion } from './components/CreateQuestion';
+import CreateQuestion from './components/CreateQuestion';
 import './custom.css'
 import { CreateEvent } from './components/CreateEvent';
 import { CandidateQuiz } from './components/CandidateQuiz';

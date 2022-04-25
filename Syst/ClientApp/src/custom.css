@@ -228,6 +228,10 @@ progress::-webkit-progress-value {
     background-color: #009BE6 !important;
 }
 
+.representation-text {
+    font-size: larger;
+    font-style: italic;
+}
 
 /* For Firefox */
 progress {
