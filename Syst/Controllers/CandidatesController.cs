@@ -87,4 +87,14 @@ public class CandidatesController : ControllerBase
         return updated.ToActionResult();
     }
     
+
+    //Create a new candidate
+    [ProducesResponseType(409)]
+    [HttpPost("Answer/{candidateId}")]
+    public async Task<IActionResult> PostAnswer([FromRoute] int candidateId, [FromBody] AnswerDTO answer) {
+        var res = await _repo.AddAnswer(candidateId, answer);
+        if (res == Status.NotFound) return new NotFoundObjectResult(candidateId);
+        return res.ToActionResult();
+    }
+
 }

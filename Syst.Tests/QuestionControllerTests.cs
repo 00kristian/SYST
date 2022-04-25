@@ -32,7 +32,6 @@ public class QuestionsControllerTests
         Answer = "A",
         ImageURl = null!,
         Options = new List<string>{"Hello World!", "World Hello!", "Hello! World", "World! Hello"},
-        Quiz = quiz1
     };
 
         static readonly QuestionDTO Q2 = new QuestionDTO{
@@ -41,7 +40,6 @@ public class QuestionsControllerTests
         Answer = "C",
         ImageURl = null!,
         Options = new List<string>{"Cat", "Dog", "Mouse", "Bunny"},
-        Quiz = quiz1
     };
 
         static readonly QuestionDTO Q3 = new QuestionDTO{
@@ -50,7 +48,6 @@ public class QuestionsControllerTests
         Answer = "B",
         ImageURl = null!,
         Options = new List<string>{"25", "69", "345", "9"},
-        Quiz = quiz1
     };
 
     //Testing starts from here

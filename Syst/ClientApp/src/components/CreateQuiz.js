@@ -52,7 +52,9 @@ export class CreateQuiz extends Component {
                 <form>
                     <label>
                         <h5>Quiz name</h5>
-                        <input placeholder={Quiz.name} className="input-layout" onChange={(event) => Quiz.name = event.target.value}></input>
+                        <input placeholder={Quiz.name} className="input-layout" onChange={(event) => Quiz.name = event.target.value}>
+                            
+                        </input>
                     </label>
                     <br />
                     <hr/>

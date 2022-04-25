@@ -18,10 +18,7 @@ namespace Core {
         string ImageURl,
 
         [Required]
-        ICollection<string> Options,
-
-        [Required]
-        QuizDTO Quiz
+        ICollection<string> Options
 
     );
 }
