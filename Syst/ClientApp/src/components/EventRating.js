@@ -11,32 +11,32 @@ export class EventRating extends Component {
     
 render() {
         const QuestionCandidates = [
-            {value: 1, label: '1 - None'},
-            {value: 2, label: '2 - Fewer than expected'},
-            {value: 3, label: '3 - As many as expected'},
-            {value: 4, label: '4 - A few more than expected'},
-            {value: 5, label: '5 - Far more than expected'}
+            {value: 1.0, label: '1 - None'},
+            {value: 2.0, label: '2 - Fewer than expected'},
+            {value: 3.0, label: '3 - As many as expected'},
+            {value: 4.0, label: '4 - A few more than expected'},
+            {value: 5.0, label: '5 - Far more than expected'}
         ];
         const QuestionApplications = [
-            {value: 1, label: '1 - None' },
-            {value: 2, label: '2 - Fewer than expected' },
-            {value: 3, label: '3 - As many as expected' },
-            {value: 4, label: '4 - A few more than expected' },
-            {value: 5, label: '5 - Far more than expected' }
+            {value: 1.0, label: '1 - None' },
+            {value: 2.0, label: '2 - Fewer than expected' },
+            {value: 3.0, label: '3 - As many as expected' },
+            {value: 4.0, label: '4 - A few more than expected' },
+            {value: 5.0, label: '5 - Far more than expected' }
         ];
         const QuestionCost = [
-            {value: 1, label: '1 - Free or included in partnership'},
-            {value: 2, label: '2 - Less than 10.000 kr.'},
-            {value: 3, label: '3 - 11.000 to 25.000 kr.' },
-            {value: 4, label: '4 - 26.000 to 40.000 kr.'},
-            {value: 5, label: '5 - More than 41.000 kr.' }
+            {value: 1.0, label: '1 - Free or included in partnership'},
+            {value: 2.0, label: '2 - Less than 10.000 kr.'},
+            {value: 3.0, label: '3 - 11.000 to 25.000 kr.' },
+            {value: 4.0, label: '4 - 26.000 to 40.000 kr.'},
+            {value: 5.0, label: '5 - More than 41.000 kr.' }
         ];
         const QuestionTime = [
-            {value: 1, label: '1 - None' },
-            {value: 2, label: '2 - Fewer than expected' },
-            {value: 3, label: '3 - As many as expected' },
-            {value: 4, label: '4 - A few more than expected' },
-            {value: 5, label: '5 - Far more than expected' }
+            {value: 1.0, label: '1 - None' },
+            {value: 2.0, label: '2 - Fewer than expected' },
+            {value: 3.0, label: '3 - As many as expected' },
+            {value: 4.0, label: '4 - A few more than expected' },
+            {value: 5.0, label: '5 - Far more than expected' }
         ];
 
 
@@ -75,25 +75,26 @@ render() {
     }
 
 
-    submitRating = (QCandidateRating, QApplicationRating, QCostRating, QTimeRating ) => {
+    submitRating = async (QCandidateRating, QApplicationRating, QCostRating, QTimeRating ) => {
         const finalRating = (this.state.QCandidateRating + this.state.QApplicationRating + this.state.QCostRating + this.state.QTimeRating) / 4.0
         this.setState({
             Rating: finalRating
         });
-        this.updateRating(finalRating);
+        await this.updateRating(finalRating);
         const { history } = this.props;
         history.push("/eventdetail/" + this.props.match.params.id);
         //history.push("/events");
     }
 
     updateRating = async (Rating) => {
+        console.log(Rating)
         let event = {
             "rating": this.state.event.Rating
         };
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: Rating
+            body: (Rating * 1.0)
         };
         await fetch('api/events/rating/' + this.props.match.params.id, requestOptions)
         const { history } = this.props;
