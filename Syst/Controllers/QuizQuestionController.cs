@@ -18,6 +18,7 @@ public class QuizQuestionController : ControllerBase
         _repo = repo;
     }
 
+    //Updates the question
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("{id}")]
