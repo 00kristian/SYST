@@ -6,10 +6,10 @@ export class EventRating extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {event: {QCandidateRating: 0, QApplicationRating: 0, QCostRating: 0, QTimeRating: 0, OverAllRating: 0 }};
+        this.state = { event: { Rating: 0 }, QApplicationRating: 0, QCostRating: 0, QTimeRating: 0, QCandidateRating: 0};
     }
     
-    render() {
+render() {
         const QuestionCandidates = [
             {value: 1, label: '1 - None'},
             {value: 2, label: '2 - Fewer than expected'},
@@ -40,7 +40,7 @@ export class EventRating extends Component {
         ];
 
 
-        return (
+ return (
             <div>
                 <h2 className='div-center'>Event Rating</h2>
                 <br/>
@@ -57,9 +57,9 @@ export class EventRating extends Component {
                 <Dropdown options={QuestionTime} onChange={(QuestionTime) => this.setState({ QTimeRating: QuestionTime.value })} value="Select Rating" />
                 <br/>
                 <button onClick={() => this.cancelRating()} className='btn btn-cancel'>Cancel</button>
-                <button onClick={() => this.updateRating()} className='btn btn-primary btn-right'>Submit</button>
+                <button onClick={() => this.submitRating()} className='btn btn-primary btn-right'>Submit</button>
 
-                <p>Rating: {this.state.OverAllRating}</p>
+                <p>Rating: {this.state.Rating}</p>
                 <p>QCandidateRating: {this.state.QCandidateRating}</p>
                 <p>QApplicationRating: {this.state.QApplicationRating}</p>
                 <p>QCostRating: {this.state.QCostRating}</p>
@@ -77,17 +77,17 @@ export class EventRating extends Component {
 
     submitRating = (QCandidateRating, QApplicationRating, QCostRating, QTimeRating ) => {
         this.setState({
-            OverAllRating: (this.state.QCandidateRating + this.state.QApplicationRating + this.state.QCostRating + this.state.QTimeRating) / 4
+            Rating: (this.state.QCandidateRating + this.state.QApplicationRating + this.state.QCostRating + this.state.QTimeRating) / 4
         });
         this.updateRating();
         const { history } = this.props;
         //history.push("/eventdetail/" + this.props.match.params.id);
-        history.push("/events");
+        //history.push("/events");
     }
 
     updateRating = () => {
         let event = {
-            "overAllRating": this.state.event.OverAllRating
+            "rating": this.state.event.Rating
         };
         const requestOptions = {
             method: 'PUT',
@@ -95,10 +95,10 @@ export class EventRating extends Component {
             body: JSON.stringify(event)
         };
         fetch('api/events/' + this.props.match.params.id, requestOptions)
-        .then(response => response.json())
+            .then(response => response.json());
         const { history } = this.props;
         //history.push("/eventdetail/" + this.props.match.params.id);
-        history.push("/events");
+        //history.push("/events");
     }
 
 }
