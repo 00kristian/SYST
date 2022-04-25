@@ -25,7 +25,9 @@ namespace Core {
         double Rating,
 
         [Required]
-        ICollection<AdminDTO> Admins
+        ICollection<AdminDTO> Admins,
+
+        int WinnerId
 
 
     );

@@ -33,12 +33,13 @@ namespace Infrastructure
         //Return an event given the event id
         public async Task<(Status, EventDTO)> Read(int id)
         {
-            var e = await _context.Events.Include(e => e.Quiz).Include(e => e.Candidates).Where(e => e.Id == id).Select(e => new EventDTO(){
+            var e = await _context.Events.Include(e => e.Quiz).Include(e => e.Winner).Include(e => e.Candidates).Where(e => e.Id == id).Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
                 Date = e.Date.ToString("yyyy-MM-dd"),
                 Location = e.Location!,
                 Rating = e.Rating!,
+                WinnerId = e.Winner ==  default(Candidate) ? -1 : e.Winner.Id,
                 Candidates = e.Candidates != null ? e.Candidates.Select(c => new CandidateDTO(){
                     Name = c.Name!,
                     Id = c.Id,
@@ -182,7 +183,7 @@ namespace Infrastructure
                 CurrentDegree = c.CurrentDegree!,
                 StudyProgram = c.StudyProgram!,
                 University = c.University!,
-                GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd")
+                GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd"),
             });
         }
 
