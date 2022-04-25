@@ -76,26 +76,26 @@ render() {
 
 
     submitRating = (QCandidateRating, QApplicationRating, QCostRating, QTimeRating ) => {
+        const finalRating = (this.state.QCandidateRating + this.state.QApplicationRating + this.state.QCostRating + this.state.QTimeRating) / 4.0
         this.setState({
-            Rating: (this.state.QCandidateRating + this.state.QApplicationRating + this.state.QCostRating + this.state.QTimeRating) / 4
+            Rating: finalRating
         });
-        this.updateRating();
+        this.updateRating(finalRating);
         const { history } = this.props;
-        //history.push("/eventdetail/" + this.props.match.params.id);
+        history.push("/eventdetail/" + this.props.match.params.id);
         //history.push("/events");
     }
 
-    updateRating = () => {
+    updateRating = async (Rating) => {
         let event = {
             "rating": this.state.event.Rating
         };
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(event)
+            body: Rating
         };
-        fetch('api/events/' + this.props.match.params.id, requestOptions)
-            .then(response => response.json());
+        await fetch('api/events/rating/' + this.props.match.params.id, requestOptions)
         const { history } = this.props;
         //history.push("/eventdetail/" + this.props.match.params.id);
         //history.push("/events");

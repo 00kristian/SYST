@@ -15,5 +15,7 @@ public interface IEventRepository
         Task<IReadOnlyCollection<EventDTO>> ReadRecent();
 
         Task<Status> UpdateQuiz(int eventid, int quizid);
+
+        Task<Status> UpdateRating(int id, double rating);
     }
 }

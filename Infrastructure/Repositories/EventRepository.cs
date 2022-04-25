@@ -20,7 +20,7 @@ namespace Infrastructure
                 {
                     Name = eventDTO.Name!,
                     Date = DateTime.Parse(eventDTO.Date!),
-                    Location = eventDTO.Location, 
+                    Location = eventDTO.Location,
                 };
 
                 _context.Events.Add(entity);
@@ -86,6 +86,19 @@ namespace Infrastructure
             e.Date = DateTime.Parse(eventDTO.Date!);
             e.Location = eventDTO.Location;
             e.Rating = eventDTO.Rating;
+
+            await _context.SaveChangesAsync();
+
+            return Status.Updated;
+        }
+
+        public async Task<Status> UpdateRating(int id, double rating)
+        {
+            var e = await _context.Events.Where(e => e.Id == id).FirstOrDefaultAsync();
+
+            if (e == default(Event)) return Status.NotFound;
+
+            e.Rating = rating;
 
             await _context.SaveChangesAsync();
 
