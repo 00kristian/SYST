@@ -162,5 +162,30 @@ namespace Infrastructure
             await _context.SaveChangesAsync();
             return Status.Updated;
         }
+
+        public async Task<(Status, CandidateDTO)> pickAWinner(int eventid) {
+            var e = await _context.Events.Include(e => e.Candidates).Where(e => e.Id == eventid).FirstOrDefaultAsync();
+            if (e == default(Event)) return (Status.NotFound, default(CandidateDTO));
+
+            var c = e.Candidates?.OrderBy(c => Guid.NewGuid()).FirstOrDefault();
+            if (c == default(Candidate)) {
+                return (Status.NotFound, default(CandidateDTO));
+            } else {e.Winner = c;}
+
+
+            await _context.SaveChangesAsync();
+
+            return (Status.Found, new CandidateDTO() {
+                Name = c.Name!,
+                Id = c.Id,
+                Email = c.Email!,
+                CurrentDegree = c.CurrentDegree!,
+                StudyProgram = c.StudyProgram!,
+                University = c.University!,
+                GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd")
+            });
+        }
+
+        
     }
 }

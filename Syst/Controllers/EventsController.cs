@@ -76,4 +76,17 @@ public class EventsController : ControllerBase
         return deleted.ToActionResult();
     }
     
+    //get a winner
+    [ProducesResponseType(404)]
+    [ProducesResponseType(typeof(CandidateDTO), 200)]
+    [HttpGet("winner/{eventid}")]
+    public async Task<ActionResult<CandidateDTO>> GetWinner(int eventid)
+    {
+        var res = await _repo.pickAWinner(eventid);
+        if (res.Item1 == Status.NotFound) {
+            return res.Item1.ToActionResult();
+        } else {
+            return new ActionResult<CandidateDTO>(res.Item2);
+        }
+    }
 }
