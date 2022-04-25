@@ -195,3 +195,8 @@
     text-align: right;
     float: right;
 }
+
+.txt-right_padding{
+    padding-right: 6%;
+    float: right;
+}

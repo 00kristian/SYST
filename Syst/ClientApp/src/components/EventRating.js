@@ -6,7 +6,7 @@ export class EventRating extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { event: { Rating: 0 }, QApplicationRating: 0, QCostRating: 0, QTimeRating: 0, QCandidateRating: 0};
+        this.state = { event: { Rating: 0.0 }, QApplicationRating: 0.0, QCostRating: 0.0, QTimeRating: 0.0, QCandidateRating: 0.0, isFilledOut: true};
     }
     
 render() {
@@ -58,25 +58,31 @@ render() {
                 <br/>
                 <button onClick={() => this.cancelRating()} className='btn btn-cancel'>Cancel</button>
                 <button onClick={() => this.submitRating()} className='btn btn-primary btn-right'>Submit</button>
+                {this.state.isFilledOut ? <p></p> : <p className='txt-red txt-right_padding'>Please select an option for each question.</p>}
             </div>
         );
     }
-
 
     cancelRating = () => {
         const { history } = this.props;
         history.push("/eventdetail/" + this.props.match.params.id);
     }
 
+    submitRating = async (QCandidateRating, QApplicationRating, QCostRating, QTimeRating) => {
 
-    submitRating = async (QCandidateRating, QApplicationRating, QCostRating, QTimeRating ) => {
-        const finalRating = (this.state.QCandidateRating + this.state.QApplicationRating + this.state.QCostRating + this.state.QTimeRating) / 4.0
-        this.setState({
-            Rating: finalRating
-        });
-        await this.updateRating(finalRating);
-        const { history } = this.props;
-        history.push("/eventdetail/" + this.props.match.params.id);
+        if (this.state.QCandidateRating === 0.0 || this.state.QApplicationRating === 0.0 || this.state.QCostRating === 0.0 || this.state.QTimeRating === 0.0) {
+            this.setState({
+                isFilledOut: false
+            });
+        } else {
+            const finalRating = (this.state.QCandidateRating + this.state.QApplicationRating + this.state.QCostRating + this.state.QTimeRating) / 4.0
+            this.setState({
+                Rating: finalRating
+            });
+            await this.updateRating(finalRating);
+            const { history } = this.props;
+            history.push("/eventdetail/" + this.props.match.params.id);
+        }
     }
 
     updateRating = async (Rating) => {
