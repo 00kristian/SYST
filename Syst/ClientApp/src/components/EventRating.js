@@ -58,12 +58,6 @@ render() {
                 <br/>
                 <button onClick={() => this.cancelRating()} className='btn btn-cancel'>Cancel</button>
                 <button onClick={() => this.submitRating()} className='btn btn-primary btn-right'>Submit</button>
-
-                <p>Rating: {this.state.Rating}</p>
-                <p>QCandidateRating: {this.state.QCandidateRating}</p>
-                <p>QApplicationRating: {this.state.QApplicationRating}</p>
-                <p>QCostRating: {this.state.QCostRating}</p>
-                <p>QTimeRating: {this.state.QTimeRating}</p>
             </div>
         );
     }
@@ -71,7 +65,7 @@ render() {
 
     cancelRating = () => {
         const { history } = this.props;
-        history.push("/Events");
+        history.push("/eventdetail/" + this.props.match.params.id);
     }
 
 
@@ -83,11 +77,9 @@ render() {
         await this.updateRating(finalRating);
         const { history } = this.props;
         history.push("/eventdetail/" + this.props.match.params.id);
-        //history.push("/events");
     }
 
     updateRating = async (Rating) => {
-        console.log(Rating)
         let event = {
             "rating": this.state.event.Rating
         };
@@ -97,9 +89,6 @@ render() {
             body: (Rating * 1.0)
         };
         await fetch('api/events/rating/' + this.props.match.params.id, requestOptions)
-        const { history } = this.props;
-        //history.push("/eventdetail/" + this.props.match.params.id);
-        //history.push("/events");
     }
 
 }
