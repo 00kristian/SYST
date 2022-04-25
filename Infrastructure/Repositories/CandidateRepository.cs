@@ -15,10 +15,10 @@ namespace Infrastructure
         //Creates an candidate
         public async Task<(Status, int id)> Create(CreateCandidateDTO candidateDTO) {
 
-            foreach (Candidate c in _context.Candidates) {
-                if (c.Email == candidateDTO.Email) return (Status.Conflict, c.Id); 
+            var dupe = _context.Candidates.Where(c => c.Email == candidateDTO.Email).FirstOrDefault();
+            if (dupe != default(Candidate)) return (Status.Conflict, dupe.Id);
                 //Is this function necessary? Ask Iulia about multiple email entries in the db
-            }
+            
                 var entity = new Candidate
                 {
                     Name = candidateDTO.Name!,

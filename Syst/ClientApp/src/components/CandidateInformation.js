@@ -211,6 +211,9 @@ export class CandidateInformation extends Component {
                 body: JSON.stringify(Answer)
             };
 
+            console.log(candidate);
+            console.log(Answer);
+
             fetch('api/candidates/answer/' + candid, requestOptions2)
             .then(response => response.json())
 
