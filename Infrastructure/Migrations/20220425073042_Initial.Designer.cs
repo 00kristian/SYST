@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(SystematicContext))]
-    [Migration("20220406123251_Swagster")]
-    partial class Swagster
+    [Migration("20220425073042_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,7 +58,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Admins");
                 });
 
-            modelBuilder.Entity("Infrastructure.Candidate", b =>
+            modelBuilder.Entity("Infrastructure.Answer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,11 +69,40 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Answers")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CandidateId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuizId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
+
+                    b.HasIndex("QuizId");
+
+                    b.ToTable("Answers");
+                });
+
+            modelBuilder.Entity("Infrastructure.Candidate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CurrentDegree")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("GraduationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsUpvoted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -190,6 +219,21 @@ namespace Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Infrastructure.Answer", b =>
+                {
+                    b.HasOne("Infrastructure.Candidate", null)
+                        .WithMany("Answers")
+                        .HasForeignKey("CandidateId");
+
+                    b.HasOne("Infrastructure.Quiz", "Quiz")
+                        .WithMany()
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Quiz");
+                });
+
             modelBuilder.Entity("Infrastructure.Candidate", b =>
                 {
                     b.HasOne("Infrastructure.Quiz", "Quiz")
@@ -224,6 +268,11 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Infrastructure.Admin", b =>
                 {
                     b.Navigation("Events");
+                });
+
+            modelBuilder.Entity("Infrastructure.Candidate", b =>
+                {
+                    b.Navigation("Answers");
                 });
 
             modelBuilder.Entity("Infrastructure.Quiz", b =>

@@ -13,7 +13,10 @@ namespace Core {
 
         [Required, EmailAddress]
         string Email,
-
+    
+        [Required]
+        string CurrentDegree, 
+        
         [Required]
         string StudyProgram,
 
@@ -27,8 +30,10 @@ namespace Core {
         ICollection<EventDTO> Events,
 
         [Required]
-        QuizDTO Quiz
+        QuizDTO Quiz,
 
-
+        [Required]
+        bool IsUpvoted
+        
     );
 }

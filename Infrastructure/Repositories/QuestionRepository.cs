@@ -55,7 +55,7 @@ namespace Infrastructure
                 Id = q.Id,
                 Answer = q.Answer!,
                 ImageURl = q.ImageURL!,
-                //Options = q.Options!
+                Options = q.Options!
             }).ToListAsync();
 
         //Updates a representation, answer, imageURL and options

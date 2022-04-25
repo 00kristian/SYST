@@ -13,6 +13,7 @@ public class SystematicContext : DbContext, ISystematicContext
     public DbSet<Event> Events {get;set;} = null!;
     public DbSet<Question> Questions {get;set;} = null!;
     public DbSet<Quiz> Quizes {get;set;} = null!;
+    public DbSet<Answer> Answers {get;set;} = null!;
     public string DbPath { get; private set; } = null!;
 
     public SystematicContext(DbContextOptions<SystematicContext> options): base(options) { }
@@ -46,15 +47,15 @@ public class SystematicContext : DbContext, ISystematicContext
         .HasMany<Event>(a => a.Events);
 
         //Makes sure we can store a list of answers in candidate
-        modelBuilder.Entity<Candidate>()
-        .Property(c => c.Answers)
+        modelBuilder.Entity<Answer>()
+        .Property(a => a.Answers)
         .HasConversion(
             v => JsonSerializer.Serialize(v!.Select(d => d.ToString()).ToList(), default(JsonSerializerOptions)),
-            v => JsonSerializer.Deserialize<List<string>>(v, default(JsonSerializerOptions))!.Select(d => (bool)Enum.Parse(typeof(bool), d)).ToList(),
-            new ValueComparer<ICollection<bool>>(
+            v => JsonSerializer.Deserialize<List<string>>(v, default(JsonSerializerOptions))!.ToArray(),
+            new ValueComparer<string[]>(
             (c1, c2) => c1!.SequenceEqual(c2!),
             c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
-            c => c.ToList())
+            c => c.ToArray())
         );    
 
         //makes sure we can store a list of options in question

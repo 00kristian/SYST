@@ -24,7 +24,7 @@ export default class App extends Component {
       <div>
         <Switch>
 
-          <Route path='/CandidateQuiz' component={CandidateQuiz} />
+          <Route path='/CandidateQuiz/:event_id/:quiz_id' component={CandidateQuiz} />
           <Route path='/CandidateInformation' component={CandidateInformation} />
           <Route path='/ConformationCandidate' component={ConfirmationCandidate} />
 

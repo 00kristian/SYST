@@ -3,7 +3,9 @@
 .btn-answer {
     width: 5rem;
     height: 5rem;
-    margin: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
     border-radius: 50%;
     color: #fff;
     background-color: #FF7837;
@@ -101,6 +103,10 @@
 }
 
 .div-flex {
+    display:-webkit-inline-flex;
+}
+
+.div-flex2 {
     display: flex;
 }
 
@@ -120,17 +126,16 @@
 }
 
 .div-quiz_layout {
-    display: flex;
+    display:flex;
     justify-content: center;
     flex-direction: column;
+
 }
 
 /*---------------Images---------------*/
 
-.img-center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.img-host-logo {
+    padding:1%;
 }
 
 /*---------------Inputs---------------*/
@@ -138,7 +143,7 @@
 .input-layout {
     width: 100%;
     background-color: #DCE2E6;
-    padding: 12px 20px;
+    padding: 12px 15px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -146,9 +151,16 @@
     box-sizing: border-box;
     margin-bottom: 2%;
 }
-    
+
 .input-question {
     width: 250%
+}
+
+.input-candInfoPage{
+    width: 40vw;
+    padding: 2% 15px;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 /*---------------Labels---------------*/
@@ -199,4 +211,66 @@
 .txt-right_padding{
     padding-right: 6%;
     float: right;
+
+/*---------------Misc---------------*/
+.question-options {
+    display: grid;
+    grid-template-columns: 300px 300px;
+    
+  }
+.question-text {
+    overflow-wrap: break-word;
+    width: 170px;
+}
+.horizontal-centered-div {
+    width: 50%;
+    padding-top: 25px;
+    margin: 0 auto;
+}
+.progress-bar {
+    color: aliceblue;
+    width: 300px;
+    margin: 15px;
+    border-radius: 15px;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #eeeeee;
+}
+
+progress::-webkit-progress-value {
+    background-color: #009BE6 !important;
+}
+
+
+/* For Firefox */
+progress {
+    background-color: #eee;
+}
+
+progress::-moz-progress-bar {
+    background-color: #009BE6 !important;
+}
+
+/* For IE10 */
+progress {
+    background-color: #eee;
+}
+
+progress {
+    background-color: #009BE6;
+}
+.txt-example {
+    color: grey;
+}
+
+.txt-center {
+    text-align: center;
+}
+
+/*---------------DropDown---------------*/
+.dropdown-length{
+    width: 40vw;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }

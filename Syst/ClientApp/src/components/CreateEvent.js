@@ -53,7 +53,7 @@ export class CreateEvent extends Component {
       : CreateEvent.renderEvent(this.state.event, this.state.quizes, (qid) => this.setState({quizid: qid}));
         return (
             <div>
-                <h2>Here you can create an event</h2>
+                <h2>Create your event here</h2>
                 <br/>
                 {contents}
                 {(this.state.event.quiz.id > 0) ? (
@@ -64,10 +64,10 @@ export class CreateEvent extends Component {
                     <div> </div>
                 )}
                 <br />
-                <button className="btn btn-primary" onClick={this.rerouteToCreateQuiz}>Create quiz</button>
+                <button className="btn btn-primary" onClick={this.rerouteToCreateQuiz}>Create new quiz</button>
                 <button className="btn btn-primary btn-right" onClick={this.rerouteToConfirmation}>Save event</button>
                 <br />
-                <button className="btn btn-cancel btn-right" onClick={this.deleteEvent}>Cancel</button>
+                <button className="btn btn-cancel" onClick={this.deleteEvent}>Cancel</button>
             </div>
         );
     }

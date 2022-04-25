@@ -12,8 +12,8 @@ public class CandidateRepositoryTests{
     private readonly ISystematicContext _context; 
     private readonly ICandidateRepository _repo;
 
-     Candidate candidate1 = new Candidate {Id=1, Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "ITU", GraduationDate = new DateTime{}};
-     Candidate candidate2 = new Candidate {Id=2, Name = "Maj Frost Jensen", Email = "mfje@itu.dk", StudyProgram = "Msc i Computer Science", University = "CBS", GraduationDate = new DateTime{}};
+     Candidate candidate1 = new Candidate {Id=1, Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "ITU", GraduationDate = new DateTime{}, IsUpvoted = false};
+     Candidate candidate2 = new Candidate {Id=2, Name = "Maj Frost Jensen", Email = "mfje@itu.dk", CurrentDegree = "MSc", StudyProgram = "Computer Science", University = "CBS", GraduationDate = new DateTime{}, IsUpvoted = true};
      public CandidateRepositoryTests(){
         var connection = new SqliteConnection("Filename=:memory:");
         connection.Open();
@@ -38,7 +38,7 @@ public class CandidateRepositoryTests{
     {
         //Arrange
 
-        var candidate1 = new CreateCandidateDTO {Name = "Oscar Nielsen", Email = "osni@itu.dk", StudyProgram = "Bsc Datalogi", University = "ITU",  GraduationDate =(new DateTime{}).ToString("yyyy-MM-dd") };
+        var candidate1 = new CreateCandidateDTO {Name = "Oscar Nielsen", Email = "osni@itu.dk", CurrentDegree = "BSc", StudyProgram = "Datalogi", University = "ITU",  GraduationDate =(new DateTime{}).ToString("yyyy-MM-dd"), IsUpvoted = true };
 
 
         //Act
@@ -53,7 +53,7 @@ public class CandidateRepositoryTests{
     public async void Create_Returns_Conflict_When_Name_Is_In_the_database()
     {
         //Arrange
-         var newCandidate = new CreateCandidateDTO { Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", StudyProgram = "Bsc i Softwareudvikling", University = "ITU", GraduationDate = (new DateTime{}).ToString("yyyy-MM-dd")};
+         var newCandidate = new CreateCandidateDTO { Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "ITU", GraduationDate = (new DateTime{}).ToString("yyyy-MM-dd"), IsUpvoted = false};
 
 
         //Act
@@ -99,10 +99,12 @@ public class CandidateRepositoryTests{
         Assert.Equal(Status.Found, actual.Item1);
         Assert.Equal(candidate1.Name, actual.Item2.Name);
         Assert.Equal(candidate1.Email, actual.Item2.Email);
+        Assert.Equal(candidate1.CurrentDegree, actual.Item2.CurrentDegree);
         Assert.Equal(candidate1.StudyProgram, actual.Item2.StudyProgram);
 
         Assert.Equal(candidate1.University, actual.Item2.University);
         Assert.Equal(candidate1.GraduationDate.ToString("yyyy-MM-dd"), actual.Item2.GraduationDate);
+        Assert.Equal(candidate1.IsUpvoted, actual.Item2.IsUpvoted);
 
     }
 
@@ -129,8 +131,8 @@ public class CandidateRepositoryTests{
         //assert
         Assert.Collection(candidates,
 
-            candidate => Assert.Equal(new CandidateDTO(1,"Lukas Hjelmstrand", "luhj@itu.dk", "Bsc i Softwareudvikling", "ITU",(new DateTime{}).ToString("yyyy-MM-dd"),  null!, new QuizDTO { }), candidate),
-            candidate => Assert.Equal(new CandidateDTO(2, "Maj Frost Jensen", "mfje@itu.dk", "Msc i Computer Science", "CBS",(new DateTime{}).ToString("yyyy-MM-dd"), null!, new QuizDTO { }), candidate)
+            candidate => Assert.Equal(new CandidateDTO(1,"Lukas Hjelmstrand", "luhj@itu.dk", "BSc", "Softwareudvikling", "ITU",(new DateTime{}).ToString("yyyy-MM-dd"),  null!, new QuizDTO { }, false), candidate),
+            candidate => Assert.Equal(new CandidateDTO(2, "Maj Frost Jensen", "mfje@itu.dk","MSc", "Computer Science", "CBS",(new DateTime{}).ToString("yyyy-MM-dd"), null!, new QuizDTO { }, true), candidate)
 
         );
     }
@@ -145,7 +147,8 @@ public class CandidateRepositoryTests{
             Name = "Camille Gonnsen",
             Email = "cgon@itu.dk",
             Events = new List<EventDTO>(){},
-            GraduationDate = new DateTime{}.ToString("yyyy-MM-dd")
+            GraduationDate = new DateTime{}.ToString("yyyy-MM-dd"),
+            IsUpvoted = true
         };
 
         //Act
@@ -165,7 +168,8 @@ public class CandidateRepositoryTests{
             Email = "sacc@itu.dk",
             Events = new List<EventDTO>(){},
             University = "ITU",
-            GraduationDate = new DateTime{}.ToString("yyyy-MM-dd")
+            GraduationDate = new DateTime{}.ToString("yyyy-MM-dd"),
+            IsUpvoted = true
         };
 
         //Act
