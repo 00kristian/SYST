@@ -13,13 +13,13 @@ export class EventDetail extends Component {
   }
 
   static renderEvent(event, edit, deleteEvent, pickAWinner, winnerName) {
-    console.log(event);
+   
     return (
         <div>
             <h1>{event.name}</h1>
             <h2>{event.date}</h2>
             <h2>{event.location}</h2>
-            <h2>Winner: {winnerName}</h2>
+            <h2>Winner: { winnerName  }</h2>
          {/*    <h3 className='txt-right'>Winner ={displayWinner(event.winner)} </h3> */}
             <button onClick={() => edit()} className="btn btn-primary btn-right">Edit event</button>
             <br/>
