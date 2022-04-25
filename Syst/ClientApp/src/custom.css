@@ -194,9 +194,23 @@
 
 /*---------------Text---------------*/
 
-.txt-red{
+.txt-red {
     color: red;
 }
+
+.txt-left{
+    text-align: left;
+    float: left;
+}
+
+.txt-right{
+    text-align: right;
+    float: right;
+}
+
+.txt-right_padding{
+    padding-right: 6%;
+    float: right;
 
 /*---------------Misc---------------*/
 .question-options {
