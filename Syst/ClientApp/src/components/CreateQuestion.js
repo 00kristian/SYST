@@ -24,7 +24,7 @@ function CreateQuestion(props) {
 
     const indexToLetter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ", "Ø", "Å"];
 
-    function RenderOption(option, index) {
+    function renderOption(option, index) {
         return (
             <div key={index}>
                 <label>
@@ -87,7 +87,7 @@ function CreateQuestion(props) {
                         </label>
                         <br />
                         <hr/>
-                        <div> {options?.map((option, index) => RenderOption(option, index))} </div>
+                        <div> {options?.map((option, index) => renderOption(option, index))} </div>
                         <button className="btn btn-primary" type="button" onClick={() => addOptionFields()}>+</button>
                         <button className="btn btn-minus_question" type="button" onClick={() => removeOptionFields()}>-</button>
                     </Col>
@@ -99,7 +99,7 @@ function CreateQuestion(props) {
                 </Row>
             </Container>
             <br /> <br />
-            <button className="btn btn-cancel">Cancel</button>
+            <button onClick={() => history.push("/CreateQuiz/" + props.match.params.event_id + "/" + props.match.params.quiz_id)} className="btn btn-cancel">Cancel</button>
             <button className="btn btn-primary btn-right" onClick={() => confirm()}>Confirm</button>
         </div>
     );
