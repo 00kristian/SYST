@@ -91,6 +91,17 @@ namespace Infrastructure
             return Status.Updated;
         }
 
+        public async Task<Status> UpdateUpVote(int id)
+        {
+            var c = await _context.Candidates.Where(c => c.Id == id).FirstOrDefaultAsync();
+
+            c.IsUpvoted = true;
+
+            await _context.SaveChangesAsync();
+
+            return Status.Updated;
+        }
+
         //Deletes a candidates given the candidate id
         public async Task<Status> Delete(int id){
 

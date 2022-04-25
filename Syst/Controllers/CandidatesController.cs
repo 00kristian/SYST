@@ -74,4 +74,17 @@ public class CandidatesController : ControllerBase
         if (updated == Status.NotFound) return new NotFoundObjectResult(id);
         return updated.ToActionResult();
     }
+
+    
+    //Updates a upvote for candidate
+    [ProducesResponseType(404)]
+    [ProducesResponseType(202)]
+    [HttpPut("upvote/{id}")]
+    public async Task<IActionResult> PutUpVote(int id)
+    {
+        var updated = await _repo.UpdateUpVote(id);
+        if (updated == Status.NotFound) return new NotFoundObjectResult(id);
+        return updated.ToActionResult();
+    }
+    
 }

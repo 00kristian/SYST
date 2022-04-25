@@ -172,7 +172,7 @@ export class CandidateInformation extends Component {
         this.setState({validateCheckBox : e.target.checked})
     }
 
-    rerouteToCandidateConfirmation = () => {
+    rerouteToCandidateConfirmation = async () => {
 
         this.setState({clickedOnSubmit : true});
 
@@ -195,6 +195,7 @@ export class CandidateInformation extends Component {
                 "email": this.state.Email,
                 "university": this.state.University,
                 "studyProgram": this.state.StudyProgram,
+                "upVote": this.state.upVote,
                 "graduationDate": this.state.GraduationDate.toDateString()
             };
     
@@ -203,7 +204,7 @@ export class CandidateInformation extends Component {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(candidate)
             };
-            fetch('api/candidates', requestOptions)
+            await fetch('api/candidates', requestOptions)
             .then(response => response.json())
             const { history } = this.props;
             history.push('/ConformationCandidate');

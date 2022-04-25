@@ -74,11 +74,24 @@ export class Candidates extends Component {
         });
         this.populateData();
     }
+
+    getCandidateById = async (id) =>{
+        await fetch('api/candidates/' + id, {
+            method: 'GET'
+        })
+        this.populateData();    
+    }
     
-    clickToUpvoteCandidate = async (id) => {
-        await fetch ('api/candidates/' + id, {
-            method: 'UPDATE'
-        });
+    clickToUpvoteCandidate =  async (id) => {
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+           
+        };
+        await fetch("api/candidates"+"/upvote/"+ id, requestOptions)
+        
+        
         this.populateData();
     }
        
