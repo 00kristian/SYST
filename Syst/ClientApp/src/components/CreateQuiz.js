@@ -101,18 +101,16 @@ function CreateQuiz(props) {
                     <input value={name} className="input-layout" onChange={(event) => setName(event.target.value)}>
                     </input>
                 </label>
-                <br />
-                <hr/>
-                <br />
+                <br /> <hr/> <br />
                 <h5>Questions:</h5>
                 {questions?.map((question, index) => renderQuiz(question, index))}
             </form>
             <button onClick={addQuestion} className="btn btn-primary" type="button">+</button> 
             <button onClick={removeQuestion} className="btn btn-minus_quiz" type="button">-</button>        
             <br />
-            <button onClick={_confirm} className="btn btn-primary btn-right">Confirm</button>
+            <button onClick={_confirm} className="btn btn-primary btn-right">Save quiz</button>
             <button onClick={deleteQuiz} className="btn btn-primary btn-right">DELETE</button>
-            <button onClick={() => history.push("/CreateEvent/"+ props.match.params.event_id)} className="btn btn-primary">Cancel</button>
+            <button onClick={() => history.push("/CreateEvent/"+ props.match.params.event_id)} className="btn btn-cancel">Cancel</button>
         </div>
     );
 }
