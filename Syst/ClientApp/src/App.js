@@ -1,12 +1,14 @@
 import { Events } from './components/Events';
+import { EventRating } from './components/EventRating';
 import { Home } from './components/Home';
 import { Candidates } from './components/Candidates';
 import { ConfirmationCandidate} from "./components/ConfirmationCandidate";
 import { EventDetail } from './components/EventDetail';
-import { CreateQuiz } from './components/CreateQuiz';
-import { CreateQuestion } from './components/CreateQuestion';
+import CreateQuiz from './components/CreateQuiz';
+import CreateQuestion from './components/CreateQuestion';
 import './custom.css'
-import { CreateEvent } from './components/CreateEvent';
+import { CreateEventOld } from './components/CreateEventOld';
+import CreateEvent from './components/CreateEvent';
 import { CandidateQuiz } from './components/CandidateQuiz';
 import { CandidateInformation } from './components/CandidateInformation';
 import { NavMenu } from './components/NavMenu';
@@ -34,6 +36,7 @@ export default class App extends Component {
             <Route path='/candidates' component={Candidates} />
             <Route path='/CreateEvent/:id' component={CreateEvent} />
             <Route path='/Events' component={Events} />
+            <Route path='/EventRating/:id' component={EventRating} />
             <Route path='/Confirmation' component={ConfirmationCandidate} />
 
             <Route path='/CreateQuiz/:event_id/:id' component={CreateQuiz} />
