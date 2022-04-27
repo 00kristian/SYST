@@ -73,7 +73,7 @@ public class CandidatesController : ControllerBase
         var updated = await _repo.Update(id, candidate);
         if (updated == Status.NotFound) return new NotFoundObjectResult(id);
         return updated.ToActionResult();
-    }
+    } 
 
     
     //Updates a upvote for candidate
@@ -87,8 +87,8 @@ public class CandidatesController : ControllerBase
         return updated.ToActionResult();
     }
     
-
-    //Create a new candidate
+    //NEEDS TO BE TESTED!
+    //Create a new answer to candidate 
     [ProducesResponseType(409)]
     [HttpPost("Answer/{candidateId}")]
     public async Task<IActionResult> PostAnswer([FromRoute] int candidateId, [FromBody] AnswerDTO answer) {
