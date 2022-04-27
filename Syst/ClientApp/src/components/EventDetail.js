@@ -14,7 +14,7 @@ export class EventDetail extends Component {
     this.populateData();
   }
 
-  static renderEvent(event, edit, deleteEvent, pickAWinner, winnerName) {
+  static renderEvent(event, editEvent, editRating, deleteEvent, pickAWinner, winnerName) {
 
     return (
         <div>
@@ -22,16 +22,12 @@ export class EventDetail extends Component {
             <h2>{event.date}</h2>
             <h2>{event.location}</h2>
             <h2>Winner: { winnerName  }</h2>
-         {/*    <h3 className='txt-right'>Winner ={displayWinner(event.winner)} </h3> */}
-            <button onClick={() => edit()} className="btn btn-primary btn-right">Edit event</button>
-
             <h2 className='txt-left'>{event.location}</h2>
             <h2 className='txt-right'>Rating: {event.rating}</h2>
             <br/>
             <br/>
             <button onClick={() => editEvent()} className="btn btn-primary">Edit event</button>
             <button onClick={() => editRating()} className="btn btn-primary btn-right">Edit rating</button>
-
             <br/>
             <h3>Participants</h3>
             <table className='table table-striped' aria-labelledby="tabelLabel">
@@ -78,8 +74,7 @@ export class EventDetail extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : EventDetail.renderEvent(this.state.event, this.edit, this.deleteEvent, this.pickAWinner, this.state.winnerName);
-
+      : EventDetail.renderEvent(this.state.event,this.editEvent, this.editRating, this.deleteEvent, this.pickAWinner, this.state.winnerName);
 
     return (
       <div>
