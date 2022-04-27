@@ -1,114 +1,72 @@
-import React, { Component } from 'react';
-
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import {DatePicker} from './DatePicker';
-
-import "react-datepicker/dist/react-datepicker.css";
 import { QuizPicker } from './QuizPicker';
 
-export class CreateEvent extends Component {
-    static displayName = CreateEvent.name;
+export default CreateEvent
 
-    constructor(props) {
-        super(props);
-        this.state = { event : {name: "", date: new Date(), location: "", quiz: Object}, loading: true, quizes: [], quizid: 0};
-    }
+function CreateEvent(props) {
+    const [quizes, setQuizes] = useState([]);
+    const [quizId, setQuizId] = useState(-1);
+    const quiz = quizes.find(quiz => quiz.id === quizId);
+    const [name, setName] = useState("");
+    const [location, setLocation] = useState("");
+    const [date, setDate] = useState(new Date());
+    const history = useHistory();
 
-    componentDidMount() {  
-        this.populateData();
-    }
+    useEffect(async () => {
+        const response = await fetch('api/quiz');
+        const data = await response.json();
+        setQuizes(data);
+    }, []);
 
-    static renderEvent(e, quizes, quizFun) {
-        return (
-            <div>
-                <form>
-                    <label>
-                        <h5>Name</h5>
-                        <input placeholder={e.name} className="input-layout" onChange={(event) => e.name = event.target.value}></input>
-                    </label>
-                    <br />
-                    <br />
-                    <label>
-                        <h5>Date</h5>
-                        {DatePicker.Picker(e.date.toISOString().split('T')[0], ((date) => e.date = new Date(date)))}
-                    </label>
-                    <br />
-                    <br />
-                    <label>
-                        <h5>Location</h5>
-                        <input placeholder={e.location} className="input-layout" onChange={(event) => e.location = event.target.value}></input>
-                    </label>
-                </form>
+    useEffect(async () => {
+        const response = await fetch('api/events/' + props.match.params.id);
+        const data = await response.json();
+        setName(data.name);
+        setLocation(data.location);
+        setDate(new Date(data.date.split('T')[0]));
+        setQuizId(data.quiz.id)
+    }, []);
 
-                <br />
-                <h5>Quiz</h5>
-                {QuizPicker.Picker(quizes, e.quiz.id, (qid) => quizFun(qid))}
-            </div>
+    async function updateQuizId() {
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        };
+        await fetch('api/events/' + props.match.params.id + '/' + quizId, requestOptions);
+    };
 
-        );
-    }
-
-    render() {
-        let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : CreateEvent.renderEvent(this.state.event, this.state.quizes, (qid) => this.setState({quizid: qid}));
-        return (
-            <div>
-                <h2>Create your event here</h2>
-                <br/>
-                {contents}
-                {(this.state.event.quiz.id > 0) ? (
-                    <div>
-                        <button className="btn btn-primary" onClick={this.editQuiz}>Edit quiz</button>
-                    </div>
-                ) : (
-                    <div> </div>
-                )}
-                <br />
-                <button className="btn btn-primary" onClick={this.rerouteToCreateQuiz}>Create new quiz</button>
-                <button className="btn btn-primary btn-right" onClick={this.rerouteToConfirmation}>Save event</button>
-                <br />
-                <button className="btn btn-cancel" onClick={this.deleteEvent}>Cancel</button>
-            </div>
-        );
-    }
-
-    rerouteToConfirmation = () => {
-        this.updateEvent();
-        if (this.state.quizid > 0) {
-            this.updateQuizId(this.state.quizid);
-        }
-        const { history } = this.props;
-        history.push("/eventdetail/" + this.props.match.params.id);
-    }
-
-    updateEvent = () => {
+    const updateEvent = async () => {
         let event = {
-            "name": this.state.event.name,
-            "date": this.state.event.date.toISOString(),
-            "location": this.state.event.location
+            "name": name,
+            "date": date.toISOString(),
+            "location": location
         };
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(event)
         };
-        fetch('api/events/' + this.props.match.params.id, requestOptions);
+        await fetch('api/events/' + props.match.params.id, requestOptions);
     }
 
-    rerouteToEvents = () => {
-        const { history } = this.props;
-        history.push("/Events");
+    const _confirm = async () => {
+        await updateEvent();
+        if (quizId > 0) updateQuizId();
+        history.push("/eventdetail/" + props.match.params.id);
     }
 
-    editQuiz = async () => {
-        const quizid = this.state.quizid;
-        this.updateEvent();
-        await this.updateQuizId(quizid);
-        const { history } = this.props;
-        history.push("/CreateQuiz/" + this.props.match.params.id +"/"+ quizid);
+    const editQuiz = async () => {
+        await updateEvent();
+        await updateQuizId();
+        history.push("/CreateQuiz/" + props.match.params.id +"/"+ quizId);
     }
 
-    rerouteToCreateQuiz = async () => {
+    const createQuiz = async () => {
         let quiz = {
             "name": "New quiz"
         };
@@ -117,51 +75,58 @@ export class CreateEvent extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(quiz)
         };
-        let quizid = await fetch('api/quiz', requestOptions)
-        .then(response => response.json())
+        let qId = await fetch('api/quiz', requestOptions)
+        .then(response => response.json());
 
-        this.updateEvent();
-
-        this.updateQuizId(quizid);
-
-        const { history } = this.props;
-        history.push("/CreateQuiz/" + this.props.match.params.id +"/"+ quizid);
+        setQuizId(qId);
+        await editQuiz();
     }
 
-    async updateQuizId(id) {
-        const requestOptions = {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        };
+    const deleteEvent = async () => {
+        let fr = window.confirm('Are you sure you want to delete the event: ' + name + ', permanently?');
+        if (fr) {
+            const requestOptions = {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(this.props.match.params.id)
+            };
+            await fetch('api/events'+"/"+this.props.match.params.id, requestOptions);
 
-        fetch('api/events/' + this.props.match.params.id + '/' + id, requestOptions);
+            history.push("/events");
+        }
     }
 
-    async populateData() {
-        const response = await fetch('api/events/' + this.props.match.params.id);
-        const data = await response.json();
-        const response2 = await fetch('api/quiz');
-        const data2 = await response2.json();
-        this.setState({  event : {name: data.name, date: new Date(data.date.split('T')[0]), location: data.location, quiz: data.quiz}, loading: false, quizes: data2, quizid: data.quiz.id});
-    }
-
-
-    deleteEvent = async () => {
-        
-        const requestOptions = {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(this.props.match.params.id)
-        };
-        await fetch('api/events'+"/"+this.props.match.params.id, requestOptions);
-
-        const { history } = this.props;
-        history.push("/events");
-    }
-
-
-
+    return (
+        <div>
+            <h2>Here you can create or edit an event</h2>
+            <br/>
+            <form>
+                <label>
+                    <h5>Name</h5>
+                    <input value={name} className="input-layout" onChange={(event) => setName(event.target.value)}></input>
+                </label>
+                <br /> <br />
+                <label>
+                    <h5>Date</h5>
+                    {DatePicker.Picker(date, ((date) => setDate(new Date(date))))}
+                </label>
+                <br /> <br />
+                <label>
+                    <h5>Location</h5>
+                    <input value={location} className="input-layout" onChange={(event) => setLocation(event.target.value)}></input>
+                </label>
+            </form>
+            <br />
+            <h5>Quiz</h5>
+            <button onClick={createQuiz} className="btn btn-primary">Create new quiz</button>
+            {QuizPicker.Picker(quizes, quizId, (qId) => setQuizId(qId))}
+            {(quizId > 0) ? (
+                    <button onClick={editQuiz} className="btn btn-primary">Edit quiz</button>
+            ) : <span/>}
+            <br />
+            <button onClick={_confirm} className="btn btn-primary btn-right">Save event</button>
+            <button onClick={deleteEvent} className="btn btn-primary btn-right">DELETE</button>
+            <button onClick={() => history.push("/eventdetail/" + props.match.params.id)} className="btn btn-cancel">Cancel</button>
+        </div>
+    );
 }

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 export class EventDetail extends Component {
   static displayName = EventDetail.name;
@@ -12,10 +14,12 @@ export class EventDetail extends Component {
     this.populateData();
   }
 
+
   
 
   static renderEvent(event, edit, deleteEvent, pickAWinner, winnerName, show) {
    
+
     return (
         <div>
             <h1>{event.name}</h1>
@@ -24,6 +28,14 @@ export class EventDetail extends Component {
             <h2>Winner: { winnerName  }</h2>
          {/*    <h3 className='txt-right'>Winner ={displayWinner(event.winner)} </h3> */}
             <button onClick={() => edit()} className="btn btn-primary btn-right">Edit event</button>
+
+            <h2 className='txt-left'>{event.location}</h2>
+            <h2 className='txt-right'>Rating: {event.rating}</h2>
+            <br/>
+            <br/>
+            <button onClick={() => editEvent()} className="btn btn-primary">Edit event</button>
+            <button onClick={() => editRating()} className="btn btn-primary btn-right">Edit rating</button>
+
             <br/>
             <h3>Participants</h3>
             <table className='table table-striped' aria-labelledby="tabelLabel">
@@ -59,8 +71,15 @@ export class EventDetail extends Component {
             ) }
             <br></br>
             <a href={'/events'}> <button className="btn btn-primary btn-right">Back</button> </a>
-            <button className="btn btn-primary" onClick={()=>deleteEvent()}>Delete event</button>
-           
+            <Popup trigger = {<button className="btn btn-primary">Delete event</button>} modal nested>
+              {close => (
+                <div>
+                  <p>Are you sure you want to delete this event?</p>
+                  <button className="btn btn-primary btn-yes" onClick={()=>deleteEvent()}>Yes</button>
+                  <button className="btn btn-primary"onClick={() => {close();}}>No</button>
+                  </div>
+              )}
+            </Popup>
         </div>
         
     );
@@ -71,6 +90,7 @@ export class EventDetail extends Component {
       ? <p><em>Loading...</em></p>
       : EventDetail.renderEvent(this.state.event, this.edit, this.deleteEvent, this.pickAWinner, this.state.winnerName, this.state.show);
 
+
     return (
       <div>
         {contents}
@@ -78,9 +98,14 @@ export class EventDetail extends Component {
     );
   }
 
-  edit = () => {
+  editEvent = () => {
     const { history } = this.props;
     history.push("/CreateEvent/" + this.props.match.params.id);
+  }
+
+  editRating = () => {
+    const { history } = this.props;
+    history.push("/EventRating/" + this.props.match.params.id);
   }
 
   async populateData() {
@@ -104,6 +129,7 @@ export class EventDetail extends Component {
 
     const { history } = this.props;
     history.push("/events");
+
 }
 
   pickAWinner = async () => {
@@ -131,4 +157,5 @@ export class EventDetail extends Component {
     
   }
   
+
 }

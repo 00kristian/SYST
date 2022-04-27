@@ -18,7 +18,8 @@ namespace Syst.Controllers
 
             _repo = repo;
         }
-    
+
+        //Create a picture
         [HttpPost("{questionid}")]
         public async Task<IActionResult> Post(int questionid, IFormFile file)
         {
@@ -54,6 +55,8 @@ namespace Syst.Controllers
             }
 
         }
+
+        //Return a candidate given the picture's file name
         [HttpGet("{filename}")]
         public IActionResult Get(string filename)
         {

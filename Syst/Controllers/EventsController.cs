@@ -66,6 +66,13 @@ public class EventsController : ControllerBase
     public async Task<IActionResult> Put(int eventid, int quizid) =>
         (await _repo.UpdateQuiz(eventid, quizid)).ToActionResult();
     
+    //Update an event
+    [ProducesResponseType(404)]
+    [ProducesResponseType(204)]
+    [HttpPut("rating/{id}")]
+    public async Task<IActionResult> Put(int id, [FromBody] double rating) =>
+        (await _repo.UpdateRating(id, rating)).ToActionResult();
+    
     //Delete an event
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
