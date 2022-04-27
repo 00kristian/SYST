@@ -33,12 +33,13 @@ namespace Infrastructure
         //Return an event given the event id
         public async Task<(Status, EventDTO)> Read(int id)
         {
-            var e = await _context.Events.Include(e => e.Quiz).Include(e => e.Candidates).Where(e => e.Id == id).Select(e => new EventDTO(){
+            var e = await _context.Events.Include(e => e.Quiz).Include(e => e.Winner).Include(e => e.Candidates).Where(e => e.Id == id).Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
                 Date = e.Date.ToString("yyyy-MM-dd"),
                 Location = e.Location!,
                 Rating = e.Rating!,
+                WinnerId = e.Winner ==  default(Candidate) ? -1 : e.Winner.Id,
                 Candidates = e.Candidates != null ? e.Candidates.Select(c => new CandidateDTO(){
                     Name = c.Name!,
                     Id = c.Id,
@@ -175,5 +176,35 @@ namespace Infrastructure
             await _context.SaveChangesAsync();
             return Status.Updated;
         }
+
+        public async Task<(Status, CandidateDTO)> pickAWinner(int eventid) {
+            var e = await _context.Events.Include(e => e.Candidates).Where(e => e.Id == eventid).FirstOrDefaultAsync();
+            if (e == default(Event)) return (Status.NotFound, default(CandidateDTO));
+            //if a candidate already exists it should not update but it should return status.found
+            if(e.Winner != default(Candidate)) {
+                return (Status.Found, default(CandidateDTO));
+                
+            }
+
+            var c = e.Candidates?.OrderBy(c => Guid.NewGuid()).FirstOrDefault();
+            if (c == default(Candidate)) {
+                return (Status.NotFound, default(CandidateDTO));
+            } else {e.Winner = c;}
+
+
+            await _context.SaveChangesAsync();
+
+            return (Status.Found, new CandidateDTO() {
+                Name = c.Name!,
+                Id = c.Id,
+                Email = c.Email!,
+                CurrentDegree = c.CurrentDegree!,
+                StudyProgram = c.StudyProgram!,
+                University = c.University!,
+                GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd"),
+            });
+        }
+
+        
     }
 }

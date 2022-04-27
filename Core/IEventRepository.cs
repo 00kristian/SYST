@@ -16,6 +16,10 @@ public interface IEventRepository
 
         Task<Status> UpdateQuiz(int eventid, int quizid);
 
+        Task<(Status, CandidateDTO)> pickAWinner(int eventid);
+
+
         Task<Status> UpdateRating(int id, double rating);
+
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class Initial : Migration
+    public partial class swagster : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -62,34 +62,6 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Events",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    QuizId = table.Column<int>(type: "int", nullable: true),
-                    Rating = table.Column<double>(type: "float", nullable: false),
-                    AdminId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Events", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Events_Admins_AdminId",
-                        column: x => x.AdminId,
-                        principalTable: "Admins",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Events_Quizes_QuizId",
-                        column: x => x.QuizId,
-                        principalTable: "Quizes",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Questions",
                 columns: table => new
                 {
@@ -135,6 +107,40 @@ namespace Infrastructure.Migrations
                         principalTable: "Quizes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    QuizId = table.Column<int>(type: "int", nullable: true),
+                    Rating = table.Column<double>(type: "float", nullable: false),
+                    WinnerId = table.Column<int>(type: "int", nullable: true),
+                    AdminId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Events_Admins_AdminId",
+                        column: x => x.AdminId,
+                        principalTable: "Admins",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Events_Candidates_WinnerId",
+                        column: x => x.WinnerId,
+                        principalTable: "Candidates",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Events_Quizes_QuizId",
+                        column: x => x.QuizId,
+                        principalTable: "Quizes",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -192,6 +198,11 @@ namespace Infrastructure.Migrations
                 column: "QuizId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Events_WinnerId",
+                table: "Events",
+                column: "WinnerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Questions_QuizId",
                 table: "Questions",
                 column: "QuizId");
@@ -209,13 +220,13 @@ namespace Infrastructure.Migrations
                 name: "Questions");
 
             migrationBuilder.DropTable(
-                name: "Candidates");
-
-            migrationBuilder.DropTable(
                 name: "Events");
 
             migrationBuilder.DropTable(
                 name: "Admins");
+
+            migrationBuilder.DropTable(
+                name: "Candidates");
 
             migrationBuilder.DropTable(
                 name: "Quizes");

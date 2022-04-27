@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(SystematicContext))]
-    [Migration("20220425073042_Initial")]
-    partial class Initial
+    [Migration("20220425115828_swagster")]
+    partial class swagster
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -149,11 +149,16 @@ namespace Infrastructure.Migrations
                     b.Property<double>("Rating")
                         .HasColumnType("float");
 
+                    b.Property<int?>("WinnerId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AdminId");
 
                     b.HasIndex("QuizId");
+
+                    b.HasIndex("WinnerId");
 
                     b.ToTable("Events");
                 });
@@ -253,7 +258,13 @@ namespace Infrastructure.Migrations
                         .WithMany("Events")
                         .HasForeignKey("QuizId");
 
+                    b.HasOne("Infrastructure.Candidate", "Winner")
+                        .WithMany()
+                        .HasForeignKey("WinnerId");
+
                     b.Navigation("Quiz");
+
+                    b.Navigation("Winner");
                 });
 
             modelBuilder.Entity("Infrastructure.Question", b =>

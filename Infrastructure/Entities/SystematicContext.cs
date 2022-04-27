@@ -9,18 +9,18 @@ public class SystematicContext : DbContext, ISystematicContext
 {
     //Tables in our database 
     public DbSet<Admin> Admins { get; set; } = null!;
-    public DbSet<Candidate> Candidates {get;set;} = null!;
-    public DbSet<Event> Events {get;set;} = null!;
-    public DbSet<Question> Questions {get;set;} = null!;
-    public DbSet<Quiz> Quizes {get;set;} = null!;
-    public DbSet<Answer> Answers {get;set;} = null!;
+    public DbSet<Candidate> Candidates { get; set; } = null!;
+    public DbSet<Event> Events { get; set; } = null!;
+    public DbSet<Question> Questions { get; set; } = null!;
+    public DbSet<Quiz> Quizes { get; set; } = null!;
+    public DbSet<Answer> Answers { get; set; } = null!;
     public string DbPath { get; private set; } = null!;
 
-    public SystematicContext(DbContextOptions<SystematicContext> options): base(options) { }
+    public SystematicContext(DbContextOptions<SystematicContext> options) : base(options) { }
 
     //Creates our relationships
     protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {   
+    {
 
         //Many to many relationship between candidate and event
         modelBuilder.Entity<Candidate>()
@@ -31,7 +31,7 @@ public class SystematicContext : DbContext, ISystematicContext
         modelBuilder.Entity<Event>()
         .HasOne<Quiz>(e => e.Quiz)
         .WithMany(q => q.Events);
-        
+
         //One to many relationship between question and quiz
         modelBuilder.Entity<Question>()
         .HasOne<Quiz>(que => que.Quiz)
@@ -56,7 +56,7 @@ public class SystematicContext : DbContext, ISystematicContext
             (c1, c2) => c1!.SequenceEqual(c2!),
             c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
             c => c.ToArray())
-        );    
+        );
 
         //makes sure we can store a list of options in question
         modelBuilder.Entity<Question>()
@@ -68,6 +68,8 @@ public class SystematicContext : DbContext, ISystematicContext
             (c1, c2) => c1!.SequenceEqual(c2!),
             c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
             c => c.ToList())
-        );  
+        );
+
+        modelBuilder.Entity<Event>().HasOne<Candidate>(e => e.Winner);
     }
 }
