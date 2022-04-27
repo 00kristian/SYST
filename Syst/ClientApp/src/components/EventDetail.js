@@ -5,14 +5,16 @@ export class EventDetail extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { event: Object, loading: true, winnerName: "" };
+    this.state = { event: Object, loading: true, winnerName: "", show:  true };
   }
 
   componentDidMount() {
     this.populateData();
   }
 
-  static renderEvent(event, edit, deleteEvent, pickAWinner, winnerName) {
+  
+
+  static renderEvent(event, edit, deleteEvent, pickAWinner, winnerName, show) {
    
     return (
         <div>
@@ -48,7 +50,13 @@ export class EventDetail extends Component {
                 )}
                 </tbody>
             </table>
-            <button className="btn btn-primary" onClick={()=>pickAWinner()}>Generate a winner</button>
+            {show  ? (
+              <div>
+              <button className="btn btn-primary" onClick={()=>pickAWinner()}>Generate a winner</button>
+              </div>
+            ) : (
+              <div></div>
+            ) }
             <br></br>
             <a href={'/events'}> <button className="btn btn-primary btn-right">Back</button> </a>
             <button className="btn btn-primary" onClick={()=>deleteEvent()}>Delete event</button>
@@ -61,7 +69,7 @@ export class EventDetail extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : EventDetail.renderEvent(this.state.event, this.edit, this.deleteEvent, this.pickAWinner, this.state.winnerName);
+      : EventDetail.renderEvent(this.state.event, this.edit, this.deleteEvent, this.pickAWinner, this.state.winnerName, this.state.show);
 
     return (
       <div>
@@ -79,8 +87,8 @@ export class EventDetail extends Component {
     const response = await fetch('api/events/' + this.props.match.params.id);
     const data = await response.json();
     let winnerName = await this.displayWinner(data.winnerId);
-    console.log(winnerName);
-    this.setState({ event: data, loading: false, winnerName: winnerName });
+    let show = this.state.show;
+    this.setState({ event: data, loading: false, winnerName: winnerName});
     
   }
 
@@ -103,6 +111,7 @@ export class EventDetail extends Component {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     };
+    this.setState({ show: false });
     
     await fetch('api/events/winner'+"/"+this.props.match.params.id, requestOptions);
     this.populateData();
