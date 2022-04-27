@@ -17,7 +17,7 @@ export class EventDetail extends Component {
 
   
 
-  static renderEvent(event, edit, deleteEvent, pickAWinner, winnerName, show) {
+  static renderEvent(event, editEvent,editRating, deleteEvent, pickAWinner, winnerName, show) {
    
 
     return (
@@ -27,8 +27,6 @@ export class EventDetail extends Component {
             <h2>{event.location}</h2>
             <h2>Winner: { winnerName  }</h2>
          {/*    <h3 className='txt-right'>Winner ={displayWinner(event.winner)} </h3> */}
-            <button onClick={() => edit()} className="btn btn-primary btn-right">Edit event</button>
-
             <h2 className='txt-left'>{event.location}</h2>
             <h2 className='txt-right'>Rating: {event.rating}</h2>
             <br/>
@@ -88,7 +86,7 @@ export class EventDetail extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : EventDetail.renderEvent(this.state.event, this.edit, this.deleteEvent, this.pickAWinner, this.state.winnerName, this.state.show);
+      : EventDetail.renderEvent(this.state.event, this.editEvent,this.editRating, this.deleteEvent, this.pickAWinner, this.state.winnerName, this.state.show);
 
 
     return (
