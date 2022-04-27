@@ -43,6 +43,17 @@ public class CandidateControllerTests
 		IsUpvoted = false
 	};
 
+	 static readonly EventDTO event1 = new EventDTO{
+        Id = 1,
+        Name = "TechBBQ",
+        Date = "03-21-2022",
+        Location = "Copenhagen",
+        Candidates = null!,
+        Quiz = quiz1,
+        Rating = 3.5,
+        Admins = null!
+    };
+
 
 
 	//Testing starts here
@@ -147,7 +158,7 @@ public class CandidateControllerTests
 		Assert.IsType<ConflictObjectResult>(response);
 	}
 
-	[Fact]
+	[Fact] 
 	public async void Delete_non_existing_id_return_NotFound() {
 		//Arrange
 		var logger = new Mock<ILogger<CandidatesController>>();
@@ -176,5 +187,99 @@ public class CandidateControllerTests
 		//Assert
 		Assert.IsType<NoContentResult>(response);
 	}
+
+	[Fact]
+    public async void Put_returns_status_updated_when_given_existing_id()
+    {
+
+        //arrange
+        var logger = new Mock<ILogger<CandidatesController>>();
+        var repository = new Mock<ICandidateRepository>();
+        var newCandidate = new CandidateDTO(4, "Sanne Pedersen", "sape@itu.dk", "BSc", "GBI", "ITU", "25-01-2023", null!, quiz1, false);
+        repository.Setup(m => m.Update(2, newCandidate)).ReturnsAsync(Status.Updated);
+        var controller = new CandidatesController(logger.Object, repository.Object);
+
+        //act 
+        var response = await controller.Put(2, newCandidate);
+
+        //assert
+
+        Assert.IsType<NoContentResult>(response);
+    }
+
+	[Fact]
+    public async void Put_returns_status_notFound_when_given_nonexisting_idAsync()
+    {
+        //arrange
+        var logger = new Mock<ILogger<CandidatesController>>();
+        var repository = new Mock<ICandidateRepository>();
+        var newCandidate = new CandidateDTO(4, "Sanne Pedersen", "sape@itu.dk", "BSc", "GBI", "ITU", "25-01-2023", null!, quiz1, false);
+        repository.Setup(m => m.Update(99, newCandidate)).ReturnsAsync(Status.NotFound);
+        var controller = new CandidatesController(logger.Object, repository.Object);
+
+        //act 
+        var response = await controller.Put(99, newCandidate);
+
+        //assert
+
+        Assert.IsType<NotFoundObjectResult>(response);
+    }
+
+	[Fact]
+    public async void UpvotePut_returns_status_upvote_updated_when_given_existing_id()
+    {
+
+        //arrange
+        var logger = new Mock<ILogger<CandidatesController>>();
+        var repository = new Mock<ICandidateRepository>();
+        repository.Setup(m => m.UpdateUpVote(2)).ReturnsAsync(Status.Updated);
+        var controller = new CandidatesController(logger.Object, repository.Object);
+
+        //act 
+        var response = await controller.PutUpVote(2);
+
+        //assert
+
+        Assert.IsType<NoContentResult>(response);
+    }
+
+
+	[Fact]
+    public async void UpvotePut_returns_status_notFound_when_given_nonexisting_idAsync()
+    {
+        //arrange
+        var logger = new Mock<ILogger<CandidatesController>>();
+        var repository = new Mock<ICandidateRepository>();
+        repository.Setup(m => m.UpdateUpVote(99)).ReturnsAsync(Status.NotFound);
+        var controller = new CandidatesController(logger.Object, repository.Object);
+
+        //act 
+        var response = await controller.PutUpVote(99);
+
+        //assert
+
+        Assert.IsType<NotFoundObjectResult>(response);
+    }
+
+
+	/* [Fact]
+	public async void Post_answer_to_candidate() {
+		//Arrange
+		var logger = new Mock<ILogger<CandidatesController>>();
+		var repository = new Mock<ICandidateRepository>();
+		var answer = new AnswerDTO(1, 20, 1, new string[] {"Answer 1", "Answer 2", "Answer 3"});
+		repository.Setup(m => m.AddAnswer(1, answer)).Returns(() => (Status.Conflict, 1));
+		var controller = new CandidatesController(logger.Object, repository.Object);
+
+		//Act
+		var response = await controller.PostAnswer(1, answer);
+
+		//Assert
+		Assert.IsType<ConflictObjectResult>(response);
+	}
+ */
+
+
+
 
 }
