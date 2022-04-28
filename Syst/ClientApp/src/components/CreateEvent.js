@@ -121,7 +121,7 @@ function CreateEvent(props) {
             <button onClick={createQuiz} className="btn btn-primary">Create new quiz</button>
             {QuizPicker.Picker(quizes, quizId, (qId) => setQuizId(qId))}
             {(quizId > 0) ? (
-                    <button onClick={editQuiz} className="btn btn-primary">Edit quiz</button>
+                    <button onClick={() => editQuiz(quizId)} className="btn btn-primary">Edit quiz</button>
             ) : <span/>}
             <br />
             <button onClick={_confirm} className="btn btn-primary btn-right">Save event</button>
