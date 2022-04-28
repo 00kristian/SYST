@@ -57,12 +57,14 @@ export class EventDetail extends Component {
             <button className="btn btn-primary" onClick={()=>pickAWinner()}>Generate a winner</button>
             <br></br>
             <a href={'/events'}> <button className="btn btn-primary btn-right">Back</button> </a>
-            <Popup trigger = {<button className="btn btn-primary">Delete event</button>} modal nested>
+            <Popup className="popup-overlay" trigger = {<button className="btn btn-primary">Delete event</button>} modal nested>
               {close => (
                 <div>
-                  <p>Are you sure you want to delete this event?</p>
-                  <button className="btn btn-primary btn-yes" onClick={()=>deleteEvent()}>Yes</button>
-                  <button className="btn btn-primary"onClick={() => {close();}}>No</button>
+                  <p className="txt-popup">Are you sure you want to delete this event?</p>
+                  <div className="div-center">
+                    <button className="btn btn-primary btn-yes btn-popup" onClick={()=>deleteEvent()}>Yes</button>
+                    <button className="btn btn-primary btn-popup"onClick={() => {close();}}>No</button>
+                  </div>
                   </div>
               )}
             </Popup>

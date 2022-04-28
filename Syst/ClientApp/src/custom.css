@@ -94,13 +94,28 @@
     background-color: #86DC3D;
     border-color: #86DC3D;
     color: #fff;
-    
 }
+    .btn-green:hover {
+        color: #fff;
+        background-color: #1D1C1C;
+        border-color: #1D1C1C;
+    }
 
 .btn-yes{
     margin-right: 2%;
 }
 
+
+.btn-popup{
+    margin-left: 3%;
+    margin-right: 3%;
+    font-size: 18px;
+}
+
+.btn-corner{
+    margin-left: 1%;
+    
+}
 
 /*---------------Divs---------------*/
 
@@ -226,6 +241,13 @@
     float: right;
 }
 
+.txt-popup{
+    text-align: center;
+    font-size: 22px;
+    margin-top: 5%;
+}
+
+
 /*---------------Misc---------------*/
 .question-options {
     display: grid;
@@ -292,3 +314,12 @@ progress {
     margin-top: 2%;
     margin-bottom: 2%;
 }
+
+/*---------------Popup------------------*/
+.popup-overlay {
+    margin: auto;
+    width: 100%;
+    padding-left: 250px;
+    padding-right: 250px;
+}
+ 
