@@ -29,7 +29,7 @@ function CreateEvent(props) {
         setQuizId(data.quiz.id)
     }, []);
 
-    async function updateQuizId() {
+    async function updateQuizId(qId) {
         const requestOptions = {
             method: 'PUT',
             headers: {
@@ -37,7 +37,7 @@ function CreateEvent(props) {
                 'Accept': 'application/json'
             }
         };
-        await fetch('api/events/' + props.match.params.id + '/' + quizId, requestOptions);
+        await fetch('api/events/' + props.match.params.id + '/' + qId, requestOptions);
     };
 
     const updateEvent = async () => {
@@ -60,10 +60,10 @@ function CreateEvent(props) {
         history.push("/eventdetail/" + props.match.params.id);
     }
 
-    const editQuiz = async () => {
+    const editQuiz = async (qId) => {
         await updateEvent();
-        await updateQuizId();
-        history.push("/CreateQuiz/" + props.match.params.id +"/"+ quizId);
+        await updateQuizId(qId);
+        history.push("/CreateQuiz/" + props.match.params.id +"/"+ qId);
     }
 
     const createQuiz = async () => {
@@ -75,11 +75,11 @@ function CreateEvent(props) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(quiz)
         };
-        let qId = await fetch('api/quiz', requestOptions)
+        const qId = await fetch('api/quiz', requestOptions)
         .then(response => response.json());
 
         setQuizId(qId);
-        await editQuiz();
+        await editQuiz(qId);
     }
 
     const deleteEvent = async () => {
@@ -88,9 +88,9 @@ function CreateEvent(props) {
             const requestOptions = {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(this.props.match.params.id)
+                body: JSON.stringify(props.match.params.id)
             };
-            await fetch('api/events'+"/"+this.props.match.params.id, requestOptions);
+            await fetch('api/events'+"/"+props.match.params.id, requestOptions);
 
             history.push("/events");
         }

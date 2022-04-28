@@ -8,17 +8,14 @@ export class EventDetail extends Component {
   constructor(props) {
     super(props);
     this.state = { event: Object, loading: true, winnerName: "", show:  true };
+
   }
 
   componentDidMount() {
     this.populateData();
   }
-
-
   
-
   static renderEvent(event, editEvent,editRating, deleteEvent, pickAWinner, winnerName, show) {
-   
 
     return (
         <div>
