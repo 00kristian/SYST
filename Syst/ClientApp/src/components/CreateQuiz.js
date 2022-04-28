@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 export default CreateQuiz
 
@@ -108,8 +110,18 @@ function CreateQuiz(props) {
             <button onClick={addQuestion} className="btn btn-primary" type="button">+</button> 
             <button onClick={removeQuestion} className="btn btn-minus_quiz" type="button">-</button>        
             <br />
-            <button onClick={_confirm} className="btn btn-primary btn-right">Save quiz</button>
-            <button onClick={deleteQuiz} className="btn btn-primary btn-right">DELETE</button>
+            <button onClick={_confirm} className="btn btn-primary btn-right btn-corner">Save quiz</button>
+            <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right btn-corner">Delete</button>} modal nested>
+              {close => (
+                <div>
+                  <p className="txt-popup">Are you sure you want to delete this quiz?</p>
+                  <div className="div-center">
+                    <button className="btn btn-primary btn-yes btn-popup" onClick={()=>deleteQuiz()}>Yes</button>
+                    <button className="btn btn-primary btn-popup"onClick={() => {close();}}>No</button>
+                  </div>
+                  </div>
+              )}
+            </Popup>
             <button onClick={() => history.push("/CreateEvent/"+ props.match.params.event_id)} className="btn btn-cancel">Cancel</button>
         </div>
     );
