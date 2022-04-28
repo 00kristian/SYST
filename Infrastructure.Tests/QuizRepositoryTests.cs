@@ -155,7 +155,7 @@ public class QuizRepositoryTests {
 
         //assert
         Assert.Equal(Status.Updated, status);
-        Assert.Equal("OG", quiz_2.Name);
+        Assert.Equal("OG (clone)", quiz_2.Name);
         Assert.Collection(quiz_2.Questions,
             question => {
                 Assert.Equal("I am not sure", question.Representation);

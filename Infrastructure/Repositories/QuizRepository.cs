@@ -58,7 +58,7 @@ namespace Infrastructure
                 foreach (var question in c.Questions)
                 {
                     var quizzesCount = await _context.Questions.Where(q => q.Id != id && q.ImageURL == question.ImageURL).CountAsync();
-                    if (quizzesCount !> 0) question.CleanUpImage(_hostEnvPath);
+                    if (quizzesCount == 0) question.CleanUpImage(_hostEnvPath);
                     _context.Questions.Remove(question);
                 }
             }
@@ -164,11 +164,11 @@ namespace Infrastructure
             if (quiz.Questions != null) {
                 foreach (Question question in quiz.Questions) {
                     var quizzesCount = await _context.Questions.Where(q => q.Id != quiz.Id && q.ImageURL == question.ImageURL).CountAsync();
-                    if (quizzesCount !> 0) question.CleanUpImage(_hostEnvPath);
+                    if (quizzesCount == 0) question.CleanUpImage(_hostEnvPath);
                 }
             }
 
-            quiz.Name = og.Name;
+            quiz.Name = og.Name + " (clone)";
             var questions = og.Questions != null ? og.Questions.Select(qs => new Question {
                 Representation = qs.Representation,
                 Answer = qs.Answer,

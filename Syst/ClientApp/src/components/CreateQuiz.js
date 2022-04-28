@@ -80,7 +80,7 @@ function CreateQuiz(props) {
     }
 
     const deleteQuiz = async () => {
-        let fr = window.confirm('Are you sure you want to delete the quiz: ' + name + ', permanently?');
+        let fr = window.confirm('Are you sure you want to delete the quiz: ' + name + ', permanently? \n It will be deleted from all events that use it.');
         if (fr) {
             const requestOptions = {
                 method: 'DELETE',
@@ -121,9 +121,15 @@ function CreateQuiz(props) {
                         <h5>Quiz name</h5>
                         <input value={name} className="input-layout" onChange={(event) => setName(event.target.value)}></input>
                     </label>
+                    <div style={{ width: 50 }}> </div>
                     <div>
+                        <h5>Clone existing quiz</h5>
                         {QuizPicker.Picker(quizes, "", (qId) => setCloneId(qId))}
-                        <button onClick={() => cloneQuiz()} className="btn btn-primary"> Clone </button>
+                        {cloneId > 0 ?
+                            <button onClick={() => cloneQuiz()} className="btn btn-primary"> Clone </button>
+                        :
+                            <span></span>
+                        }
                     </div>
                 </div>
                 <br /> <hr/> <br />
