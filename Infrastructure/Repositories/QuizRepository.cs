@@ -57,7 +57,8 @@ namespace Infrastructure
             if (c.Questions != null) {
                 foreach (var question in c.Questions)
                 {
-                    question.CleanUpImage(_hostEnvPath);
+                    var quizzesCount = await _context.Questions.Where(q => q.Id != id && q.ImageURL == question.ImageURL).CountAsync();
+                    if (quizzesCount > 0) question.CleanUpImage(_hostEnvPath);
                     _context.Questions.Remove(question);
                 }
             }
@@ -149,6 +150,32 @@ namespace Infrastructure
             quiz.Questions!.Remove(ques);
 
             return(Status.Updated);
+        }
+
+        public async Task<Status> Clone(int quizId, int origianlId) {
+            var quiz = await _context.Quizes.Include(q => q.Questions).Where(q => q.Id == quizId).FirstOrDefaultAsync();
+
+            if (quiz == default(Quiz)) return Status.NotFound;
+
+            var og = await _context.Quizes.Include(q => q.Questions).Where(q => q.Id == origianlId).FirstOrDefaultAsync();
+
+            if (og == default(Quiz)) return Status.NotFound;
+
+            quiz.Name = og.Name;
+            var questions = og.Questions != null ? og.Questions.Select(qs => new Question {
+                Representation = qs.Representation,
+                Answer = qs.Answer,
+                ImageURL = qs.ImageURL,
+                Options = qs.Options != null ? new List<string>(qs.Options) : new List<string>()
+            }).ToList()
+            : new List<Question>();
+
+            _context.Questions.AddRange(questions);
+            quiz.Questions = questions;
+
+            await _context.SaveChangesAsync();
+
+            return (Status.Updated);
         }
     }
 }

@@ -77,13 +77,14 @@ namespace Infrastructure
         //Deletes a question given the question id
         public async Task<Status> Delete(int id){
 
-            var q = await _context.Questions.Where(q => q.Id == id).FirstOrDefaultAsync();
+            var question = await _context.Questions.Where(q => q.Id == id).FirstOrDefaultAsync();
             
-            if (q == default(Question)) return Status.NotFound;
+            if (question == default(Question)) return Status.NotFound;
 
-            q.CleanUpImage(_hostEnvPath);
+            var quizzesCount = await _context.Questions.Where(q => q.Id != id && q.ImageURL == question.ImageURL).CountAsync();
+            if (quizzesCount > 0) question.CleanUpImage(_hostEnvPath);
 
-            _context.Questions.Remove(q);
+            _context.Questions.Remove(question);
 
             await _context.SaveChangesAsync();
             return Status.Deleted;
@@ -91,13 +92,14 @@ namespace Infrastructure
 
         public async Task<Status> UpdateImage(int id, string imageUrl)
         {
-            var q = await _context.Questions.Where(q => q.Id == id).FirstOrDefaultAsync();
+            var question = await _context.Questions.Where(q => q.Id == id).FirstOrDefaultAsync();
 
-            if (q == default(Question)) return Status.NotFound;
+            if (question == default(Question)) return Status.NotFound;
 
-            q.CleanUpImage(_hostEnvPath);
+            var quizzesCount = await _context.Questions.Where(q => q.Id != id && q.ImageURL == question.ImageURL).CountAsync();
+            if (quizzesCount > 0) question.CleanUpImage(_hostEnvPath);
 
-            q.ImageURL = imageUrl;
+            question.ImageURL = imageUrl;
 
             await _context.SaveChangesAsync();
 
