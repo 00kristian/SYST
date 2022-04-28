@@ -7,14 +7,15 @@ export class EventDetail extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { event: Object, loading: true, winnerName: "" };
+    this.state = { event: Object, loading: true, winnerName: "", show:  true };
+
   }
 
   componentDidMount() {
     this.populateData();
   }
-
-  static renderEvent(event, editEvent, editRating, deleteEvent, pickAWinner, winnerName) {
+  
+  static renderEvent(event, editEvent,editRating, deleteEvent, pickAWinner, winnerName, show) {
 
     return (
         <div>
@@ -22,11 +23,14 @@ export class EventDetail extends Component {
             <h2>{event.date}</h2>
             <h2>{event.location}</h2>
             <h2>Winner: { winnerName  }</h2>
+         {/*    <h3 className='txt-right'>Winner ={displayWinner(event.winner)} </h3> */}
+            <h2 className='txt-left'>{event.location}</h2>
             <h2 className='txt-right'>Rating: {event.rating}</h2>
             <br/>
             <br/>
             <button onClick={() => editEvent()} className="btn btn-primary">Edit event</button>
             <button onClick={() => editRating()} className="btn btn-primary btn-right">Edit rating</button>
+
             <br/>
             <h3>Participants</h3>
             <table className='table table-striped' aria-labelledby="tabelLabel">
@@ -53,7 +57,6 @@ export class EventDetail extends Component {
                 )}
                 </tbody>
             </table>
-            <button className="btn btn-primary" onClick={()=>pickAWinner()}>Generate a winner</button>
             <br></br>
             <a href={'/events'}> <button className="btn btn-primary btn-right">Back</button> </a>
             <Popup trigger = {<button className="btn btn-primary">Delete event</button>} modal nested>
@@ -73,11 +76,20 @@ export class EventDetail extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : EventDetail.renderEvent(this.state.event,this.editEvent, this.editRating, this.deleteEvent, this.pickAWinner, this.state.winnerName);
+      : EventDetail.renderEvent(this.state.event, this.editEvent,this.editRating, this.deleteEvent, this.pickAWinner, this.state.winnerName, this.state.show);
+
 
     return (
       <div>
         {contents}
+        {this.state.winnerName != null  ? (
+              <div>
+              </div>
+            ) : (
+              <div>
+                <button className="btn btn-primary" onClick={()=> this.pickAWinner()}>Generate a winner</button>
+              </div>
+            ) }
       </div>
     );
   }
@@ -96,8 +108,8 @@ export class EventDetail extends Component {
     const response = await fetch('api/events/' + this.props.match.params.id);
     const data = await response.json();
     let winnerName = await this.displayWinner(data.winnerId);
-    console.log(winnerName);
-    this.setState({ event: data, loading: false, winnerName: winnerName });
+    let show = this.state.show;
+    this.setState({ event: data, loading: false, winnerName: winnerName});
     
   }
 
@@ -121,6 +133,7 @@ export class EventDetail extends Component {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     };
+    this.setState({ show: false });
     
     await fetch('api/events/winner'+"/"+this.props.match.params.id, requestOptions);
     this.populateData();
