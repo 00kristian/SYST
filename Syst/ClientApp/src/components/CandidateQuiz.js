@@ -62,17 +62,19 @@ export class CandidateQuiz extends Component {
   }
 
   render() {
-    let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : 
-       (<Container>         
-            {this.state.currentQuestion >= this.state.quiz.questions.length ?
-            <CandidateInformation Answers={this.state.answers} QuizId={this.QUIZID} EventId={this.EVENTID}/>
-            :
-            CandidateQuiz.renderCandidateQuestion(this.state.quiz.questions[this.state.currentQuestion], this.answer)
-            }
-            {Pager.Pager(this.state.currentQuestion, this.state.quiz.questions, ((at) => this.setState({currentQuestion: at})))}  
-        </Container>);
+    let contents = this.QUIZID > 0 ? this.state.loading
+        ? <p><em>Loading...</em></p>
+        : 
+        (<Container>         
+              {this.state.currentQuestion >= this.state.quiz.questions.length ?
+              <CandidateInformation Answers={this.state.answers} QuizId={this.QUIZID} EventId={this.EVENTID}/>
+              :
+              CandidateQuiz.renderCandidateQuestion(this.state.quiz.questions[this.state.currentQuestion], this.answer)
+              }
+              {Pager.Pager(this.state.currentQuestion, this.state.quiz.questions, ((at) => this.setState({currentQuestion: at})))}  
+          </Container>)
+        : <h1> No quiz attached to this Event! </h1>;
+
 
     return (
       <div>
@@ -106,6 +108,10 @@ export class CandidateQuiz extends Component {
   async populateData() {
     const response = await fetch('api/quiz/' + this.QUIZID);
     const data = await response.json();
-    this.setState({ quiz: data, loading: false, answers: Array(data.questions.length)});
+    let arLength = 0; 
+    if (data.questions != null) {
+      arLength = data.questions.length;
+    }
+    this.setState({ quiz: data, loading: false, answers: Array(arLength)});
   }
 }
