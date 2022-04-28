@@ -76,7 +76,7 @@ public class QuizController : ControllerBase
     //Clone a quiz
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
-    [HttpPut("{quizid}/clone/{cloneid}")]
-    public async Task<IActionResult> Clone([FromRoute] int quizid, [FromRoute] int cloneid) =>
-        (await _repo.Clone(quizid, cloneid)).ToActionResult();
+    [HttpPut("{quizid}/clone/{originalid}")]
+    public async Task<IActionResult> Clone([FromRoute] int quizid, [FromRoute] int originalid) =>
+        (await _repo.Clone(quizid, originalid)).ToActionResult();
 }

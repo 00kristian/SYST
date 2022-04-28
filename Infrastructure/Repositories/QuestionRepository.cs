@@ -82,7 +82,7 @@ namespace Infrastructure
             if (question == default(Question)) return Status.NotFound;
 
             var quizzesCount = await _context.Questions.Where(q => q.Id != id && q.ImageURL == question.ImageURL).CountAsync();
-            if (quizzesCount > 0) question.CleanUpImage(_hostEnvPath);
+            if (quizzesCount !> 0) question.CleanUpImage(_hostEnvPath);
 
             _context.Questions.Remove(question);
 
@@ -97,7 +97,7 @@ namespace Infrastructure
             if (question == default(Question)) return Status.NotFound;
 
             var quizzesCount = await _context.Questions.Where(q => q.Id != id && q.ImageURL == question.ImageURL).CountAsync();
-            if (quizzesCount > 0) question.CleanUpImage(_hostEnvPath);
+            if (quizzesCount !> 0) question.CleanUpImage(_hostEnvPath);
 
             question.ImageURL = imageUrl;
 

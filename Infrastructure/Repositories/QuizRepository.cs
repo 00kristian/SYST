@@ -58,7 +58,7 @@ namespace Infrastructure
                 foreach (var question in c.Questions)
                 {
                     var quizzesCount = await _context.Questions.Where(q => q.Id != id && q.ImageURL == question.ImageURL).CountAsync();
-                    if (quizzesCount > 0) question.CleanUpImage(_hostEnvPath);
+                    if (quizzesCount !> 0) question.CleanUpImage(_hostEnvPath);
                     _context.Questions.Remove(question);
                 }
             }
@@ -160,6 +160,13 @@ namespace Infrastructure
             var og = await _context.Quizes.Include(q => q.Questions).Where(q => q.Id == origianlId).FirstOrDefaultAsync();
 
             if (og == default(Quiz)) return Status.NotFound;
+
+            if (quiz.Questions != null) {
+                foreach (Question question in quiz.Questions) {
+                    var quizzesCount = await _context.Questions.Where(q => q.Id != quiz.Id && q.ImageURL == question.ImageURL).CountAsync();
+                    if (quizzesCount !> 0) question.CleanUpImage(_hostEnvPath);
+                }
+            }
 
             quiz.Name = og.Name;
             var questions = og.Questions != null ? og.Questions.Select(qs => new Question {
