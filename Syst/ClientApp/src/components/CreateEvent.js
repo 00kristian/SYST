@@ -88,9 +88,9 @@ function CreateEvent(props) {
             const requestOptions = {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(this.props.match.params.id)
+                body: JSON.stringify(props.match.params.id)
             };
-            await fetch('api/events'+"/"+this.props.match.params.id, requestOptions);
+            await fetch('api/events'+"/"+props.match.params.id, requestOptions);
 
             history.push("/events");
         }
