@@ -60,13 +60,6 @@ export class EventDetail extends Component {
                 )}
                 </tbody>
             </table>
-            {show  ? (
-              <div>
-              <button className="btn btn-primary" onClick={()=>pickAWinner()}>Generate a winner</button>
-              </div>
-            ) : (
-              <div></div>
-            ) }
             <br></br>
             <a href={'/events'}> <button className="btn btn-primary btn-right">Back</button> </a>
             <Popup trigger = {<button className="btn btn-primary">Delete event</button>} modal nested>
@@ -92,6 +85,14 @@ export class EventDetail extends Component {
     return (
       <div>
         {contents}
+        {this.state.winnerName != null  ? (
+              <div>
+              </div>
+            ) : (
+              <div>
+                <button className="btn btn-primary" onClick={()=> this.pickAWinner()}>Generate a winner</button>
+              </div>
+            ) }
       </div>
     );
   }
