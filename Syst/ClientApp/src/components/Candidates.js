@@ -61,12 +61,14 @@ export class Candidates extends Component {
                         <td>
                              <td><button className="btn btn-primary btn-right" onClick={() => upvoteFun(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
                             <td>
-                                <Popup trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
+                                <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
                                 {close => (
                                     <div>
-                                        <p>Are you sure you want to delete this candidate?</p>
-                                        <button className="btn btn-primary btn-yes" onClick={()=>downvoteFun(candidate.id)}>Yes</button>
-                                        <button className="btn btn-primary"onClick={() => {close();}}>No</button>
+                                        <p className="txt-popup">Are you sure you want to delete this candidate?</p>
+                                        <div className="div-center">
+                                            <button className="btn btn-primary btn-yes btn-popup" onClick={()=>downvoteFun(candidate.id)}>Yes</button>
+                                            <button className="btn btn-primary btn-popup"onClick={() => {close();}}>No</button>
+                                        </div>
                                     </div>
                                 )}
                                 </Popup>
