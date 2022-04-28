@@ -73,12 +73,12 @@ export class CandidateQuiz extends Component {
               }
               {Pager.Pager(this.state.currentQuestion, this.state.quiz.questions, ((at) => this.setState({currentQuestion: at})))}  
           </Container>)
-        : <h1> No quiz attached to this Event! </h1>;
+        : <h2 className="txt-center"> No quiz attached to this Event! </h2>;
 
 
     return (
-      <div>
-        <img style={{width: 600}} className='img-center' src={logo} alt="logo" />
+      <div className='div-center'>
+        <img style={{width: 600}} src={logo} alt="logo" />
         {contents}
       </div>
     );
