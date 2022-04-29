@@ -67,8 +67,17 @@ public static class SeedExtensions
                 peter
                 );
 
+            var question1 = new Question() {Representation = "What is the outcome of this code?", Answer = "I am a car", Options = new List<string>() {"I am a car", "I am a vehicle"}};
+            var question2 = new Question() {Representation = "Is this good convention?", Answer = "Maybe", Options = new List<string>() {"Yes", "No", "Maybe"}};
+
+            context.Questions.AddRange(question1, question2);
+
+            var quiz1 = new Quiz() {Name = "IT Quiz 1", Questions = new List<Question>() {question1, question2}};
+
+            context.Quizes.Add(quiz1);
+
             context.Events.AddRange(
-                new Event() {Name = "IT Konference", Date = date3, Location = "Århus", Candidates = new List<Candidate> {maj, kristian, sarah, sebastian}, Quiz = null, Rating = 3.7, Winner=default(Candidate)},
+                new Event() {Name = "IT Konference", Date = date3, Location = "Århus", Candidates = new List<Candidate> {maj, kristian, sarah, sebastian}, Quiz = quiz1, Rating = 3.7, Winner=default(Candidate)},
                 new Event() {Name = "Match Making hos SDU", Date = date4, Location = "Odense", Candidates = new List<Candidate> {peter}, Quiz = null, Rating = 2.5, Winner=default(Candidate)},
                 new Event() {Name = "Job messe på ITU", Date = date5, Location = "København", Candidates = new List<Candidate> {lukas, maj, isabella, camille, kristian, sarah, benjamin}, Quiz = null, Rating = 5.0, Winner=default(Candidate)},
                 new Event() {Name = "IT-DAY København", Date = date6, Location = "København", Candidates = new List<Candidate> {emma, lukas, isabella, benjamin}, Quiz = null, Rating = 4.6, Winner=default(Candidate)},
