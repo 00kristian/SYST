@@ -71,7 +71,7 @@ export class CandidateQuiz extends Component {
               :
               CandidateQuiz.renderCandidateQuestion(this.state.quiz.questions[this.state.currentQuestion], this.answer)
               }
-              {Pager.Pager(this.state.currentQuestion, this.state.quiz.questions, ((at) => this.setState({currentQuestion: at})))}  
+              {Pager.Pager(this.state.currentQuestion, this.state.quiz.questions.length, ((at) => this.setState({currentQuestion: at})))}  
           </Container>)
         : <h2 className="txt-center"> No quiz attached to this Event! </h2>;
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { InteractiveTable } from './InteractiveTable';
 
 export class Home extends Component {
     static displayName = Home.name;
@@ -12,40 +13,17 @@ export class Home extends Component {
         this.populateData();
     }
 
-    static renderEventsTable(events) {
-        return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Date</th>
-                    <th>Location</th>
-                    <th>Rating</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {events.map(event =>
-                    <tr key={event.id}>
-                        <td>{event.id}</td>
-                        <td>{event.name}</td>
-                        <td>{event.date}</td>
-                        <td>{event.location}</td>
-                        <td>{event.rating}</td>
-                        <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host btn-right">Details</button></a></td>
-                        <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">Host</button></td>
-                    </tr>
-                )}
-                </tbody>
-            </table>
-        );
-    }
-
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : Home.renderEventsTable(this.state.events);
+            : <InteractiveTable Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={this.state.events}>
+                {event =>
+                    <div>
+                        <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host btn-right">Details</button></a></td>
+                        <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">Host</button></td>
+                    </div>
+                }
+            </InteractiveTable>
 
         return (
             <div>
