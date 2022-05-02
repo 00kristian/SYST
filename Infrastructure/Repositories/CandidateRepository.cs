@@ -78,6 +78,24 @@ namespace Infrastructure
                 Created = c.Created
             }).ToListAsync();
 
+        // public async Task<IReadOnlyCollection<CandidateDTO>> ReadAllandDelete(){
+        //     var c = await _context.Candidates.Where(c => c.Created.AddYears(2) > DateTime.Today).Select(c => new CandidateDTO(){
+        //         Name = c.Name!,
+        //         Id = c.Id,
+        //         Email = c.Email!,
+        //         CurrentDegree = c.CurrentDegree!, 
+        //         StudyProgram = c.StudyProgram!,
+        //         University = c.University!,
+        //         GraduationDate = c.GraduationDate.ToString("yyyy-MM"),
+        //         IsUpvoted = c.IsUpvoted,
+        //         Created = c.Created
+        //     }).ToListAsync();
+
+        //     foreach (var candi in c){
+        //         _context.Candidates.Remove(candi);
+        //     }
+        // }
+        
         //Updates an candidate name, email, university and study program values
         public async Task<Status> Update(int id, CandidateDTO candidateDTO)
         {
