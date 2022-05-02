@@ -64,7 +64,7 @@ export function InteractiveTable(props) {
                                 <h5>
                                 {col[0]} 
                                 {sortedField == col[1] ? (
-                                    descendingSort ? "△" : "▽"
+                                    descendingSort ? " ▲" : " ▼"
                                     ) : ""}
                                 </h5> 
                             </button> 
