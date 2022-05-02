@@ -15,6 +15,7 @@ namespace Infrastructure
         //Creates an candidate
         public async Task<(Status, int id)> Create(CreateCandidateDTO candidateDTO) {
 
+            DateTime currentDate = DateTime.Today;
             var dupe = _context.Candidates.Where(c => c.Email == candidateDTO.Email).FirstOrDefault();
             if (dupe != default(Candidate)) return (Status.Conflict, dupe.Id);
                 //Is this function necessary? Ask Iulia about multiple email entries in the db
@@ -28,8 +29,7 @@ namespace Infrastructure
                     University = candidateDTO.University,
                     GraduationDate = DateTime.Parse(candidateDTO.GraduationDate),
                     IsUpvoted = candidateDTO.IsUpvoted,
-                    Created = candidateDTO.Created
-                    
+                    Created = currentDate
                 };
 
                 _context.Candidates.Add(entity);
