@@ -7,12 +7,15 @@ import Icon from '@mdi/react'
 import { mdiHome } from '@mdi/js'
 import { mdiCalendar } from '@mdi/js';
 import { mdiAccountGroup } from '@mdi/js';
+import { useIsAuthenticated } from "@azure/msal-react";
+import { SignInButton } from "./SignInButton";
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
 
   constructor (props) {
     super(props);
+
 
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
@@ -27,7 +30,9 @@ export class NavMenu extends Component {
   }
 
   render () {
+
     return (
+      
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
@@ -46,6 +51,9 @@ export class NavMenu extends Component {
                 <NavItem>
                   <NavLink tag={Link} className="navitem text-dark" to="/candidates"><Icon path={mdiAccountGroup} size={1}/> Candidates</NavLink>
                 </NavItem>
+                <NavItem>
+                { this.isAuthenticated ? <span>Signed In</span> : <SignInButton /> }              
+                  </NavItem>
               </ul>
             </Collapse>
           </Container>
