@@ -47,7 +47,8 @@ namespace Infrastructure
                     CurrentDegree = c.CurrentDegree!,
                     StudyProgram = c.StudyProgram!,
                     University = c.University!,
-                    GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd")
+                    GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd"),
+                    IsUpvoted = c.IsUpvoted
                 }).ToList() : new List<CandidateDTO>(),
                 Quiz = (e.Quiz != default(Quiz)) ? new QuizDTO() {
                     Id = e.Quiz.Id,
