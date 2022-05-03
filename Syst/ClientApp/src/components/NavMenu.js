@@ -52,7 +52,7 @@ export class NavMenu extends Component {
                   <NavLink tag={Link} className="navitem text-dark" to="/candidates"><Icon path={mdiAccountGroup} size={1}/> Candidates</NavLink>
                 </NavItem>
                 <NavItem>
-                { this.isAuthenticated ? <span>Signed In</span> : <SignInButton /> }              
+                { this.isAuthenticated ? <span>Signed    iiiiin </span> : <SignInButton /> }              
                   </NavItem>
               </ul>
             </Collapse>
