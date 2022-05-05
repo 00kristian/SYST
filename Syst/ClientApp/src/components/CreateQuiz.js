@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { QuizPicker } from "./QuizPicker";
+import Icon from "@mdi/react";
+import { mdiTrashCan } from '@mdi/js';
 
 export default CreateQuiz
 
@@ -137,7 +139,7 @@ function CreateQuiz(props) {
                 {questions?.map((question, index) => renderQuiz(question, index))}
             </form>
             <button onClick={addQuestion} className="btn btn-primary" type="button">+</button> 
-            <button onClick={removeQuestion} className="btn btn-minus_quiz" type="button">-</button>        
+            <button onClick={removeQuestion} className="btn btn-minus_quiz" type="button"><Icon path={mdiTrashCan} size={1}/></button>        
             <br />
             <button onClick={_confirm} className="btn btn-primary btn-right btn-corner">Save quiz</button>
             <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right btn-corner">Delete</button>} modal nested>
