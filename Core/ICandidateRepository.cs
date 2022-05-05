@@ -14,5 +14,6 @@ public interface ICandidateRepository
         Task<Status> UpdateUpVote (int id);
         Task<Status> Delete(int id);
         Task<Status> AddAnswer(int candidateId, AnswerDTO answer);
+        Task DeleteOldCandidates();
     }
 }
