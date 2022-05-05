@@ -121,10 +121,12 @@ function CreateEvent(props) {
             <br />
             <h5>Quiz</h5>
             <button onClick={createQuiz} className="btn btn-primary">Create new quiz</button>
-            {QuizPicker.Picker(quizes, quizId, (qId) => setQuizId(qId))}
             {(quizId > 0) ? (
+                <div> 
                     <button onClick={() => editQuiz(quizId)} className="btn btn-primary">Edit quiz</button>
-            ) : <span/>}
+                </div>
+                ) : <span/>}
+            {QuizPicker.Picker(quizes, quizId, (qId) => setQuizId(qId))}
             <br />
             <button onClick={_confirm} className="btn btn-primary btn-right btn-corner">Save event</button>
             <Popup className="popup-overlay" trigger = {<button  className="btn btn-primary btn-right btn-corner">Delete</button>} modal nested>

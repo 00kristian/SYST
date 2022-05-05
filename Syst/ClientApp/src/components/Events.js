@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { InteractiveTable } from './InteractiveTable';
 
 export class Events extends Component {
     static displayName = Events.name;
@@ -12,70 +13,26 @@ export class Events extends Component {
         this.populateData();
     }
 
-    static renderUpcomingEventsTable(events) {
-        return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Location</th>
-                        <th>Rating</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {events.map(event =>
-                        <tr key={event.id}>
-                            <td>{event.id}</td>
-                            <td>{event.name}</td>
-                            <td>{event.date}</td>
-                            <td>{event.location}</td>
-                            <td>{event.rating}</td>
-                            <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host btn-right">Details</button></a></td>
-                            <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">Host</button></td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-        );
-    }
-    static renderRecentEventsTable(events) {
-        return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Location</th>
-                        <th>Rating</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {events.map(event =>
-                        <tr key={event.id}>
-                            <td>{event.id}</td>
-                            <td>{event.name}</td>
-                            <td>{event.date}</td>
-                            <td>{event.location}</td>
-                            <td>{event.rating}</td>
-                            <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host btn-right">Details</button></a></td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-        );
-    }
-
     render() {
         let UpcomingContents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : Events.renderUpcomingEventsTable(this.state.upcoming);
+            : <InteractiveTable Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={this.state.upcoming}>
+                {event =>
+                    <div>
+                        <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host btn-right">Details</button></a></td>
+                        <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">Host</button></td>
+                    </div>
+                }
+            </InteractiveTable>;
         let RecentContents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : Events.renderRecentEventsTable(this.state.recent);
+            : <InteractiveTable SearchBar={true} PageSize={7} Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={this.state.recent}>
+            {event =>
+                <div>
+                    <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host btn-right">Details</button></a></td>
+                </div>
+            }
+        </InteractiveTable>;
 
         return (
             <div>
@@ -84,8 +41,7 @@ export class Events extends Component {
                 </h3>
                 {UpcomingContents}
                 <br/>
-                <h3 className="obj-top_padding">Recent Events
-                    <button className="btn btn-primary btn-right">View All</button>
+                <h3 className="obj-top_padding">All Events
                 </h3>
                 {RecentContents}
             </div>
@@ -115,7 +71,7 @@ export class Events extends Component {
     }
 
     async populateData() {
-        const response1 = await fetch('api/eventsquery/recent');
+        const response1 = await fetch('api/events');
         const data1 = await response1.json();
         const response2 = await fetch('api/eventsquery/upcoming');
         const data2 = await response2.json();

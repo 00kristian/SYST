@@ -1,6 +1,7 @@
 using Xunit;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Core;
@@ -9,11 +10,16 @@ namespace Infrastructure.Tests;
 
 public class EventRepositoryTests {
 
-     private readonly ISystematicContext _context; 
+    private readonly ISystematicContext _context; 
     private readonly IEventRepository _repo;
-    Event event1 = new Event{ Id = 1, Name="Workshop event", Date = new DateTime{}, Location="ITU", Candidates= new List<Candidate>{ }, Quiz = new Quiz{}, Rating=4.0};
-    Event event2 = new Event{ Id = 2, Name="Swagger event", Date = new DateTime{}, Location="Scrollbar", Candidates= new List<Candidate>{ }, Quiz = new Quiz{}, Rating=7.0};
 
+    private Candidate candidate1;
+    private Candidate candidate2;
+    private Candidate candidate3;
+
+    private Event event1;
+    private Event event2;
+    
     public EventRepositoryTests(){
         var connection = new SqliteConnection("Filename=:memory:");
         connection.Open();
@@ -22,18 +28,29 @@ public class EventRepositoryTests {
         var context = new SystematicContext(builder.Options);
         context.Database.EnsureCreated();
         
+        /*context.Candidates.AddRange(
+            candidate1, 
+            candidate2, 
+            candidate3
+            );*/
+        
+        candidate1 = new Candidate {Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "ITU", GraduationDate = new DateTime{}, IsUpvoted = false};
+        candidate2 = new Candidate {Name = "Maj Frost Jensen", Email = "mfje@itu.dk", CurrentDegree = "MSc", StudyProgram = "Computer Science", University = "CBS", GraduationDate = new DateTime{}, IsUpvoted = true};
+        candidate3 = new Candidate {Name = "Gustav Svensson", Email = "gs@ku.dk", CurrentDegree = "BSc", StudyProgram = "Law", University = "KU", GraduationDate = new DateTime{}, IsUpvoted = true};
+
+        event1 = new Event{Name="Workshop event", Date = new DateTime{}, Location="ITU", Candidates = new List<Candidate>{candidate1, candidate2, candidate3}, Quiz = new Quiz{}, Rating=4.0, Winner=null};
+        event2 = new Event{Name="Swagger event", Date = new DateTime{}, Location="Scrollbar", Candidates = new List<Candidate>{}, Quiz = new Quiz{}, Rating=7.0, Winner=null};
+
         context.Events.AddRange(
             event1,
             event2
         );
-
- 
+        
         context.SaveChanges();
         _context = context;
         _repo = new EventRepository(_context);
     }
-
-
+    
 
     [Fact]
     public async void Create_Creates_Event_In_Repository()
@@ -207,8 +224,42 @@ public class EventRepositoryTests {
         await _repo.Delete(1);
         var actual = await _repo.Read(1);
 
-        //Assert
+        //Assert    
         Assert.Equal(Status.NotFound, actual.Item1);
         Assert.Equal(default(EventDTO), actual.Item2);
     }
+
+    [Fact]
+    public async void pick_winner_returns_correct_winner()
+    {
+        // Act
+        var winner = await _repo.pickAWinner(event1.Id);
+        
+        //Assert
+        Assert.Equal(Status.Found, winner.Item1);
+    }
+
+    [Fact]
+    public async void pick_winner_twice_returns_the_same()
+    {
+        //Act
+        var firstWinner = await _repo.pickAWinner(event1.Id);
+        var secondWinner = await _repo.pickAWinner(event1.Id);
+
+        //Assert
+        Assert.Equal(Status.Found, firstWinner.Item1);
+        Assert.Equal(Status.Found, secondWinner.Item1);
+        Assert.Equal(0, secondWinner.Item2.Id);
+    }
+
+    [Fact]
+    public async void pick_winner_returns_notfound_no_candidates()
+    {
+        //Act
+        var winner = await _repo.pickAWinner(event2.Id);
+        
+        //Assert
+        Assert.Equal(Status.NotFound, winner.Item1);
+    }
+
 }

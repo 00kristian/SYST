@@ -71,5 +71,12 @@ public class QuizController : ControllerBase
         var deleted = await _repo.Delete(id);
         if (deleted == Status.NotFound) return new NotFoundObjectResult(id);
         return deleted.ToActionResult();
-    }    
+    } 
+
+    //Clone a quiz
+    [ProducesResponseType(404)]
+    [ProducesResponseType(204)]
+    [HttpPut("{quizid}/clone/{originalid}")]
+    public async Task<IActionResult> Clone([FromRoute] int quizid, [FromRoute] int originalid) =>
+        (await _repo.Clone(quizid, originalid)).ToActionResult();
 }

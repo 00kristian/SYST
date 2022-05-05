@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { QuizPicker } from "./QuizPicker";
 
 export default CreateQuiz
 
@@ -10,6 +11,8 @@ function CreateQuiz(props) {
     const [name, setName] = useState("");
     const [questions, setQuestions] = useState([]);
     const history = useHistory();
+    const [quizes, setQuizes] = useState([]);
+    const [cloneId, setCloneId] = useState(-1);
 
     useEffect(async () => {
         const response = await fetch('api/quiz/' + props.match.params.id);
@@ -17,6 +20,13 @@ function CreateQuiz(props) {
         
         setName(data.name);
         setQuestions(data.questions);
+    }, []);
+
+    useEffect(async () => {
+        const response = await fetch('api/quiz');
+        const data = await response.json();
+
+        setQuizes(data.filter(q => q.id != props.match.params.id));
     }, []);
 
     const updateQuiz = async () => {
@@ -70,7 +80,7 @@ function CreateQuiz(props) {
     }
 
     const deleteQuiz = async () => {
-        let fr = window.confirm('Are you sure you want to delete the quiz: ' + name + ', permanently?');
+        let fr = window.confirm('Are you sure you want to delete the quiz: ' + name + ', permanently? \n It will be deleted from all events that use it.');
         if (fr) {
             const requestOptions = {
                 method: 'DELETE',
@@ -93,16 +103,35 @@ function CreateQuiz(props) {
         );  
     }
 
+    const cloneQuiz = async () => {
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' }
+        };
+        await fetch('api/Quiz/' + props.match.params.id + '/clone/' + cloneId, requestOptions);
+    }
+
     return (
         <div>
             <h2>Here you can create or edit a quiz</h2>
             <br/>
             <form>
-                <label>
-                    <h5>Quiz name</h5>
-                    <input value={name} className="input-layout" onChange={(event) => setName(event.target.value)}>
-                    </input>
-                </label>
+                <div className="div-flex2">
+                    <label className="row-layout">
+                        <h5>Quiz name</h5>
+                        <input value={name} className="input-layout" onChange={(event) => setName(event.target.value)}></input>
+                    </label>
+                    <div style={{ width: 50 }}> </div>
+                    <div>
+                        <h5>Clone existing quiz</h5>
+                        {QuizPicker.Picker(quizes, "", (qId) => setCloneId(qId))}
+                        {cloneId > 0 ?
+                            <button onClick={() => cloneQuiz()} className="btn btn-primary"> Clone </button>
+                        :
+                            <span></span>
+                        }
+                    </div>
+                </div>
                 <br /> <hr/> <br />
                 <h5>Questions:</h5>
                 {questions?.map((question, index) => renderQuiz(question, index))}

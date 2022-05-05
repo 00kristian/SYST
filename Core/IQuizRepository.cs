@@ -12,6 +12,6 @@ public interface IQuizRepository
         Task<(Status, int id)> AddQuestion(int id, CreateQuestionDTO question);
         Task<Status> RemoveQuestion(int quizId, int questionId);
         Task<IReadOnlyCollection<QuizDTO>> ReadAll();
-
+        Task<Status> Clone(int quizId, int origianlId);
     }
 }

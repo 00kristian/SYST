@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { InteractiveTable } from './InteractiveTable';
+import Icon from "@mdi/react";
+import {mdiThumbUp, mdiThumbDown} from '@mdi/js';
 
 export class EventDetail extends Component {
   static displayName = EventDetail.name;
@@ -15,48 +18,64 @@ export class EventDetail extends Component {
     this.populateData();
   }
   
-  static renderEvent(event, editEvent,editRating, deleteEvent, pickAWinner, winnerName, show) {
+  static renderEvent(event, editEvent,editRating, deleteEvent, pickAWinner, winnerName, show, upvote, downvote) {
 
     return (
         <div>
             <h1>{event.name}</h1>
             <h2>{event.date}</h2>
             <h2>{event.location}</h2>
-            <h2>Winner: { winnerName  }</h2>
-         {/*    <h3 className='txt-right'>Winner ={displayWinner(event.winner)} </h3> */}
-            <h2 className='txt-left'>{event.location}</h2>
+            <h2 className='txt-left'>Winner: {winnerName}</h2>
             <h2 className='txt-right'>Rating: {event.rating}</h2>
+
             <br/>
             <br/>
             <button onClick={() => editEvent()} className="btn btn-primary">Edit event</button>
             <button onClick={() => editRating()} className="btn btn-primary btn-right">Edit rating</button>
-
+            <div>
+              <button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >Host</button>
+            </div>
             <br/>
             <h3>Participants</h3>
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>University</th>
-                    <th>Degree</th>
-                    <th>Graduation date</th>
-                </tr>
-                </thead>
-                <tbody>
-                {event.candidates.map(candidate =>
-                    <tr key={candidate.id}>
-                        <td>{candidate.id}</td>
-                        <td>{candidate.name}</td>
-                        <td>{candidate.email}</td>
-                        <td>{candidate.university}</td>
-                        <td>{candidate.studyProgram}</td>
-                        <td>{candidate.graduationDate}</td>
-                    </tr>
-                )}
-                </tbody>
-            </table>
+            <InteractiveTable SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={event.candidates}>
+            {candidate =>
+                    <div>
+                        {candidate.isUpvoted ? (
+                        <td>
+                            <td><button className="btn btn-right btn-green" onClick={() => upvote(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
+                            <td>
+                                <Popup trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
+                                {close => (
+                                    <div>
+                                        <p>Are you sure you want to delete this candidate?</p>
+                                        <button className="btn btn-primary btn-yes" onClick={()=> downvote(candidate.id)}>Yes</button>
+                                        <button className="btn btn-primary"onClick={() => {close();}}>No</button>
+                                    </div>
+                                )}
+                                </Popup>
+                            </td>
+                        </td>
+                        ) : (
+                        <td>
+                             <td><button className="btn btn-primary btn-right" onClick={() => upvote(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
+                            <td>
+                                <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
+                                {close => (
+                                    <div>
+                                        <p className="txt-popup">Are you sure you want to delete this candidate?</p>
+                                        <div className="div-center">
+                                            <button className="btn btn-primary btn-yes btn-popup" onClick={()=> downvote(candidate.id)}>Yes</button>
+                                            <button className="btn btn-primary btn-popup"onClick={() => {close();}}>No</button>
+                                        </div>
+                                    </div>
+                                )}
+                                </Popup>
+                            </td>
+                        </td>
+                        )}
+                    </div>
+                }
+            </InteractiveTable>
             <br></br>
             <a href={'/events'}> <button className="btn btn-primary btn-right">Back</button> </a>
             <Popup className="popup-overlay" trigger = {<button className="btn btn-primary">Delete event</button>} modal nested>
@@ -72,13 +91,13 @@ export class EventDetail extends Component {
             </Popup>
         </div>
         
-    );
+    )
   }
 
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : EventDetail.renderEvent(this.state.event, this.editEvent,this.editRating, this.deleteEvent, this.pickAWinner, this.state.winnerName, this.state.show);
+      : EventDetail.renderEvent(this.state.event, this.editEvent,this.editRating, this.deleteEvent, this.pickAWinner, this.state.winnerName, this.state.show, this.clickToUpvoteCandidate, this.clickToDownvoteCandidate);
 
 
     return (
@@ -112,6 +131,7 @@ export class EventDetail extends Component {
     let winnerName = await this.displayWinner(data.winnerId);
     let show = this.state.show;
     this.setState({ event: data, loading: false, winnerName: winnerName});
+    console.log(data);
     
   }
 
@@ -155,5 +175,23 @@ export class EventDetail extends Component {
     
   }
   
+  clickToUpvoteCandidate =  async (id) => {
+        
+    const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+       
+    };
+    await fetch("api/candidates"+"/upvote/"+ id, requestOptions)
+    
+    this.populateData();
+  }
+
+  clickToDownvoteCandidate = async (id) => {
+    await fetch('api/candidates/' + id, {
+        method: 'DELETE'
+    });
+    this.populateData();
+  }
 
 }

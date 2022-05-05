@@ -134,4 +134,51 @@ public class QuizRepositoryTests {
         Assert.Equal(Status.NotFound, actual);
 
     }
+
+    [Fact]
+    public async void Clone_clones_quiz_from_original() {
+        //arrange
+        var question1 = new Question{Representation="I am not sure", Answer="Virtual Dispatching", ImageURL="555", Options=new List<string>{"Java", "F#", "Virtual Dispatching","Golang"}};
+        var question2 = new Question{Representation="This one is about hockey", Answer="Gretzky", ImageURL="", Options=new List<string>{"Jaromir", "Ovechkin", "Gretzky","Eller"}};
+        _context.Questions.Add(question1);
+        _context.Questions.Add(question2);
+        var quiz_1 = new Quiz(){Name="OG", Questions = new List<Question>{
+            question1, question2
+        }, Events = new List<Event>{}, Candidates = new List<Candidate>{}};
+        var quiz_2 = new Quiz() {Name="Clone", Questions = new List<Question>{}, Events = new List<Event>{}, Candidates = new List<Candidate>{}};
+        _context.Quizes.Add(quiz_1);
+        _context.Quizes.Add(quiz_2);
+        await _context.SaveChangesAsync();
+
+        //act
+        var status = await _repo.Clone(quiz_2.Id, quiz_1.Id);
+
+        //assert
+        Assert.Equal(Status.Updated, status);
+        Assert.Equal("OG (clone)", quiz_2.Name);
+        Assert.Collection(quiz_2.Questions,
+            question => {
+                Assert.Equal("I am not sure", question.Representation);
+                Assert.Equal("Virtual Dispatching", question.Answer);
+                Assert.Equal("555", question.ImageURL);
+                Assert.Collection(question.Options, 
+                    option => Assert.Equal("Java", option),
+                    option => Assert.Equal("F#", option),
+                    option => Assert.Equal("Virtual Dispatching", option),
+                    option => Assert.Equal("Golang", option)
+                );
+            },
+            question => {
+                Assert.Equal("This one is about hockey", question.Representation);
+                Assert.Equal("Gretzky", question.Answer);
+                Assert.Equal("", question.ImageURL);
+                Assert.Collection(question.Options, 
+                    option => Assert.Equal("Jaromir", option),
+                    option => Assert.Equal("Ovechkin", option),
+                    option => Assert.Equal("Gretzky", option),
+                    option => Assert.Equal("Eller", option)
+                );
+            }
+        );
+    }
 }

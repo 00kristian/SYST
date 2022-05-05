@@ -47,7 +47,8 @@ namespace Infrastructure
                     CurrentDegree = c.CurrentDegree!,
                     StudyProgram = c.StudyProgram!,
                     University = c.University!,
-                    GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd")
+                    GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd"),
+                    IsUpvoted = c.IsUpvoted
                 }).ToList() : new List<CandidateDTO>(),
                 Quiz = (e.Quiz != default(Quiz)) ? new QuizDTO() {
                     Id = e.Quiz.Id,
@@ -180,18 +181,17 @@ namespace Infrastructure
         public async Task<(Status, CandidateDTO)> pickAWinner(int eventid) {
             var e = await _context.Events.Include(e => e.Candidates).Where(e => e.Id == eventid).FirstOrDefaultAsync();
             if (e == default(Event)) return (Status.NotFound, default(CandidateDTO));
+            
             //if a candidate already exists it should not update but it should return status.found
             if(e.Winner != default(Candidate)) {
                 return (Status.Found, default(CandidateDTO));
-                
             }
 
             var c = e.Candidates?.OrderBy(c => Guid.NewGuid()).FirstOrDefault();
             if (c == default(Candidate)) {
                 return (Status.NotFound, default(CandidateDTO));
             } else {e.Winner = c;}
-
-
+            
             await _context.SaveChangesAsync();
 
             return (Status.Found, new CandidateDTO() {
