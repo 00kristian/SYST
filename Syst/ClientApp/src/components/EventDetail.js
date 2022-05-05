@@ -4,7 +4,7 @@ import 'reactjs-popup/dist/index.css';
 import { InteractiveTable } from './InteractiveTable';
 import Icon from "@mdi/react";
 import { mdiThumbUp, mdiThumbDown } from '@mdi/js';
-import { ExportCandidates } from './ExportCandidates';
+import ExportCandidates from './ExportCandidates';
 
 
 export class EventDetail extends Component {
@@ -91,6 +91,7 @@ export class EventDetail extends Component {
                   </div>
               )}
             </Popup>
+            <ExportCandidates Candidates={event.candidates}></ExportCandidates>
         </div>
         
     )
@@ -105,7 +106,6 @@ export class EventDetail extends Component {
     return (
       <div>
             {contents}
-            <ExportCandidates></ExportCandidates>
             <button className='btn btn-cancel btn-right' > Export</button>
         {this.state.winnerName != null  ? (
               <div></div>
