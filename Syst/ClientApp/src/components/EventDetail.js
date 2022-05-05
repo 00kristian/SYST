@@ -4,7 +4,6 @@ import 'reactjs-popup/dist/index.css';
 import { InteractiveTable } from './InteractiveTable';
 import Icon from "@mdi/react";
 import { mdiThumbUp, mdiThumbDown } from '@mdi/js';
-import ExportCandidates from './ExportCandidates';
 
 
 export class EventDetail extends Component {
@@ -39,7 +38,7 @@ export class EventDetail extends Component {
             </div>
             <br/>
             <h3>Participants</h3>
-            <InteractiveTable SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={event.candidates}>
+            <InteractiveTable ExportName={event.name + ".csv"} SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={event.candidates}>
             {candidate =>
                     <div>
                         {candidate.isUpvoted ? (
@@ -91,7 +90,6 @@ export class EventDetail extends Component {
                   </div>
               )}
             </Popup>
-            <ExportCandidates Candidates={event.candidates}></ExportCandidates>
         </div>
         
     )
@@ -106,7 +104,6 @@ export class EventDetail extends Component {
     return (
       <div>
             {contents}
-            <button className='btn btn-cancel btn-right' > Export</button>
         {this.state.winnerName != null  ? (
               <div></div>
             ) : (

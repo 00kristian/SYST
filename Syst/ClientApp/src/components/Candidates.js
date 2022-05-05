@@ -21,7 +21,7 @@ export class Candidates extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : <InteractiveTable SearchBar={true} PageSize={8} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={this.state.candidates}>
+            : <InteractiveTable ExportName="All_Candidates.csv" SearchBar={true} PageSize={8} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={this.state.candidates}>
                 {candidate =>
                     <div>
                         {candidate.isUpvoted ?(
