@@ -77,8 +77,8 @@ export class EventDetail extends Component {
                 }
             </InteractiveTable>
             <br></br>
-            <a href={'/events'}> <button className="btn btn-secondary btn-right">Back</button> </a>
-            <Popup className="popup-overlay" trigger = {<button className="btn btn-primary">Delete event</button>} modal nested>
+            <a href={'/events'}> <button className="btn btn-cancel">Back</button> </a>
+            <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right">Delete event</button>} modal nested>
               {close => (
                 <div>
                   <p className="txt-popup">Are you sure you want to delete this event?</p>
