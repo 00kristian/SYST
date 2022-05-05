@@ -218,12 +218,16 @@
     margin-bottom: 2%;
 }
 
-.obj-top_padding{
+.obj-top_padding {
     padding-top: 4%;
 }
 
-.obj-left_margin{
+.obj-right_margin {
     margin-right: 15%;
+}
+
+.obj-space {
+    margin-right: 0.8%
 }
 
 /*---------------Pages---------------*/
