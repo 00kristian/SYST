@@ -30,8 +30,8 @@ export class EventDetail extends Component {
 
             <br/>
             <br/>
-            <button onClick={() => editEvent()} className="btn btn-primary">Edit event</button>
-            <button onClick={() => editRating()} className="btn btn-primary btn-right">Edit rating</button>
+            <button onClick={() => editEvent()} className="btn btn-secondary">Edit event</button>
+            <button onClick={() => editRating()} className="btn btn-secondary btn-right">Edit rating</button>
             <div>
               <button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >Host</button>
             </div>
@@ -77,7 +77,7 @@ export class EventDetail extends Component {
                 }
             </InteractiveTable>
             <br></br>
-            <a href={'/events'}> <button className="btn btn-primary btn-right">Back</button> </a>
+            <a href={'/events'}> <button className="btn btn-secondary btn-right">Back</button> </a>
             <Popup className="popup-overlay" trigger = {<button className="btn btn-primary">Delete event</button>} modal nested>
               {close => (
                 <div>

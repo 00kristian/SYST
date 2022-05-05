@@ -89,6 +89,13 @@
     float: right; 
 }
 
+.btn-secondary {
+    color: #009BE6;
+    background-color: #fff;
+    border-color: #009BE6;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
 
 .btn-green{
     background-color: #86DC3D;
