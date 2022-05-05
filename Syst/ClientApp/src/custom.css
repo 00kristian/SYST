@@ -32,6 +32,14 @@
     padding-right: 4%;
 }
 
+.btn-delete {
+    color: #fff;
+    background-color: #141446;
+    border-color: #141446;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+
 .btn-host {
     color: #FF7837;
     background-color: #fff;
