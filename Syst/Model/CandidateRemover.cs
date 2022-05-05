@@ -23,7 +23,7 @@ public class CandidateRemover: IHostedService, IDisposable
             RemoveOldCandidates,
             null, 
             TimeSpan.Zero, 
-            TimeSpan.FromSeconds(10)
+            TimeSpan.FromSeconds(10) //Delete interval
         );
 
         return Task.CompletedTask;
