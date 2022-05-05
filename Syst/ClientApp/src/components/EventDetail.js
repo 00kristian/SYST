@@ -3,7 +3,9 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { InteractiveTable } from './InteractiveTable';
 import Icon from "@mdi/react";
-import {mdiThumbUp, mdiThumbDown} from '@mdi/js';
+import { mdiThumbUp, mdiThumbDown } from '@mdi/js';
+import { ExportCandidates } from './ExportCandidates';
+
 
 export class EventDetail extends Component {
   static displayName = EventDetail.name;
@@ -103,7 +105,8 @@ export class EventDetail extends Component {
     return (
       <div>
             {contents}
-            <button className='btn btn-cancel btn-right'>Export</button>
+            <ExportCandidates></ExportCandidates>
+            <button className='btn btn-cancel btn-right' > Export</button>
         {this.state.winnerName != null  ? (
               <div></div>
             ) : (
