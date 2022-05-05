@@ -157,9 +157,6 @@ namespace Infrastructure
             return Status.Updated;
         }
 
-        public Task DeleteOldCandidates()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
