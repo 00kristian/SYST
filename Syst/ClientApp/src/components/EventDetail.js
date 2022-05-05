@@ -102,15 +102,15 @@ export class EventDetail extends Component {
 
     return (
       <div>
-        {contents}
+            {contents}
+            <button className='btn btn-cancel btn-right'>Export</button>
         {this.state.winnerName != null  ? (
-              <div>
-              </div>
+              <div></div>
             ) : (
               <div>
-                <button className="btn btn-primary" onClick={()=> this.pickAWinner()}>Generate a winner</button>
+                        <button className="btn btn-primary" onClick={() => this.pickAWinner()}>Generate a winner</button>   
               </div>
-            ) }
+            )}
       </div>
     );
   }
