@@ -64,6 +64,17 @@ namespace Infrastructure
             else return (Status.Found, c);
         }
 
+        //Delete candidates from the system who have been there for 2 years and over
+        public async Task deleteOldCandidates(){
+            var c = await _context.Candidates.Where(c => c.Created.AddYears(2) < DateTime.Today).ToListAsync();
+
+            foreach (var candi in c){
+                _context.Candidates.Remove(candi);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
         //Return a list of all canidates 
          public async Task<IReadOnlyCollection<CandidateDTO>> ReadAll() =>
             await _context.Candidates.Select(c => new CandidateDTO(){
@@ -77,24 +88,6 @@ namespace Infrastructure
                 IsUpvoted = c.IsUpvoted,
                 Created = c.Created
             }).ToListAsync();
-
-        // public async Task<IReadOnlyCollection<CandidateDTO>> ReadAllandDelete(){
-        //     var c = await _context.Candidates.Where(c => c.Created.AddYears(2) > DateTime.Today).Select(c => new CandidateDTO(){
-        //         Name = c.Name!,
-        //         Id = c.Id,
-        //         Email = c.Email!,
-        //         CurrentDegree = c.CurrentDegree!, 
-        //         StudyProgram = c.StudyProgram!,
-        //         University = c.University!,
-        //         GraduationDate = c.GraduationDate.ToString("yyyy-MM"),
-        //         IsUpvoted = c.IsUpvoted,
-        //         Created = c.Created
-        //     }).ToListAsync();
-
-        //     foreach (var candi in c){
-        //         _context.Candidates.Remove(candi);
-        //     }
-        // }
         
         //Updates an candidate name, email, university and study program values
         public async Task<Status> Update(int id, CandidateDTO candidateDTO)
