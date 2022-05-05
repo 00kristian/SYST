@@ -5,6 +5,7 @@ using Core;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System;
 
 namespace Syst.Tests;
 
@@ -109,9 +110,9 @@ public class CandidateControllerTests
 		//Arrange
 		var logger = new Mock<ILogger<CandidatesController>>();
 		var repository = new Mock<ICandidateRepository>();
-		var candidate3 = new CreateCandidateDTO(3, "Hanne Nielsen", "hani@itu.dk","BSc" , "SWU", "ITU", "25-01-2023", true);
+		var candidate3 = new CreateCandidateDTO(3, "Hanne Nielsen", "hani@itu.dk","BSc" , "SWU", "ITU", "25-01-2023", true, new DateTime(2022, 05, 30));
 		var candidates = new List<CreateCandidateDTO> { candidate3 };
-		var createdCandidate = new CreateCandidateDTO(4, "Sanne Pedersen", "sape@itu.dk","BSc",  "GBI", "ITU", "25-01-2023", false);
+		var createdCandidate = new CreateCandidateDTO(4, "Sanne Pedersen", "sape@itu.dk","BSc",  "GBI", "ITU", "25-01-2023", false, new DateTime(2022, 05, 30));
 		repository.Setup(m => m.Create(createdCandidate)).Callback(() => candidates.Add(createdCandidate));
 		var controller = new CandidatesController(logger.Object, repository.Object);
 
@@ -129,7 +130,7 @@ public class CandidateControllerTests
 		var logger = new Mock<ILogger<CandidatesController>>();
 		var repository = new Mock<ICandidateRepository>();
 		var candidates = new List<CandidateDTO> {candidate1};
-		var createdCandidate = new CreateCandidateDTO(1, "Sanne Pedersen", "sape@itu.dk", "BSc", "GBI", "ITU", "25-01-2023", false);
+		var createdCandidate = new CreateCandidateDTO(1, "Sanne Pedersen", "sape@itu.dk", "BSc", "GBI", "ITU", "25-01-2023", false, new DateTime(2022, 05, 30));
 		repository.Setup(m => m.Create(createdCandidate)).ReturnsAsync(() => (Status.Conflict, 1));
 		var controller = new CandidatesController(logger.Object, repository.Object);
 
@@ -195,7 +196,7 @@ public class CandidateControllerTests
         //arrange
         var logger = new Mock<ILogger<CandidatesController>>();
         var repository = new Mock<ICandidateRepository>();
-        var newCandidate = new CandidateDTO(4, "Sanne Pedersen", "sape@itu.dk", "BSc", "GBI", "ITU", "25-01-2023", null!, quiz1, false);
+        var newCandidate = new CandidateDTO(4, "Sanne Pedersen", "sape@itu.dk", "BSc", "GBI", "ITU", "25-01-2023", null!, quiz1, false, new DateTime(2022, 05, 30));
         repository.Setup(m => m.Update(2, newCandidate)).ReturnsAsync(Status.Updated);
         var controller = new CandidatesController(logger.Object, repository.Object);
 
@@ -213,7 +214,7 @@ public class CandidateControllerTests
         //arrange
         var logger = new Mock<ILogger<CandidatesController>>();
         var repository = new Mock<ICandidateRepository>();
-        var newCandidate = new CandidateDTO(4, "Sanne Pedersen", "sape@itu.dk", "BSc", "GBI", "ITU", "25-01-2023", null!, quiz1, false);
+        var newCandidate = new CandidateDTO(4, "Sanne Pedersen", "sape@itu.dk", "BSc", "GBI", "ITU", "25-01-2023", null!, quiz1, false, new DateTime(2022, 05, 30));
         repository.Setup(m => m.Update(99, newCandidate)).ReturnsAsync(Status.NotFound);
         var controller = new CandidatesController(logger.Object, repository.Object);
 

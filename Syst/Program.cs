@@ -20,6 +20,7 @@ builder.Services.AddScoped<IEventRepository, EventRepository>();
 var envPath = builder.Environment.ContentRootPath;
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>(r => new QuestionRepository(r.GetRequiredService<ISystematicContext>(), envPath));
 builder.Services.AddScoped<IQuizRepository, QuizRepository>(r => new QuizRepository(r.GetRequiredService<ISystematicContext>(), envPath));
+builder.Services.AddHostedService<CandidateRemover>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
