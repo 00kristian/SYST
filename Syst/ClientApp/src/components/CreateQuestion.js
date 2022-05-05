@@ -99,7 +99,7 @@ function CreateQuestion(props) {
                 </Row>
             </Container>
             <br /> <br />
-            <button onClick={() => history.push("/CreateQuiz/" + props.match.params.event_id + "/" + props.match.params.quiz_id)} className="btn btn-cancel">Cancel</button>
+            <button onClick={() => history.push("/CreateQuiz/" + props.match.params.event_id + "/" + props.match.params.quiz_id)} className="btn btn-secondary">Cancel</button>
             <button className="btn btn-primary btn-right" onClick={() => confirm()}>Save question</button>
         </div>
     );

@@ -140,7 +140,7 @@ function CreateEvent(props) {
                   </div>
               )}
             </Popup>
-            <button onClick={() => history.push("/eventdetail/" + props.match.params.id)} className="btn btn-cancel">Cancel</button>
+            <button onClick={() => history.push("/eventdetail/" + props.match.params.id)} className="btn btn-secondary">Cancel</button>
         </div>
     );
 }

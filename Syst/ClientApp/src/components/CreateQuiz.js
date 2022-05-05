@@ -151,7 +151,7 @@ function CreateQuiz(props) {
                   </div>
               )}
             </Popup>
-            <button onClick={() => history.push("/CreateEvent/"+ props.match.params.event_id)} className="btn btn-cancel">Cancel</button>
+            <button onClick={() => history.push("/CreateEvent/"+ props.match.params.event_id)} className="btn btn-secondary">Cancel</button>
         </div>
     );
 }
