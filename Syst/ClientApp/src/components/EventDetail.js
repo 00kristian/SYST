@@ -3,7 +3,8 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { InteractiveTable } from './InteractiveTable';
 import Icon from "@mdi/react";
-import {mdiThumbUp, mdiThumbDown} from '@mdi/js';
+import { mdiThumbUp, mdiThumbDown } from '@mdi/js';
+
 
 export class EventDetail extends Component {
   static displayName = EventDetail.name;
@@ -37,7 +38,7 @@ export class EventDetail extends Component {
             </div>
             <br/>
             <h3>Participants</h3>
-            <InteractiveTable SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={event.candidates}>
+            <InteractiveTable ExportName={event.name + ".csv"} SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={event.candidates}>
             {candidate =>
                     <div>
                         {candidate.isUpvoted ? (
@@ -76,7 +77,8 @@ export class EventDetail extends Component {
                     </div>
                 }
             </InteractiveTable>
-            <br></br>
+            <br/>
+            <br/>
             <a href={'/events'}> <button className="btn btn-primary btn-right">Back</button> </a>
             <Popup className="popup-overlay" trigger = {<button className="btn btn-primary">Delete event</button>} modal nested>
               {close => (
@@ -103,7 +105,6 @@ export class EventDetail extends Component {
     return (
       <div>
             {contents}
-            <button className='btn btn-cancel btn-right'>Export</button>
         {this.state.winnerName != null  ? (
               <div></div>
             ) : (
