@@ -48,7 +48,7 @@ namespace Infrastructure
         //Return an candidate given the candidate id
         public async Task<(Status, CandidateDTO)> Read(int id)
         {
-            var c = await _context.Candidates.Where(c => c.Id == id).Select(c => new CandidateDTO(){
+            var c = await _context.Candidates.Include(c => c.Answers).Where(c => c.Id == id).Select(c => new CandidateDTO(){
                 Name = c.Name!,
                 Id = c.Id,
                 Email = c.Email!,
@@ -66,8 +66,7 @@ namespace Infrastructure
 
         //Delete candidates from the system who have been there for 2 years and over
         public async Task DeleteOldCandidates(){
-            System.Console.WriteLine("Deleting old candidates");
-            var c = await _context.Candidates.Where(c => (c.Created != null) && c.Created.AddYears(2).CompareTo(DateTime.Today) < 0).ToListAsync();
+            var c = await _context.Candidates.Where(c => c.Created.AddYears(2) < DateTime.Today).ToListAsync();
 
             foreach (var candi in c){
                 _context.Candidates.Remove(candi);

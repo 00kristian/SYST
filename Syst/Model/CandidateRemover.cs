@@ -23,7 +23,7 @@ public class CandidateRemover: IHostedService, IDisposable
             RemoveOldCandidates,
             null, 
             TimeSpan.Zero, 
-            TimeSpan.FromSeconds(10) //Delete interval
+            TimeSpan.FromHours(24) //Delete interval
         );
 
         return Task.CompletedTask;
@@ -37,11 +37,11 @@ public class CandidateRemover: IHostedService, IDisposable
         return Task.CompletedTask;
     }
 
-    private void RemoveOldCandidates(Object? state) {
+    private async void RemoveOldCandidates(Object? state) {
         using (var scope = _services.CreateScope()) {
             var repo = scope.ServiceProvider.GetRequiredService<ICandidateRepository>();
 
-            repo.DeleteOldCandidates();
+            await repo.DeleteOldCandidates();
         }
     }
 }
