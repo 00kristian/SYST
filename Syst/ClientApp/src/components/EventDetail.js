@@ -25,7 +25,6 @@ export class EventDetail extends Component {
             <h1>{event.name}</h1>
             <h2>{event.date}</h2>
             <h2>{event.location}</h2>
-            {/*    <h3 className='txt-right'>Winner ={displayWinner(event.winner)} </h3> */}
             <h2 className='txt-left'>Winner: {winnerName}</h2>
             <h2 className='txt-right'>Rating: {event.rating}</h2>
 
@@ -33,7 +32,9 @@ export class EventDetail extends Component {
             <br/>
             <button onClick={() => editEvent()} className="btn btn-primary">Edit event</button>
             <button onClick={() => editRating()} className="btn btn-primary btn-right">Edit rating</button>
-
+            <div>
+              <button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >Host</button>
+            </div>
             <br/>
             <h3>Participants</h3>
             <InteractiveTable SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={event.candidates}>
