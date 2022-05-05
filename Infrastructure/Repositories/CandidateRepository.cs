@@ -109,7 +109,7 @@ namespace Infrastructure
         //Deletes a candidates given the candidate id
         public async Task<Status> Delete(int id){
 
-            var c = await _context.Candidates.Where(c => c.Id == id).FirstOrDefaultAsync();
+            var c = await _context.Candidates.Include(c => c.Answers).Where(c => c.Id == id).FirstOrDefaultAsync();
             
             if (c == default(Candidate)) return Status.NotFound;
 
@@ -140,6 +140,11 @@ namespace Infrastructure
 
             await _context.SaveChangesAsync();
             return Status.Updated;
+        }
+
+        public Task DeleteOldCandidates()
+        {
+            throw new NotImplementedException();
         }
     }
 }
