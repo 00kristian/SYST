@@ -129,7 +129,7 @@ function CreateEvent(props) {
             {QuizPicker.Picker(quizes, quizId, (qId) => setQuizId(qId))}
             <br />
             <button onClick={_confirm} className="btn btn-primary btn-right btn-corner">Save event</button>
-            <Popup className="popup-overlay" trigger = {<button  className="btn btn-primary btn-right btn-corner">Delete</button>} modal nested>
+            <Popup className="popup-overlay" trigger = {<button  className="btn btn-delete btn-right btn-corner">Delete</button>} modal nested>
               {close => (
                 <div>
                   <p className="txt-popup">Are you sure you want to delete this event?</p>

@@ -142,7 +142,7 @@ function CreateQuiz(props) {
             <button onClick={removeQuestion} className="btn btn-minus_quiz" type="button"><Icon path={mdiTrashCan} size={1}/></button>        
             <br />
             <button onClick={_confirm} className="btn btn-primary btn-right btn-corner">Save quiz</button>
-            <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right btn-corner">Delete</button>} modal nested>
+            <Popup className="popup-overlay" trigger = {<button className="btn btn-delete btn-right btn-corner">Delete</button>} modal nested>
               {close => (
                 <div>
                   <p className="txt-popup">Are you sure you want to delete this quiz?</p>
