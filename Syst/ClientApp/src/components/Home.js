@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export class Home extends Component {
     static displayName = Home.name;
@@ -14,6 +15,7 @@ export class Home extends Component {
 
     static renderEventsTable(events) {
         return (
+            <AuthenticatedTemplate>
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
                 <tr>
@@ -39,6 +41,7 @@ export class Home extends Component {
                 )}
                 </tbody>
             </table>
+            </AuthenticatedTemplate>
         );
     }
 
