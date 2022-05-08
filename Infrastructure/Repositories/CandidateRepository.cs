@@ -55,7 +55,7 @@ namespace Infrastructure
                 CurrentDegree = c.CurrentDegree!, 
                 StudyProgram = c.StudyProgram!,
                 University = c.University!,
-                GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd"),
+                GraduationDate = c.GraduationDate.ToString("MM-yyyy"),
                 IsUpvoted = c.IsUpvoted,
                 Created = c.Created
             }).FirstOrDefaultAsync();
@@ -84,7 +84,7 @@ namespace Infrastructure
                 CurrentDegree = c.CurrentDegree!, 
                 StudyProgram = c.StudyProgram!,
                 University = c.University!,
-                GraduationDate = c.GraduationDate.ToString("yyyy-MM"),
+                GraduationDate = c.GraduationDate.ToString("MM-yyyy"),
                 IsUpvoted = c.IsUpvoted,
                 Created = c.Created
             }).ToListAsync();

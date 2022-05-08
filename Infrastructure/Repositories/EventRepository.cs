@@ -36,7 +36,7 @@ namespace Infrastructure
             var e = await _context.Events.Include(e => e.Quiz).Include(e => e.Winner).Include(e => e.Candidates).Where(e => e.Id == id).Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
-                Date = e.Date.ToString("yyyy-MM-dd"),
+                Date = e.Date.ToString("dd-MM-yyyy"),
                 Location = e.Location!,
                 Rating = e.Rating!,
                 WinnerId = e.Winner ==  default(Candidate) ? -1 : e.Winner.Id,
@@ -47,7 +47,7 @@ namespace Infrastructure
                     CurrentDegree = c.CurrentDegree!,
                     StudyProgram = c.StudyProgram!,
                     University = c.University!,
-                    GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd"),
+                    GraduationDate = c.GraduationDate.ToString("MM-yyyy"),
                     IsUpvoted = c.IsUpvoted
                 }).ToList() : new List<CandidateDTO>(),
                 Quiz = (e.Quiz != default(Quiz)) ? new QuizDTO() {
@@ -67,7 +67,7 @@ namespace Infrastructure
             await _context.Events.Include(e => e.Quiz).Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
-                Date = e.Date.ToString("yyyy-MM-dd"),
+                Date = e.Date.ToString("dd-MM-yyyy"),
                 Location = e.Location!,
                 Rating = e.Rating!,
                 Quiz = (e.Quiz != default(Quiz)) ? new QuizDTO() {
@@ -133,7 +133,7 @@ namespace Infrastructure
                 {
                     Name = e.Name!,
                     Id = e.Id,
-                    Date = e.Date.ToString("yyyy-MM-dd"),
+                    Date = e.Date.ToString("dd-MM-yyyy"),
                     Location = e.Location!,
                     Rating = e.Rating!,
                     Quiz = (e.Quiz != default(Quiz)) ? new QuizDTO() {
@@ -152,7 +152,7 @@ namespace Infrastructure
                 {
                     Name = e.Name!,
                     Id = e.Id,
-                    Date = e.Date.ToString("yyyy-MM-dd"),
+                    Date = e.Date.ToString("dd-MM-yyyy"),
                     Location = e.Location!,
                     Rating = e.Rating!,
                     Quiz = (e.Quiz != default(Quiz)) ? new QuizDTO() {
@@ -201,7 +201,7 @@ namespace Infrastructure
                 CurrentDegree = c.CurrentDegree!,
                 StudyProgram = c.StudyProgram!,
                 University = c.University!,
-                GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd"),
+                GraduationDate = c.GraduationDate.ToString("MM-yyyy"),
             });
         }
 
