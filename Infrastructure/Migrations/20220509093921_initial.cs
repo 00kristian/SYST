@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class swagster : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,7 +49,8 @@ namespace Infrastructure.Migrations
                     University = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GraduationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     QuizId = table.Column<int>(type: "int", nullable: true),
-                    IsUpvoted = table.Column<bool>(type: "bit", nullable: false)
+                    IsUpvoted = table.Column<bool>(type: "bit", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

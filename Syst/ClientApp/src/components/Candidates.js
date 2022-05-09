@@ -5,6 +5,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import ReactDropdown from 'react-dropdown';
 import { InteractiveTable } from './InteractiveTable';
+import {AuthenticatedTemplate} from '@azure/msal-react'
 
 export class Candidates extends Component {
     static displayName = Candidates.name;
@@ -66,7 +67,6 @@ export class Candidates extends Component {
                 {contents}
             </div>
         );
-
     }
 
     async populateData() {
