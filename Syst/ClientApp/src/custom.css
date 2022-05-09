@@ -68,6 +68,8 @@
     border-color: #FF7837;
     margin-bottom: 1%;
     margin-top: 1%;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold   ;
 }
     .btn-primary:hover {
         color: #fff;
@@ -114,6 +116,18 @@
 .btn-corner{
     margin-left: 1%;
     
+}
+
+.btn-center{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:5vw;
+    font-size: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-top: 10px;
 }
 
 /*---------------Divs---------------*/
@@ -244,6 +258,11 @@
     text-align: center;
     font-size: 22px;
     margin-top: 5%;
+}
+
+h1 {
+    font-family: "Roboto",sans-serif;
+    
 }
 
 

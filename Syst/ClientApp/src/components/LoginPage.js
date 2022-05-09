@@ -22,8 +22,8 @@ export class LoginPage extends Component {
         
         const myStyle={
                 backgroundImage: `url(${Systematic})`,
-                height:'100vh',
-                
+                width: "100vw",
+                height: "100vh",
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
             };
@@ -33,8 +33,10 @@ export class LoginPage extends Component {
                 <img style={{width: 600}} src={logo} alt="logo" />
                 <br></br>
                 <h1>Welcome to Event Tool</h1>
-                {contents}
             </div>
+            <div className='btn-center'>
+             {contents}
+            </div> 
             </div>
             
     );
