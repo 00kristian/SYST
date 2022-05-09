@@ -1,13 +1,12 @@
 import { Events } from './components/Events';
 import { EventRating } from './components/EventRating';
 import { Home } from './components/Home';
-import { Candidates } from './components/Candidates';
+import Candidates from './components/Candidates';
 import { ConfirmationCandidate} from "./components/ConfirmationCandidate";
 import { EventDetail } from './components/EventDetail';
 import CreateQuiz from './components/CreateQuiz';
 import CreateQuestion from './components/CreateQuestion';
 import './custom.css'
-import { CreateEventOld } from './components/CreateEventOld';
 import CreateEvent from './components/CreateEvent';
 import { CandidateQuiz } from './components/CandidateQuiz';
 import { CandidateInformation } from './components/CandidateInformation';
@@ -15,6 +14,8 @@ import { NavMenu } from './components/NavMenu';
 import { Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import { Route } from 'react-router-dom';
+import { loginRequest } from "./authConfig";
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 import React, { Component } from 'react';
 
 export default class App extends Component {
@@ -67,3 +68,37 @@ export default class App extends Component {
     );
   }
 }
+
+function ProfileContent() {
+  const { instance, accounts } = useMsal();
+  const [graphData, setGraphData] = useState(null);
+
+  const name = accounts[0] && accounts[0].name;
+
+  function RequestProfileData() {
+      const request = {
+          ...loginRequest,
+          account: accounts[0]
+      };
+
+      // Silently acquires an access token which is then attached to a request for Microsoft Graph data
+      instance.acquireTokenSilent(request).then((response) => {
+          callMsGraph(response.accessToken).then(response => setGraphData(response));
+      }).catch((e) => {
+          instance.acquireTokenPopup(request).then((response) => {
+              callMsGraph(response.accessToken).then(response => setGraphData(response));
+          });
+      });
+  }
+
+  return (
+      <>
+          <h5 className="card-title">Welcome {name}</h5>
+          {graphData ? 
+              <ProfileData graphData={graphData} />
+              :
+              <Button variant="secondary" onClick={RequestProfileData}>Request Profile Information</Button>
+          }
+      </>
+  );
+};

@@ -15,9 +15,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Gravity.Abstraction" Version="2021.1.25.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.2" />
     <PackageReference Include="Microsoft.Identity.Web" Version="1.24.1" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.17.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
   </ItemGroup>
 
