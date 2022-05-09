@@ -351,3 +351,6 @@ MigrationBackup/
 
 Syst/Images/
 .vscode/
+
+Syst/ClientApp/package.json
+Syst/ClientApp/package.json
