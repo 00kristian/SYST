@@ -12,6 +12,6 @@ function ExportCandidates(props) {
         University : c.university, 
         Graduation_date : c.graduationDate,
         Is_upvoted : c.isUpvoted}))
-    return <button className='btn btn-cancel btn-right' > <CSVLink filename={props.Name} data={csvData}>Export</CSVLink></button> ;
+    return <button className='btn btn-cancel btn-right' > <CSVLink filename={props.Name} data={csvData}>EXPORT</CSVLink></button> ;
 }
 

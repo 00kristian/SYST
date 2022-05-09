@@ -31,10 +31,10 @@ export class EventDetail extends Component {
 
             <br/>
             <br/>
-            <button onClick={() => editEvent()} className="btn btn-primary">Edit event</button>
-            <button onClick={() => editRating()} className="btn btn-primary btn-right">Edit rating</button>
+            <button onClick={() => editEvent()} className="btn btn-primary">EDIT EVENT</button>
+            <button onClick={() => editRating()} className="btn btn-primary btn-right">EDIT RATING</button>
             <div>
-              <button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >Host</button>
+              <button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >HOST</button>
             </div>
             <br/>
             <h3>Participants</h3>
@@ -49,8 +49,8 @@ export class EventDetail extends Component {
                                 {close => (
                                     <div className="div-center">
                                         <p>Are you sure you want to delete this candidate?</p>
-                                        <button className="btn btn-primary btn-yes" onClick={()=> downvote(candidate.id)}>Yes</button>
-                                        <button className="btn btn-primary"onClick={() => {close();}}>No</button>
+                                        <button className="btn btn-primary btn-yes" onClick={()=> downvote(candidate.id)}>YES</button>
+                                        <button className="btn btn-primary"onClick={() => {close();}}>NO</button>
                                     </div>
                                 )}
                                 </Popup>
@@ -65,8 +65,8 @@ export class EventDetail extends Component {
                                     <div>
                                         <p className="txt-popup">Are you sure you want to delete this candidate?</p>
                                         <div className="div-center">
-                                            <button className="btn btn-primary btn-yes btn-popup" onClick={()=> downvote(candidate.id)}>Yes</button>
-                                            <button className="btn btn-primary btn-popup"onClick={() => {close();}}>No</button>
+                                            <button className="btn btn-primary btn-yes btn-popup" onClick={()=> downvote(candidate.id)}>YES</button>
+                                            <button className="btn btn-primary btn-popup"onClick={() => {close();}}>NO</button>
                                         </div>
                                     </div>
                                 )}
@@ -79,14 +79,14 @@ export class EventDetail extends Component {
             </InteractiveTable>
             <br/>
             <br/>
-            <a href={'/events'}> <button className="btn btn-primary btn-right">Back</button> </a>
-            <Popup className="popup-overlay" trigger = {<button className="btn btn-primary">Delete event</button>} modal nested>
+            <a href={'/events'}> <button className="btn btn-primary btn-right">BACK</button> </a>
+            <Popup className="popup-overlay" trigger = {<button className="btn btn-primary">DELETE EVENT</button>} modal nested>
               {close => (
                 <div>
                   <p className="txt-popup">Are you sure you want to delete this event?</p>
                   <div className="div-center">
-                    <button className="btn btn-primary btn-yes btn-popup" onClick={()=>deleteEvent()}>Yes</button>
-                    <button className="btn btn-primary btn-popup"onClick={() => {close();}}>No</button>
+                    <button className="btn btn-primary btn-yes btn-popup" onClick={()=>deleteEvent()}>YES</button>
+                    <button className="btn btn-primary btn-popup"onClick={() => {close();}}>NO</button>
                   </div>
                   </div>
               )}
@@ -109,7 +109,7 @@ export class EventDetail extends Component {
               <div></div>
             ) : (
               <div>
-                        <button className="btn btn-primary" onClick={() => this.pickAWinner()}>Generate a winner</button>   
+                        <button className="btn btn-primary" onClick={() => this.pickAWinner()}>GENERATE A WINNER</button>   
               </div>
             )}
       </div>

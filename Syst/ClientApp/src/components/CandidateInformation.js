@@ -162,7 +162,7 @@ export class CandidateInformation extends Component {
                     ) : (
                     <div></div>
                     )}
-                    <button className="btn btn-primary btn-right" onClick={this.rerouteToCandidateConfirmation}>Submit</button>
+                    <button className="btn btn-primary btn-right" onClick={this.rerouteToCandidateConfirmation}>SUBMIT</button>
                 </div>
             </div>
         );

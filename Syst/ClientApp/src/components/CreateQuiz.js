@@ -96,7 +96,7 @@ function CreateQuiz(props) {
         return (
             <div key={index}>
                 <h5> Question {index + 1}
-                    <button onClick={(event) => modifyQuestion(question.id)} className="btn btn-primary btn-modify"> Modify </button>
+                    <button onClick={(event) => modifyQuestion(question.id)} className="btn btn-primary btn-modify"> MODIFY </button>
                 </h5>
                 <label className="obj-bottom_margin">{question.representation}</label>
             </div>  
@@ -126,7 +126,7 @@ function CreateQuiz(props) {
                         <h5>Clone existing quiz</h5>
                         {QuizPicker.Picker(quizes, "", (qId) => setCloneId(qId))}
                         {cloneId > 0 ?
-                            <button onClick={() => cloneQuiz()} className="btn btn-primary"> Clone </button>
+                            <button onClick={() => cloneQuiz()} className="btn btn-primary"> CLONE </button>
                         :
                             <span></span>
                         }
@@ -139,19 +139,19 @@ function CreateQuiz(props) {
             <button onClick={addQuestion} className="btn btn-primary" type="button">+</button> 
             <button onClick={removeQuestion} className="btn btn-minus_quiz" type="button">-</button>        
             <br />
-            <button onClick={_confirm} className="btn btn-primary btn-right btn-corner">Save quiz</button>
-            <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right btn-corner">Delete</button>} modal nested>
+            <button onClick={_confirm} className="btn btn-primary btn-right btn-corner">SAVE QUIZ</button>
+            <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right btn-corner">DELETE</button>} modal nested>
               {close => (
                 <div>
                   <p className="txt-popup">Are you sure you want to delete this quiz?</p>
                   <div className="div-center">
-                    <button className="btn btn-primary btn-yes btn-popup" onClick={()=>deleteQuiz()}>Yes</button>
-                    <button className="btn btn-primary btn-popup"onClick={() => {close();}}>No</button>
+                    <button className="btn btn-primary btn-yes btn-popup" onClick={()=>deleteQuiz()}>YES</button>
+                    <button className="btn btn-primary btn-popup"onClick={() => {close();}}>NO</button>
                   </div>
                   </div>
               )}
             </Popup>
-            <button onClick={() => history.push("/CreateEvent/"+ props.match.params.event_id)} className="btn btn-cancel">Cancel</button>
+            <button onClick={() => history.push("/CreateEvent/"+ props.match.params.event_id)} className="btn btn-cancel">CANCEL</button>
         </div>
     );
 }

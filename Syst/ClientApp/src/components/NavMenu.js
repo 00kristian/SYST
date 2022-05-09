@@ -34,16 +34,16 @@ export function NavMenu(props) {
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!collapsed} navbar>
               <ul className="navbar-nav flex-grow">
                 <NavItem>
-                  <NavLink tag={Link} className="navitem text-dark" to="/"><Icon path={mdiHome} size={1}/> Home</NavLink>
+                  <NavLink tag={Link} className="navitem text-dark" to="/"><Icon path={mdiHome} size={1}/> HOME</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink tag={Link} className="navitem text-dark" to="/Events"><Icon path={mdiCalendar} size={1}/> Events</NavLink>
+                    <NavLink tag={Link} className="navitem text-dark" to="/Events"><Icon path={mdiCalendar} size={1}/> EVENTS</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="navitem text-dark" to="/candidates"><Icon path={mdiAccountGroup} size={1}/> Candidates</NavLink>
+                  <NavLink tag={Link} className="navitem text-dark" to="/candidates"><Icon path={mdiAccountGroup} size={1}/> CANDIDATES</NavLink>
                 </NavItem>
                 <NavItem>
-                { !isAuthenticated ? <SignInButton></SignInButton> : <h1>Signed in </h1> }              
+                { !isAuthenticated ? <SignInButton></SignInButton> : <h3>SIGNED IN </h3> }              
                   </NavItem>
               </ul>
             </Collapse>

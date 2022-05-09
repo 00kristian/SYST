@@ -120,27 +120,27 @@ function CreateEvent(props) {
             </form>
             <br />
             <h5>Quiz</h5>
-            <button onClick={createQuiz} className="btn btn-primary">Create new quiz</button>
+            <button onClick={createQuiz} className="btn btn-primary">CREATE NEW QUIZ</button>
             {(quizId > 0) ? (
                 <div> 
-                    <button onClick={() => editQuiz(quizId)} className="btn btn-primary">Edit quiz</button>
+                    <button onClick={() => editQuiz(quizId)} className="btn btn-primary">EDIT QUIZ</button>
                 </div>
                 ) : <span/>}
             {QuizPicker.Picker(quizes, quizId, (qId) => setQuizId(qId))}
             <br />
-            <button onClick={_confirm} className="btn btn-primary btn-right btn-corner">Save event</button>
-            <Popup className="popup-overlay" trigger = {<button  className="btn btn-primary btn-right btn-corner">Delete</button>} modal nested>
+            <button onClick={_confirm} className="btn btn-primary btn-right btn-corner">SAVE EVENT</button>
+            <Popup className="popup-overlay" trigger = {<button  className="btn btn-primary btn-right btn-corner">DELETE</button>} modal nested>
               {close => (
                 <div>
                   <p className="txt-popup">Are you sure you want to delete this event?</p>
                   <div className="div-center">
-                    <button className="btn btn-primary btn-yes btn-popup" onClick={()=>deleteEvent()}>Yes</button>
-                    <button className="btn btn-primary btn-popup"onClick={() => {close();}}>No</button>
+                    <button className="btn btn-primary btn-yes btn-popup" onClick={()=>deleteEvent()}>YES</button>
+                    <button className="btn btn-primary btn-popup"onClick={() => {close();}}>NO</button>
                   </div>
                   </div>
               )}
             </Popup>
-            <button onClick={() => history.push("/eventdetail/" + props.match.params.id)} className="btn btn-cancel">Cancel</button>
+            <button onClick={() => history.push("/eventdetail/" + props.match.params.id)} className="btn btn-cancel">CANCEL</button>
         </div>
     );
 }
