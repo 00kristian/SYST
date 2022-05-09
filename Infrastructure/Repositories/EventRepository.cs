@@ -1,5 +1,6 @@
 using Core;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 
 namespace Infrastructure
 {
@@ -33,13 +34,23 @@ namespace Infrastructure
         //Return an event given the event id
         public async Task<(Status, EventDTO)> Read(int id)
         {
-            var e = await _context.Events.Include(e => e.Quiz).Include(e => e.Winner).Include(e => e.Candidates).Where(e => e.Id == id).Select(e => new EventDTO(){
+            var e = await _context.Events.Include(e => e.Quiz).Include(e => e.Winners).Include(e => e.Candidates).Where(e => e.Id == id).Select(e => new EventDTO(){
                 Name = e.Name!,
                 Id = e.Id,
                 Date = e.Date.ToString("yyyy-MM-dd"),
                 Location = e.Location!,
                 Rating = e.Rating!,
-                WinnerId = e.Winner ==  default(Candidate) ? -1 : e.Winner.Id,
+                WinnersId = e.Winners.Count() == 0 ? new List<CandidateDTO>() : e.Winners.Select(w => new CandidateDTO()
+                {
+                    Name = w.Name!,
+                    Id = w.Id,
+                    Email = w.Email!,
+                    CurrentDegree = w.CurrentDegree!,
+                    StudyProgram = w.StudyProgram!,
+                    University = w.University!,
+                    GraduationDate = w.GraduationDate.ToString("yyyy-MM-dd"),
+                    IsUpvoted = w.IsUpvoted
+                }).ToList(),
                 Candidates = e.Candidates != null ? e.Candidates.Select(c => new CandidateDTO(){
                     Name = c.Name!,
                     Id = c.Id,
@@ -178,7 +189,50 @@ namespace Infrastructure
             return Status.Updated;
         }
 
-        public async Task<(Status, CandidateDTO)> pickAWinner(int eventid) {
+        public async Task<(Status, IEnumerable<CandidateDTO>)> PickMultipleWinners(int eventid,
+            int numOfWinners)
+        {
+            var e = await _context.Events.Include(e => e.Candidates).Where(e => e.Id == eventid).FirstOrDefaultAsync();
+            if (e == default(Event)) return (Status.NotFound, new List<CandidateDTO>());
+
+            if (e.Winners.Count() != 0)
+            {
+                return (Status.Found, new List<CandidateDTO>());
+            }
+
+            var winners = e.Candidates?.OrderBy(c => Guid.NewGuid()).Take(numOfWinners);
+
+            if (winners.Count() == 0)
+            {
+                return (Status.NotFound, new List<CandidateDTO>());
+            }
+            else
+            {
+                e.Winners = winners;
+            }
+            
+            await _context.SaveChangesAsync();
+
+            var dtoWinnerList = new List<CandidateDTO>();
+            
+            foreach (var w in winners)
+            {
+                dtoWinnerList.Add(new CandidateDTO()
+                {
+                    Name = w.Name!,
+                    Id = w.Id,
+                    Email = w.Email!,
+                    CurrentDegree = w.CurrentDegree!,
+                    StudyProgram = w.StudyProgram!,
+                    University = w.University!,
+                    GraduationDate = w.GraduationDate.ToString("yyyy-MM-dd"),
+                });
+            }
+
+            return (Status.Found, dtoWinnerList);
+        }
+
+        /*public async Task<(Status, CandidateDTO)> pickAWinner(int eventid) {
             var e = await _context.Events.Include(e => e.Candidates).Where(e => e.Id == eventid).FirstOrDefaultAsync();
             if (e == default(Event)) return (Status.NotFound, default(CandidateDTO));
             
@@ -203,8 +257,7 @@ namespace Infrastructure
                 University = c.University!,
                 GraduationDate = c.GraduationDate.ToString("yyyy-MM-dd"),
             });
-        }
-
+        }*/
         
     }
 }

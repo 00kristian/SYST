@@ -10,6 +10,6 @@ namespace Infrastructure
         public ICollection<Candidate>? Candidates { get; set; }
         public Quiz? Quiz { get; set; }
         public double Rating { get; set; }
-        public Candidate? Winner { get; set; }
+        public IEnumerable<Candidate>? Winners { get; set; }
     }
 }
