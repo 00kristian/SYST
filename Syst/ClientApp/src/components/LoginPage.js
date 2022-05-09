@@ -3,6 +3,7 @@ import logo from './Systematic_Logo.png';
 import Systematic from './SystematicTower.png';
 import { SignInButton } from "./SignInButton";
 
+
 export class LoginPage extends Component {
     static displayName = LoginPage.name;
 
@@ -22,17 +23,18 @@ export class LoginPage extends Component {
         
         const myStyle={
                 backgroundImage: `url(${Systematic})`,
-                width: "100vw",
+                width: "100%",
                 height: "100vh",
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center' 
             };
         return (
             <div style={myStyle}>
             <div className='div-center'>
-                <img style={{width: 600}} src={logo} alt="logo" />
+                <img style={{width: 600, backgroundPosition: 'center'}} src={logo} alt="logo" />
                 <br></br>
-                <h1>Welcome to Event Tool</h1>
+                <h1 className='txt-white'>Welcome to Event Tool</h1>
             </div>
             <div className='btn-center'>
              {contents}
