@@ -1,13 +1,13 @@
 import { Events } from './components/Events';
 import { EventRating } from './components/EventRating';
 import { Home } from './components/Home';
+import { LoginPage } from './components/LoginPage';
 import { Candidates } from './components/Candidates';
 import { ConfirmationCandidate} from "./components/ConfirmationCandidate";
 import { EventDetail } from './components/EventDetail';
 import CreateQuiz from './components/CreateQuiz';
 import CreateQuestion from './components/CreateQuestion';
 import './custom.css'
-import { CreateEventOld } from './components/CreateEventOld';
 import CreateEvent from './components/CreateEvent';
 import { CandidateQuiz } from './components/CandidateQuiz';
 import { CandidateInformation } from './components/CandidateInformation';
@@ -24,46 +24,27 @@ export default class App extends Component {
     return (
       <div>
         <Switch>
-
+          <Route exact path='/' component={LoginPage} />
           <Route path='/CandidateQuiz/:event_id/:quiz_id' component={CandidateQuiz} />
           <Route path='/CandidateInformation' component={CandidateInformation} />
           <Route path='/ConformationCandidate' component={ConfirmationCandidate} />
-
           <div>
           <NavMenu />
           <Container>
-            <Route exact path='/' component={Home} />
+            <Route path = '/Home' component={Home}/>
             <Route path='/candidates' component={Candidates} />
             <Route path='/CreateEvent/:id' component={CreateEvent} />
             <Route path='/Events' component={Events} />
             <Route path='/EventRating/:id' component={EventRating} />
             <Route path='/Confirmation' component={ConfirmationCandidate} />
-
             <Route path='/CreateQuiz/:event_id/:id' component={CreateQuiz} />
             <Route path='/CreateQuestion/:event_id/:quiz_id/:id' component={CreateQuestion} />
-
             <Route path='/eventdetail/:id' component={EventDetail} />
           </Container>
           </div>
 
           </Switch>
       </div>
-      /*<Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/candidates' component={Candidates} />
-        <Route path='/fetch-data' component={FetchData} />
-        <Route path='/CreateEvent' component={CreateEvent} />
-        <Route path='/Events' component={Events} />
-        <Route path='/Confirmation' component={Confirmation} />
-        <Route path='/CreateQuiz' component={CreateQuiz} />
-        <Route path='/CreateQuestion' component={CreateQuestion} />
-        <Route path='/eventdetail/:id' component={EventDetail} 
-        
-
-        />
-      </Layout>
-        <Route path='/eventdetail/:id' component={EventDetail} />
-      </Layout>*/
     );
   }
 }

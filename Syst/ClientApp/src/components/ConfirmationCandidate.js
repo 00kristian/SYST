@@ -27,6 +27,6 @@ export class ConfirmationCandidate extends Component {
 
     rerouteToHomePage = () => {
         const { history } = this.props;
-        history.push("/");
+        history.push("/Home");
     }
 }

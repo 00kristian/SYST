@@ -28,8 +28,7 @@ export class Home extends Component {
 
         return (
             <div>
-                <h1>Welcome to Systematic Event Tool!</h1>
-                <p>From this home page you'll be able to create, host and see and overview over events! Check it out!</p>
+        
 
                 <h1 id="tabelLabel" >Upcoming Events
                     <button className="btn btn-primary btn-right" onClick={this.rerouteToEventCreation}>Create</button>
