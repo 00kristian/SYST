@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export class DatePicker extends Component {
     static Picker(value, changeFun) {
