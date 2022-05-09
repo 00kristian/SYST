@@ -33,7 +33,10 @@ namespace Core {
         QuizDTO Quiz,
 
         [Required]
-        bool IsUpvoted
+        bool IsUpvoted,
+
+        [Required]
+        DateTime Created
         
     );
 }

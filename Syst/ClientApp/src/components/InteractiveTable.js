@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Pager } from "./Pager";
+import ExportCandidates from './ExportCandidates';
 
 export function InteractiveTable(props) {
     const _content = props.Content;
@@ -41,7 +42,7 @@ export function InteractiveTable(props) {
         :
         (c => c);
     
-    const filter = props.SearchBar ? (c => slc(c).filter(
+    const filter = props.SearchBar ? (c => c.filter(
         _c => {
                 for (let i = 0; i < props.Columns.length; i++) {
                     const col = props.Columns[i];
@@ -51,7 +52,7 @@ export function InteractiveTable(props) {
             })
         )
         :
-        (c => slc(c));
+        (c => c);
 
     return (
         <div>
@@ -80,7 +81,7 @@ export function InteractiveTable(props) {
                 </tr>
                 </thead>
                 <tbody>
-                {filter(_content).map(row =>
+                {filter(slc(_content)).map(row =>
                     <tr key={row.id}>
                         {props.Columns.map(col =>
                             <td> {row[col[1]]} </td>
@@ -93,6 +94,8 @@ export function InteractiveTable(props) {
                 Pager.Pager(pageAt, Math.ceil(_content.length / props.PageSize, 10) - 1, (page) => {setPageAt(page)}, true)
                 : <span></span>
             }
+
+            {props.ExportName != null ? <ExportCandidates Name={props.ExportName} Candidates={filter(_content)}></ExportCandidates> : <span></span>}
         </div>
     );
 }
