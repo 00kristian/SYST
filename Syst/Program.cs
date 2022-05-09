@@ -22,6 +22,17 @@ builder.Services.AddScoped<IQuestionRepository, QuestionRepository>(r => new Que
 builder.Services.AddScoped<IQuizRepository, QuizRepository>(r => new QuizRepository(r.GetRequiredService<ISystematicContext>(), envPath));
 builder.Services.AddHostedService<CandidateRemover>();
 
+// Add services to the container.
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+
+
+builder.Services.Configure<JwtBearerOptions>(
+    JwtBearerDefaults.AuthenticationScheme, options =>
+    {
+        options.TokenValidationParameters.NameClaimType = "name";
+    });
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>{
