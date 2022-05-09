@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export class Pager extends Component {
     
@@ -45,12 +46,14 @@ export class Pager extends Component {
             //hideButtons();
         }
         return (
+            <AuthenticatedTemplate>
             <div className="horizontal-centered-div div-flex2">
                 <button className='btn btn-primary' id="page-backBtn" onClick={back}>Back</button>
                 {pageNumber != null && pageNumber ? <h3 className='progress-bar progress-text'>{at_ + 1} / {length + 1}</h3> : <progress className='progress-bar' id='page-progressBar' value={at_} max={length}> {at_} </progress>}
                 
                 <button className='btn btn-primary btn-right' id="page-nextBtn" onClick={next}>Next</button>
-            </div>
+                </div>
+            </AuthenticatedTemplate>
         );  
     }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -34,6 +35,7 @@ export class CandidateInformation extends Component {
         ];
         
         return (
+            
             <div>
                 <div className='div-header'>
                 <h5>Please write your contact information to enter the competition</h5>
@@ -164,7 +166,8 @@ export class CandidateInformation extends Component {
                     )}
                     <button className="btn btn-primary btn-right" onClick={this.rerouteToCandidateConfirmation}>Submit</button>
                 </div>
-            </div>
+                </div>
+            
         );
     }
 

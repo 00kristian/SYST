@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 import { InteractiveTable } from './InteractiveTable';
 
+
 export class Home extends Component {
     static displayName = Home.name;
 
@@ -27,6 +28,7 @@ export class Home extends Component {
             </InteractiveTable>
 
         return (
+            <AuthenticatedTemplate>
             <div>
                 <h1>Welcome to Systematic Event Tool!</h1>
                 <p>From this home page you'll be able to create, host and see and overview over events! Check it out!</p>
@@ -35,7 +37,8 @@ export class Home extends Component {
                     <button className="btn btn-primary btn-right" onClick={this.rerouteToEventCreation}>Create</button>
                 </h1>
                 {contents}
-            </div>
+                </div>
+            </AuthenticatedTemplate>
     );
     }
 

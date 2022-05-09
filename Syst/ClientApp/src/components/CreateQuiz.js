@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { QuizPicker } from "./QuizPicker";
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export default CreateQuiz
 
@@ -94,12 +95,14 @@ function CreateQuiz(props) {
 
     function renderQuiz(question, index) {
         return (
+            <AuthenticatedTemplate>
             <div key={index}>
                 <h5> Question {index + 1}
                     <button onClick={(event) => modifyQuestion(question.id)} className="btn btn-primary btn-modify"> Modify </button>
                 </h5>
                 <label className="obj-bottom_margin">{question.representation}</label>
-            </div>  
+                </div>
+            </AuthenticatedTemplate>
         );  
     }
 
@@ -112,6 +115,7 @@ function CreateQuiz(props) {
     }
 
     return (
+        <AuthenticatedTemplate>
         <div>
             <h2>Here you can create or edit a quiz</h2>
             <br/>
@@ -152,6 +156,7 @@ function CreateQuiz(props) {
               )}
             </Popup>
             <button onClick={() => history.push("/CreateEvent/"+ props.match.params.event_id)} className="btn btn-cancel">Cancel</button>
-        </div>
+            </div>
+        </AuthenticatedTemplate>
     );
 }

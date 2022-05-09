@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ImageUpload } from './ImageUpload';
 import { Container, Row, Col } from 'react-grid';
 import { useHistory } from "react-router-dom";
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export default CreateQuestion
 
@@ -26,6 +27,7 @@ function CreateQuestion(props) {
 
     function renderOption(option, index) {
         return (
+            <AuthenticatedTemplate>
             <div key={index}>
                 <label>
                     <div className="div-option">
@@ -43,7 +45,8 @@ function CreateQuestion(props) {
                         }}>
                     </input>
                 </label>
-            </div>
+                </div>
+            </AuthenticatedTemplate>
         )
     }
 
@@ -75,6 +78,7 @@ function CreateQuestion(props) {
     }
 
     return (
+        <AuthenticatedTemplate>
         <div className="page-padding">
             <Container>
                 <Row>
@@ -101,6 +105,7 @@ function CreateQuestion(props) {
             <br /> <br />
             <button onClick={() => history.push("/CreateQuiz/" + props.match.params.event_id + "/" + props.match.params.quiz_id)} className="btn btn-cancel">Cancel</button>
             <button className="btn btn-primary btn-right" onClick={() => confirm()}>Save question</button>
-        </div>
+            </div>
+        </AuthenticatedTemplate>
     );
 }

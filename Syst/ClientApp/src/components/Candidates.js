@@ -5,6 +5,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import ReactDropdown from 'react-dropdown';
 import { InteractiveTable } from './InteractiveTable';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export class Candidates extends Component {
     static displayName = Candidates.name;
@@ -19,9 +20,13 @@ export class Candidates extends Component {
     }
 
     render() {
+        
         let contents = this.state.loading
+            
             ? <p><em>Loading...</em></p>
-            : <InteractiveTable ExportName="All_Candidates.csv" SearchBar={true} PageSize={8} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={this.state.candidates}>
+            :
+            < AuthenticatedTemplate >
+            <InteractiveTable ExportName="All_Candidates.csv" SearchBar={true} PageSize={8} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={this.state.candidates}>
                 {candidate =>
                     <div>
                         {candidate.isUpvoted ?(
@@ -59,14 +64,18 @@ export class Candidates extends Component {
                         )}
                     </div>
                 }
-            </InteractiveTable>;
+                </InteractiveTable>;
+            </AuthenticatedTemplate>
         return (
+            <AuthenticatedTemplate>
             <div>
                 <h1 id="tabelLabel" >Candidates</h1>
                 {contents}
-            </div>
+                </div>
+            </AuthenticatedTemplate>
+            
         );
-
+        
     }
 
     async populateData() {
