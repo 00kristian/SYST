@@ -14,5 +14,6 @@ namespace Infrastructure{
         public Quiz? Quiz {get; set;}
         public bool IsUpvoted {get; set;}
         public virtual ICollection<Answer>? Answers {get; set;}
+        public DateTime Created {get; set;}
     }
 }

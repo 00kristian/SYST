@@ -1,6 +1,7 @@
 using Xunit;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Core;
@@ -12,8 +13,9 @@ public class CandidateRepositoryTests{
     private readonly ISystematicContext _context; 
     private readonly ICandidateRepository _repo;
 
-     Candidate candidate1 = new Candidate {Id=1, Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "ITU", GraduationDate = new DateTime{}, IsUpvoted = false};
-     Candidate candidate2 = new Candidate {Id=2, Name = "Maj Frost Jensen", Email = "mfje@itu.dk", CurrentDegree = "MSc", StudyProgram = "Computer Science", University = "CBS", GraduationDate = new DateTime{}, IsUpvoted = true};
+     Candidate candidate1 = new Candidate {Id=1, Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "ITU", GraduationDate = new DateTime{}, IsUpvoted = false, Created = new DateTime(2022, 05, 30)};
+     Candidate candidate2 = new Candidate {Id=2, Name = "Maj Frost Jensen", Email = "mfje@itu.dk", CurrentDegree = "MSc", StudyProgram = "Computer Science", University = "CBS", GraduationDate = new DateTime{}, IsUpvoted = true, Created = new DateTime(2022, 05, 30)};
+     Candidate candidate3 = new Candidate { Id = 3, Name = "Frida Pagels", Email = "frip@ku.dk", CurrentDegree = "BSc", StudyProgram = "Law", University = "KU", GraduationDate = new DateTime{ }, IsUpvoted = true, Created = new DateTime(2020, 04, 02)};
      public CandidateRepositoryTests(){
         var connection = new SqliteConnection("Filename=:memory:");
         connection.Open();
@@ -103,7 +105,7 @@ public class CandidateRepositoryTests{
         Assert.Equal(candidate1.StudyProgram, actual.Item2.StudyProgram);
 
         Assert.Equal(candidate1.University, actual.Item2.University);
-        Assert.Equal(candidate1.GraduationDate.ToString("yyyy-MM-dd"), actual.Item2.GraduationDate);
+        Assert.Equal(candidate1.GraduationDate.ToString("yyyy-MM"), actual.Item2.GraduationDate);
         Assert.Equal(candidate1.IsUpvoted, actual.Item2.IsUpvoted);
 
     }
@@ -131,8 +133,8 @@ public class CandidateRepositoryTests{
         //assert
         Assert.Collection(candidates,
 
-            candidate => Assert.Equal(new CandidateDTO(1,"Lukas Hjelmstrand", "luhj@itu.dk", "BSc", "Softwareudvikling", "ITU",(new DateTime{}).ToString("yyyy-MM-dd"),  null!, new QuizDTO { }, false), candidate),
-            candidate => Assert.Equal(new CandidateDTO(2, "Maj Frost Jensen", "mfje@itu.dk","MSc", "Computer Science", "CBS",(new DateTime{}).ToString("yyyy-MM-dd"), null!, new QuizDTO { }, true), candidate)
+            candidate => Assert.Equal(new CandidateDTO(1,"Lukas Hjelmstrand", "luhj@itu.dk", "BSc", "Softwareudvikling", "ITU",(new DateTime{}).ToString("yyyy-MM"),  null!, new QuizDTO { }, false, new DateTime(2022, 05, 30)), candidate),
+            candidate => Assert.Equal(new CandidateDTO(2, "Maj Frost Jensen", "mfje@itu.dk","MSc", "Computer Science", "CBS",(new DateTime{}).ToString("yyyy-MM"), null!, new QuizDTO { }, true, new DateTime(2022, 05, 30)), candidate)
 
         );
     }
@@ -202,5 +204,27 @@ public class CandidateRepositoryTests{
         Assert.Equal(Status.NotFound, actual);
     }
 
+
+    [Fact]
+    public async void Deletes_correct_candidates_when_expired()
+    {   
+        _context.Candidates.AddRange(
+            candidate3
+        );
+        await _context.SaveChangesAsync();
+        
+        await _repo.DeleteOldCandidates();
+        
+        Assert.DoesNotContain(_context.Candidates, c => c.Id == candidate3.Id);
+    }
+
+    [Fact]
+    public async void Deletes_no_candidates_as_non_expired()
+    {
+        await _repo.DeleteOldCandidates();
+
+        Assert.Contains(_context.Candidates, c => c.Id == candidate1.Id);
+        Assert.Contains(_context.Candidates, c => c.Id == candidate2.Id);
+    }
 
 }

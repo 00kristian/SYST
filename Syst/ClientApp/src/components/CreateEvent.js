@@ -58,7 +58,7 @@ function CreateEvent(props) {
 
     const _confirm = async () => {
         await updateEvent();
-        if (quizId > 0) updateQuizId();
+        if (quizId > 0) await updateQuizId(quizId);
         history.push("/eventdetail/" + props.match.params.id);
     }
 

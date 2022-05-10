@@ -27,6 +27,9 @@ namespace Core {
         string GraduationDate,
 
         [Required]
-        bool IsUpvoted
+        bool IsUpvoted,
+
+        [Required]
+        DateTime Created
     );
 } 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 import { InteractiveTable } from './InteractiveTable';
 
 export class Home extends Component {

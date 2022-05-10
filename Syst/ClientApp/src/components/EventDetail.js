@@ -3,7 +3,8 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { InteractiveTable } from './InteractiveTable';
 import Icon from "@mdi/react";
-import {mdiThumbUp, mdiThumbDown} from '@mdi/js';
+import { mdiThumbUp, mdiThumbDown } from '@mdi/js';
+
 
 export class EventDetail extends Component {
   static displayName = EventDetail.name;
@@ -36,16 +37,16 @@ export class EventDetail extends Component {
             </div>
             <br/>
             <h3>Participants</h3>
-            <InteractiveTable SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={event.candidates}>
+            <InteractiveTable ExportName={event.name + ".csv"} SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={event.candidates}>
             {candidate =>
                     <div>
                         {candidate.isUpvoted ? (
                         <td>
                             <td><button className="btn btn-right btn-green" onClick={() => upvote(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
                             <td>
-                                <Popup trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
+                                <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
                                 {close => (
-                                    <div>
+                                    <div className="div-center">
                                         <p>Are you sure you want to delete this candidate?</p>
                                         <button className="btn btn-primary btn-yes" onClick={()=> downvote(candidate.id)}>Yes</button>
                                         <button className="btn btn-primary"onClick={() => {close();}}>No</button>
@@ -101,15 +102,14 @@ export class EventDetail extends Component {
 
     return (
       <div>
-        {contents}
+            {contents}
         {this.state.winnerName != null  ? (
-              <div>
-              </div>
+              <div></div>
             ) : (
               <div>
-                <button className="btn btn-primary" onClick={()=> this.pickAWinner()}>Generate a winner</button>
+                        <button className="btn btn-primary" onClick={() => this.pickAWinner()}>Generate a winner</button>   
               </div>
-            ) }
+            )}
       </div>
     );
   }

@@ -9,6 +9,7 @@ namespace Infrastructure{
         public Quiz? Quiz {get; set;}
 
         public void CleanUpImage(string envPath) {
+            if (ImageURL == null) return;
             try {
                 System.IO.File.Delete(envPath + "/Images/" + ImageURL);
             } catch (Exception) {}

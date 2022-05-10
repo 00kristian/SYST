@@ -21,16 +21,16 @@ export class Candidates extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : <InteractiveTable SearchBar={true} PageSize={8} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={this.state.candidates}>
+            : <InteractiveTable ExportName="All_Candidates.csv" SearchBar={true} PageSize={8} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={this.state.candidates}>
                 {candidate =>
                     <div>
                         {candidate.isUpvoted ?(
                         <td>
                             <td><button className="btn btn-right btn-green" onClick={() => this.clickToUpvoteCandidate(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
                             <td>
-                                <Popup trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
+                                <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
                                 {close => (
-                                    <div>
+                                    <div className="div-center">
                                         <p>Are you sure you want to delete this candidate?</p>
                                         <button className="btn btn-primary btn-yes" onClick={()=> this.clickToDownvoteCandidate(candidate.id)}>Yes</button>
                                         <button className="btn btn-primary"onClick={() => {close();}}>No</button>
