@@ -20,7 +20,7 @@
         background-color: #FF7837;
     }
 
-.btn-cancel {
+.btn-secondary {
     color: #FF7837;
     background-color: #fff;
     border-color: #FF7837;
@@ -30,6 +30,14 @@
     padding: 0.5%;
     padding-left: 4%;
     padding-right: 4%;
+}
+
+.btn-delete {
+    color: #fff;
+    background-color: #141446;
+    border-color: #141446;
+    margin-bottom: 1%;
+    margin-top: 1%;
 }
 
 .btn-host {
@@ -89,6 +97,13 @@
     float: right; 
 }
 
+.btn-tertiary {
+    color: #009BE6;
+    background-color: #fff;
+    border-color: #009BE6;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
 
 .btn-green{
     background-color: #86DC3D;
@@ -203,8 +218,16 @@
     margin-bottom: 2%;
 }
 
-.obj-top_padding{
+.obj-top_padding {
     padding-top: 4%;
+}
+
+.obj-right_margin {
+    margin-right: 15%;
+}
+
+.obj-space {
+    margin-right: 0.8%
 }
 
 /*---------------Pages---------------*/

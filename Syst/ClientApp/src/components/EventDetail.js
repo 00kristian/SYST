@@ -24,17 +24,16 @@ export class EventDetail extends Component {
     return (
         <div>
             <h1>{event.name}</h1>
-            <h2>{event.date}</h2>
-            <h2>{event.location}</h2>
+            <h2>{event.location}, {event.date}</h2>
             <h2 className='txt-left'>Winner: {winnerName}</h2>
             <h2 className='txt-right'>Rating: {event.rating}</h2>
-
             <br/>
             <br/>
-            <button onClick={() => editEvent()} className="btn btn-primary">Edit event</button>
-            <button onClick={() => editRating()} className="btn btn-primary btn-right">Edit rating</button>
+            <button className="btn btn-tertiary">Put winner button here!</button>
+            <button onClick={() => editRating()} className="btn btn-tertiary btn-right">Edit rating</button>
             <div>
               <button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >Host</button>
+              <button onClick={() => editEvent()} className="btn btn-tertiary btn-right obj-space">Edit Event</button>
             </div>
             <br/>
             <h3>Participants</h3>
@@ -77,10 +76,9 @@ export class EventDetail extends Component {
                     </div>
                 }
             </InteractiveTable>
-            <br/>
-            <br/>
-            <a href={'/events'}> <button className="btn btn-primary btn-right">Back</button> </a>
-            <Popup className="popup-overlay" trigger = {<button className="btn btn-primary">Delete event</button>} modal nested>
+            <br></br>
+            <a href={'/events'}> <button className="btn btn-secondary">Back</button> </a>
+            <Popup className="popup-overlay" trigger = {<button className="btn btn-delete btn-right">Delete event</button>} modal nested>
               {close => (
                 <div>
                   <p className="txt-popup">Are you sure you want to delete this event?</p>

@@ -56,7 +56,7 @@ render() {
                 <p>4. How much time did we invest in preparing for the event?</p>
                 <Dropdown options={QuestionTime} onChange={(QuestionTime) => this.setState({ QTimeRating: QuestionTime.value })} value="Select Rating" />
                 <br/>
-                <button onClick={() => this.cancelRating()} className='btn btn-cancel'>Cancel</button>
+                <button onClick={() => this.cancelRating()} className='btn btn-secondary'>Cancel</button>
                 <button onClick={() => this.submitRating()} className='btn btn-primary btn-right'>Submit</button>
                 {this.state.isFilledOut ? <p></p> : <p className='txt-red txt-right_padding'>Please select an option for each question.</p>}
             </div>

@@ -100,7 +100,7 @@ export class CreateQuestion extends Component {
                 <br />
                 <br />
                 <br />
-                <button className="btn btn-cancel" onClick={this.rerouteToQuiz}>Cancel</button>
+                <button className="btn btn-secondary" onClick={this.rerouteToQuiz}>Cancel</button>
                 <button className="btn btn-primary btn-right" onClick={this.confirm}>Confirm</button>
             </div>
         );
