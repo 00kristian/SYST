@@ -1,3 +1,5 @@
+/*---------------Import font---------------*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 /*---------------Buttons---------------*/
 
 .btn-answer {
@@ -12,6 +14,7 @@
     border-color: #FF7837;
     border: none;
     font-size: x-large;
+    font-family: 'Roboto', sans-serif;
 }
     .btn-answer:hover {
         background-color: #e17640;
@@ -24,6 +27,7 @@
     color: #FF7837;
     background-color: #fff;
     border-color: #FF7837;
+    font-family: 'Roboto', sans-serif;
 }
 
 .btn-confirmation {
@@ -38,6 +42,7 @@
     border-color: #141446;
     margin-bottom: 1%;
     margin-top: 1%;
+    font-family: 'Roboto', sans-serif;
 }
 
 .btn-host {
@@ -76,6 +81,7 @@
     border-color: #FF7837;
     margin-bottom: 1%;
     margin-top: 1%;
+    font-family: 'Roboto', sans-serif;
 }
     .btn-primary:hover {
         color: #fff;
@@ -103,6 +109,7 @@
     border-color: #009BE6;
     margin-bottom: 1%;
     margin-top: 1%;
+    font-family: 'Roboto', sans-serif;
 }
 
 .btn-green{
@@ -269,6 +276,30 @@
     font-size: 22px;
     margin-top: 5%;
 }
+
+.txt-primary{
+    font-family: 'Roboto', sans-serif; 
+}
+
+.txt-secondary{
+    font-family: 'Roboto', sans-serif; 
+    font-size: 17px;
+}
+
+.txt-small{
+    font-family: 'Roboto', sans-serif; 
+    font-size: 15px;
+}
+
+.txt-navbar{
+    font-family: 'Roboto', sans-serif;
+    font-size: 2px;
+}
+
+h1, h2, h3, h4, h5, h6, p{
+    font-family: 'Roboto', sans-serif;
+}
+
 
 
 /*---------------Misc---------------*/

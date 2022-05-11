@@ -27,20 +27,25 @@ export function NavMenu(props) {
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
-            <a href={"/"}>
-              <img src={logo} alt="Logo" width={230}/>
-            </a>
+            <div>
+              <a href={"/"}>
+                <img src={logo} alt="Logo" width={230}/>
+              </a>
+            </div>
+            <div >
+              <h5>Event Tool</h5>
+            </div>
             <NavbarToggler onClick={toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!collapsed} navbar>
               <ul className="navbar-nav flex-grow">
                 <NavItem>
-                  <NavLink tag={Link} className="navitem text-dark" to="/"><Icon path={mdiHome} size={1}/> Home</NavLink>
+                  <NavLink tag={Link} className="navitem text-dark txt-navbar" to="/"><Icon path={mdiHome} size={1}/> HOME</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink tag={Link} className="navitem text-dark" to="/Events"><Icon path={mdiCalendar} size={1}/> Events</NavLink>
+                    <NavLink tag={Link} className="navitem text-dark txt-navbar" to="/Events"><Icon path={mdiCalendar} size={1}/> EVENTS</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="navitem text-dark" to="/candidates"><Icon path={mdiAccountGroup} size={1}/> Candidates</NavLink>
+                  <NavLink tag={Link} className="navitem text-dark txt-navbar" to="/candidates"><Icon path={mdiAccountGroup} size={1}/> CANDIDATES</NavLink>
                 </NavItem>
                 <NavItem>
                 { !isAuthenticated ? <SignInButton></SignInButton> : <h1>Signed in </h1> }              

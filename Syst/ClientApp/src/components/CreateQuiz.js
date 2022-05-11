@@ -82,8 +82,6 @@ function CreateQuiz(props) {
     }
 
     const deleteQuiz = async () => {
-        let fr = window.confirm('Are you sure you want to delete the quiz: ' + name + ', permanently? \n It will be deleted from all events that use it.');
-        if (fr) {
             const requestOptions = {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
@@ -91,14 +89,14 @@ function CreateQuiz(props) {
             };
             await fetch('api/quiz'+"/"+props.match.params.id, requestOptions);
             history.push("/CreateEvent/"+ props.match.params.event_id);
-        }
+        
     }
 
     function renderQuiz(question, index) {
         return (
             <div key={index}>
                 <h5> Question {index + 1}
-                    <button onClick={(event) => modifyQuestion(question.id)} className="btn btn-primary btn-modify"> Modify </button>
+                    <button onClick={(event) => modifyQuestion(question.id)} className="btn btn-primary btn-modify"> MODIFY </button>
                 </h5>
                 <label className="obj-bottom_margin">{question.representation}</label>
             </div>  
@@ -121,14 +119,14 @@ function CreateQuiz(props) {
                 <div className="div-flex2">
                     <label className="row-layout">
                         <h5>Quiz name</h5>
-                        <input value={name} className="input-layout" onChange={(event) => setName(event.target.value)}></input>
+                        <input value={name} className="input-layout txt-small" onChange={(event) => setName(event.target.value)}></input>
                     </label>
                     <div style={{ width: 50 }}> </div>
                     <div>
                         <h5>Clone existing quiz</h5>
                         {QuizPicker.Picker(quizes, "", (qId) => setCloneId(qId))}
                         {cloneId > 0 ?
-                            <button onClick={() => cloneQuiz()} className="btn btn-primary"> Clone </button>
+                            <button onClick={() => cloneQuiz()} className="btn btn-primary"> CLONE </button>
                         :
                             <span></span>
                         }
@@ -141,14 +139,14 @@ function CreateQuiz(props) {
             <button onClick={addQuestion} className="btn btn-primary" type="button">+</button> 
             <button onClick={removeQuestion} className="btn btn-minus_quiz" type="button"><Icon path={mdiTrashCan} size={1}/></button>        
             <br />
-            <button onClick={_confirm} className="btn btn-primary btn-right btn-corner">Save quiz</button>
-            <Popup className="popup-overlay" trigger = {<button className="btn btn-delete btn-right btn-corner">Delete</button>} modal nested>
+            <button onClick={_confirm} className="btn btn-primary btn-right btn-corner">SAVE QUIZ</button>
+            <Popup className="popup-overlay" trigger = {<button className="btn btn-delete btn-right btn-corner">DELETE</button>} modal nested>
               {close => (
                 <div>
                   <p className="txt-popup">Are you sure you want to delete this quiz?</p>
                   <div className="div-center">
-                    <button className="btn btn-primary btn-yes btn-popup" onClick={()=>deleteQuiz()}>Yes</button>
-                    <button className="btn btn-primary btn-popup"onClick={() => {close();}}>No</button>
+                    <button className="btn btn-primary btn-yes btn-popup" onClick={()=>deleteQuiz()}>YES</button>
+                    <button className="btn btn-primary btn-popup"onClick={() => {close();}}>NO</button>
                   </div>
                   </div>
               )}
