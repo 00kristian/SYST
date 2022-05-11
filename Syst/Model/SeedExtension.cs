@@ -77,16 +77,16 @@ public static class SeedExtensions
             context.Quizes.Add(quiz1);
 
             context.Events.AddRange(
-                new Event() {Name = "IT Konference", Date = date3, Location = "Århus", Candidates = new List<Candidate> {maj, kristian, sarah, sebastian}, Quiz = quiz1, Rating = 3.7, Winners=new []{default(Candidate)}},
-                new Event() {Name = "Match Making hos SDU", Date = date4, Location = "Odense", Candidates = new List<Candidate> {peter}, Quiz = null, Rating = 2.5, Winners=new []{default(Candidate)}},
-                new Event() {Name = "Job messe på ITU", Date = date5, Location = "København", Candidates = new List<Candidate> {lukas, maj, isabella, camille, kristian, sarah, benjamin}, Quiz = null, Rating = 5.0, Winners=new []{default(Candidate)}},
-                new Event() {Name = "IT-DAY København", Date = date6, Location = "København", Candidates = new List<Candidate> {emma, lukas, isabella, benjamin}, Quiz = null, Rating = 4.6, Winners=new []{default(Candidate)}},
-                new Event() {Name = "JOB BootCamp", Date = date7, Location = "Århus", Candidates = new List<Candidate> {kristian, isabella, lukas}, Quiz = null, Rating = 3.8, Winners=new []{default(Candidate)}},
-                new Event() {Name = "IT-DAY Odense", Date = date8, Location = "Odense", Candidates = new List<Candidate> {maj, camille, benjamin}, Quiz = null, Rating = 4.1, Winners=new []{default(Candidate)}},
-                new Event() {Name = "Career Week hos DTU", Date = date9, Location = "Kgs. Lyngby", Candidates = new List<Candidate> {sarah, camille, kristian, peter}, Quiz = null, Rating = 4.4, Winners=new []{default(Candidate)}},
-                new Event() {Name = "IT week på RUC", Date = date10, Location = "Roskilde", Candidates = new List<Candidate> {sebastian}, Quiz = null, Rating = 3.1, Winners=new []{default(Candidate)}},
-                new Event() {Name = "Job messe i Århus", Date = date11, Location = "Århus", Candidates = new List<Candidate> {isabella, emma, maj}, Quiz = null, Rating = 3.6, Winners=new []{default(Candidate)}},
-                new Event() {Name = "IT-DAY Aalborg", Date = date12, Location = "Aalborg", Candidates = new List<Candidate> {benjamin, lukas, sebastian, sarah}, Quiz = null, Rating = 4.3, Winners=new []{default(Candidate)}}
+                new Event() {Name = "IT Konference", Date = date3, Location = "Århus", Candidates = new List<Candidate> {maj, kristian, sarah, sebastian}, Quiz = quiz1, Rating = 3.7, Winners=null},
+                new Event() {Name = "Match Making hos SDU", Date = date4, Location = "Odense", Candidates = new List<Candidate> {peter}, Quiz = null, Rating = 2.5, Winners=null},
+                new Event() {Name = "Job messe på ITU", Date = date5, Location = "København", Candidates = new List<Candidate> {lukas, maj, isabella, camille, kristian, sarah, benjamin}, Quiz = null, Rating = 5.0, Winners=null},
+                new Event() {Name = "IT-DAY København", Date = date6, Location = "København", Candidates = new List<Candidate> {emma, lukas, isabella, benjamin}, Quiz = null, Rating = 4.6, Winners=null},
+                new Event() {Name = "JOB BootCamp", Date = date7, Location = "Århus", Candidates = new List<Candidate> {kristian, isabella, lukas}, Quiz = null, Rating = 3.8, Winners=null},
+                new Event() {Name = "IT-DAY Odense", Date = date8, Location = "Odense", Candidates = new List<Candidate> {maj, camille, benjamin}, Quiz = null, Rating = 4.1, Winners=null},
+                new Event() {Name = "Career Week hos DTU", Date = date9, Location = "Kgs. Lyngby", Candidates = new List<Candidate> {sarah, camille, kristian, peter}, Quiz = null, Rating = 4.4, Winners=null},
+                new Event() {Name = "IT week på RUC", Date = date10, Location = "Roskilde", Candidates = new List<Candidate> {sebastian}, Quiz = null, Rating = 3.1, Winners=null},
+                new Event() {Name = "Job messe i Århus", Date = date11, Location = "Århus", Candidates = new List<Candidate> {isabella, emma, maj}, Quiz = null, Rating = 3.6, Winners=null},
+                new Event() {Name = "IT-DAY Aalborg", Date = date12, Location = "Aalborg", Candidates = new List<Candidate> {benjamin, lukas, sebastian, sarah}, Quiz = null, Rating = 4.3, Winners=null}
             );
 
             await context.SaveChangesAsync();

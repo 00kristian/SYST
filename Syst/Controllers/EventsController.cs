@@ -82,7 +82,8 @@ public class EventsController : ControllerBase
         if (deleted == Status.NotFound) return new NotFoundObjectResult(id);
         return deleted.ToActionResult();
     }
-
+    
+    //Picks winners
     [ProducesResponseType(404)]
     [ProducesResponseType(typeof(IEnumerable<CandidateDTO>), 200)]
     [HttpGet("winner/{eventid}")]

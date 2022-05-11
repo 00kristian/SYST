@@ -70,6 +70,6 @@ public class SystematicContext : DbContext, ISystematicContext
             c => c.ToList())
         );
 
-        modelBuilder.Entity<Event>().HasMany(e => e.Winners);
+        modelBuilder.Entity<Event>().HasMany<Candidate>(e => e.Winners);
     }
 }
