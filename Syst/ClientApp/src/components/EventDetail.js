@@ -11,7 +11,7 @@ export class EventDetail extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { event: Object, loading: true, winnerNames: "", show:  true };
+    this.state = { event: Object, loading: true, winnerNames: "", show:  true, numWinners : 1 };
 
   }
 
@@ -100,18 +100,24 @@ export class EventDetail extends Component {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
       : EventDetail.renderEvent(this.state.event, this.editEvent,this.editRating, this.deleteEvent, this.pickWinners, this.state.winnerNames, this.state.show, this.clickToUpvoteCandidate, this.clickToDownvoteCandidate);
-
+      
+      let contents2 = this.state.loading
+      ? <span></span>
+      : <div>
+          {this.state.winnerNames != "" ? (
+              <div></div>
+          ) : (
+              <div>
+                  <button className="btn btn-primary" onClick={() => this.pickWinners()}>Generate winners</button>
+                  <input value={this.state.numWinners} onChange={(e) => this.setState({numWinners : e.target.value}) } type="number" min="1" max={this.state.event.candidates.length} step="1" />
+              </div>
+          )}
+      </div>
 
     return (
       <div>
             {contents}
-        {this.state.winnerNames != "" ? (
-              <div></div>
-            ) : (
-              <div>
-                  <button className="btn btn-primary" onClick={() => this.pickWinners()}>Generate winners</button>   
-              </div>
-            )}
+          {contents2}
       </div>
     );
   }
@@ -157,8 +163,7 @@ export class EventDetail extends Component {
         headers: { 'Content-Type': 'application/json' },
     };
     this.setState({ show: false });
-    let num = prompt("Hvor mange?", "1");
-    await fetch('api/events/winners'+"/"+this.props.match.params.id+"/" + num, requestOptions);
+    await fetch('api/events/winners'+"/"+this.props.match.params.id+"/" + this.state.numWinners, requestOptions);
     //den skal have hvor mange vindere den skla have i 
     this.populateData();
     
