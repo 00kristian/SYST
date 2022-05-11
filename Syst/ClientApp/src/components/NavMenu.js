@@ -14,13 +14,12 @@ export function NavMenu(props) {
   //static displayName = NavMenu.name;
   const [collapsed, setCollapsed] = useState(true);
   const isAuthenticated = useIsAuthenticated();
+
   console.log(isAuthenticated);
 
   const toggleNavbar = () => {
     setCollapsed(!collapsed);
   }
-
- // setIsAuthenticated(useIsAuthenticated());
 
     return (
       
