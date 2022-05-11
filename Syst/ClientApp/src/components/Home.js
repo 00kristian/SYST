@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 import { InteractiveTable } from './InteractiveTable';
+import { LoginPage } from './LoginPage';
 
 export class Home extends Component {
     static displayName = Home.name;
@@ -15,9 +16,12 @@ export class Home extends Component {
     }
 
     render() {
+        
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : <InteractiveTable Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={this.state.events}>
+
+            :
+                <InteractiveTable Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={this.state.events}>
                 {event =>
                     <div>
                         <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host btn-right">Details</button></a></td>
@@ -25,16 +29,23 @@ export class Home extends Component {
                     </div>
                 }
             </InteractiveTable>
+             
+
 
         return (
+            <React.Fragment>
+            <AuthenticatedTemplate>
             <div>
-        
-
                 <h1 id="tabelLabel" >Upcoming Events
                     <button className="btn btn-primary btn-right" onClick={this.rerouteToEventCreation}>Create</button>
                 </h1>
                 {contents}
             </div>
+            </AuthenticatedTemplate>
+            <UnauthenticatedTemplate>
+            <LoginPage></LoginPage>
+            </UnauthenticatedTemplate>
+            </React.Fragment>
     );
     }
 

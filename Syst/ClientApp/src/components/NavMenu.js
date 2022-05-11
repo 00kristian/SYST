@@ -7,7 +7,7 @@ import Icon from '@mdi/react'
 import { mdiCloseOutline, mdiHome } from '@mdi/js'
 import { mdiCalendar } from '@mdi/js';
 import { mdiAccountGroup } from '@mdi/js';
-import { useIsAuthenticated } from "@azure/msal-react";
+import { AuthenticatedTemplate, useIsAuthenticated } from "@azure/msal-react";
 import { SignInButton } from "./SignInButton";
 
 export function NavMenu(props) {
@@ -23,18 +23,19 @@ export function NavMenu(props) {
  // setIsAuthenticated(useIsAuthenticated());
 
     return (
-      
+      <AuthenticatedTemplate>
+
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
-            <a href={"/Home"}>
+            <a href={"/"}>
               <img src={logo} alt="Logo" width={230}/>
             </a>
             <NavbarToggler onClick={toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!collapsed} navbar>
               <ul className="navbar-nav flex-grow">
                 <NavItem>
-                  <NavLink tag={Link} className="navitem text-dark" to="/Home"><Icon path={mdiHome} size={1}/> Home</NavLink>
+                  <NavLink tag={Link} className="navitem text-dark" to="/"><Icon path={mdiHome} size={1}/> Home</NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink tag={Link} className="navitem text-dark" to="/Events"><Icon path={mdiCalendar} size={1}/> Events</NavLink>
@@ -50,6 +51,9 @@ export function NavMenu(props) {
           </Container>
         </Navbar>
       </header>
+      </AuthenticatedTemplate>
+
+      
     );
   
 }
