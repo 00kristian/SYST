@@ -40,17 +40,7 @@ namespace Infrastructure
                 Date = e.Date.ToString("yyyy-MM-dd"),
                 Location = e.Location!,
                 Rating = e.Rating!,
-                WinnersId = e.Winners.Count() == 0 ? new List<CandidateDTO>() : e.Winners.Select(w => new CandidateDTO()
-                {
-                    Name = w.Name!,
-                    Id = w.Id,
-                    Email = w.Email!,
-                    CurrentDegree = w.CurrentDegree!,
-                    StudyProgram = w.StudyProgram!,
-                    University = w.University!,
-                    GraduationDate = w.GraduationDate.ToString("yyyy-MM-dd"),
-                    IsUpvoted = w.IsUpvoted
-                }).ToList(),
+                WinnersId = e.Winners.Count() == 0 ? new List<int>() : e.Winners.Select(w => w.Id).ToList(),
                 Candidates = e.Candidates != null ? e.Candidates.Select(c => new CandidateDTO(){
                     Name = c.Name!,
                     Id = c.Id,
@@ -195,21 +185,27 @@ namespace Infrastructure
             var e = await _context.Events.Include(e => e.Candidates).Where(e => e.Id == eventid).FirstOrDefaultAsync();
             if (e == default(Event)) return (Status.NotFound, new List<CandidateDTO>());
 
-            if (e.Winners.Count() != 0)
-            {
-                return (Status.Found, new List<CandidateDTO>());
+            if (e.Winners?.Count() != 0)
+            {   
+                return (Status.Found, e.Winners.Select(w => new CandidateDTO()
+                {
+                    Name = w.Name!,
+                    Id = w.Id,
+                    Email = w.Email!,
+                    CurrentDegree = w.CurrentDegree!,
+                    StudyProgram = w.StudyProgram!,
+                    University = w.University!,
+                    GraduationDate = w.GraduationDate.ToString("yyyy-MM-dd"),
+                }));
             }
 
-            var winners = e.Candidates?.OrderBy(c => Guid.NewGuid()).Take(numOfWinners);
+            var winners = e.Candidates?.OrderBy(c => Guid.NewGuid()).Take(numOfWinners).ToList();
 
-            if (winners.Count() == 0)
+            if (winners == null || winners.Count() == 0) 
             {
                 return (Status.NotFound, new List<CandidateDTO>());
             }
-            else
-            {
-                e.Winners = winners;
-            }
+            e.Winners = winners;
             
             await _context.SaveChangesAsync();
 

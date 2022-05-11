@@ -82,18 +82,22 @@ public class EventsController : ControllerBase
         if (deleted == Status.NotFound) return new NotFoundObjectResult(id);
         return deleted.ToActionResult();
     }
-    
-    //get a winner
+
     [ProducesResponseType(404)]
-    [ProducesResponseType(typeof(CandidateDTO), 200)]
+    [ProducesResponseType(typeof(IEnumerable<CandidateDTO>), 200)]
     [HttpGet("winner/{eventid}")]
-    public async Task<ActionResult<CandidateDTO>> GetWinner(int eventid)
+    public async Task<ActionResult<IEnumerable<CandidateDTO>>> GetWinners(int eventId, int numOfWinners)
     {
-        var res = await _repo.pickAWinner(eventid);
-        if (res.Item1 == Status.NotFound) {
-            return res.Item1.ToActionResult();
-        } else {
-            return new ActionResult<CandidateDTO>(res.Item2);
+        var result = await _repo.PickMultipleWinners(eventId, numOfWinners);
+
+        if (result.Item1 != Status.NotFound)
+        {
+            return result.Item1.ToActionResult();
+        }
+        else
+        {
+            return new ActionResult<IEnumerable<CandidateDTO>>(result.Item2);
         }
     }
+
 }
