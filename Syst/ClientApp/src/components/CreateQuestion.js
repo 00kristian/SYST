@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { ImageUpload } from './ImageUpload';
 import { Container, Row, Col } from 'react-grid';
 import { useHistory } from "react-router-dom";
+import Icon from "@mdi/react";
+import { mdiTrashCan } from '@mdi/js';
 
 export default CreateQuestion
 
@@ -89,7 +91,7 @@ function CreateQuestion(props) {
                         <hr/>
                         <div> {options?.map((option, index) => renderOption(option, index))} </div>
                         <button className="btn btn-primary" type="button" onClick={() => addOptionFields()}>+</button>
-                        <button className="btn btn-minus_question" type="button" onClick={() => removeOptionFields()}>-</button>
+                        <button className="btn btn-minus_question" type="button" onClick={() => removeOptionFields()}><Icon path={mdiTrashCan} size={1}/></button>
                     </Col>
                     <Col>
                         <h5 className="obj-top_padding">Select an image for the question</h5>
@@ -99,8 +101,8 @@ function CreateQuestion(props) {
                 </Row>
             </Container>
             <br /> <br />
-            <button onClick={() => history.push("/CreateQuiz/" + props.match.params.event_id + "/" + props.match.params.quiz_id)} className="btn btn-cancel">CANCEL</button>
-            <button className="btn btn-primary btn-right" onClick={() => confirm()}>SAVE QUESTION</button>
+            <button onClick={() => history.push("/CreateQuiz/" + props.match.params.event_id + "/" + props.match.params.quiz_id)} className="btn btn-secondary">Cancel</button>
+            <button className="btn btn-primary btn-right" onClick={() => confirm()}>Save question</button>
         </div>
     );
 }
