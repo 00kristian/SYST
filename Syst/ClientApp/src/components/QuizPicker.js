@@ -17,7 +17,7 @@ export class QuizPicker extends Component {
 
         return (
             <div>
-                <Dropdown className='dropdown-length' options={options} onChange={(opt) => changeFun(opt.value)} value={val}/>
+                <Dropdown className='dropdown-length txt-small' options={options} onChange={(opt) => changeFun(opt.value)} value={val}/>
             </div>
         );  
     }

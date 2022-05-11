@@ -20,7 +20,7 @@ export class Events extends Component {
                 {event =>
                     <div>
                         <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-secondary btn-right obj-right_margin">Details</button></a></td>
-                        <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">Host</button></td>
+                        <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">HOST</button></td>
                     </div>
                 }
             </InteractiveTable>;
@@ -37,7 +37,7 @@ export class Events extends Component {
         return (
             <div>
                 <h3 id="tabelLabel" >Upcoming Events
-                    <button className="btn btn-primary btn-right" onClick={this.rerouteToEventCreation}>Create</button>
+                    <button className="btn btn-primary btn-right" onClick={this.rerouteToEventCreation}>CREATE</button>
                 </h3>
                 {UpcomingContents}
                 <br/>

@@ -24,7 +24,7 @@ export class ImageUpload extends Component {
         if ((typeof currentimg === 'string' || currentimg instanceof String) && currentimg.length > 0) {
             return (
                 <div>
-                    <input type="file" onChange={(e) => uploadImg(e)} accept="image/png, image/jpeg"/> 
+                    <input className='txt-small' type="file" onChange={(e) => uploadImg(e)} accept="image/png, image/jpeg"/> 
                     <br/>
                     <br/>
                     <div id="imgdiv">
@@ -35,7 +35,7 @@ export class ImageUpload extends Component {
         }
         return (
             <div>
-                <input type="file" onChange={(e) => uploadImg(e)} accept="image/png, image/jpeg"/>  
+                <input className='txt-small' type="file" onChange={(e) => uploadImg(e)} accept="image/png, image/jpeg"/>  
                 <br/>  
                 <br/>  
                 <div id="imgdiv"></div>

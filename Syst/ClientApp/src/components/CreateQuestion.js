@@ -33,12 +33,12 @@ function CreateQuestion(props) {
                     <div className="div-option">
                     <h5>Option {indexToLetter[index]}</h5>
                         <div className="div-correct_answer"> 
-                            <label className="label-correct_answer">Correct answer?</label>
-                            <input checked={answer === option} type = "radio" name="correctAnswer" 
+                            <label className="label-correct_answer txt-small">Correct answer?</label>
+                            <input className="txt-small" checked={answer === option} type = "radio" name="correctAnswer" 
                                 onClick={(event) => setAnswer(option)}/>
                         </div>
                     </div>
-                    <input value={options[index]} className= "input-layout" onChange={(event) => {
+                    <input value={options[index]} className= "input-layout txt-small" onChange={(event) => {
                             let newOps = [...options];
                             newOps[index] = event.target.value;
                             setOptions(newOps);
@@ -85,7 +85,7 @@ function CreateQuestion(props) {
                         <br/>
                         <label>
                             <h5>Question Text</h5>
-                            <input value={representation} className="input-layout input-question representation-text" onChange={(event) => setRepresentation(event.target.value)} />
+                            <input value={representation} className="input-layout input-question representation-text txt-small" onChange={(event) => setRepresentation(event.target.value)} />
                         </label>
                         <br />
                         <hr/>
@@ -102,7 +102,7 @@ function CreateQuestion(props) {
             </Container>
             <br /> <br />
             <button onClick={() => history.push("/CreateQuiz/" + props.match.params.event_id + "/" + props.match.params.quiz_id)} className="btn btn-secondary">Cancel</button>
-            <button className="btn btn-primary btn-right" onClick={() => confirm()}>Save question</button>
+            <button className="btn btn-primary btn-right" onClick={() => confirm()}>SAVE QUESTION</button>
         </div>
     );
 }

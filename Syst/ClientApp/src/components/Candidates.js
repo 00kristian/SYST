@@ -32,8 +32,8 @@ export class Candidates extends Component {
                                 {close => (
                                     <div className="div-center">
                                         <p>Are you sure you want to delete this candidate?</p>
-                                        <button className="btn btn-primary btn-yes" onClick={()=> this.clickToDownvoteCandidate(candidate.id)}>Yes</button>
-                                        <button className="btn btn-primary"onClick={() => {close();}}>No</button>
+                                        <button className="btn btn-primary btn-yes" onClick={()=> this.clickToDownvoteCandidate(candidate.id)}>YES</button>
+                                        <button className="btn btn-primary"onClick={() => {close();}}>NO</button>
                                     </div>
                                 )}
                                 </Popup>
@@ -48,8 +48,8 @@ export class Candidates extends Component {
                                     <div>
                                         <p className="txt-popup">Are you sure you want to delete this candidate?</p>
                                         <div className="div-center">
-                                            <button className="btn btn-primary btn-yes btn-popup" onClick={()=> this.clickToDownvoteCandidate(candidate.id)}>Yes</button>
-                                            <button className="btn btn-primary btn-popup"onClick={() => {close();}}>No</button>
+                                            <button className="btn btn-primary btn-yes btn-popup" onClick={()=> this.clickToDownvoteCandidate(candidate.id)}>YES</button>
+                                            <button className="btn btn-primary btn-popup"onClick={() => {close();}}>NO</button>
                                         </div>
                                     </div>
                                 )}
