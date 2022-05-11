@@ -86,19 +86,17 @@ public class EventsController : ControllerBase
     //Picks winners
     [ProducesResponseType(404)]
     [ProducesResponseType(typeof(IEnumerable<CandidateDTO>), 200)]
-    [HttpGet("winner/{eventid}")]
+    [HttpGet("winners/{eventId}/{numOfWinners}")]
     public async Task<ActionResult<IEnumerable<CandidateDTO>>> GetWinners(int eventId, int numOfWinners)
     {
         var result = await _repo.PickMultipleWinners(eventId, numOfWinners);
 
-        if (result.Item1 != Status.NotFound)
+        if (result.Item1 == Status.NotFound)
         {
-            return result.Item1.ToActionResult();
+            return new NotFoundObjectResult(eventId);
         }
-        else
-        {
-            return new ActionResult<IEnumerable<CandidateDTO>>(result.Item2);
-        }
+        return new ActionResult<IEnumerable<CandidateDTO>>(result.Item2);
+        
     }
 
 }

@@ -184,9 +184,12 @@ namespace Infrastructure
         {
             var e = await _context.Events.Include(e => e.Candidates).Where(e => e.Id == eventid).FirstOrDefaultAsync();
             if (e == default(Event)) return (Status.NotFound, new List<CandidateDTO>());
-
-            if (e.Winners?.Count() != 0)
-            {   
+            
+            e.Winners ??= new List<Candidate>();
+            
+            if (e.Winners.Count() != 0)
+            {
+                
                 return (Status.Found, e.Winners.Select(w => new CandidateDTO()
                 {
                     Name = w.Name!,
@@ -200,7 +203,7 @@ namespace Infrastructure
             }
 
             var winners = e.Candidates?.OrderBy(c => Guid.NewGuid()).Take(numOfWinners).ToList();
-
+            
             if (winners == null || winners.Count() == 0) 
             {
                 return (Status.NotFound, new List<CandidateDTO>());
