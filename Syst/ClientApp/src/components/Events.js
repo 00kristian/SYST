@@ -1,23 +1,63 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { InteractiveTable } from './InteractiveTable';
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
+import { FetchOptions } from './FetchOptions';
 
-export class Events extends Component {
-    static displayName = Events.name;
+
+export default Events 
+
+function Events (props) {
+
+    const [upcomingEvents, setUpcomingEvents] = useState([]);
+    const [recentEvents, setRecentEvents] = useState([]);
+    const { instance, accounts } = useMsal();
+
+    useEffect(async () => {
+        const options = await FetchOptions.Options(instance, accounts, "GET");
+        const dataUpcoming = await fetch('api/eventsquery/upcoming', options)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+        
+        const dataRecent = await fetch('api/eventsquery/recent', options)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+
+        console.log(dataUpcoming);
+        console.log(dataRecent);
+
+        setRecentEvents(dataRecent);
+        setUpcomingEvents(dataUpcoming);
+    }, []);
+
+
+
+
     
-    constructor(props) {
-        super(props);
-        this.state = { recent: [], upcoming: [], loading: true };
+    const rerouteToEventCreation = async () => {
+        let event = {
+            "name": "new event",
+            "date":  new Date().toISOString().split('T')[0],
+            "location": "location"
+        };
+
+        let options = await FetchOptions.Options(instance, accounts, "POST");
+        options.headers ={
+            ...options.headers,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        };
+        options.body = JSON.stringify(event);
+
+
+         await fetch('api/events', options);
+/* 
+        const { history } = this.props;
+        history.push("/CreateEvent/"+id); */
     }
 
-    componentDidMount() {
-        this.populateData();
-    }
-
-    render() {
-        let UpcomingContents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : <InteractiveTable Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={this.state.upcoming}>
+    
+        let UpcomingContents =
+             <InteractiveTable Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={upcomingEvents}>
                 {event =>
                     <div>
                         <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-secondary btn-right obj-right_margin">Details</button></a></td>
@@ -25,9 +65,8 @@ export class Events extends Component {
                     </div>
                 }
             </InteractiveTable>;
-        let RecentContents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : <InteractiveTable SearchBar={true} PageSize={7} Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={this.state.recent}>
+        let RecentContents = 
+             <InteractiveTable SearchBar={true} PageSize={7} Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={recentEvents}>
             {event =>
                 <div>
                     <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-secondary btn-right">Details</button></a></td>
@@ -39,7 +78,7 @@ export class Events extends Component {
             <AuthenticatedTemplate>
             <div>
                 <h3 id="tabelLabel" >Upcoming Events
-                    <button className="btn btn-primary btn-right" onClick={this.rerouteToEventCreation}>CREATE</button>
+                    <button className="btn btn-primary btn-right" onClick= {()=>rerouteToEventCreation()}>CREATE</button>
                 </h3>
                 {UpcomingContents}
                 <br/>
@@ -49,35 +88,8 @@ export class Events extends Component {
                 </div>
             </AuthenticatedTemplate>
         );
-    }
+    
 
-    rerouteToEventCreation = async () => {
-        let event = {
-            "name": "new event",
-            "date":  new Date().toISOString().split('T')[0],
-            "location": "location"
-        };
 
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(event)
-        };
-        let id = await fetch('api/events', requestOptions)
-          .then(response => response.json())
-
-        const { history } = this.props;
-        history.push("/CreateEvent/"+id);
-    }
-
-    async populateData() {
-        const response1 = await fetch('api/events');
-        const data1 = await response1.json();
-        const response2 = await fetch('api/eventsquery/upcoming');
-        const data2 = await response2.json();
-        this.setState({ recent: data1, upcoming: data2, loading: false });
-    }
+    
 }

@@ -37,10 +37,6 @@ function Home(props) {
 
        await fetch('api/events', options);
       
-       /*  let id = await fetch('api/events', requestOptions)
-        .then(response => response.json())
-        const { history } = this.props;
-        history.push("/CreateEvent/"+id); */
     }
 
 
