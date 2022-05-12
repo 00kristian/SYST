@@ -2,7 +2,6 @@ import { Events } from './components/Events';
 import { EventRating } from './components/EventRating';
 import  Home  from './components/Home';
 import Candidates from './components/Candidates';
-import { ConfirmationCandidate} from "./components/ConfirmationCandidate";
 import { EventDetail } from './components/EventDetail';
 import CreateQuiz from './components/CreateQuiz';
 import CreateQuestion from './components/CreateQuestion';
@@ -28,7 +27,6 @@ export default class App extends Component {
 
           <Route path='/CandidateQuiz/:event_id/:quiz_id' component={CandidateQuiz} />
           <Route path='/CandidateInformation' component={CandidateInformation} />
-          <Route path='/ConformationCandidate' component={ConfirmationCandidate} />
 
           <div>
           <NavMenu />
@@ -38,7 +36,6 @@ export default class App extends Component {
             <Route path='/CreateEvent/:id' component={CreateEvent} />
             <Route path='/Events' component={Events} />
             <Route path='/EventRating/:id' component={EventRating} />
-            <Route path='/Confirmation' component={ConfirmationCandidate} />
 
             <Route path='/CreateQuiz/:event_id/:id' component={CreateQuiz} />
             <Route path='/CreateQuestion/:event_id/:quiz_id/:id' component={CreateQuestion} />
