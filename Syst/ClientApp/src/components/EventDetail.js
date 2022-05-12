@@ -125,7 +125,7 @@ export class EventDetail extends Component {
         <AuthenticatedTemplate>
         <div>
             {contents}
-          {contents2}
+      
       </div>
         </AuthenticatedTemplate>
     );
