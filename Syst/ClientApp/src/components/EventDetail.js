@@ -12,7 +12,6 @@ export class EventDetail extends Component {
   constructor(props) {
     super(props);
     this.state = { event: Object, loading: true, winnerNames: "", show:  true, numWinners : 1 };
-
   }
 
   componentDidMount() {
