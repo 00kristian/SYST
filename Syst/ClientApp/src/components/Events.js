@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { InteractiveTable } from './InteractiveTable';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export class Events extends Component {
     static displayName = Events.name;
@@ -35,6 +36,7 @@ export class Events extends Component {
         </InteractiveTable>;
 
         return (
+            <AuthenticatedTemplate>
             <div>
                 <h3 id="tabelLabel" >Upcoming Events
                     <button className="btn btn-primary btn-right" onClick={this.rerouteToEventCreation}>CREATE</button>
@@ -44,7 +46,8 @@ export class Events extends Component {
                 <h3 className="obj-top_padding">All Events
                 </h3>
                 {RecentContents}
-            </div>
+                </div>
+            </AuthenticatedTemplate>
         );
     }
 

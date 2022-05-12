@@ -7,7 +7,6 @@ import { EventDetail } from './components/EventDetail';
 import CreateQuiz from './components/CreateQuiz';
 import CreateQuestion from './components/CreateQuestion';
 import './custom.css'
-import { CreateEventOld } from './components/CreateEventOld';
 import CreateEvent from './components/CreateEvent';
 import { CandidateQuiz } from './components/CandidateQuiz';
 import { CandidateInformation } from './components/CandidateInformation';

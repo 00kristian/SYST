@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-grid';
 import { useHistory } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiTrashCan } from '@mdi/js';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export default CreateQuestion
 
@@ -28,6 +29,7 @@ function CreateQuestion(props) {
 
     function renderOption(option, index) {
         return (
+            <AuthenticatedTemplate>
             <div key={index}>
                 <label>
                     <div className="div-option">
@@ -45,7 +47,8 @@ function CreateQuestion(props) {
                         }}>
                     </input>
                 </label>
-            </div>
+                </div>
+            </AuthenticatedTemplate>
         )
     }
 
@@ -77,6 +80,7 @@ function CreateQuestion(props) {
     }
 
     return (
+        <AuthenticatedTemplate>
         <div className="page-padding">
             <Container>
                 <Row>
@@ -104,5 +108,6 @@ function CreateQuestion(props) {
             <button onClick={() => history.push("/CreateQuiz/" + props.match.params.event_id + "/" + props.match.params.quiz_id)} className="btn btn-secondary">Cancel</button>
             <button className="btn btn-primary btn-right" onClick={() => confirm()}>SAVE QUESTION</button>
         </div>
+        </AuthenticatedTemplate>       
     );
 }

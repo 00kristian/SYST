@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export class EventRating extends Component {
     static displayName = EventRating.name;
@@ -40,7 +41,8 @@ render() {
         ];
 
 
- return (
+    return (
+     <AuthenticatedTemplate>
             <div>
                 <h2 className='div-center'>Event Rating</h2>
                 <br/>
@@ -60,6 +62,7 @@ render() {
                 <button onClick={() => this.submitRating()} className='btn btn-primary btn-right'>SUBMIT</button>
                 {this.state.isFilledOut ? <p></p> : <p className='txt-red txt-right_padding'>Please select an option for each question.</p>}
             </div>
+        </AuthenticatedTemplate>
         );
     }
 

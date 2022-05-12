@@ -9,6 +9,7 @@ import { mdiCalendar } from '@mdi/js';
 import { mdiAccountGroup } from '@mdi/js';
 import { useIsAuthenticated } from "@azure/msal-react";
 import { SignInButton } from "./SignInButton";
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export function NavMenu(props) {
   //static displayName = NavMenu.name;
@@ -23,7 +24,7 @@ export function NavMenu(props) {
  // setIsAuthenticated(useIsAuthenticated());
 
     return (
-      
+     // <AuthenticatedTemplate>
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
@@ -54,7 +55,8 @@ export function NavMenu(props) {
             </Collapse>
           </Container>
         </Navbar>
-      </header>
+       </header>
+    // </AuthenticatedTemplate>
     );
   
 }
