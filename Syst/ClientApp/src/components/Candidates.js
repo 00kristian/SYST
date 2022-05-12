@@ -12,9 +12,10 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/
 
 export default Candidates
 
-function Candidates(props) {
+function Candidates() {
     const [candidates, setCandidates] = useState([]);
     const { instance, accounts } = useMsal();
+
 
     useEffect(async () => {
         const options = await FetchOptions.Options(instance, accounts, "GET");
@@ -24,26 +25,25 @@ function Candidates(props) {
         setCandidates(data);
     }, []);
 
+   
+
     const clickToDownvoteCandidate = async (id) => {
-        await fetch('api/candidates/' + id, {
-            method: 'DELETE'
-        });
+        const options = await FetchOptions.Options(instance, accounts, "DELETE");
+
+        await fetch('api/candidates/' + id, options);
     }
 
-    const getCandidateById = async (id) =>{
+/*     const getCandidateById = async (id) =>{
         await fetch('api/candidates/' + id, {
             method: 'GET'
         })
     }
-    
+     */
     const clickToUpvoteCandidate =  async (id) => {
+        const options = await FetchOptions.Options(instance, accounts, "PUT");
+        console.log (options);
         
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-           
-        };
-        await fetch("api/candidates"+"/upvote/"+ id, requestOptions)
+        await fetch("api/candidates"+"/upvote/"+ id, options)
     } 
 
     let contents = <InteractiveTable ExportName="All_Candidates.csv" SearchBar={true} PageSize={8} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={candidates}>
@@ -57,7 +57,7 @@ function Candidates(props) {
                             {close => (
                                 <div className="div-center">
                                     <p>Are you sure you want to delete this candidate?</p>
-                                    <button className="btn btn-primary btn-yes" onClick={()=> clickToDownvoteCandidate(candidate.id)}>Yes</button>
+                                    <button className="btn btn-primary btn-yes" onClick={()=>{clickToDownvoteCandidate(candidate.id); close();}}>Yes</button>
                                     <button className="btn btn-primary"onClick={() => {close();}}>No</button>
                                 </div>
                             )}
@@ -73,7 +73,7 @@ function Candidates(props) {
                                 <div>
                                     <p className="txt-popup">Are you sure you want to delete this candidate?</p>
                                     <div className="div-center">
-                                        <button className="btn btn-primary btn-yes btn-popup" onClick={()=> clickToDownvoteCandidate(candidate.id)}>Yes</button>
+                                        <button className="btn btn-primary btn-yes btn-popup" onClick={()=>{ clickToDownvoteCandidate(candidate.id); close();}}>Yes</button>
                                         <button className="btn btn-primary btn-popup"onClick={() => {close();}}>No</button>
                                     </div>
                                 </div>
