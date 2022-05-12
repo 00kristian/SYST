@@ -18,6 +18,7 @@ public class SystematicContext : DbContext, ISystematicContext
 
     public SystematicContext(DbContextOptions<SystematicContext> options) : base(options) { }
 
+    
     //Creates our relationships
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 const { env } = require('process');
+
 
 export class ImageUpload extends Component {
     static Uploader(questionid, currentimg) {
@@ -23,6 +25,7 @@ export class ImageUpload extends Component {
         
         if ((typeof currentimg === 'string' || currentimg instanceof String) && currentimg.length > 0) {
             return (
+                <AuthenticatedTemplate>
                 <div>
                     <input className='txt-small' type="file" onChange={(e) => uploadImg(e)} accept="image/png, image/jpeg"/> 
                     <br/>
@@ -30,16 +33,19 @@ export class ImageUpload extends Component {
                     <div id="imgdiv">
                         <img width={350} src={path + "/api/Image/" + currentimg}></img>
                     </div>
-                </div>
+                    </div>
+                </AuthenticatedTemplate>
             )
         }
         return (
+            <AuthenticatedTemplate>
             <div>
                 <input className='txt-small' type="file" onChange={(e) => uploadImg(e)} accept="image/png, image/jpeg"/>  
                 <br/>  
                 <br/>  
                 <div id="imgdiv"></div>
-            </div>
+                </div>
+            </AuthenticatedTemplate>
         );  
     }
 }

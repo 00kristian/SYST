@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css'
 
@@ -16,9 +16,11 @@ export class QuizPicker extends Component {
         });
 
         return (
+            <AuthenticatedTemplate>
             <div>
                 <Dropdown className='dropdown-length txt-small' options={options} onChange={(opt) => changeFun(opt.value)} value={val}/>
             </div>
+            </AuthenticatedTemplate>
         );  
     }
 }

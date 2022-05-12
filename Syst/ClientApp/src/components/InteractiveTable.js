@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Pager } from "./Pager";
 import ExportCandidates from './ExportCandidates';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export function InteractiveTable(props) {
     const _content = props.Content;
@@ -55,6 +56,7 @@ export function InteractiveTable(props) {
         (c => c);
 
     return (
+        <AuthenticatedTemplate>
         <div>
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
@@ -96,6 +98,7 @@ export function InteractiveTable(props) {
             }
 
             {props.ExportName != null ? <ExportCandidates Name={props.ExportName} Candidates={filter(_content)}></ExportCandidates> : <span></span>}
-        </div>
+            </div>
+        </AuthenticatedTemplate>
     );
 }
