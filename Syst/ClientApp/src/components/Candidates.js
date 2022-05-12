@@ -17,6 +17,7 @@ function Candidates(props) {
     const { instance, accounts } = useMsal();
     const request = {
         ...loginRequest,
+        scopes: [ "api://18686055-5912-4c57-a1c9-0bb76dde9d96/API.Access"],
         account: accounts[0]
     };
     
@@ -30,6 +31,7 @@ function Candidates(props) {
         const options = {
             method: "GET",
             headers: {
+                accept: 'text/plain',
                 Authorization : bearer
             }
         };
@@ -38,11 +40,6 @@ function Candidates(props) {
         const data = await fetch('api/candidates', options)
         .then(response => response.json())
         .catch(error => console.log(error));
-        console.log(options);
-        console.log(accessToken);
-        console.log(bearer);
-        console.log(data);
-        console.log("swag");
         setCandidates(data);
     }, []);
 
