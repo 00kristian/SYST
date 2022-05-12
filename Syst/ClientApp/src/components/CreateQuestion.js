@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { ImageUpload } from './ImageUpload';
 import { Container, Row, Col } from 'react-grid';
 import { useHistory } from "react-router-dom";
+import Icon from "@mdi/react";
+import { mdiTrashCan } from '@mdi/js';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export default CreateQuestion
 
@@ -26,24 +29,26 @@ function CreateQuestion(props) {
 
     function renderOption(option, index) {
         return (
+            <AuthenticatedTemplate>
             <div key={index}>
                 <label>
                     <div className="div-option">
                     <h5>Option {indexToLetter[index]}</h5>
                         <div className="div-correct_answer"> 
-                            <label className="label-correct_answer">Correct answer?</label>
-                            <input checked={answer === option} type = "radio" name="correctAnswer" 
+                            <label className="label-correct_answer txt-small">Correct answer?</label>
+                            <input className="txt-small" checked={answer === option} type = "radio" name="correctAnswer" 
                                 onClick={(event) => setAnswer(option)}/>
                         </div>
                     </div>
-                    <input value={options[index]} className= "input-layout" onChange={(event) => {
+                    <input value={options[index]} className= "input-layout txt-small" onChange={(event) => {
                             let newOps = [...options];
                             newOps[index] = event.target.value;
                             setOptions(newOps);
                         }}>
                     </input>
                 </label>
-            </div>
+                </div>
+            </AuthenticatedTemplate>
         )
     }
 
@@ -75,6 +80,7 @@ function CreateQuestion(props) {
     }
 
     return (
+        <AuthenticatedTemplate>
         <div className="page-padding">
             <Container>
                 <Row>
@@ -83,13 +89,13 @@ function CreateQuestion(props) {
                         <br/>
                         <label>
                             <h5>Question Text</h5>
-                            <input value={representation} className="input-layout input-question representation-text" onChange={(event) => setRepresentation(event.target.value)} />
+                            <input value={representation} className="input-layout input-question representation-text txt-small" onChange={(event) => setRepresentation(event.target.value)} />
                         </label>
                         <br />
                         <hr/>
                         <div> {options?.map((option, index) => renderOption(option, index))} </div>
                         <button className="btn btn-primary" type="button" onClick={() => addOptionFields()}>+</button>
-                        <button className="btn btn-minus_question" type="button" onClick={() => removeOptionFields()}>-</button>
+                        <button className="btn btn-minus_question" type="button" onClick={() => removeOptionFields()}><Icon path={mdiTrashCan} size={1}/></button>
                     </Col>
                     <Col>
                         <h5 className="obj-top_padding">Select an image for the question</h5>
@@ -99,8 +105,9 @@ function CreateQuestion(props) {
                 </Row>
             </Container>
             <br /> <br />
-            <button onClick={() => history.push("/CreateQuiz/" + props.match.params.event_id + "/" + props.match.params.quiz_id)} className="btn btn-cancel">Cancel</button>
-            <button className="btn btn-primary btn-right" onClick={() => confirm()}>Save question</button>
+            <button onClick={() => history.push("/CreateQuiz/" + props.match.params.event_id + "/" + props.match.params.quiz_id)} className="btn btn-secondary">Cancel</button>
+            <button className="btn btn-primary btn-right" onClick={() => confirm()}>SAVE QUESTION</button>
         </div>
+        </AuthenticatedTemplate>       
     );
 }

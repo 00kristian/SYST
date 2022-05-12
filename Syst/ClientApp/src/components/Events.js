@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { InteractiveTable } from './InteractiveTable';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export class Events extends Component {
     static displayName = Events.name;
@@ -19,8 +20,8 @@ export class Events extends Component {
             : <InteractiveTable Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={this.state.upcoming}>
                 {event =>
                     <div>
-                        <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host btn-right">Details</button></a></td>
-                        <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">Host</button></td>
+                        <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-secondary btn-right obj-right_margin">Details</button></a></td>
+                        <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">HOST</button></td>
                     </div>
                 }
             </InteractiveTable>;
@@ -29,22 +30,24 @@ export class Events extends Component {
             : <InteractiveTable SearchBar={true} PageSize={7} Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={this.state.recent}>
             {event =>
                 <div>
-                    <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host btn-right">Details</button></a></td>
+                    <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-secondary btn-right">Details</button></a></td>
                 </div>
             }
         </InteractiveTable>;
 
         return (
+            <AuthenticatedTemplate>
             <div>
                 <h3 id="tabelLabel" >Upcoming Events
-                    <button className="btn btn-primary btn-right" onClick={this.rerouteToEventCreation}>Create</button>
+                    <button className="btn btn-primary btn-right" onClick={this.rerouteToEventCreation}>CREATE</button>
                 </h3>
                 {UpcomingContents}
                 <br/>
                 <h3 className="obj-top_padding">All Events
                 </h3>
                 {RecentContents}
-            </div>
+                </div>
+            </AuthenticatedTemplate>
         );
     }
 

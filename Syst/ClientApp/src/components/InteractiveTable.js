@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Pager } from "./Pager";
 import ExportCandidates from './ExportCandidates';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export function InteractiveTable(props) {
     const _content = props.Content;
@@ -55,6 +56,7 @@ export function InteractiveTable(props) {
         (c => c);
 
     return (
+        <AuthenticatedTemplate>
         <div>
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
@@ -62,18 +64,18 @@ export function InteractiveTable(props) {
                     {props.Columns.map(col =>
                         <th>
                             <button className="btn" onClick={() => sortContent(col[1])}>
-                                <h5>
+                                <p className="txt-secondary">
                                 {col[0]} 
                                 {sortedField == col[1] ? (
                                     descendingSort ? " ▲" : " ▼"
                                     ) : ""}
-                                </h5> 
+                                </p> 
                             </button> 
                         </th>
                     )}
                     {props.SearchBar ?
                         <th>
-                            <input value={search} placeholder="Search" onChange={(e) => setSearch(e.target.value)}></input>
+                            <input value={search} placeholder="Search" onChange={(e) => setSearch(e.target.value)} className="txt-primary txt-small"></input>
                         </th>
                         :
                         <span></span>
@@ -84,7 +86,7 @@ export function InteractiveTable(props) {
                 {filter(slc(_content)).map(row =>
                     <tr key={row.id}>
                         {props.Columns.map(col =>
-                            <td> {row[col[1]]} </td>
+                            <td className="txt-small"> {row[col[1]]} </td>
                         )}
                     {props.children != null ? props.children(row) : <span> </span>}
                     </tr>)}
@@ -96,6 +98,7 @@ export function InteractiveTable(props) {
             }
 
             {props.ExportName != null ? <ExportCandidates Name={props.ExportName} Candidates={filter(_content)}></ExportCandidates> : <span></span>}
-        </div>
+            </div>
+        </AuthenticatedTemplate>
     );
 }

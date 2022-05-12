@@ -105,7 +105,7 @@ public class CandidateRepositoryTests{
         Assert.Equal(candidate1.StudyProgram, actual.Item2.StudyProgram);
 
         Assert.Equal(candidate1.University, actual.Item2.University);
-        Assert.Equal(candidate1.GraduationDate.ToString("yyyy-MM-dd"), actual.Item2.GraduationDate);
+        Assert.Equal(candidate1.GraduationDate.ToString("yyyy-MM"), actual.Item2.GraduationDate);
         Assert.Equal(candidate1.IsUpvoted, actual.Item2.IsUpvoted);
 
     }

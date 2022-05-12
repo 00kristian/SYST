@@ -2,9 +2,11 @@ using Xunit;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Core;
+using NuGet.Frameworks;
 
 namespace Infrastructure.Tests;
 
@@ -38,8 +40,8 @@ public class EventRepositoryTests {
         candidate2 = new Candidate {Name = "Maj Frost Jensen", Email = "mfje@itu.dk", CurrentDegree = "MSc", StudyProgram = "Computer Science", University = "CBS", GraduationDate = new DateTime{}, IsUpvoted = true};
         candidate3 = new Candidate {Name = "Gustav Svensson", Email = "gs@ku.dk", CurrentDegree = "BSc", StudyProgram = "Law", University = "KU", GraduationDate = new DateTime{}, IsUpvoted = true};
 
-        event1 = new Event{Name="Workshop event", Date = new DateTime{}, Location="ITU", Candidates = new List<Candidate>{candidate1, candidate2, candidate3}, Quiz = new Quiz{}, Rating=4.0, Winner=null};
-        event2 = new Event{Name="Swagger event", Date = new DateTime{}, Location="Scrollbar", Candidates = new List<Candidate>{}, Quiz = new Quiz{}, Rating=7.0, Winner=null};
+        event1 = new Event{Name="Workshop event", Date = new DateTime{}, Location="ITU", Candidates = new List<Candidate>{candidate1, candidate2, candidate3}, Quiz = new Quiz{}, Rating=4.0, Winners=new List<Candidate>()};
+        event2 = new Event{Name="Swagger event", Date = new DateTime{}, Location="Scrollbar", Candidates = new List<Candidate>{}, Quiz = new Quiz{}, Rating=7.0, Winners=new List<Candidate>()};
 
         context.Events.AddRange(
             event1,
@@ -116,8 +118,8 @@ public class EventRepositoryTests {
 
         //assert
         Assert.Collection(events,
-            firstEvent => Assert.Equal(new EventDTO(1,"Workshop event", (new DateTime{}).ToString("yyyy-MM-dd"), "ITU", null!, new QuizDTO {Id = 1}, 4.0, null!, 0), firstEvent),
-            SecondEvent => Assert.Equal(new EventDTO( 2, "Swagger event", (new DateTime{}).ToString("yyyy-MM-dd"), "Scrollbar", null!, new QuizDTO{ Id = 2}, 7.0,  null!, 0), SecondEvent )
+            firstEvent => Assert.Equal(new EventDTO(1,"Workshop event", (new DateTime{}).ToString("yyyy-MM-dd"), "ITU", null!, new QuizDTO {Id = 1}, 4.0, null!, null!), firstEvent),
+            SecondEvent => Assert.Equal(new EventDTO( 2, "Swagger event", (new DateTime{}).ToString("yyyy-MM-dd"), "Scrollbar", null!, new QuizDTO{ Id = 2}, 7.0,  null!, null!), SecondEvent )
         );
     }
 
@@ -230,6 +232,52 @@ public class EventRepositoryTests {
     }
 
     [Fact]
+    public async void pick_one_winner_from_candidates()
+    {
+        var winners = await _repo.PickMultipleWinners(event1.Id, 1);
+
+        Assert.Equal(Status.Found, winners.Item1);
+        Assert.True(winners.Item2.Count() == 1);
+        Assert.Contains(event1.Candidates.ToList(), candidate => candidate.Id == winners.Item2.First().Id);
+    }
+
+    [Fact]
+    public async void pick_multiple_winners_correctly()
+    {
+        var winners = await _repo.PickMultipleWinners(event1.Id, 3);
+        
+        Assert.Equal(Status.Found, winners.Item1);
+        Assert.True(winners.Item2.ToList().Count() == 3);
+        Assert.Contains(event1.Candidates, candidate => candidate.Id == winners.Item2.ElementAt(0).Id);
+        
+        Assert.True(winners.Item2.ElementAt(0).Id != winners.Item2.ElementAt(1).Id && winners.Item2.ElementAt(0).Id != winners.Item2.ElementAt(2).Id && winners.Item2.ElementAt(1).Id != winners.Item2.ElementAt(2).Id);
+    }
+
+    [Fact]
+    public async void winners_already_picked()
+    {
+        var winners1 = await _repo.PickMultipleWinners(event1.Id, 2);
+        var winners2 = await _repo.PickMultipleWinners(event1.Id, 2);
+        
+        Assert.Equal(Status.Found, winners1.Item1);
+        Assert.Equal(Status.Found, winners2.Item1);
+        
+        Assert.Collection(winners1.Item2,
+            firstWinner => Assert.Equal(winners2.Item2.ElementAt(0), firstWinner),
+            SecondWinner => Assert.Equal(winners2.Item2.ElementAt(1), SecondWinner)
+        );
+    }
+
+    [Fact]
+    public async void pick_winners_no_candidates_available()
+    {
+        var winners = await _repo.PickMultipleWinners(event2.Id, 1);
+        
+        Assert.Equal(Status.NotFound, winners.Item1);
+        Assert.True(winners.Item2.ToList().Count() == 0);
+    }
+
+    /*[Fact]
     public async void pick_winner_returns_correct_winner()
     {
         // Act
@@ -260,6 +308,6 @@ public class EventRepositoryTests {
         
         //Assert
         Assert.Equal(Status.NotFound, winner.Item1);
-    }
+    }*/
 
 }

@@ -15,8 +15,8 @@ public interface IEventRepository
         Task<IReadOnlyCollection<EventDTO>> ReadRecent();
 
         Task<Status> UpdateQuiz(int eventid, int quizid);
-
-        Task<(Status, CandidateDTO)> pickAWinner(int eventid);
+        
+        Task<(Status, IEnumerable<CandidateDTO>)> PickMultipleWinners(int eventId, int numOfWinners);
 
         Task<Status> UpdateRating(int id, double rating);
 

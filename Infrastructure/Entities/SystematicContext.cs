@@ -18,6 +18,7 @@ public class SystematicContext : DbContext, ISystematicContext
 
     public SystematicContext(DbContextOptions<SystematicContext> options) : base(options) { }
 
+    
     //Creates our relationships
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -70,6 +71,6 @@ public class SystematicContext : DbContext, ISystematicContext
             c => c.ToList())
         );
 
-        modelBuilder.Entity<Event>().HasOne<Candidate>(e => e.Winner);
+        modelBuilder.Entity<Event>().HasMany<Candidate>(e => e.Winners);
     }
 }

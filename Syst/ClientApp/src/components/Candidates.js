@@ -9,6 +9,7 @@ import {FetchOptions} from './FetchOptions';
 import { loginRequest } from "../authConfig";
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 
+
 export default Candidates
 
 function Candidates(props) {
@@ -20,7 +21,6 @@ function Candidates(props) {
         const data = await fetch('api/candidates', options)
         .then(response => response.json())
         .catch(error => console.log(error));
-
         setCandidates(data);
     }, []);
 
