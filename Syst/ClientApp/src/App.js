@@ -25,7 +25,7 @@ export default class App extends Component {
     return (
       <div>
         <Switch>
-
+ 
           <Route path='/CandidateQuiz/:event_id/:quiz_id' component={CandidateQuiz} />
           <Route path='/CandidateInformation' component={CandidateInformation} />
           <Route path='/ConformationCandidate' component={ConfirmationCandidate} />
