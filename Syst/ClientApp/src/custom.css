@@ -180,14 +180,20 @@
     display:flex;
     justify-content: center;
     flex-direction: column;
-
 }
 
+.div-right{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 2px;
+    margin-right: 5px;
+}
 /*---------------Images---------------*/
 
 .img-host-logo {
     padding:1%;
 }
+
 
 /*---------------Inputs---------------*/
 

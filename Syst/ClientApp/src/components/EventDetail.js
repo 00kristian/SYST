@@ -55,9 +55,11 @@ export class EventDetail extends Component {
               ) 
             }
             </div>
-            <button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >HOST</button>
-            <button onClick={() => editEvent()} className="btn btn-tertiary btn-right obj-space">Edit Event</button>
-            <button onClick={() => editRating()} className="btn btn-tertiary btn-right">Edit Rating</button>
+              <div className='div-right'>
+                <button className = "btn btn-primary" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >HOST</button>
+                <button onClick={() => editEvent()} className="btn btn-tertiary obj-space">Edit Event</button>
+                <button onClick={() => editRating()} className="btn btn-tertiary">Edit Rating</button>
+              </div>
             <br/>
             <h4>PARTICIPANTS</h4>
             <InteractiveTable ExportName={event.name + ".csv"} SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={event.candidates}>

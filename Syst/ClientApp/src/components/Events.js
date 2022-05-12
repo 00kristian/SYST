@@ -19,7 +19,7 @@ export class Events extends Component {
             ? <p><em>Loading...</em></p>
             : <InteractiveTable Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={this.state.upcoming}>
                 {event =>
-                    <div>
+                    <div className='div-right'>
                         <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-secondary btn-right obj-right_margin">Details</button></a></td>
                         <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">HOST</button></td>
                     </div>
@@ -29,7 +29,7 @@ export class Events extends Component {
             ? <p><em>Loading...</em></p>
             : <InteractiveTable SearchBar={true} PageSize={7} Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={this.state.recent}>
             {event =>
-                <div>
+                <div className='div-right'>
                     <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-secondary btn-right">Details</button></a></td>
                 </div>
             }

@@ -50,7 +50,7 @@ function Candidates(props) {
             {candidate =>
                 <div>
                     {candidate.isUpvoted ?(
-                    <td>
+                    <div className="div-right">
                         <td><button className="btn btn-right btn-green" onClick={() => clickToUpvoteCandidate(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
                         <td>
                             <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
@@ -63,10 +63,10 @@ function Candidates(props) {
                             )}
                             </Popup>
                         </td>
-                    </td>
+                    </div>
                     ) : (
-                    <td>
-                            <td><button className="btn btn-primary btn-right" onClick={() => clickToUpvoteCandidate(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
+                    <div className="div-right">
+                        <td><button className="btn btn-primary btn-right" onClick={() => clickToUpvoteCandidate(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
                         <td>
                             <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
                             {close => (
@@ -80,7 +80,7 @@ function Candidates(props) {
                             )}
                             </Popup>
                         </td>
-                    </td>
+                    </div>
                     )}
                 </div>
             }
