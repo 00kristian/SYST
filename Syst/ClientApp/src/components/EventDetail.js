@@ -11,7 +11,7 @@ export class EventDetail extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { event: Object, loading: true, winnerName: "", show:  true };
+    this.state = { event: Object, loading: true, winnerNames: "", show:  true, numWinners : 1 };
 
   }
 
@@ -19,13 +19,13 @@ export class EventDetail extends Component {
     this.populateData();
   }
   
-  static renderEvent(event, editEvent,editRating, deleteEvent, pickAWinner, winnerName, show, upvote, downvote) {
+  static renderEvent(event, editEvent,editRating, deleteEvent, pickWinners, winnerNames, show, upvote, downvote) {
 
     return (
         <div>
             <h1>{event.name}</h1>
             <h3>{event.location}, {event.date}</h3>
-            <h4 className='txt-left'>WINNER: {winnerName}</h4>
+            <h4 className='txt-left'>WINNER: {winnerNames}</h4>
             <h4 className='txt-right'>RATING: {event.rating}</h4>
             <br/>
             <br/>
@@ -97,19 +97,38 @@ export class EventDetail extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : EventDetail.renderEvent(this.state.event, this.editEvent,this.editRating, this.deleteEvent, this.pickAWinner, this.state.winnerName, this.state.show, this.clickToUpvoteCandidate, this.clickToDownvoteCandidate);
-
+      : EventDetail.renderEvent(this.state.event, this.editEvent,this.editRating, this.deleteEvent, this.pickWinners, this.state.winnerNames, this.state.show, this.clickToUpvoteCandidate, this.clickToDownvoteCandidate);
+      
+      let contents2 = this.state.loading
+      ? <span></span>
+      : <div>
+          {this.state.winnerNames != "" ? (
+              <div></div>
+          ) : (
+              <div>
+                  <Popup className="popup-overlay" trigger = {<button className="btn btn-primary">Generate winners</button>
+                  } modal nested>
+                      {close => (
+                          <div>
+                              <p className="txt-popup">How many winners would you like to generate?</p>
+                              <div className="div-center">
+    
+                                  <input value={this.state.numWinners} onChange={(e) => this.setState({numWinners : e.target.value}) } type="number" min="1" max={this.state.event.candidates.length} step="1" />
+                                  <br/>
+                                  <br/>
+                                  <button className="btn btn-primary" onClick={() => this.pickWinners(this.state.numWinners)}>OK</button>
+                              </div>
+                          </div>
+                      )}
+                  </Popup>
+              </div>
+          )}
+      </div>
 
     return (
       <div>
             {contents}
-        {this.state.winnerName != null  ? (
-              <div></div>
-            ) : (
-              <div>
-                        <button className="btn btn-primary" onClick={() => this.pickAWinner()}>GENERATE A WINNER</button>   
-              </div>
-            )}
+          {contents2}
       </div>
     );
   }
@@ -127,9 +146,9 @@ export class EventDetail extends Component {
   async populateData() {
     const response = await fetch('api/events/' + this.props.match.params.id);
     const data = await response.json();
-    let winnerName = await this.displayWinner(data.winnerId);
+    let winnerNames = await this.displayWinners(data.winnersId);
     let show = this.state.show;
-    this.setState({ event: data, loading: false, winnerName: winnerName});
+    this.setState({ event: data, loading: false, winnerNames: winnerNames});
     console.log(data);
     
   }
@@ -149,28 +168,34 @@ export class EventDetail extends Component {
 
 }
 
-  pickAWinner = async () => {
+  pickWinners = async () => {
     const requestOptions = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     };
     this.setState({ show: false });
-    
-    await fetch('api/events/winner'+"/"+this.props.match.params.id, requestOptions);
+    await fetch('api/events/winners'+"/"+this.props.match.params.id+"/" + this.state.numWinners, requestOptions);
+    //den skal have hvor mange vindere den skla have i 
     this.populateData();
     
   }
 
-  displayWinner = async (id) => {
+  displayWinners = async (winnersId) => {
     const requestOptions = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     };
-  
-   
-    let candidate = await fetch('api/candidates/'+id, requestOptions).then(response => response.json());
-   
-    return candidate.name;
+    
+    let returnString = "";
+
+      for (let i = 0; i < winnersId.length; i++) {
+          if (i != 0) returnString = returnString + ", ";
+          let id = winnersId[i];
+          let candidate = await fetch('api/candidates/'+id, requestOptions).then(response => response.json());
+          returnString = returnString + candidate.name
+      }
+    
+    return returnString;
     
   }
   

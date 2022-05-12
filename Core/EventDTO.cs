@@ -26,9 +26,7 @@ namespace Core {
 
         [Required]
         ICollection<AdminDTO> Admins,
-
-        int WinnerId
-
-
+        
+        ICollection<int> WinnersId
     );
 }

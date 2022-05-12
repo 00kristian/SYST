@@ -37,6 +37,6 @@ namespace Core {
 
         [Required]
         DateTime Created
-        
+
     );
 }
