@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { InteractiveTable } from './InteractiveTable';
 import {FetchOptions} from './FetchOptions';
 
@@ -9,14 +9,17 @@ export default Home
 function Home(props) {
     const [events, setEvents] = useState([]);
     const { instance, accounts } = useMsal();
+    const isAuthenticated = useIsAuthenticated();
 
     useEffect(async () => {
-        const options = await FetchOptions.Options(instance, accounts, "GET");
-        const data = await fetch('api/events', options)
-        .then(response => response.json())
-        .catch(error => console.log(error));
-        setEvents(data);
-    }, []);
+        if (isAuthenticated) {
+            const options = await FetchOptions.Options(instance, accounts, "GET");
+            const data = await fetch('api/events', options)
+            .then(response => response.json())
+            .catch(error => console.log(error));
+            setEvents(data);
+        }
+        }, []);
 
     const rerouteToEventCreation = async () => {
 
@@ -42,29 +45,23 @@ function Home(props) {
       
     }
 
-
-
-
     let contents =  <InteractiveTable Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={events}>
-    
-                {event =>
-                    <div>
-                        <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-secondary btn-right obj-right_margin">Details</button></a></td>
-                        <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">HOST</button></td>
-                    </div>
-                
-                
-                }
-            </InteractiveTable>;
-        
-        return (
-            <AuthenticatedTemplate>
+        {event =>
             <div>
-                <h1 id="tabelLabel" >Upcoming Events
-                    <button className="btn btn-primary btn-right" onClick={() => rerouteToEventCreation()}>CREATE</button>
-                </h1>
-                {contents}
-                </div>
-            </AuthenticatedTemplate>
-        );
+                <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-secondary btn-right obj-right_margin">Details</button></a></td>
+                <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">HOST</button></td>
+            </div>
+        }
+        </InteractiveTable>;
+        
+    return (
+        <AuthenticatedTemplate>
+        <div>
+            <h1 id="tabelLabel" >Upcoming Events
+                <button className="btn btn-primary btn-right" onClick={() => rerouteToEventCreation()}>CREATE</button>
+            </h1>
+            {contents}
+            </div>
+        </AuthenticatedTemplate>
+    );
 }
