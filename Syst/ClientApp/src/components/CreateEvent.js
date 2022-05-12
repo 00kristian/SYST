@@ -140,6 +140,8 @@ function CreateEvent(props) {
               )}
             </Popup>
             <button onClick={() => history.push("/eventdetail/" + props.match.params.id)} className="btn btn-secondary">Cancel</button>
+            
         </div>
-    );
+       </AuthenticatedTemplate>   
+            );
 }
