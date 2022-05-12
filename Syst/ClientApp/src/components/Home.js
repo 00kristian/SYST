@@ -10,7 +10,6 @@ function Home(props) {
     const [events, setEvents] = useState([]);
     const { instance, accounts } = useMsal();
 
-   
     useEffect(async () => {
         const options = await FetchOptions.Options(instance, accounts, "GET");
         const data = await fetch('api/events', options)

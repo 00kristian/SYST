@@ -6,7 +6,6 @@ import 'reactjs-popup/dist/index.css';
 import ReactDropdown from 'react-dropdown';
 import { InteractiveTable } from './InteractiveTable';
 import {FetchOptions} from './FetchOptions';
-import { loginRequest } from "../authConfig";
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 
 
