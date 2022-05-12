@@ -23,7 +23,7 @@ export function NavMenu(props) {
   }
 
     return (
-     // <AuthenticatedTemplate>
+      <AuthenticatedTemplate>
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
@@ -55,7 +55,7 @@ export function NavMenu(props) {
           </Container>
         </Navbar>
        </header>
-    // </AuthenticatedTemplate>
+     </AuthenticatedTemplate>
     );
   
 }
