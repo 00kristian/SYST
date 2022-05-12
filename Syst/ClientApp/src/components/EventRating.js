@@ -45,19 +45,19 @@ render() {
                 <h2 className='div-center'>Event Rating</h2>
                 <br/>
                 <p>1. How many relevant candidates did we meet?</p>
-                <Dropdown options={QuestionCandidates} onChange={(QuestionCandidates) => this.setState({QCandidateRating: QuestionCandidates.value})} value="Select Rating" />
+                <Dropdown className='txt-small' options={QuestionCandidates} onChange={(QuestionCandidates) => this.setState({QCandidateRating: QuestionCandidates.value})} value="Select Rating" />
                 <br/>
                 <p>2. How many applications do we expect to receive after the event?</p>
-                <Dropdown options={QuestionApplications} onChange={(QuestionApplications) => this.setState({ QApplicationRating: QuestionApplications.value })} value="Select Rating" />
+                <Dropdown className='txt-small' options={QuestionApplications} onChange={(QuestionApplications) => this.setState({ QApplicationRating: QuestionApplications.value })} value="Select Rating" />
                 <br/>
                 <p>3. What was the cost of the event?</p>
-                <Dropdown options={QuestionCost} onChange={(QuestionCost) => this.setState({ QCostRating: QuestionCost.value })} value="Select Rating" />
+                <Dropdown className='txt-small' options={QuestionCost} onChange={(QuestionCost) => this.setState({ QCostRating: QuestionCost.value })} value="Select Rating" />
                 <br/>
                 <p>4. How much time did we invest in preparing for the event?</p>
-                <Dropdown options={QuestionTime} onChange={(QuestionTime) => this.setState({ QTimeRating: QuestionTime.value })} value="Select Rating" />
+                <Dropdown className='txt-small' options={QuestionTime} onChange={(QuestionTime) => this.setState({ QTimeRating: QuestionTime.value })} value="Select Rating" />
                 <br/>
-                <button onClick={() => this.cancelRating()} className='btn btn-cancel'>Cancel</button>
-                <button onClick={() => this.submitRating()} className='btn btn-primary btn-right'>Submit</button>
+                <button onClick={() => this.cancelRating()} className='btn btn-secondary'>Cancel</button>
+                <button onClick={() => this.submitRating()} className='btn btn-primary btn-right'>SUBMIT</button>
                 {this.state.isFilledOut ? <p></p> : <p className='txt-red txt-right_padding'>Please select an option for each question.</p>}
             </div>
         );

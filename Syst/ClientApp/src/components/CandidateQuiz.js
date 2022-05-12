@@ -48,7 +48,7 @@ export class CandidateQuiz extends Component {
             }}>{question.representation}</h3>
             <Row>
                 <Col>
-                    <div className='question-options'>
+                    <div className='question-options txt-small'>
                         {ops}
                     </div>
                 </Col>

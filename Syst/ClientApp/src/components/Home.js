@@ -20,19 +20,16 @@ export class Home extends Component {
             : <InteractiveTable Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={this.state.events}>
                 {event =>
                     <div>
-                        <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-host btn-right">Details</button></a></td>
-                        <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">Host</button></td>
+                        <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-secondary btn-right obj-right_margin">Details</button></a></td>
+                        <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">HOST</button></td>
                     </div>
                 }
             </InteractiveTable>
 
         return (
             <div>
-                <h1>Welcome to Systematic Event Tool!</h1>
-                <p>From this home page you'll be able to create, host and see and overview over events! Check it out!</p>
-
                 <h1 id="tabelLabel" >Upcoming Events
-                    <button className="btn btn-primary btn-right" onClick={this.rerouteToEventCreation}>Create</button>
+                    <button className="btn btn-primary btn-right" onClick={this.rerouteToEventCreation}>CREATE</button>
                 </h1>
                 {contents}
             </div>

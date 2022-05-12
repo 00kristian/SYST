@@ -24,20 +24,19 @@ export class EventDetail extends Component {
     return (
         <div>
             <h1>{event.name}</h1>
-            <h2>{event.date}</h2>
-            <h2>{event.location}</h2>
-            <h2 className='txt-left'>Winner: {winnerNames}</h2>
-            <h2 className='txt-right'>Rating: {event.rating}</h2>
-
+            <h3>{event.location}, {event.date}</h3>
+            <h4 className='txt-left'>WINNER: {winnerNames}</h4>
+            <h4 className='txt-right'>RATING: {event.rating}</h4>
             <br/>
             <br/>
-            <button onClick={() => editEvent()} className="btn btn-primary">Edit event</button>
-            <button onClick={() => editRating()} className="btn btn-primary btn-right">Edit rating</button>
+            <button className="btn btn-tertiary">Put winner button here!</button>
+            <button onClick={() => editRating()} className="btn btn-tertiary btn-right">Edit Rating</button>
             <div>
-              <button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >Host</button>
+              <button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >HOST</button>
+              <button onClick={() => editEvent()} className="btn btn-tertiary btn-right obj-space">Edit Event</button>
             </div>
             <br/>
-            <h3>Participants</h3>
+            <h4>PARTICIPANTS</h4>
             <InteractiveTable ExportName={event.name + ".csv"} SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={event.candidates}>
             {candidate =>
                     <div>
@@ -49,8 +48,8 @@ export class EventDetail extends Component {
                                 {close => (
                                     <div className="div-center">
                                         <p>Are you sure you want to delete this candidate?</p>
-                                        <button className="btn btn-primary btn-yes" onClick={()=> downvote(candidate.id)}>Yes</button>
-                                        <button className="btn btn-primary"onClick={() => {close();}}>No</button>
+                                        <button className="btn btn-primary btn-yes" onClick={()=> downvote(candidate.id)}>YES</button>
+                                        <button className="btn btn-primary"onClick={() => {close();}}>NO</button>
                                     </div>
                                 )}
                                 </Popup>
@@ -65,8 +64,8 @@ export class EventDetail extends Component {
                                     <div>
                                         <p className="txt-popup">Are you sure you want to delete this candidate?</p>
                                         <div className="div-center">
-                                            <button className="btn btn-primary btn-yes btn-popup" onClick={()=> downvote(candidate.id)}>Yes</button>
-                                            <button className="btn btn-primary btn-popup"onClick={() => {close();}}>No</button>
+                                            <button className="btn btn-primary btn-yes btn-popup" onClick={()=> downvote(candidate.id)}>YES</button>
+                                            <button className="btn btn-primary btn-popup"onClick={() => {close();}}>NO</button>
                                         </div>
                                     </div>
                                 )}
@@ -77,16 +76,15 @@ export class EventDetail extends Component {
                     </div>
                 }
             </InteractiveTable>
-            <br/>
-            <br/>
-            <a href={'/events'}> <button className="btn btn-primary btn-right">Back</button> </a>
-            <Popup className="popup-overlay" trigger = {<button className="btn btn-primary">Delete event</button>} modal nested>
+            <br></br>
+            <a href={'/events'}> <button className="btn btn-secondary">Back</button> </a>
+            <Popup className="popup-overlay" trigger = {<button className="btn btn-delete btn-right">DELETE</button>} modal nested>
               {close => (
                 <div>
                   <p className="txt-popup">Are you sure you want to delete this event?</p>
                   <div className="div-center">
-                    <button className="btn btn-primary btn-yes btn-popup" onClick={()=>deleteEvent()}>Yes</button>
-                    <button className="btn btn-primary btn-popup"onClick={() => {close();}}>No</button>
+                    <button className="btn btn-primary btn-yes btn-popup" onClick={()=>deleteEvent()}>YES</button>
+                    <button className="btn btn-primary btn-popup"onClick={() => {close();}}>NO</button>
                   </div>
                   </div>
               )}
