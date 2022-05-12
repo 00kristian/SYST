@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(SystematicContext))]
-    [Migration("20220509093921_initial")]
-    partial class initial
+    [Migration("20220512090446_swagster")]
+    partial class swagster
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -101,6 +101,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("EventId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("GraduationDate")
                         .HasColumnType("datetime2");
 
@@ -120,6 +123,8 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EventId");
 
                     b.HasIndex("QuizId");
 
@@ -152,16 +157,11 @@ namespace Infrastructure.Migrations
                     b.Property<double>("Rating")
                         .HasColumnType("float");
 
-                    b.Property<int?>("WinnerId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AdminId");
 
                     b.HasIndex("QuizId");
-
-                    b.HasIndex("WinnerId");
 
                     b.ToTable("Events");
                 });
@@ -244,6 +244,10 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Infrastructure.Candidate", b =>
                 {
+                    b.HasOne("Infrastructure.Event", null)
+                        .WithMany("Winners")
+                        .HasForeignKey("EventId");
+
                     b.HasOne("Infrastructure.Quiz", "Quiz")
                         .WithMany("Candidates")
                         .HasForeignKey("QuizId");
@@ -261,13 +265,7 @@ namespace Infrastructure.Migrations
                         .WithMany("Events")
                         .HasForeignKey("QuizId");
 
-                    b.HasOne("Infrastructure.Candidate", "Winner")
-                        .WithMany()
-                        .HasForeignKey("WinnerId");
-
                     b.Navigation("Quiz");
-
-                    b.Navigation("Winner");
                 });
 
             modelBuilder.Entity("Infrastructure.Question", b =>
@@ -287,6 +285,11 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Infrastructure.Candidate", b =>
                 {
                     b.Navigation("Answers");
+                });
+
+            modelBuilder.Entity("Infrastructure.Event", b =>
+                {
+                    b.Navigation("Winners");
                 });
 
             modelBuilder.Entity("Infrastructure.Quiz", b =>

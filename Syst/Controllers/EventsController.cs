@@ -1,4 +1,5 @@
 using Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Syst.Controllers;
@@ -19,6 +20,7 @@ public class EventsController : ControllerBase
     }
 
     //Return all events stored in the database
+    [Authorize]
     [ProducesResponseType(200)]
     [HttpGet(Name = "GetEvents")]
     public async Task<IEnumerable<EventDTO>> GetAll()
@@ -28,6 +30,7 @@ public class EventsController : ControllerBase
 
 
     //Return an event given an id
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(typeof(EventDTO), 200)]
     [HttpGet("{id}")]
@@ -42,6 +45,7 @@ public class EventsController : ControllerBase
     }
 
     //Create a new event
+    [Authorize]
     [ProducesResponseType(409)]
     [ProducesResponseType(201)]
     [HttpPost]
@@ -53,6 +57,7 @@ public class EventsController : ControllerBase
     }
 
     //Update an event
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("{id}")]
@@ -60,6 +65,7 @@ public class EventsController : ControllerBase
         (await _repo.Update(id, newEvent)).ToActionResult();
 
     //Update an event
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("{eventid}/{quizid}")]
@@ -67,6 +73,7 @@ public class EventsController : ControllerBase
         (await _repo.UpdateQuiz(eventid, quizid)).ToActionResult();
     
     //Update an event
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("rating/{id}")]
@@ -74,6 +81,7 @@ public class EventsController : ControllerBase
         (await _repo.UpdateRating(id, rating)).ToActionResult();
     
     //Delete an event
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpDelete("{id}")]
@@ -84,6 +92,7 @@ public class EventsController : ControllerBase
     }
     
     //Picks winners
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(typeof(IEnumerable<CandidateDTO>), 200)]
     [HttpGet("winners/{eventId}/{numOfWinners}")]
