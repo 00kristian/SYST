@@ -1,6 +1,6 @@
 import { Events } from './components/Events';
 import { EventRating } from './components/EventRating';
-import { Home } from './components/Home';
+import  Home  from './components/Home';
 import Candidates from './components/Candidates';
 import { ConfirmationCandidate} from "./components/ConfirmationCandidate";
 import { EventDetail } from './components/EventDetail';
