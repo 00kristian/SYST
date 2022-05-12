@@ -5,7 +5,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import ReactDropdown from 'react-dropdown';
 import { InteractiveTable } from './InteractiveTable';
-
+import {FetchOptions} from './FetchOptions';
 import { loginRequest } from "../authConfig";
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 
@@ -13,33 +13,14 @@ export default Candidates
 
 function Candidates(props) {
     const [candidates, setCandidates] = useState([]);
-
     const { instance, accounts } = useMsal();
-    const request = {
-        ...loginRequest,
-        scopes: [ "api://18686055-5912-4c57-a1c9-0bb76dde9d96/API.Access"],
-        account: accounts[0]
-    };
-    
 
     useEffect(async () => {
-        const accessToken = await instance.acquireTokenSilent(request);
-        const headers = new Headers();
-        const bearer = `Bearer ${accessToken.accessToken}`;
-        headers.append("Authorization", bearer);
-
-        const options = {
-            method: "GET",
-            headers: {
-                accept: 'text/plain',
-                Authorization : bearer
-            }
-        };
-
-        console.log(await fetch('api/candidates', options));
+        const options = await FetchOptions.Options(instance, accounts, "GET");
         const data = await fetch('api/candidates', options)
         .then(response => response.json())
         .catch(error => console.log(error));
+
         setCandidates(data);
     }, []);
 

@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
+import { loginRequest } from "../authConfig";
 
-export function Options() {
-    return (
-        <div>
-            <input onInput={(event) => changeFun(event.target.value)} 
-            value={value.toISOString().split('T')[0]}
-            type="date" id="start" name="trip-start"
-            min="2018-01-01" max="2030-12-31"></input>
-        </div>
-    );
+export class FetchOptions extends Component { 
+
+    static async Options(instance, accounts, type) {
+        const request = {
+            ...loginRequest,
+            scopes: [ "api://18686055-5912-4c57-a1c9-0bb76dde9d96/API.Access"],
+            account: accounts[0]
+        };
+        const accessToken = await instance.acquireTokenSilent(request);
+        const headers = new Headers();
+        const bearer = `Bearer ${accessToken.accessToken}`;
+        headers.append("Authorization", bearer);
+        
+        const options = {
+            method: type,
+            headers: {
+                Authorization : bearer
+            }
+        };
+        return options;
+    }
 }
