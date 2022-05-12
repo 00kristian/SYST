@@ -45,7 +45,7 @@ export function NavMenu(props) {
                   <NavLink tag={Link} className="navitem text-dark txt-navbar" to="/candidates"><Icon path={mdiAccountGroup} size={1}/> CANDIDATES</NavLink>
                 </NavItem>
                 <NavItem>
-                { !isAuthenticated ? <SignInButton></SignInButton> : <h4>Signed in </h4> }              
+                { !isAuthenticated ? <SignInButton></SignInButton> : <NavLink tag={Link} className="navitem text-dark txt-navbar" to="/">SIGN OUT</NavLink>}              
                   </NavItem>
               </ul>
             </Collapse>

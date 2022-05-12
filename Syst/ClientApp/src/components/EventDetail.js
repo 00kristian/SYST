@@ -81,8 +81,8 @@ export function EventDetail(props) {
         <div>
             <h1>{event.name}</h1>
             <h3>{event.location}, {event.date}</h3>
-            <h4 className='txt-left'>WINNER: {winnerNames}</h4>
-            <h4 className='txt-right'>RATING: {event.rating}</h4>
+            <h4>Rating: {event.rating}</h4>
+            <h4>Winners: {winnerNames}</h4>
             <br/>
             <br/>
 			{winnerNames != "" ? <> </>
@@ -166,7 +166,6 @@ export function EventDetail(props) {
         </AuthenticatedTemplate>
     )
   }
-
   
   let contents = event == null ? <></> : renderEvent();
     

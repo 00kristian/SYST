@@ -110,6 +110,7 @@
     margin-bottom: 1%;
     margin-top: 1%;
     font-family: 'Roboto', sans-serif;
+    margin-left: 1%;
 }
 
 .btn-green{
@@ -293,7 +294,6 @@
 
 .txt-navbar{
     font-family: 'Roboto', sans-serif;
-    font-size: 2px;
 }
 
 h1, h2, h3, h4, h5, h6, p{
