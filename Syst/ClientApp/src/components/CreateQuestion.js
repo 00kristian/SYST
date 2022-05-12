@@ -108,7 +108,7 @@ function CreateQuestion(props) {
                     <Col>
                         <h5 className="obj-top_padding">Select an image for the question</h5>
                         <br/>
-                        {ImageUpload.Uploader(props.match.params.id, imageURl)}
+                        <ImageUpload QuestionId={props.match.params.id} Currentimg={imageURl}></ImageUpload>
                     </Col>
                 </Row>
             </Container>

@@ -94,7 +94,7 @@ export function CandidateInformation(props) {
             }
             options.body = JSON.stringify(candidate);
 
-            let candid = await  fetch('api/candidates', options)
+            let candid = await fetch('api/candidates', options)
             .then(response => response.json())
 
             let answer = {

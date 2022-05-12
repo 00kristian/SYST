@@ -55,11 +55,9 @@ namespace Syst.Controllers
             {
                 return Status.BadRequest.ToActionResult();
             }
-
         }
 
         //Return a candidate given the picture's file name
-        [Authorize]
         [HttpGet("{filename}")]
         public IActionResult Get(string filename)
         {
