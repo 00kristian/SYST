@@ -1,4 +1,6 @@
+using System.Net;
 using Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +22,7 @@ public class CandidatesController : ControllerBase
     }
 
     //Return all candidates in the system
+    [Authorize]
     [ProducesResponseType(200)]
     [HttpGet(Name = "GetCandidates")]
     public async Task<IEnumerable<CandidateDTO>> Get() 
