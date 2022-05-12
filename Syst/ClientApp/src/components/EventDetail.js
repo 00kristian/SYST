@@ -4,7 +4,7 @@ import 'reactjs-popup/dist/index.css';
 import { InteractiveTable } from './InteractiveTable';
 import Icon from "@mdi/react";
 import { mdiThumbUp, mdiThumbDown } from '@mdi/js';
-
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export class EventDetail extends Component {
   static displayName = EventDetail.name;
@@ -21,7 +21,8 @@ export class EventDetail extends Component {
   
   static renderEvent(event, editEvent,editRating, deleteEvent, pickWinners, winnerNames, show, upvote, downvote) {
 
-    return (
+      return (
+        <AuthenticatedTemplate>
         <div>
             <h1>{event.name}</h1>
             <h3>{event.location}, {event.date}</h3>
@@ -90,7 +91,7 @@ export class EventDetail extends Component {
               )}
             </Popup>
         </div>
-        
+        </AuthenticatedTemplate>
     )
   }
 
@@ -125,11 +126,13 @@ export class EventDetail extends Component {
           )}
       </div>
 
-    return (
-      <div>
+      return (
+        <AuthenticatedTemplate>
+        <div>
             {contents}
           {contents2}
       </div>
+        </AuthenticatedTemplate>
     );
   }
 

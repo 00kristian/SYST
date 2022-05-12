@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 import { InteractiveTable } from './InteractiveTable';
 
+
 export class Home extends Component {
     static displayName = Home.name;
 
@@ -27,12 +28,14 @@ export class Home extends Component {
             </InteractiveTable>
 
         return (
+            <AuthenticatedTemplate>
             <div>
                 <h1 id="tabelLabel" >Upcoming Events
                     <button className="btn btn-primary btn-right" onClick={this.rerouteToEventCreation}>CREATE</button>
                 </h1>
                 {contents}
-            </div>
+                </div>
+            </AuthenticatedTemplate>
     );
     }
 

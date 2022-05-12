@@ -4,6 +4,7 @@ import {DatePicker} from './DatePicker';
 import { QuizPicker } from './QuizPicker';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 export default CreateEvent
 
@@ -96,6 +97,7 @@ function CreateEvent(props) {
     }
 
     return (
+       <AuthenticatedTemplate>
         <div>
             <h2>Here you can create or edit an event</h2>
             <br/>
@@ -138,6 +140,8 @@ function CreateEvent(props) {
               )}
             </Popup>
             <button onClick={() => history.push("/eventdetail/" + props.match.params.id)} className="btn btn-secondary">Cancel</button>
+            
         </div>
-    );
+       </AuthenticatedTemplate>   
+            );
 }
