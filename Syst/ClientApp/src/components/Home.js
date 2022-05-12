@@ -35,7 +35,11 @@ function Home(props) {
         };
         options.body = JSON.stringify(event);
 
-       await fetch('api/events', options);
+       let qId = await fetch('api/events', options)
+       .then(response => response.json());
+
+       const { history } = props;
+       history.push("/CreateEvent/"+qId); 
       
     }
 

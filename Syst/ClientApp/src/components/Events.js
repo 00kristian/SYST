@@ -49,10 +49,11 @@ function Events (props) {
         options.body = JSON.stringify(event);
 
 
-         await fetch('api/events', options);
-/* 
-        const { history } = this.props;
-        history.push("/CreateEvent/"+id); */
+        const qId = await fetch('api/events', options)
+        .then(response => response.json())
+ 
+        const { history } = props;
+        history.push("/CreateEvent/"+qId); 
     }
 
     

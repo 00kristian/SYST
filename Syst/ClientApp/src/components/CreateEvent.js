@@ -4,7 +4,8 @@ import {DatePicker} from './DatePicker';
 import { QuizPicker } from './QuizPicker';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
+import { FetchOptions } from "./FetchOptions";
 
 export default CreateEvent
 
@@ -16,16 +17,22 @@ function CreateEvent(props) {
     const [location, setLocation] = useState("");
     const [date, setDate] = useState(new Date());
     const history = useHistory();
+    const { instance, accounts } = useMsal();
 
     useEffect(async () => {
-        const response = await fetch('api/quiz');
-        const data = await response.json();
+        const options = await FetchOptions.Options(instance, accounts, "GET");
+        const data = await fetch('api/quiz', options)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+        
         setQuizes(data);
     }, []);
 
     useEffect(async () => {
-        const response = await fetch('api/events/' + props.match.params.id);
-        const data = await response.json();
+        const options = await FetchOptions.Options(instance, accounts, "GET");
+        const data = await fetch('api/events/'+props.match.params.id, options)
+        .then(response => response.json())
+        .catch(error => console.log(error));
         setName(data.name);
         setLocation(data.location);
         setDate(new Date(data.date.split('T')[0]));
@@ -33,28 +40,32 @@ function CreateEvent(props) {
     }, []);
 
     async function updateQuizId(qId) {
-        const requestOptions = {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
+        const options = await FetchOptions.Options(instance, accounts, "PUT");
+        options.headers ={
+            ...options.headers,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
         };
-        await fetch('api/events/' + props.match.params.id + '/' + qId, requestOptions);
+
+
+        await fetch('api/events/' + props.match.params.id + '/' + qId, options);
     };
 
     const updateEvent = async () => {
+
         let event = {
             "name": name,
             "date": date.toISOString(),
             "location": location
         };
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(event)
-        };
-        await fetch('api/events/' + props.match.params.id, requestOptions);
+        const options = await FetchOptions.Options(instance, accounts, "PUT");
+        options.headers ={
+            ...options.headers,
+            'Content-Type': 'application/json',
+        }
+        options.body = JSON.stringify(event);
+        
+        await fetch('api/events/' + props.match.params.id, options);
     }
 
     const _confirm = async () => {
@@ -73,25 +84,30 @@ function CreateEvent(props) {
         let quiz = {
             "name": "New quiz"
         };
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(quiz)
-        };
-        const qId = await fetch('api/quiz', requestOptions)
+        const options = await FetchOptions.Options(instance, accounts, "POST");
+        options.headers ={
+            ...options.headers,
+            'Content-Type': 'application/json',
+        }
+        options.body = JSON.stringify(quiz);
+       
+        const qId = await fetch('api/quiz', options)
         .then(response => response.json());
+        console.log(qId);
 
         setQuizId(qId);
         await editQuiz(qId);
     }
 
     const deleteEvent = async () => {
-            const requestOptions = {
-                method: 'DELETE',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(props.match.params.id)
-            };
-            await fetch('api/events'+"/"+props.match.params.id, requestOptions);
+        const options = await FetchOptions.Options(instance, accounts, "DELETE");
+        options.headers ={
+            ...options.headers,
+            'Content-Type': 'application/json',
+        }
+        options.body = JSON.stringify(props.match.params.id);
+         
+            await fetch('api/events'+"/"+props.match.params.id, options);
 
             history.push("/events");
     }
