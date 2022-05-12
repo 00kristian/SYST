@@ -108,8 +108,21 @@ export class EventDetail extends Component {
               <div></div>
           ) : (
               <div>
-                  <button className="btn btn-primary" onClick={() => this.pickWinners()}>Generate winners</button>
-                  <input value={this.state.numWinners} onChange={(e) => this.setState({numWinners : e.target.value}) } type="number" min="1" max={this.state.event.candidates.length} step="1" />
+                  <Popup className="popup-overlay" trigger = {<button className="btn btn-primary">Generate winners</button>
+                  } modal nested>
+                      {close => (
+                          <div>
+                              <p className="txt-popup">How many winners would you like to generate?</p>
+                              <div className="div-center">
+    
+                                  <input value={this.state.numWinners} onChange={(e) => this.setState({numWinners : e.target.value}) } type="number" min="1" max={this.state.event.candidates.length} step="1" />
+                                  <br/>
+                                  <br/>
+                                  <button className="btn btn-primary" onClick={() => this.pickWinners(this.state.numWinners)}>OK</button>
+                              </div>
+                          </div>
+                      )}
+                  </Popup>
               </div>
           )}
       </div>
