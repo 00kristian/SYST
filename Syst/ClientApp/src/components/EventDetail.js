@@ -26,9 +26,10 @@ export class EventDetail extends Component {
         <div>
             <h1>{event.name}</h1>
             <h3>{event.location}, {event.date}</h3>
+            <button onClick={() => editEvent()} className="btn btn-tertiary obj-space btn-right">Edit Event</button>
+                <button onClick={() => editRating()} className="btn btn-tertiary btn-right">Edit Rating</button>
             <h4>Rating: {event.rating}</h4>
             <h4>Winners: {winnerNames}</h4>
-            <br/>
             <br/>
             <div>
             {winnerNames == "" ? (
@@ -55,18 +56,14 @@ export class EventDetail extends Component {
               ) 
             }
             </div>
-              <div className='div-right'>
-                <button className = "btn btn-primary" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >HOST</button>
-                <button onClick={() => editEvent()} className="btn btn-tertiary obj-space">Edit Event</button>
-                <button onClick={() => editRating()} className="btn btn-tertiary">Edit Rating</button>
-              </div>
+            <button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >HOST</button>
             <br/>
             <h4>PARTICIPANTS</h4>
             <InteractiveTable ExportName={event.name + ".csv"} SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={event.candidates}>
             {candidate =>
                     <div>
                         {candidate.isUpvoted ? (
-                        <td>
+                        <div className='div-right'>
                             <td><button className="btn btn-right btn-green" onClick={() => upvote(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
                             <td>
                                 <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
@@ -79,9 +76,9 @@ export class EventDetail extends Component {
                                 )}
                                 </Popup>
                             </td>
-                        </td>
+                        </div>
                         ) : (
-                        <td>
+                        <div className='div-right'>
                              <td><button className="btn btn-primary btn-right" onClick={() => upvote(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
                             <td>
                                 <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
@@ -96,13 +93,14 @@ export class EventDetail extends Component {
                                 )}
                                 </Popup>
                             </td>
-                        </td>
+                        </div>
                         )}
                     </div>
                 }
             </InteractiveTable>
             <br></br>
             <a href={'/events'}> <button className="btn btn-secondary">Back</button> </a>
+           
             <Popup className="popup-overlay" trigger = {<button className="btn btn-delete btn-right">DELETE</button>} modal nested>
               {close => (
                 <div>
