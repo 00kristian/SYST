@@ -1,16 +1,55 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import Dropdown from 'react-dropdown';
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
+import {FetchOptions} from './FetchOptions';
 
-export class EventRating extends Component {
-    static displayName = EventRating.name;
 
-    constructor(props) {
-        super(props);
-        this.state = { event: { Rating: 0.0 }, QApplicationRating: 0.0, QCostRating: 0.0, QTimeRating: 0.0, QCandidateRating: 0.0, isFilledOut: true};
+export default EventRating
+
+function EventRating(props) {
+
+    const { instance, accounts } = useMsal();
+    const [QCandidateRating, setQcandidaterating ] = useState(0);
+    const [QApplicationRating, setQapplicationRating ] = useState(0);
+    const [QCostRating, setQCostRating ] = useState(0);
+    const [QTimeRating, setQTimeRating ] = useState(0);
+    const [isFilledOut, setIsFilledOut ] = useState(false);
+    const [finalRating, setFinalRating ] = useState(0);
+    
+
+    
+    const cancelRating = () => {
+        const { history } = props;
+        history.push("/eventdetail/" + props.match.params.id);
+    }
+
+    const submitRating = async () => {
+
+        if (QCandidateRating === 0.0 || QApplicationRating === 0.0 || QCostRating === 0.0 || QTimeRating === 0.0) {
+            setIsFilledOut(false)
+            
+        } else {
+            const finalRating = (QCandidateRating + QApplicationRating + QCostRating + QTimeRating) / 4.0
+            setFinalRating(finalRating);
+            await updateRating(finalRating);
+            const { history } = props;
+            history.push("/eventdetail/" + props.match.params.id);
+        }
+    }
+
+    const updateRating = async () => {
+        const options = await FetchOptions.Options(instance, accounts, "PUT");
+
+        options.headers = {
+            ...options.headers,
+            'Content-Type' : 'application/json',
+        }
+        options.body = JSON.stringify(finalRating*1.0);
+       
+        await fetch('api/events/rating/' + props.match.params.id, options)
     }
     
-render() {
+
         const QuestionCandidates = [
             {value: 1.0, label: '1 - None'},
             {value: 2.0, label: '2 - Fewer than expected'},
@@ -47,57 +86,25 @@ render() {
                 <h2 className='div-center'>Event Rating</h2>
                 <br/>
                 <p>1. How many relevant candidates did we meet?</p>
-                <Dropdown className='txt-small' options={QuestionCandidates} onChange={(QuestionCandidates) => this.setState({QCandidateRating: QuestionCandidates.value})} value="Select Rating" />
+                <Dropdown className='txt-small' options={QuestionCandidates} onChange={(QuestionCandidates) => setQcandidaterating(QuestionCandidates.value)} value="Select Rating" />
+
                 <br/>
                 <p>2. How many applications do we expect to receive after the event?</p>
-                <Dropdown className='txt-small' options={QuestionApplications} onChange={(QuestionApplications) => this.setState({ QApplicationRating: QuestionApplications.value })} value="Select Rating" />
+                <Dropdown className='txt-small' options={QuestionApplications} onChange={(QuestionApplications) => setQapplicationRating(QuestionApplications.value)} value="Select Rating" />
                 <br/>
                 <p>3. What was the cost of the event?</p>
-                <Dropdown className='txt-small' options={QuestionCost} onChange={(QuestionCost) => this.setState({ QCostRating: QuestionCost.value })} value="Select Rating" />
+                <Dropdown className='txt-small' options={QuestionCost} onChange={(QuestionCost) => setQCostRating(QuestionCost.value)} value="Select Rating" />
                 <br/>
                 <p>4. How much time did we invest in preparing for the event?</p>
-                <Dropdown className='txt-small' options={QuestionTime} onChange={(QuestionTime) => this.setState({ QTimeRating: QuestionTime.value })} value="Select Rating" />
+                <Dropdown className='txt-small' options={QuestionTime} onChange={(QuestionTime) => setQTimeRating(QuestionTime.value)} value="Select Rating" />
                 <br/>
-                <button onClick={() => this.cancelRating()} className='btn btn-secondary'>Cancel</button>
-                <button onClick={() => this.submitRating()} className='btn btn-primary btn-right'>SUBMIT</button>
-                {this.state.isFilledOut ? <p></p> : <p className='txt-red txt-right_padding'>Please select an option for each question.</p>}
+                <button onClick={() => cancelRating()} className='btn btn-secondary'>Cancel</button>
+                <button onClick={() => submitRating()} className='btn btn-primary btn-right'>SUBMIT</button>
+                {isFilledOut ? <p></p> : <p className='txt-red txt-right_padding'>Please select an option for each question.</p>}
             </div>
         </AuthenticatedTemplate>
         );
-    }
+    
 
-    cancelRating = () => {
-        const { history } = this.props;
-        history.push("/eventdetail/" + this.props.match.params.id);
-    }
-
-    submitRating = async (QCandidateRating, QApplicationRating, QCostRating, QTimeRating) => {
-
-        if (this.state.QCandidateRating === 0.0 || this.state.QApplicationRating === 0.0 || this.state.QCostRating === 0.0 || this.state.QTimeRating === 0.0) {
-            this.setState({
-                isFilledOut: false
-            });
-        } else {
-            const finalRating = (this.state.QCandidateRating + this.state.QApplicationRating + this.state.QCostRating + this.state.QTimeRating) / 4.0
-            this.setState({
-                Rating: finalRating
-            });
-            await this.updateRating(finalRating);
-            const { history } = this.props;
-            history.push("/eventdetail/" + this.props.match.params.id);
-        }
-    }
-
-    updateRating = async (Rating) => {
-        let event = {
-            "rating": this.state.event.Rating
-        };
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: (Rating * 1.0)
-        };
-        await fetch('api/events/rating/' + this.props.match.params.id, requestOptions)
-    }
 
 }
