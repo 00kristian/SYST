@@ -19,22 +19,44 @@ export class EventDetail extends Component {
     this.populateData();
   }
   
-  static renderEvent(event, editEvent,editRating, deleteEvent, pickWinners, winnerNames, show, upvote, downvote) {
+  static renderEvent(event, editEvent,editRating, deleteEvent, pickWinners, winnerNames, upvote, downvote, setNumWinners) {
 
     return (
         <div>
             <h1>{event.name}</h1>
             <h3>{event.location}, {event.date}</h3>
-            <h4 className='txt-left'>WINNER: {winnerNames}</h4>
-            <h4 className='txt-right'>RATING: {event.rating}</h4>
+            <h4>Rating: {event.rating}</h4>
+            <h4>Winners: {winnerNames}</h4>
             <br/>
             <br/>
-            <button className="btn btn-tertiary">Put winner button here!</button>
-            <button onClick={() => editRating()} className="btn btn-tertiary btn-right">Edit Rating</button>
             <div>
-              <button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >HOST</button>
-              <button onClick={() => editEvent()} className="btn btn-tertiary btn-right obj-space">Edit Event</button>
+            {winnerNames == "" ? (
+              <div>
+                  <Popup className="popup-overlay" trigger = {<button className="btn btn-tertiary">Generate winners</button>
+                  } modal nested>
+                      {close => (
+                          <div>
+                              <p className="txt-popup">How many winners would you like to generate?</p>
+                              <div className="div-center">
+    
+                                  <input onChange={(e) => setNumWinners(e.target.value) } type="number" min="1" max={event.candidates.length} step="1" />
+                                  <br/>
+                                  <br/>
+                                  <button className="btn btn-primary" onClick={() => pickWinners()}>OK</button>
+                              </div>
+                          </div>
+                      )}
+                  </Popup>
+              </div>
+              ) :
+              (
+                <div></div>
+              ) 
+            }
             </div>
+            <button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >HOST</button>
+            <button onClick={() => editEvent()} className="btn btn-tertiary btn-right obj-space">Edit Event</button>
+            <button onClick={() => editRating()} className="btn btn-tertiary btn-right">Edit Rating</button>
             <br/>
             <h4>PARTICIPANTS</h4>
             <InteractiveTable ExportName={event.name + ".csv"} SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={event.candidates}>
@@ -97,38 +119,11 @@ export class EventDetail extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : EventDetail.renderEvent(this.state.event, this.editEvent,this.editRating, this.deleteEvent, this.pickWinners, this.state.winnerNames, this.state.show, this.clickToUpvoteCandidate, this.clickToDownvoteCandidate);
-      
-      let contents2 = this.state.loading
-      ? <span></span>
-      : <div>
-          {this.state.winnerNames != "" ? (
-              <div></div>
-          ) : (
-              <div>
-                  <Popup className="popup-overlay" trigger = {<button className="btn btn-primary">Generate winners</button>
-                  } modal nested>
-                      {close => (
-                          <div>
-                              <p className="txt-popup">How many winners would you like to generate?</p>
-                              <div className="div-center">
-    
-                                  <input value={this.state.numWinners} onChange={(e) => this.setState({numWinners : e.target.value}) } type="number" min="1" max={this.state.event.candidates.length} step="1" />
-                                  <br/>
-                                  <br/>
-                                  <button className="btn btn-primary" onClick={() => this.pickWinners(this.state.numWinners)}>OK</button>
-                              </div>
-                          </div>
-                      )}
-                  </Popup>
-              </div>
-          )}
-      </div>
+      : EventDetail.renderEvent(this.state.event, this.editEvent,this.editRating, this.deleteEvent, this.pickWinners, this.state.winnerNames, this.clickToUpvoteCandidate, this.clickToDownvoteCandidate, ((n) => this.setState({numWinners : n})));
 
     return (
       <div>
-            {contents}
-          {contents2}
+          {contents}
       </div>
     );
   }
@@ -147,9 +142,7 @@ export class EventDetail extends Component {
     const response = await fetch('api/events/' + this.props.match.params.id);
     const data = await response.json();
     let winnerNames = await this.displayWinners(data.winnersId);
-    let show = this.state.show;
     this.setState({ event: data, loading: false, winnerNames: winnerNames});
-    console.log(data);
     
   }
 
@@ -176,8 +169,7 @@ export class EventDetail extends Component {
     this.setState({ show: false });
     await fetch('api/events/winners'+"/"+this.props.match.params.id+"/" + this.state.numWinners, requestOptions);
     //den skal have hvor mange vindere den skla have i 
-    this.populateData();
-    
+    await this.populateData();
   }
 
   displayWinners = async (winnersId) => {
