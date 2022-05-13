@@ -31,6 +31,7 @@ public class CandidatesController : ControllerBase
     }
     
     //Return a candidate given the candidate id
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(typeof(CandidateDTO), 200)]
     [HttpGet("{id}")]
@@ -46,8 +47,10 @@ public class CandidatesController : ControllerBase
     }
 
     //Create a new candidate
+    [Authorize]
     [ProducesResponseType(409)]
     [HttpPost]
+    
     public async Task<IActionResult> Post(CreateCandidateDTO candidate) 
     {
         var created = await _repo.Create(candidate);
@@ -57,6 +60,7 @@ public class CandidatesController : ControllerBase
     }
     
     //Deletes a candidate
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpDelete("{id}")]
@@ -68,6 +72,7 @@ public class CandidatesController : ControllerBase
     }
     
     //Updates a candidate
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(202)]
     [HttpPut("{id}")]
@@ -80,6 +85,7 @@ public class CandidatesController : ControllerBase
 
     
     //Updates a upvote for candidate
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(202)]
     [HttpPut("upvote/{id}")]
@@ -92,6 +98,7 @@ public class CandidatesController : ControllerBase
     
     //NEEDS TO BE TESTED!
     //Create a new answer to candidate 
+    [Authorize]
     [ProducesResponseType(409)]
     [HttpPost("Answer/{candidateId}")]
     public async Task<IActionResult> PostAnswer([FromRoute] int candidateId, [FromBody] AnswerDTO answer) {

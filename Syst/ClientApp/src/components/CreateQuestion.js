@@ -4,20 +4,26 @@ import { Container, Row, Col } from 'react-grid';
 import { useHistory } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiTrashCan } from '@mdi/js';
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
+import { FetchOptions } from "./FetchOptions";
+
 
 export default CreateQuestion
 
 function CreateQuestion(props) {
-    const [options, setOptions] = useState([]);
+    const [theseOptions, setOptions] = useState([]);
     const [representation, setRepresentation] = useState("");
     const [answer, setAnswer] = useState("");
     const [imageURl, setImageURl] = useState("");
+    const { instance, accounts } = useMsal();
     const history = useHistory();
 
     useEffect(async () => {
-        const response = await fetch('api/questions/' + props.match.params.id);
-        const data = await response.json();
+        const options = await FetchOptions.Options(instance, accounts, "GET");
+        const data = await fetch('api/questions/'+props.match.params.id, options)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+
         
         setRepresentation(data.representation);
         setAnswer(data.answer);
@@ -40,8 +46,8 @@ function CreateQuestion(props) {
                                 onClick={(event) => setAnswer(option)}/>
                         </div>
                     </div>
-                    <input value={options[index]} className= "input-layout txt-small" onChange={(event) => {
-                            let newOps = [...options];
+                    <input value={theseOptions[index]} className= "input-layout txt-small" onChange={(event) => {
+                            let newOps = [...theseOptions];
                             newOps[index] = event.target.value;
                             setOptions(newOps);
                         }}>
@@ -53,11 +59,11 @@ function CreateQuestion(props) {
     }
 
     function addOptionFields() {
-        setOptions([...options, ""]);
+        setOptions([...theseOptions, ""]);
     }
 
     function removeOptionFields() {
-        let temp = options;
+        let temp = theseOptions;
         if (temp.length === 0) return;
         temp.pop();
         setOptions(temp);
@@ -67,15 +73,17 @@ function CreateQuestion(props) {
         let question = {
             "representation": representation,
             "answer": answer,
-            "Options": options,
-            "imageURl": "https://techcrunch.com/wp-content/uploads/2015/04/codecode.jpg"
+            "Options": theseOptions,
+            "imageURl": imageURl
         };
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(question)
-        };
-        await fetch('api/questions/' + props.match.params.id, requestOptions);
+        const options = await FetchOptions.Options(instance, accounts, "PUT")
+        options.headers ={
+            ...options.headers,
+            "Content-Type": "application/json"
+        }
+        options.body = JSON.stringify(question);
+        
+        await fetch('api/questions/' + props.match.params.id, options);
         history.push("/CreateQuiz/" + props.match.params.event_id + "/" + props.match.params.quiz_id);
     }
 
@@ -93,14 +101,14 @@ function CreateQuestion(props) {
                         </label>
                         <br />
                         <hr/>
-                        <div> {options?.map((option, index) => renderOption(option, index))} </div>
+                        <div> {theseOptions?.map((option, index) => renderOption(option, index))} </div>
                         <button className="btn btn-primary" type="button" onClick={() => addOptionFields()}>+</button>
                         <button className="btn btn-minus_question" type="button" onClick={() => removeOptionFields()}><Icon path={mdiTrashCan} size={1}/></button>
                     </Col>
                     <Col>
                         <h5 className="obj-top_padding">Select an image for the question</h5>
                         <br/>
-                        {ImageUpload.Uploader(props.match.params.id, imageURl)}
+                        <ImageUpload QuestionId={props.match.params.id} Currentimg={imageURl}></ImageUpload>
                     </Col>
                 </Row>
             </Container>

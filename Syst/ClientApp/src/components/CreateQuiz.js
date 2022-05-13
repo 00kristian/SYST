@@ -5,12 +5,14 @@ import 'reactjs-popup/dist/index.css';
 import { QuizPicker } from "./QuizPicker";
 import Icon from "@mdi/react";
 import { mdiTrashCan } from '@mdi/js';
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
+import { FetchOptions } from "./FetchOptions";
 
 export default CreateQuiz
 
 function CreateQuiz(props) {
 
+    const { instance, accounts } = useMsal();
     const [name, setName] = useState("");
     const [questions, setQuestions] = useState([]);
     const history = useHistory();
@@ -18,16 +20,21 @@ function CreateQuiz(props) {
     const [cloneId, setCloneId] = useState(-1);
 
     useEffect(async () => {
-        const response = await fetch('api/quiz/' + props.match.params.id);
-        const data = await response.json();
+        const options = await FetchOptions.Options(instance, accounts, "GET");
+        const data = await fetch('api/quiz/'+props.match.params.id, options)
+        .then(response => response.json())
+        .catch(error => console.log(error));
         
         setName(data.name);
         setQuestions(data.questions);
     }, []);
 
     useEffect(async () => {
-        const response = await fetch('api/quiz');
-        const data = await response.json();
+        const options = await FetchOptions.Options(instance, accounts, "GET");
+        const data = await fetch('api/quiz', options)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+      
 
         setQuizes(data.filter(q => q.id != props.match.params.id));
     }, []);
@@ -36,15 +43,15 @@ function CreateQuiz(props) {
         let quiz = {
             "name": name
         };
-        const requestOptions = {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(quiz)
+        const options = await FetchOptions.Options(instance, accounts, "PUT");
+        options.headers ={
+            ...options.headers,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
         };
-        await fetch('api/quiz/' + props.match.params.id, requestOptions);
+        options.body = JSON.stringify(quiz);
+
+        await fetch('api/quiz/' + props.match.params.id, options);
     }
 
     const _confirm = async () => {
@@ -59,12 +66,14 @@ function CreateQuiz(props) {
             "Options": [],
             "imageUrl": ""
         };
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(question)
+        const options = await FetchOptions.Options(instance, accounts, "PUT");
+        options.headers ={
+            ...options.headers,
+            'Content-Type': 'application/json',
         };
-        let index = await fetch('api/QuizQuestion/' + props.match.params.id, requestOptions)
+        options.body = JSON.stringify(question);
+        
+        let index = await fetch('api/QuizQuestion/' + props.match.params.id, options)
         .then(response => response.json());
         
         setQuestions([...questions, {representation : question.representation, id : index}])
@@ -72,7 +81,10 @@ function CreateQuiz(props) {
 
     const removeQuestion = async () => {
         if (questions.length === 0) return;
-        await fetch('api/Questions/' + questions[questions.length - 1].id, {method: 'DELETE'});
+        const options = await FetchOptions.Options(instance, accounts, "DELETE");
+        
+        
+        await fetch('api/Questions/' + questions[questions.length - 1].id, options);
 
         setQuestions(questions.slice(0, questions.length - 1));
     }
@@ -83,12 +95,14 @@ function CreateQuiz(props) {
     }
 
     const deleteQuiz = async () => {
-            const requestOptions = {
-                method: 'DELETE',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(props.match.params.id)
-            };
-            await fetch('api/quiz'+"/"+props.match.params.id, requestOptions);
+        const options = await FetchOptions.Options(instance, accounts, "DELETE");
+        options.headers ={
+            ...options.headers,
+            'Content-Type': 'application/json',
+        }
+        options.body = JSON.stringify(props.match.params.id);
+           
+            await fetch('api/quiz'+"/"+props.match.params.id, options);
             history.push("/CreateEvent/"+ props.match.params.event_id);
         
     }
@@ -107,11 +121,13 @@ function CreateQuiz(props) {
     }
 
     const cloneQuiz = async () => {
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' }
-        };
-        await fetch('api/Quiz/' + props.match.params.id + '/clone/' + cloneId, requestOptions);
+        const options = await FetchOptions.Options(instance, accounts, "PUT");
+        options.headers ={
+            ...options.headers,
+            'Content-Type': 'application/json',
+        }
+        
+        await fetch('api/Quiz/' + props.match.params.id + '/clone/' + cloneId, options);
     }
 
     return (

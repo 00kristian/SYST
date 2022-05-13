@@ -1,5 +1,6 @@
 using Core;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Syst.Controllers;
 
@@ -20,6 +21,8 @@ public class AdminsController : ControllerBase
 
     
     //Return an admin given the admin id
+    
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(typeof(AdminDTO), 200)]
     [HttpGet("{id}")]

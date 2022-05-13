@@ -1,72 +1,67 @@
-import React, { Component } from 'react';
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import React, { useEffect, useState } from "react";
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { InteractiveTable } from './InteractiveTable';
+import {FetchOptions} from './FetchOptions';
 
 
-export class Home extends Component {
-    static displayName = Home.name;
+export default Home
 
-    constructor(props) {
-        super(props);
-        this.state = { events: [], loading: true };
-    }
+function Home(props) {
+    const [events, setEvents] = useState([]);
+    const { instance, accounts } = useMsal();
+    const isAuthenticated = useIsAuthenticated();
 
-    componentDidMount() {
-        this.populateData();
-    }
+    useEffect(async () => {
+        if (isAuthenticated) {
+            const options = await FetchOptions.Options(instance, accounts, "GET");
+            const data = await fetch('api/events', options)
+            .then(response => response.json())
+            .catch(error => console.log(error));
+            setEvents(data);
+        }
+        }, []);
 
-    render() {
-        let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : <InteractiveTable Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={this.state.events}>
-                {event =>
-                    <div>
-                        <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-secondary btn-right obj-right_margin">Details</button></a></td>
-                        <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">HOST</button></td>
-                    </div>
-                }
-            </InteractiveTable>
+    const rerouteToEventCreation = async () => {
 
-        return (
-            <AuthenticatedTemplate>
-            <div>
-                <h1 id="tabelLabel" >Upcoming Events
-                    <button className="btn btn-primary btn-right" onClick={this.rerouteToEventCreation}>CREATE</button>
-                </h1>
-                {contents}
-                </div>
-            </AuthenticatedTemplate>
-    );
-    }
-
-    rerouteToEventCreation = async () => {
         let event = {
             "name": "new event",
             "date":  new Date().toISOString().split('T')[0],
             "location": "location"
         };
         
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(event)
+        let options = await FetchOptions.Options(instance, accounts, "POST");
+        options.headers ={ 
+            ...options.headers,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
         };
-        let id = await fetch('api/events', requestOptions)
-        .then(response => response.json())
-        const { history } = this.props;
-        history.push("/CreateEvent/"+id);
+        options.body = JSON.stringify(event);
+
+       let qId = await fetch('api/events', options)
+       .then(response => response.json());
+
+       const { history } = props;
+       history.push("/CreateEvent/"+qId); 
+      
     }
 
-    async populateData() {
-        const response = await fetch('api/eventsquery/upcoming');
-        const data = await response.json();
-        this.setState({ events: data, loading: false });
-    }
-
-    handleHostClick = () => {
-        window.open('/CandidateQuiz');
-      };
+    let contents =  <InteractiveTable Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={events}>
+        {event =>
+            <div>
+                <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-secondary btn-right obj-right_margin">Details</button></a></td>
+                <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">HOST</button></td>
+            </div>
+        }
+        </InteractiveTable>;
+        
+    return (
+        <AuthenticatedTemplate>
+        <div>
+            <h1 id="tabelLabel" >Upcoming Events
+                <button className="btn btn-primary btn-right" onClick={() => rerouteToEventCreation()}>CREATE</button>
+            </h1>
+            {contents}
+            </div>
+        </AuthenticatedTemplate>
+    );
 }

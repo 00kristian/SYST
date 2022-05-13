@@ -16,14 +16,11 @@ export function NavMenu(props) {
   const [collapsed, setCollapsed] = useState(true);
   const isAuthenticated = useIsAuthenticated();
 
-  console.log(isAuthenticated);
-
   const toggleNavbar = () => {
     setCollapsed(!collapsed);
   }
 
     return (
-     // <AuthenticatedTemplate>
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
@@ -55,7 +52,6 @@ export function NavMenu(props) {
           </Container>
         </Navbar>
        </header>
-    // </AuthenticatedTemplate>
     );
   
 }

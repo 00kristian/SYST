@@ -1,4 +1,5 @@
 using Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Syst.Controllers;
@@ -22,6 +23,7 @@ public class QuizController : ControllerBase
 
 
     //Return all quiz stored in the database related to the event
+    [Authorize]
     [ProducesResponseType(200)]
     [HttpGet(Name = "GetQuizes")]
     public async Task<IEnumerable<QuizDTO>> GetAll()
@@ -30,6 +32,7 @@ public class QuizController : ControllerBase
     }
 
     //Create a new quiz
+    [Authorize]
     [ProducesResponseType(409)]
     [ProducesResponseType(201)]
     [HttpPost]
@@ -42,6 +45,7 @@ public class QuizController : ControllerBase
 
     
     //Return a quiz given an id
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(typeof(QuizDTO), 200)]
     [HttpGet("{id}")]
@@ -56,6 +60,7 @@ public class QuizController : ControllerBase
     }
     
     //Update a quiz
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("{id}")]
@@ -64,6 +69,7 @@ public class QuizController : ControllerBase
 
 
     //Delete a quiz
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpDelete("{id}")]
@@ -74,6 +80,7 @@ public class QuizController : ControllerBase
     } 
 
     //Clone a quiz
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("{quizid}/clone/{originalid}")]
