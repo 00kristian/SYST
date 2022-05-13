@@ -1,4 +1,5 @@
 using Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Syst.Controllers;
@@ -19,6 +20,7 @@ public class QuestionsController : ControllerBase
     }
 
     //Return all questions stored in the database
+    [Authorize]
     [ProducesResponseType(200)]
     [HttpGet(Name = "GetQuestions")]
     public async Task<IEnumerable<QuestionDTO>> GetAll()
@@ -28,6 +30,7 @@ public class QuestionsController : ControllerBase
 
 
     //Return an question given an id
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(typeof(QuestionDTO), 200)]
     [HttpGet("{id}")]
@@ -42,6 +45,7 @@ public class QuestionsController : ControllerBase
     }
 
     //Create a new question
+    [Authorize]
     [ProducesResponseType(409)]
     [ProducesResponseType(201)]
     [HttpPost]
@@ -53,6 +57,7 @@ public class QuestionsController : ControllerBase
     }
 
     //Update an question
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("{id}")]
@@ -60,6 +65,7 @@ public class QuestionsController : ControllerBase
         (await _repo.Update(id,oldQuestion)).ToActionResult();
     
     //Delete an question
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpDelete("{id}")]

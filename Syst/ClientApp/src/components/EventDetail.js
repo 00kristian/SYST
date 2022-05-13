@@ -1,26 +1,81 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from "react";
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, useMsal } from "@azure/msal-react";
+import {FetchOptions} from './FetchOptions';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { InteractiveTable } from './InteractiveTable';
 import Icon from "@mdi/react";
 import { mdiThumbUp, mdiThumbDown } from '@mdi/js';
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { useHistory } from "react-router-dom";
 
-export class EventDetail extends Component {
-  static displayName = EventDetail.name;
+export function EventDetail(props) {
 
-  constructor(props) {
-    super(props);
-    this.state = { event: Object, loading: true, winnerNames: "", show:  true, numWinners : 1 };
+  const [event, setEvent] = useState(null);
+  const [winnerNames, setWinnerNames] = useState("");
+  const [numWinners, setNumWinners] = useState(1);
+  const history = useHistory();
+  const { instance, accounts } = useMsal();
+  
+  const displayWinners = async (winnersId) => {
+    
+	const options = await FetchOptions.Options(instance, accounts, "GET");
+    
+    let returnString = "";
 
+      for (let i = 0; i < winnersId.length; i++) {
+          if (i != 0) returnString = returnString + ", ";
+          let id = winnersId[i];
+          let candidate = await fetch('api/candidates/'+id, options).then(response => response.json());
+          returnString = returnString + candidate.name
+      }
+    return returnString;
   }
 
-  componentDidMount() {
-    this.populateData();
+  const pickWinners = async () => {
+	const options = await FetchOptions.Options(instance, accounts, "GET");
+    await fetch('api/events/winners'+"/"+props.match.params.id+"/" + numWinners, options);
   }
   
-  static renderEvent(event, editEvent,editRating, deleteEvent, pickWinners, winnerNames, upvote, downvote, setNumWinners) {
+  const clickToUpvoteCandidate =  async (id) => {
+    const options = await FetchOptions.Options(instance, accounts, "PUT");
+    await fetch("api/candidates"+"/upvote/"+ id, options)
+  }
 
+  const clickToDownvoteCandidate = async (id) => {
+	const options = await FetchOptions.Options(instance, accounts, "DELETE");
+    await fetch('api/candidates/' + id, options);
+  }
+
+  useEffect(async () => {
+	const options = await FetchOptions.Options(instance, accounts, "GET");
+    const response = await fetch('api/events/' + props.match.params.id, options);
+    const data = await response.json();
+    let winnerNames = await displayWinners(data.winnersId);
+    setEvent(data);
+    setWinnerNames(winnerNames);
+  }, [pickWinners, clickToUpvoteCandidate, clickToDownvoteCandidate])
+
+  const editEvent = () => {
+    history.push("/CreateEvent/" + props.match.params.id);
+  }
+
+  const editRating = () => {
+    history.push("/EventRating/" + props.match.params.id);
+  }
+
+  const deleteEvent = async () => {
+	const options = await FetchOptions.Options(instance, accounts, "DELETE");
+	options.headers = {
+		...options.headers,
+		'Content-Type': 'application/json'
+	}
+	options.body = JSON.stringify(props.match.params.id);
+    await fetch('api/events'+"/"+props.match.params.id, options);
+
+    history.push("/events");
+}
+  
+  const renderEvent = () => {
       return (
         <AuthenticatedTemplate>
         <div>
@@ -64,13 +119,13 @@ export class EventDetail extends Component {
                     <div>
                         {candidate.isUpvoted ? (
                         <div className='div-right'>
-                            <td><button className="btn btn-right btn-green" onClick={() => upvote(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
+                            <td><button className="btn btn-right btn-green" onClick={() => clickToUpvoteCandidate(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
                             <td>
                                 <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
                                 {close => (
                                     <div className="div-center">
                                         <p>Are you sure you want to delete this candidate?</p>
-                                        <button className="btn btn-primary btn-yes" onClick={()=> downvote(candidate.id)}>YES</button>
+                                        <button className="btn btn-primary btn-yes" onClick={()=> clickToDownvoteCandidate(candidate.id)}>YES</button>
                                         <button className="btn btn-primary"onClick={() => {close();}}>NO</button>
                                     </div>
                                 )}
@@ -79,14 +134,14 @@ export class EventDetail extends Component {
                         </div>
                         ) : (
                         <div className='div-right'>
-                             <td><button className="btn btn-primary btn-right" onClick={() => upvote(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
+                             <td><button className="btn btn-primary btn-right" onClick={() => clickToUpvoteCandidate(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
                             <td>
                                 <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
                                 {close => (
                                     <div>
                                         <p className="txt-popup">Are you sure you want to delete this candidate?</p>
                                         <div className="div-center">
-                                            <button className="btn btn-primary btn-yes btn-popup" onClick={()=> downvote(candidate.id)}>YES</button>
+                                            <button className="btn btn-primary btn-yes btn-popup" onClick={()=> clickToDownvoteCandidate(candidate.id)}>YES</button>
                                             <button className="btn btn-primary btn-popup"onClick={() => {close();}}>NO</button>
                                         </div>
                                     </div>
@@ -116,100 +171,12 @@ export class EventDetail extends Component {
         </AuthenticatedTemplate>
     )
   }
-
-  render() {
-    let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : EventDetail.renderEvent(this.state.event, this.editEvent,this.editRating, this.deleteEvent, this.pickWinners, this.state.winnerNames, this.clickToUpvoteCandidate, this.clickToDownvoteCandidate, ((n) => this.setState({numWinners : n})));
-      return (
-        <AuthenticatedTemplate>
-        <div>
-            {contents}
-      </div>
-        </AuthenticatedTemplate>
-    );
-  }
-
-  editEvent = () => {
-    const { history } = this.props;
-    history.push("/CreateEvent/" + this.props.match.params.id);
-  }
-
-  editRating = () => {
-    const { history } = this.props;
-    history.push("/EventRating/" + this.props.match.params.id);
-  }
-
-  async populateData() {
-    const response = await fetch('api/events/' + this.props.match.params.id);
-    const data = await response.json();
-    let winnerNames = await this.displayWinners(data.winnersId);
-    this.setState({ event: data, loading: false, winnerNames: winnerNames});
-    
-  }
-
-
-  deleteEvent = async () => {
-        
-    const requestOptions = {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(this.props.match.params.id)
-    };
-    await fetch('api/events'+"/"+this.props.match.params.id, requestOptions);
-
-    const { history } = this.props;
-    history.push("/events");
-
-}
-
-  pickWinners = async () => {
-    const requestOptions = {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    };
-    this.setState({ show: false });
-    await fetch('api/events/winners'+"/"+this.props.match.params.id+"/" + this.state.numWinners, requestOptions);
-    //den skal have hvor mange vindere den skla have i 
-    await this.populateData();
-  }
-
-  displayWinners = async (winnersId) => {
-    const requestOptions = {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    };
-    
-    let returnString = "";
-
-      for (let i = 0; i < winnersId.length; i++) {
-          if (i != 0) returnString = returnString + ", ";
-          let id = winnersId[i];
-          let candidate = await fetch('api/candidates/'+id, requestOptions).then(response => response.json());
-          returnString = returnString + candidate.name
-      }
-    
-    return returnString;
-    
-  }
   
-  clickToUpvoteCandidate =  async (id) => {
-        
-    const requestOptions = {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-       
-    };
-    await fetch("api/candidates"+"/upvote/"+ id, requestOptions)
+  let contents = event == null ? <></> : renderEvent();
     
-    this.populateData();
-  }
-
-  clickToDownvoteCandidate = async (id) => {
-    await fetch('api/candidates/' + id, {
-        method: 'DELETE'
-    });
-    this.populateData();
-  }
-
+    return (
+      <AuthenticatedTemplate>
+          {contents}
+      </AuthenticatedTemplate>
+  );
 }

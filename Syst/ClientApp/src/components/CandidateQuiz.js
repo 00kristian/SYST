@@ -1,25 +1,49 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from 'react-grid';
 import { Pager } from './Pager';
 import { CandidateInformation } from './CandidateInformation';
 import logo from './Systematic_Logo.png';
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
+import {FetchOptions} from './FetchOptions';
 
-export class CandidateQuiz extends Component {
-  static displayName = CandidateQuiz.name;
+export function CandidateQuiz(props) {
+  const [quiz, setQuiz] = useState(null);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState([]);
+  const { instance, accounts } = useMsal();
 
-  constructor(props) {
-    super(props);
-    this.state = { quiz: Object, loading: true, currentQuestion: 0};
+  const EVENTID = props.match.params.event_id;
+  const QUIZID = props.match.params.quiz_id;
+
+  useEffect(async () => {
+	const options = await FetchOptions.Options(instance, accounts, "GET");
+    const response = await fetch('api/quiz/' + QUIZID, options);
+    const data = await response.json();
+    let arLength = 0; 
+    if (data.questions != null) {
+      arLength = data.questions.length;
+    }
+	setQuiz(data);
+	setAnswers(Array(arLength));
+  }, []);
+
+  const answer = async (option) => {
+    answers[currentQuestion] = option;
+    next();
   }
 
-  EVENTID = this.props.match.params.event_id;
-  QUIZID = this.props.match.params.quiz_id;
-
-  componentDidMount() {
-    this.populateData();
+  const next = async () => {
+    let cq = currentQuestion;
+    const len = quiz.questions.length;
+    cq++;
+    if (cq > len) {
+        //finish();
+    } else {
+        setCurrentQuestion(cq);
+    }
   }
 
-  static renderCandidateQuestion(question, answerFun) {
+  const renderCandidateQuestion = (question, answerFun) => {
     const path = window.location.href.replace(window.location.pathname, "");
     const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ", "Ø", "Å"];
 
@@ -61,17 +85,17 @@ export class CandidateQuiz extends Component {
     );
   }
 
-  render() {
-    let contents = this.QUIZID > 0 ? this.state.loading
-        ? <p><em>Loading...</em></p>
-        : 
+    let contents = quiz == null ?
+	<></>
+	:
+	 QUIZID > 0 ? 
         (<Container>         
-              {this.state.currentQuestion >= this.state.quiz.questions.length ?
-              <CandidateInformation Answers={this.state.answers} QuizId={this.QUIZID} EventId={this.EVENTID}/>
+              {currentQuestion >= quiz.questions.length ?
+              <CandidateInformation Answers={answers} QuizId={QUIZID} EventId={EVENTID}/>
               :
-              CandidateQuiz.renderCandidateQuestion(this.state.quiz.questions[this.state.currentQuestion], this.answer)
+              renderCandidateQuestion(quiz.questions[currentQuestion], answer)
               }
-              {Pager.Pager(this.state.currentQuestion, this.state.quiz.questions.length, ((at) => this.setState({currentQuestion: at})))}  
+              {Pager.Pager(currentQuestion, quiz.questions.length, ((at) => setCurrentQuestion(at)))}  
           </Container>)
         : <h2 className="txt-center"> No quiz attached to this Event! </h2>;
 
@@ -82,36 +106,4 @@ export class CandidateQuiz extends Component {
         {contents}
       </div>
     );
-  }
-
-  answer = async (option) => {
-    this.state.answers[this.state.currentQuestion] = option;
-    this.next();
-  }
-
-  next = async () => {
-    let cq = this.state.currentQuestion;
-    const len = this.state.quiz.questions.length;
-    cq++;
-    if (cq > len) {
-        //this.finish();
-    } else {
-        this.setState({currentQuestion : cq})
-    }
-  }
-
-  finish = async () => {
-    // const { history } = this.props;
-    // history.push("/CandidateInformation");
-  }
-
-  async populateData() {
-    const response = await fetch('api/quiz/' + this.QUIZID);
-    const data = await response.json();
-    let arLength = 0; 
-    if (data.questions != null) {
-      arLength = data.questions.length;
-    }
-    this.setState({ quiz: data, loading: false, answers: Array(arLength)});
-  }
 }

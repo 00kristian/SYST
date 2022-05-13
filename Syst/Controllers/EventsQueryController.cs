@@ -1,4 +1,5 @@
 using Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Syst.Controllers;
@@ -19,6 +20,7 @@ public class EventsQueryController : ControllerBase
     }
     
     //Returns the recent events in the database
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(200)]
     [HttpGet(Name = "GetQuery")]

@@ -1,4 +1,5 @@
 using Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Syst.Controllers
@@ -20,6 +21,7 @@ namespace Syst.Controllers
         }
 
         //Create a picture
+        [Authorize]
         [HttpPost("{questionid}")]
         public async Task<IActionResult> Post(int questionid, IFormFile file)
         {
@@ -53,7 +55,6 @@ namespace Syst.Controllers
             {
                 return Status.BadRequest.ToActionResult();
             }
-
         }
 
         //Return a candidate given the picture's file name

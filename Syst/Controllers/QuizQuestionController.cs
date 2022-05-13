@@ -1,4 +1,5 @@
 using Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Syst.Controllers;
@@ -19,6 +20,7 @@ public class QuizQuestionController : ControllerBase
     }
 
     //Updates the question
+    [Authorize]
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("{id}")]
