@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { InteractiveTable } from './InteractiveTable';
 import {FetchOptions} from './FetchOptions';
-
+import { LoginPage } from './LoginPage';
 
 export default Home
 
@@ -55,6 +55,7 @@ function Home(props) {
         </InteractiveTable>;
         
     return (
+        <React.Fragment>
         <AuthenticatedTemplate>
         <div>
             <h1 id="tabelLabel" >Upcoming Events
@@ -63,5 +64,9 @@ function Home(props) {
             {contents}
             </div>
         </AuthenticatedTemplate>
+            <UnauthenticatedTemplate>
+                <LoginPage></LoginPage>
+            </UnauthenticatedTemplate>
+        </React.Fragment>
     );
 }
