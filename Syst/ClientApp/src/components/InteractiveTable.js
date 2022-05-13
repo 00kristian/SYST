@@ -74,9 +74,9 @@ export function InteractiveTable(props) {
                         </th>
                     )}
                     {props.SearchBar ?
-                        <th>
+                        <div className="div-right">
                             <input value={search} placeholder="Search" onChange={(e) => setSearch(e.target.value)} className="txt-primary txt-small"></input>
-                        </th>
+                        </div>
                         :
                         <span></span>
                     }

@@ -81,40 +81,44 @@ export function EventDetail(props) {
         <div>
             <h1>{event.name}</h1>
             <h3>{event.location}, {event.date}</h3>
+            <button onClick={() => editEvent()} className="btn btn-tertiary obj-space btn-right">Edit Event</button>
+                <button onClick={() => editRating()} className="btn btn-tertiary btn-right">Edit Rating</button>
             <h4>Rating: {event.rating}</h4>
             <h4>Winners: {winnerNames}</h4>
             <br/>
-            <br/>
-			{winnerNames != "" ? <> </>
-			: 
-			<div>
-                <Popup className="popup-overlay" trigger = {<button className="btn btn-tertiary">Generate winners</button>
-                } modal nested>
-                    {close => (
-						<div>
-                            <p className="txt-popup">How many winners would you like to generate?</p>
-                            <div className="div-center">
-  
-                                <input value={numWinners} onChange={(e) => setNumWinners(e.target.value) } type="number" min="1" max={event.candidates.length} step="1" />
-                                <br/>
-                                <br/>
-                                <button className="btn btn-primary" onClick={() => pickWinners(numWinners)}>OK</button>
-                            </div>
-                        </div>
-                    )}
-                </Popup>
+            <div>
+            {winnerNames == "" ? (
+              <div>
+                  <Popup className="popup-overlay" trigger = {<button className="btn btn-tertiary">Generate winners</button>
+                  } modal nested>
+                      {close => (
+                          <div>
+                              <p className="txt-popup">How many winners would you like to generate?</p>
+                              <div className="div-center">
+    
+                                  <input onChange={(e) => setNumWinners(e.target.value) } type="number" min="1" max={event.candidates.length} step="1" />
+                                  <br/>
+                                  <br/>
+                                  <button className="btn btn-primary" onClick={() => pickWinners()}>OK</button>
+                              </div>
+                          </div>
+                      )}
+                  </Popup>
+              </div>
+              ) :
+              (
+                <div></div>
+              ) 
+            }
             </div>
-			}
-        	<button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >HOST</button>
-            <button onClick={() => editRating()} className="btn btn-tertiary btn-right">Edit Rating</button>
-			<button onClick={() => editEvent()} className="btn btn-tertiary btn-right obj-space">Edit Event</button>
+            <button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >HOST</button>
             <br/>
             <h4>PARTICIPANTS</h4>
             <InteractiveTable ExportName={event.name + ".csv"} SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={event.candidates}>
             {candidate =>
                     <div>
                         {candidate.isUpvoted ? (
-                        <td>
+                        <div className='div-right'>
                             <td><button className="btn btn-right btn-green" onClick={() => clickToUpvoteCandidate(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
                             <td>
                                 <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
@@ -127,9 +131,9 @@ export function EventDetail(props) {
                                 )}
                                 </Popup>
                             </td>
-                        </td>
+                        </div>
                         ) : (
-                        <td>
+                        <div className='div-right'>
                              <td><button className="btn btn-primary btn-right" onClick={() => clickToUpvoteCandidate(candidate.id)} ><Icon path={mdiThumbUp} size={1}/></button></td>
                             <td>
                                 <Popup className="popup-overlay" trigger = {<button className="btn btn-primary btn-right"><Icon path={mdiThumbDown} size={1}/></button>} modal nested>
@@ -144,13 +148,14 @@ export function EventDetail(props) {
                                 )}
                                 </Popup>
                             </td>
-                        </td>
+                        </div>
                         )}
                     </div>
                 }
             </InteractiveTable>
             <br></br>
             <a href={'/events'}> <button className="btn btn-secondary">Back</button> </a>
+           
             <Popup className="popup-overlay" trigger = {<button className="btn btn-delete btn-right">DELETE</button>} modal nested>
               {close => (
                 <div>

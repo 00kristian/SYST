@@ -44,6 +44,7 @@ export function CandidateInformation(props) {
     ];
 
     const selectUni = (option) => {
+
         if (option.value === 'Other') {
             setShowSpecialUni(true);
         } else {
@@ -121,7 +122,7 @@ export function CandidateInformation(props) {
         
         <div>
             <div className='div-header'>
-            <h5>PLEASE WRITE YOUR CONTACT INFORMATION TO ENTER THE COMPETITION</h5>
+            <h5>Please write your information to enter the competition</h5>
             </div>
             <br/>
             <div className='div-input_layout'>
