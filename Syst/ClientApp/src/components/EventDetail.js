@@ -50,7 +50,7 @@ export function EventDetail(props) {
 	const options = await FetchOptions.Options(instance, accounts, "GET");
     const response = await fetch('api/events/' + props.match.params.id, options);
     const data = await response.json();
-    let winnerNames = await displayWinners(data.winnersId);
+    const winnerNames = await displayWinners(data.winnersId);
     setEvent(data);
     setWinnerNames(winnerNames);
   }, [pickWinners, clickToUpvoteCandidate, clickToDownvoteCandidate])
