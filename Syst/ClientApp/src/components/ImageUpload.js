@@ -3,7 +3,7 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, use
 import {FetchOptions} from './FetchOptions';
 const { env } = require('process');
 
-
+//Function that makes the admin able to upload an image to a question 
 export function ImageUpload(props) {
     const { instance, accounts } = useMsal();
     const path = window.location.href.replace(window.location.pathname, "");

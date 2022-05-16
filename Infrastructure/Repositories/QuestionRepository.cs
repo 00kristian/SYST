@@ -90,6 +90,7 @@ namespace Infrastructure
             return Status.Deleted;
         }
 
+        //Updates the image connected to the question 
         public async Task<Status> UpdateImage(int id, string imageUrl)
         {
             var question = await _context.Questions.Where(q => q.Id == id).FirstOrDefaultAsync();

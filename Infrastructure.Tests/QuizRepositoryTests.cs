@@ -39,7 +39,7 @@ public class QuizRepositoryTests {
     public async void Create_Creates_Quiz_In_Repository()
     {
         //Arrange
-        var quiz3 = new QuizCreateDTO{Name="Gandalf"};
+        var quiz3 = new CreateQuizDTO{Name="Gandalf"};
 
         //Act
         var actual = await _repo.Create(quiz3);
@@ -89,7 +89,7 @@ public class QuizRepositoryTests {
     public async void Update_returns_status_Updated_when_given_existing_id()
     {
         // Arrange
-        var newQuiz = new QuizCreateDTO{
+        var newQuiz = new CreateQuizDTO{
             Name = "Soulja Boy"
         };
     
@@ -103,7 +103,7 @@ public class QuizRepositoryTests {
     [Fact]
     public async void Update_returns_not_found_when_given_nonexisiting_idAsync()
     {
-         var newQuiz = new QuizCreateDTO{ 
+         var newQuiz = new CreateQuizDTO{ 
             Name = "52"
         };
     
@@ -181,4 +181,4 @@ public class QuizRepositoryTests {
             }
         );
     }
-}
+} 

@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core {
 
-    //Candidate object that carries candiate data between processes
+    //Candidate object that carries candiate data between processes and is being used when creating a candidate
     public record struct CreateCandidateDTO(
 
         [Required]

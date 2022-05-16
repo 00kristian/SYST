@@ -36,7 +36,7 @@ public class QuizController : ControllerBase
     [ProducesResponseType(409)]
     [ProducesResponseType(201)]
     [HttpPost]
-    public async Task<IActionResult> Post(QuizCreateDTO newQuiz) {
+    public async Task<IActionResult> Post(CreateQuizDTO newQuiz) {
         var created = await _repo.Create(newQuiz);
         var id = created.Item2;
         if (created.Item1 == Status.Conflict) return new ConflictObjectResult(id);
@@ -64,7 +64,7 @@ public class QuizController : ControllerBase
     [ProducesResponseType(404)]
     [ProducesResponseType(204)]
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] QuizCreateDTO newQuiz) =>
+    public async Task<IActionResult> Put(int id, [FromBody] CreateQuizDTO newQuiz) =>
         (await _repo.Update(id,newQuiz)).ToActionResult();
 
 

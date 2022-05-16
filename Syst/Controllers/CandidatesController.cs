@@ -101,7 +101,7 @@ public class CandidatesController : ControllerBase
     [Authorize]
     [ProducesResponseType(409)]
     [HttpPost("Answer/{candidateId}")]
-    public async Task<IActionResult> PostAnswer([FromRoute] int candidateId, [FromBody] AnswerDTO answer) {
+    public async Task<IActionResult> PostAnswer([FromRoute] int candidateId, [FromBody] AnswersDTO answer) {
         var res = await _repo.AddAnswer(candidateId, answer);
         if (res == Status.NotFound) return new NotFoundObjectResult(candidateId);
         return res.ToActionResult();

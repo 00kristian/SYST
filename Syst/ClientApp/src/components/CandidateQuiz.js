@@ -6,27 +6,32 @@ import logo from './Systematic_Logo.png';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 import {FetchOptions} from './FetchOptions';
 
+//Page for the quiz the candidates participate in
 export function CandidateQuiz(props) {
   const [quiz, setQuiz] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
+
   const { instance, accounts } = useMsal();
 
   const EVENTID = props.match.params.event_id;
   const QUIZID = props.match.params.quiz_id;
 
   useEffect(async () => {
-	const options = await FetchOptions.Options(instance, accounts, "GET");
+	  const options = await FetchOptions.Options(instance, accounts, "GET");
     const response = await fetch('api/quiz/' + QUIZID, options);
     const data = await response.json();
     let arLength = 0; 
+
     if (data.questions != null) {
       arLength = data.questions.length;
     }
-	setQuiz(data);
-	setAnswers(Array(arLength));
+
+	  setQuiz(data);
+	  setAnswers(Array(arLength));
   }, []);
 
+  //Methods
   const answer = async (option) => {
     answers[currentQuestion] = option;
     next();
@@ -62,6 +67,7 @@ export function CandidateQuiz(props) {
         );
     });
 
+    //User Interface
     return (
         <div>
             <h3 style={{
@@ -84,7 +90,6 @@ export function CandidateQuiz(props) {
 
     );
   }
-
     let contents = quiz == null ?
 	<></>
 	:
