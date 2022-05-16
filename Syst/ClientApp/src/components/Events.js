@@ -18,7 +18,7 @@ function Events (props) {
         .then(response => response.json())
         .catch(error => console.log(error));
         
-        const dataRecent = await fetch('api/eventsquery/recent', options)
+        const dataRecent = await fetch('api/events', options)
         .then(response => response.json())
         .catch(error => console.log(error));
 

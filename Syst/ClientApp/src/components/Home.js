@@ -14,7 +14,7 @@ function Home(props) {
     useEffect(async () => {
         if (isAuthenticated) {
             const options = await FetchOptions.Options(instance, accounts, "GET");
-            const data = await fetch('api/events', options)
+            const data = await fetch('api/eventsquery/upcoming', options)
             .then(response => response.json())
             .catch(error => console.log(error));
             setEvents(data);
