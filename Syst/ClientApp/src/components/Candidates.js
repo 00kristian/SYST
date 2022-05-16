@@ -85,7 +85,7 @@ function Candidates() {
             }
         </InteractiveTable>;
     return (
-        <div>
+        <div className="page-padding">
             <h1 id="tabelLabel" >Candidates</h1>
             {contents}
         </div>

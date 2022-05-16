@@ -27,7 +27,7 @@ export class LoginPage extends Component {
                 height: "100vh",
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center' 
+                backgroundPosition: 'center'
             };
         return (
             <div style={myStyle}>

@@ -77,7 +77,7 @@ function Events (props) {
 
         return (
             <AuthenticatedTemplate>
-            <div>
+            <div className="page-padding">
                 <h3 id="tabelLabel" >Upcoming Events
                     <button className="btn btn-primary btn-right" onClick= {()=>rerouteToEventCreation()}>CREATE</button>
                 </h3>

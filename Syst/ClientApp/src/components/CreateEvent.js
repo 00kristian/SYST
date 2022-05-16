@@ -114,7 +114,7 @@ function CreateEvent(props) {
 
     return (
        <AuthenticatedTemplate>
-        <div>
+        <div className="page-padding">
             <h2>Here you can create or edit an event</h2>
             <br/>
             <form>

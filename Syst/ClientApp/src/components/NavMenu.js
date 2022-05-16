@@ -25,17 +25,17 @@ export function NavMenu(props) {
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
-            <div>
+            <div style={{paddingLeft:"6%"}}>
               <a href={"/"}>
                 <img src={logo} alt="Logo" width={230}/>
               </a>
             </div>
-            <div >
+            <div>
               <h5>Event Tool</h5>
             </div>
             <NavbarToggler onClick={toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!collapsed} navbar>
-              <ul className="navbar-nav flex-grow">
+              <ul className="navbar-nav flex-grow" style={{paddingRight:"5%"}}>
                 <NavItem>
                   <NavLink tag={Link} className="navitem text-dark txt-navbar" to="/"><Icon path={mdiHome} size={1}/> HOME</NavLink>
                 </NavItem>
