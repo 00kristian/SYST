@@ -75,7 +75,7 @@ function EventRating(props) {
 
     return (
      <AuthenticatedTemplate>
-            <div>
+            <div className="page-padding">
                 <h2 className='div-center'>Event Rating</h2>
                 <br/>
                 <p>1. How many relevant candidates did we meet?</p>

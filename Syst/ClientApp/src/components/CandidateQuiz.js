@@ -63,7 +63,7 @@ export function CandidateQuiz(props) {
     });
 
     return (
-        <div>
+        <div className="page-padding">
             <h3 style={{
                 display: "flex",
                 justifyContent: "center",

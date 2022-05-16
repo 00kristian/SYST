@@ -78,7 +78,7 @@ export function EventDetail(props) {
   const renderEvent = () => {
       return (
         <AuthenticatedTemplate>
-        <div>
+        <div className="page-padding">
             <h1>{event.name}</h1>
             <h3>{event.location}, {event.date}</h3>
             <button onClick={() => editEvent()} className="btn btn-tertiary obj-space btn-right">Edit Event</button>

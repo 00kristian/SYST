@@ -53,19 +53,23 @@ function Home(props) {
               </div>
         }
         </InteractiveTable>;
-        
+    
     return (
         <React.Fragment>
         <AuthenticatedTemplate>
+            <div className="page-padding">
         <div>
-            <h1 id="tabelLabel" >Upcoming Events
+            <h1 id="tabelLabel">Upcoming Events
                 <button className="btn btn-primary btn-right" onClick={() => rerouteToEventCreation()}>CREATE</button>
             </h1>
             {contents}
             </div>
+            </div>
         </AuthenticatedTemplate>
             <UnauthenticatedTemplate>
+                <div>
                 <LoginPage></LoginPage>
+            </div>
             </UnauthenticatedTemplate>
         </React.Fragment>
     );

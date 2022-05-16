@@ -268,12 +268,19 @@
 .obj-space {
     margin-right: 0.8%
 }
+/*-------------Container-------------*/
+div.container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100%;
+}
 
 /*---------------Pages---------------*/
 
 .page-padding {
-    padding-right: 5%;
-    padding-left: 5%;
+    padding-right: 7%;
+    padding-left: 7%;   
+    padding-bottom: 3%;
 }
 
 /*---------------Rows---------------*/
@@ -331,6 +338,9 @@ h1, h2, h3, h4, h5, h6, p{
     font-family: 'Roboto', sans-serif;
 }
 
+.txt-white{
+    color: white;
+}
 
 
 /*---------------Misc---------------*/

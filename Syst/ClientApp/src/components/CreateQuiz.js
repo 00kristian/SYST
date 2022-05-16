@@ -132,7 +132,7 @@ function CreateQuiz(props) {
 
     return (
         <AuthenticatedTemplate>
-        <div>
+        <div className="page-padding">
             <h2>Here you can create or edit a quiz</h2>
             <br/>
             <form>
