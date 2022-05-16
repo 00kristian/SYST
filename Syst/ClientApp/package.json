@@ -13,7 +13,7 @@
     "install": "^0.13.0",
     "jquery": "^3.5.1",
     "merge": "^2.1.1",
-    "npm": "^8.9.0",
+    "npm": "^8.10.0",
     "oidc-client": "^1.11.5",
     "react": "^17.0.2",
     "react-bootstrap": "^2.3.1",
