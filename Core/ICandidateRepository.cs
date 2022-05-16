@@ -1,7 +1,4 @@
 
-using System.Collections.Generic;
-
-
 namespace Core {
 public interface ICandidateRepository
     {
@@ -15,5 +12,6 @@ public interface ICandidateRepository
         Task<Status> Delete(int id);
         Task<Status> AddAnswer(int candidateId, AnswerDTO answer);
         Task DeleteOldCandidates();
+        Task<int[]> GraphData(string[] universities);
     }
 }

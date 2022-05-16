@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { InteractiveTable } from './InteractiveTable';
 import {FetchOptions} from './FetchOptions';
-
+import { CandidatesGraph } from "./CandidatesGraph";
 
 export default Home
 
@@ -61,7 +61,10 @@ function Home(props) {
                 <button className="btn btn-primary btn-right" onClick={() => rerouteToEventCreation()}>CREATE</button>
             </h1>
             {contents}
-            </div>
+        </div>
+        <div style={{width: 600}}>
+            <CandidatesGraph></CandidatesGraph>
+        </div>
         </AuthenticatedTemplate>
     );
 }

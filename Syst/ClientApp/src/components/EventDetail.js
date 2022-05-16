@@ -96,7 +96,7 @@ export function EventDetail(props) {
                               <p className="txt-popup">How many winners would you like to generate?</p>
                               <div className="div-center">
     
-                                  <input onChange={(e) => setNumWinners(e.target.value) } type="number" min="1" max={event.candidates.length} step="1" />
+                                  <input value={numWinners} onChange={(e) => setNumWinners(e.target.value) } type="number" min="1" max={event.candidates.length} step="1" />
                                   <br/>
                                   <br/>
                                   <button className="btn btn-primary" onClick={() => pickWinners()}>OK</button>
