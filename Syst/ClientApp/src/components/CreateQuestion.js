@@ -59,11 +59,9 @@ function CreateQuestion(props) {
     }
 
     function removeOptionFields() {
-        let temp = theseOptions;
-        if (temp.length === 0) return;
-        temp.pop();
-        setOptions(temp);
-        
+        theseOptions.pop();
+        setOptions([...theseOptions]);
+
     }
 
     function addOptionFields() {
