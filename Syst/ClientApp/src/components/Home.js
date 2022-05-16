@@ -62,7 +62,7 @@ function Home(props) {
             </h1>
             {contents}
         </div>
-        <div style={{width: 600}}>
+        <div>
             <CandidatesGraph></CandidatesGraph>
         </div>
         </AuthenticatedTemplate>
