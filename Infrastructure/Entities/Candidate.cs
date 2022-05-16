@@ -10,10 +10,11 @@ namespace Infrastructure{
         public string? StudyProgram {get; set;}
         public string? University {get; set;}
         public DateTime GraduationDate {get; set;}
+        public double PercentageOfCorrectAnswers { get; set;}
         public ICollection<Event>? EventsParticipatedIn {get; set;}
         public Quiz? Quiz {get; set;}
         public bool IsUpvoted {get; set;}
-        public virtual ICollection<Answer>? Answers {get; set;}
+        public Answer? Answer {get; set;}
         public DateTime Created {get; set;}
     }
 }

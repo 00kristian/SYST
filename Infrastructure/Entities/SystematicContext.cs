@@ -14,6 +14,7 @@ public class SystematicContext : DbContext, ISystematicContext
     public DbSet<Question> Questions { get; set; } = null!;
     public DbSet<Quiz> Quizes { get; set; } = null!;
     public DbSet<Answer> Answers { get; set; } = null!;
+    
     public string DbPath { get; private set; } = null!;
 
     public SystematicContext(DbContextOptions<SystematicContext> options) : base(options) { }
@@ -46,7 +47,13 @@ public class SystematicContext : DbContext, ISystematicContext
         //To make sure admins know what events they have rated 
         modelBuilder.Entity<Admin>()
         .HasMany<Event>(a => a.Events);
+        
+        modelBuilder.Entity<Candidate>()
+            .HasOne<Answer>(c => c.Answer);
 
+        modelBuilder.Entity<Answer>()
+            .HasOne<Quiz>(c => c.Quiz);
+        
         //Makes sure we can store a list of answers in candidate
         modelBuilder.Entity<Answer>()
         .Property(a => a.Answers)

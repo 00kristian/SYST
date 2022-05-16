@@ -28,7 +28,7 @@ namespace Core {
 
         [Required]
         bool IsUpvoted,
-
+        
         [Required]
         DateTime Created
     );

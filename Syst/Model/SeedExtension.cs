@@ -43,17 +43,17 @@ public static class SeedExtensions
             var date11 = new System.DateTime(2022,03,24);
             var date12 = new System.DateTime(2022,10,31);
 
-            var lukas = new Candidate() {Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date0, Created = DateTime.Now};
-            var maj = new Candidate() {Name = "Maj Frost Jensen", Email = "mfje@itu.dk", CurrentDegree = "BSc",StudyProgram = "Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date0, Created = DateTime.Now};
-            var isabella = new Candidate() {Name = "Isabella Magnusdottir", Email = "imag@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date2, Created = DateTime.Now};
-            var camille = new Candidate() {Name = "Camille Gonnsen", Email = "cgon@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date1, Created = DateTime.Now};
-            var kristian = new Candidate() {Name = "Kristian Berlin Jensen", Email = "krbj@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date0, Created = DateTime.Now};
-            var sarah = new Candidate() {Name = "Sarah Christiansen", Email = "sacc@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date2, Created = DateTime.Now};
-            var emma = new Candidate() {Name = "Emma Hansen", Email = "emha@ku.dk", CurrentDegree = "BSc", StudyProgram = "Datalogi", University = "University of Copenhagen", GraduationDate = date1, Created = DateTime.Now};
-            var sebastian = new Candidate(){Name = "Sebastian Nielsen", Email = "seni@ruc.dk", CurrentDegree = "PhD", StudyProgram = "Humunistisk Teknologi", University= "Roskilde University", GraduationDate = date1, Created = DateTime.Now}; 
-            var benjamin = new Candidate(){Name = "Benjamin Christensen", Email = "belc@itu.dk", CurrentDegree = "MSc", StudyProgram = "Computer Science", University = "IT-University of Copenhagen", GraduationDate = date2, Created = DateTime.Now};
-            var peter = new Candidate(){Name = "Peter Hansen", Email = "peha@sdu.dk", CurrentDegree = "MSc", StudyProgram = "Webkommunikation", University = "University of Southern Denmark", GraduationDate = date2, Created = DateTime.Now};
-            
+            var lukas = new Candidate() {Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date0, Created = DateTime.Now, PercentageOfCorrectAnswers = 1, Answer = null};
+            var maj = new Candidate() {Name = "Maj Frost Jensen", Email = "mfje@itu.dk", CurrentDegree = "BSc",StudyProgram = "Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date0, Created = DateTime.Now, PercentageOfCorrectAnswers = 1, Answer = null};
+            var isabella = new Candidate() {Name = "Isabella Magnusdottir", Email = "imag@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date2, Created = DateTime.Now, PercentageOfCorrectAnswers = 1, Answer = null};
+            var camille = new Candidate() {Name = "Camille Gonnsen", Email = "cgon@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date1, Created = DateTime.Now, PercentageOfCorrectAnswers = 0.2, Answer = null};
+            var kristian = new Candidate() {Name = "Kristian Berlin Jensen", Email = "krbj@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date0, Created = DateTime.Now, PercentageOfCorrectAnswers = 0.2, Answer = null};
+            var sarah = new Candidate() {Name = "Sarah Christiansen", Email = "sacc@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = date2, Created = DateTime.Now, PercentageOfCorrectAnswers = 0.2, Answer = null};
+            var emma = new Candidate() {Name = "Emma Hansen", Email = "emha@ku.dk", CurrentDegree = "BSc", StudyProgram = "Datalogi", University = "University of Copenhagen", GraduationDate = date1, Created = DateTime.Now, PercentageOfCorrectAnswers = 0, Answer = null};
+            var sebastian = new Candidate(){Name = "Sebastian Nielsen", Email = "seni@ruc.dk", CurrentDegree = "PhD", StudyProgram = "Humunistisk Teknologi", University= "Roskilde University", GraduationDate = date1, Created = DateTime.Now, PercentageOfCorrectAnswers = 0.4, Answer = null}; 
+            var benjamin = new Candidate(){Name = "Benjamin Christensen", Email = "belc@itu.dk", CurrentDegree = "MSc", StudyProgram = "Computer Science", University = "IT-University of Copenhagen", GraduationDate = date2, Created = DateTime.Now, PercentageOfCorrectAnswers = 0.4, Answer = null};
+            var peter = new Candidate(){Name = "Peter Hansen", Email = "peha@sdu.dk", CurrentDegree = "MSc", StudyProgram = "Webkommunikation", University = "University of Southern Denmark", GraduationDate = date2, Created = DateTime.Now, PercentageOfCorrectAnswers = 0.4, Answer = null};
+
             context.Candidates.AddRange(
                 lukas,
                 maj,
