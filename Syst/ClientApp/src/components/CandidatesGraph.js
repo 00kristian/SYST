@@ -27,6 +27,7 @@ export function CandidatesGraph(props) {
         "University of Copenhagen",
         "University of Southern Denmark"];
     const [graphData, setGraphData] = useState([]);
+    const [selectedUni, setSelectedUni] = useState("Aalborg University");
     const { instance, accounts } = useMsal();
 
     useEffect(async () => {
@@ -44,27 +45,14 @@ export function CandidatesGraph(props) {
         setGraphData(data);
     }, []);
 
-    const barOptions = {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: true,
-            text: 'Chart.js Bar Chart',
-          },
-        },
-      };
-
-    const barLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
     const barData = {
-    barLabels,
+    labels,
     datasets: [
         {
         label: 'Dataset 1',
-        data: barLabels.map(() => (Math.random() * 100)),
+        data: labels.map(() => (Math.random() * 100)),
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
         }
     ],
@@ -79,24 +67,35 @@ export function CandidatesGraph(props) {
                 label: '# of Votes',
                 data: graphData,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
+                    'rgba(255, 105, 180, 0.2)',
+                    'rgba(255, 0, 0, 0.2)',
+                    'rgba(255, 102, 0, 0.2)',
+                    'rgba(255, 218, 0, 0.2)',
+                    'rgba(173, 255, 47, 0.2)',
+                    'rgba(7, 218, 99, 0.2)',
+                    'rgb(48, 213, 200, 0.2)',
+                    'rgb(64, 34, 208, 0.2)',
+                    'rgb(148, 0, 211, 0.2)'
+                  ],
+            
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(255, 105, 180, 1)',
+                    'rgba(255, 0, 0, 1)',
+                    'rgba(255, 102, 0, 1)',
+                    'rgba(255, 218, 0, 1)',
+                    'rgba(173, 255, 47, 1)',
+                    'rgba(7, 218, 99, 1)',
+                    'rgb(48, 213, 200, 1)',
+                    'rgb(64, 34, 208, 1)',
+                    'rgb(148, 0, 211, 1)'
                 ],
                 borderWidth: 1
             }]
-        }} />
+        }} onElementsClick={elems => {
+            // if required to build the URL, you can 
+            // get datasetIndex and value index from an `elem`:
+            console.log(elems[0]._datasetIndex + ', ' + elems[0]._index);
+            }}/>
         <Bar data={barData} />
         </div>
     )

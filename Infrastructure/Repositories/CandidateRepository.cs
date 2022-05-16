@@ -187,7 +187,7 @@ namespace Infrastructure
                 var uni = unis[i];
                 data[i] = dict.ContainsKey(uni) ? dict[uni] : 0;
             }
-            data[unis.Length] = dict["Other"];
+            data[unis.Length] = dict.ContainsKey("Other") ? dict["Other"] : 0;
             return data;
         }
     }
