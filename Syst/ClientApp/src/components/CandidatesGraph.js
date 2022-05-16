@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Pie, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend,
     CategoryScale,
@@ -26,8 +26,42 @@ export function CandidatesGraph(props) {
         "Technical University of Denmark",
         "University of Copenhagen",
         "University of Southern Denmark"];
+    const colors = [
+        'rgba(255, 105, 180, 0.5)',
+        'rgba(255, 0, 0, 0.5)',
+        'rgba(255, 102, 0, 0.5)',
+        'rgba(255, 218, 0, 0.5)',
+        'rgba(173, 255, 47, 0.5)',
+        'rgba(7, 218, 99, 0.5)',
+        'rgb(48, 213, 200, 0.5)',
+        'rgb(64, 34, 208, 0.5)',
+        'rgb(148, 0, 211, 0.5)'
+    ];
+    const borderColors = [
+        'rgba(255, 105, 180, 1)',
+        'rgba(255, 0, 0, 1)',
+        'rgba(255, 102, 0, 1)',
+        'rgba(255, 218, 0, 1)',
+        'rgba(173, 255, 47, 1)',
+        'rgba(7, 218, 99, 1)',
+        'rgb(48, 213, 200, 1)',
+        'rgb(64, 34, 208, 1)',
+        'rgb(148, 0, 211, 1)' 
+    ];
+    const barColors = [
+        'rgba(255, 105, 180, 0.7)',
+        'rgba(255, 0, 0, 0.7)',
+        'rgba(255, 102, 0, 0.7)',
+        'rgba(255, 218, 0, 0.7)',
+        'rgba(173, 255, 47, 0.7)',
+        'rgba(7, 218, 99, 0.7)',
+        'rgb(48, 213, 200, 0.7)',
+        'rgb(64, 34, 208, 0.7)',
+        'rgb(148, 0, 211, 0.7)'
+    ];
     const [graphData, setGraphData] = useState([]);
     const [selectedUni, setSelectedUni] = useState("Aalborg University");
+    const [barColor, setBarColor] = useState('rgba(255, 105, 180, 0.7)');
     const { instance, accounts } = useMsal();
 
     useEffect(async () => {
@@ -45,58 +79,47 @@ export function CandidatesGraph(props) {
         setGraphData(data);
     }, []);
 
+    useEffect(() => 
+        console.log(selectedUni), [selectedUni]
+    )
+
     const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-    const barData = {
-    labels,
-    datasets: [
-        {
-        label: 'Dataset 1',
-        data: labels.map(() => (Math.random() * 100)),
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    const pieOptions =  {
+        'onClick' : function (evt, item) {
+            let id = item[0].index;
+            setSelectedUni(universities[id]?? "Other");
+            setBarColor(colors[id]);
         }
-    ],
-    };
-
+    }
     return (
-        <div className="div-flex horizontal-centered-div">
+        <div className="div-flex">
+            <div style={{width: 350, marginLeft: 150, marginRight: 50}}>
 
-        <Pie data={{
-            labels: ['AAU', 'AU', 'CBS','ITU','RUC','DTU','KU','SDU','Other'],
-            datasets: [{
-                label: '# of Votes',
-                data: graphData,
-                backgroundColor: [
-                    'rgba(255, 105, 180, 0.2)',
-                    'rgba(255, 0, 0, 0.2)',
-                    'rgba(255, 102, 0, 0.2)',
-                    'rgba(255, 218, 0, 0.2)',
-                    'rgba(173, 255, 47, 0.2)',
-                    'rgba(7, 218, 99, 0.2)',
-                    'rgb(48, 213, 200, 0.2)',
-                    'rgb(64, 34, 208, 0.2)',
-                    'rgb(148, 0, 211, 0.2)'
-                  ],
-            
-                borderColor: [
-                    'rgba(255, 105, 180, 1)',
-                    'rgba(255, 0, 0, 1)',
-                    'rgba(255, 102, 0, 1)',
-                    'rgba(255, 218, 0, 1)',
-                    'rgba(173, 255, 47, 1)',
-                    'rgba(7, 218, 99, 1)',
-                    'rgb(48, 213, 200, 1)',
-                    'rgb(64, 34, 208, 1)',
-                    'rgb(148, 0, 211, 1)'
-                ],
-                borderWidth: 1
-            }]
-        }} onElementsClick={elems => {
-            // if required to build the URL, you can 
-            // get datasetIndex and value index from an `elem`:
-            console.log(elems[0]._datasetIndex + ', ' + elems[0]._index);
-            }}/>
-        <Bar data={barData} />
+                <Pie options={pieOptions} data={{
+                    labels: ['AAU', 'AU', 'CBS','ITU','RUC','DTU','KU','SDU','Other'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: graphData,
+                        backgroundColor: colors,
+                        borderColor: borderColors,
+                        borderWidth: 1
+                    }]
+                }} />
+            </div>
+            <div style={{width: 600, marginTop: 30}}>
+
+                <Bar data={{
+                    labels,
+                    datasets: [
+                        {
+                            label: selectedUni,
+                            data: labels.map(() => (Math.random() * 100)),
+                            backgroundColor: barColor,
+                        }
+                    ],
+                }} />
+            </div>
         </div>
     )
 }

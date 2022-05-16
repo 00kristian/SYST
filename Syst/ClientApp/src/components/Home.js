@@ -62,9 +62,9 @@ function Home(props) {
             </h1>
             {contents}
         </div>
-        <div>
-            <CandidatesGraph></CandidatesGraph>
-        </div>
+        <hr></hr>
+        <CandidatesGraph></CandidatesGraph>
+        <hr></hr>
         </AuthenticatedTemplate>
     );
 }
