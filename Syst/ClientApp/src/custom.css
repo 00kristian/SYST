@@ -139,6 +139,21 @@
     
 }
 
+.btn-center{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:5vw;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 12px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    
+}
+
+
+
 /*---------------Divs---------------*/
 
 .div-center {
@@ -186,6 +201,17 @@
     justify-content: end;
     margin-bottom: 2px;
     margin-right: 5px;
+}
+
+.div-signIn{
+    border-right: 2px solid white;
+    width: 100%;
+    height: 100%;
+    margin-left: 5px;
+    margin-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
 }
 /*---------------Images---------------*/
 

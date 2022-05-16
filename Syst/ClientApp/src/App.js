@@ -31,7 +31,7 @@ export default class App extends Component {
           <div>
           <NavMenu />
           <Container>
-            <Route exact path='/' component={Home} />
+            <Route exact path = '/' component={Home}/>
             <Route path='/candidates' component={Candidates} />
             <Route path='/CreateEvent/:id' component={CreateEvent} />
             <Route path='/Events' component={Events} />
