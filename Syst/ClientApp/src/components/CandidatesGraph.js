@@ -8,28 +8,29 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 export function CandidatesGraph(props) {
-    const [universities, setUniversities] = useState(["Aalborg University",
-                                                        "Aarhus University",
-                                                        "Copenhagen Business School",
-                                                        "IT-University of Copenhagen",
-                                                        "Roskilde University",
-                                                        "Technical University of Denmark",
-                                                        "University of Copenhagen",
-                                                        "University of Southern Denmark"]);
+    const universities = ["Aalborg University",
+        "Aarhus University",
+        "Copenhagen Business School",
+        "IT-University of Copenhagen",
+        "Roskilde University",
+        "Technical University of Denmark",
+        "University of Copenhagen",
+        "University of Southern Denmark"];
     const [graphData, setGraphData] = useState([]);
     const { instance, accounts } = useMsal();
 
     useEffect(async () => {
         const options = await FetchOptions.Options(instance, accounts, "PUT");
-        options.body = universities
         options.headers ={ 
             ...options.headers,
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'text/plain'
         };
+        options.body = JSON.stringify(universities);
         const data = await fetch('api/candidates/graphdata', options)
         .then(response => response.json())
         .catch(error => console.log(error));
+        
         setGraphData(data);
     }, []);
 

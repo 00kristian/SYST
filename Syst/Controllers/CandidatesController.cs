@@ -111,7 +111,7 @@ public class CandidatesController : ControllerBase
     [ProducesResponseType(404)]
     [ProducesResponseType(typeof(CandidateDTO), 200)]
     [HttpPut("GraphData")]
-    public async Task<ActionResult<int[]>> GraphData(string[] universities)
+    public async Task<ActionResult<int[]>> GraphData([FromBody] IEnumerable<string> universities)
     {   
         //Using our CRUD operation to get the specified candidate by id
         var res = await _repo.GraphData(universities);
