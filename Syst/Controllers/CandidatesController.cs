@@ -56,6 +56,7 @@ public class CandidatesController : ControllerBase
         var created = await _repo.Create(candidate);
         var id = created.Item2;
         if (created.Item1 == Status.Conflict) return new ConflictObjectResult(id);
+        if(created.Item1 == Status.BadRequest) return new BadRequestObjectResult(id);
         return CreatedAtAction(nameof(Get), new { id }, id);
     }
     

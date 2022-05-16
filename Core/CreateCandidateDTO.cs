@@ -11,6 +11,7 @@ namespace Core {
         [Required, StringLength(50)]
         string Name,
 
+        [DataType(DataType.EmailAddress)]
         [Required, EmailAddress]
         string Email,
         

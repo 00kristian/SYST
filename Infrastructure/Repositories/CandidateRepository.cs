@@ -1,3 +1,4 @@
+using System.Net.Mail;
 using Core;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,8 +19,8 @@ namespace Infrastructure
             DateTime currentDate = DateTime.Today;
             var dupe = _context.Candidates.Where(c => c.Email == candidateDTO.Email).FirstOrDefault();
             if (dupe != default(Candidate)) return (Status.Conflict, dupe.Id);
+                if(!IsValid(candidateDTO.Email)) return (Status.BadRequest, 0);
                 //Is this function necessary? Ask Iulia about multiple email entries in the db
-            
                 var entity = new Candidate
                 {
                     Name = candidateDTO.Name!,
@@ -38,6 +39,20 @@ namespace Infrastructure
 
                 return (Status.Created, entity.Id);
         }
+
+    public bool IsValid(string emailaddress)
+    {
+    try
+    {
+        MailAddress m = new MailAddress(emailaddress);
+
+        return true;
+    }
+    catch (FormatException)
+    {
+        return false;
+    }
+}
 
         //Return a name given the candidate id 
         public async Task<(Status, string?)> ReadNameFromId(int id) {
