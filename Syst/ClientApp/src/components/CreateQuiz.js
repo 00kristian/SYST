@@ -8,6 +8,7 @@ import { mdiTrashCan } from '@mdi/js';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 import { FetchOptions } from "./FetchOptions";
 
+//Page where the admin can create a new quiz
 export default CreateQuiz
 
 function CreateQuiz(props) {
@@ -39,6 +40,7 @@ function CreateQuiz(props) {
         setQuizes(data.filter(q => q.id != props.match.params.id));
     }, []);
 
+    //Methods
     const updateQuiz = async () => {
         let quiz = {
             "name": name
@@ -130,6 +132,7 @@ function CreateQuiz(props) {
         await fetch('api/Quiz/' + props.match.params.id + '/clone/' + cloneId, options);
     }
 
+    //User Interface
     return (
         <AuthenticatedTemplate>
         <div className="page-padding">

@@ -9,15 +9,10 @@ public interface IEventRepository
         Task<(Status, string?)> ReadNameFromId(int id);
         Task<Status> Update(int id, CreateEventDTO eventDTO);
         Task<Status> Delete(int id);
-
         Task<IReadOnlyCollection<EventDTO>> ReadUpcoming();
-
         Task<IReadOnlyCollection<EventDTO>> ReadRecent();
-
         Task<Status> UpdateQuiz(int eventid, int quizid);
-        
         Task<(Status, IEnumerable<CandidateDTO>)> PickMultipleWinners(int eventId, int numOfWinners);
-
         Task<Status> UpdateRating(int id, double rating);
 
     }

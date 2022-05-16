@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core {
 
-    //Admin object that carries admin data between processes
+    //Admin object that carries admin data between processes 
     public record struct AdminDTO(
 
         [Required]

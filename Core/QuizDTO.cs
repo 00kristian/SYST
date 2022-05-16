@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core {
 
-    //Quiz object that carries quiz data between processes
+    //Quiz object that carries quiz data between processes and is being used when fetching the data
     public record struct QuizDTO(
 
         [Required]

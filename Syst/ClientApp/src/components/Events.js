@@ -4,6 +4,7 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/
 import { FetchOptions } from './FetchOptions';
 
 
+//Page that shows alle the events
 export default Events 
 
 function Events (props) {

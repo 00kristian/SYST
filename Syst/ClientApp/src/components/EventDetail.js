@@ -8,6 +8,7 @@ import Icon from "@mdi/react";
 import { mdiThumbUp, mdiThumbDown } from '@mdi/js';
 import { useHistory } from "react-router-dom";
 
+//Page that shows a specific events details 
 export function EventDetail(props) {
 
   const [event, setEvent] = useState(null);

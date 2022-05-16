@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core {
 
-    //question object that carries question data between processes
+    //Question object that carries question data between processes and is being used when creating a question
     public record struct CreateQuestionDTO(
 
         [Required]

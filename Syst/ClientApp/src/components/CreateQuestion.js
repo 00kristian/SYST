@@ -7,7 +7,7 @@ import { mdiTrashCan } from '@mdi/js';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 import { FetchOptions } from "./FetchOptions";
 
-
+//Page where the admin can create different questions to a specific quiz
 export default CreateQuestion
 
 function CreateQuestion(props) {
@@ -76,6 +76,7 @@ function CreateQuestion(props) {
             "Options": theseOptions,
             "imageURl": imageURl
         };
+    
         const options = await FetchOptions.Options(instance, accounts, "PUT")
         options.headers ={
             ...options.headers,

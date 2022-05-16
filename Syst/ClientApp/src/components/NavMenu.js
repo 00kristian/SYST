@@ -11,6 +11,8 @@ import { useIsAuthenticated } from "@azure/msal-react";
 import { SignInButton } from "./SignInButton";
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
+
+//The navigation bar that makes the admin able to surf through the different pages
 export function NavMenu(props) {
   //static displayName = NavMenu.name;
   const [collapsed, setCollapsed] = useState(true);

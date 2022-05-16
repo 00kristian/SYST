@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { CSVLink } from "react-csv";
 
+//Function that exports the candidates to a csv file
 export default ExportCandidates
 
 function ExportCandidates(props) {
