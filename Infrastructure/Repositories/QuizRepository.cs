@@ -17,9 +17,9 @@ namespace Infrastructure
         }
 
         //Creates a quiz
-        public async Task<(Status, int id)> Create(QuizCreateDTO quizDTO)
+        public async Task<(Status, int id)> Create(CreateQuizDTO quizDTO)
         {
-            if (quizDTO == default(QuizCreateDTO)) return (Status.Conflict, 0);
+            if (quizDTO == default(CreateQuizDTO)) return (Status.Conflict, 0);
             //TODO: test if dto is null
             var entity = new Quiz
                 {
@@ -91,26 +91,20 @@ namespace Infrastructure
         }
         
         //Updates a quiz date value
-        public async Task<Status> Update(int id, QuizCreateDTO quizDTO)
+        public async Task<Status> Update(int id, CreateQuizDTO quizDTO)
         {
             var q = await _context.Quizes.Where(q => q.Id == id).FirstOrDefaultAsync();
 
             if (q == default(Quiz)) return Status.NotFound;
 
             q.Name = quizDTO.Name;
-            // q.Questions = quizDTO.Questions.Select(qs => new Question {
-            //     Representation = qs.Representation,
-            //     Answer = qs.Answer,
-            //     ImageURL = qs.ImageURl,
-            //     Options = qs.Options
-            // }).ToList();
-    
 
             await _context.SaveChangesAsync();
 
             return Status.Updated;
         }
 
+        //Adds a question the connected quiz
         //TODO: Test this!
         public async Task<(Status, int id)> AddQuestion(int id, CreateQuestionDTO question)
         {
@@ -135,7 +129,8 @@ namespace Infrastructure
 
             return (Status.Updated, ques.Id);
         }
-
+        
+        //Removes a question to the connected quiz
         //TODO: Test this!
         public async Task<Status> RemoveQuestion(int quizId, int questionId)
         {
@@ -152,6 +147,8 @@ namespace Infrastructure
             return(Status.Updated);
         }
 
+
+        //Clone a quiz into a new quiz using their id's 
         public async Task<Status> Clone(int quizId, int origianlId) {
             var quiz = await _context.Quizes.Include(q => q.Questions).Where(q => q.Id == quizId).FirstOrDefaultAsync();
 

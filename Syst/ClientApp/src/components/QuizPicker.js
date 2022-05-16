@@ -3,6 +3,7 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-reac
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css'
 
+//Dropdown menu to choose different quizzes 
 export class QuizPicker extends Component {
     
     static Picker(quizes, startvalue, changeFun) {

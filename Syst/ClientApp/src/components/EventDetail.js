@@ -8,6 +8,7 @@ import Icon from "@mdi/react";
 import { mdiThumbUp, mdiThumbDown } from '@mdi/js';
 import { useHistory } from "react-router-dom";
 
+//Page that shows a specific events details 
 export function EventDetail(props) {
 
   const [event, setEvent] = useState(null);
@@ -78,7 +79,7 @@ export function EventDetail(props) {
   const renderEvent = () => {
       return (
         <AuthenticatedTemplate>
-        <div>
+        <div className="page-padding">
             <h1>{event.name}</h1>
             <h3>{event.location}, {event.date}</h3>
             <button onClick={() => editEvent()} className="btn btn-tertiary obj-space btn-right">Edit Event</button>

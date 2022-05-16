@@ -24,14 +24,15 @@ export default class App extends Component {
     return (
       <div>
         <Switch>
- 
+          {/* Pages without the navigation bar */}
           <Route path='/CandidateQuiz/:event_id/:quiz_id' component={CandidateQuiz} />
           <Route path='/CandidateInformation' component={CandidateInformation} />
 
+          {/* Pages with the navigation bar */}
           <div>
           <NavMenu />
           <Container>
-            <Route exact path='/' component={Home} />
+            <Route exact path = '/' component={Home}/>
             <Route path='/candidates' component={Candidates} />
             <Route path='/CreateEvent/:id' component={CreateEvent} />
             <Route path='/Events' component={Events} />
@@ -46,22 +47,6 @@ export default class App extends Component {
 
           </Switch>
       </div>
-      /*<Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/candidates' component={Candidates} />
-        <Route path='/fetch-data' component={FetchData} />
-        <Route path='/CreateEvent' component={CreateEvent} />
-        <Route path='/Events' component={Events} />
-        <Route path='/Confirmation' component={Confirmation} />
-        <Route path='/CreateQuiz' component={CreateQuiz} />
-        <Route path='/CreateQuestion' component={CreateQuestion} />
-        <Route path='/eventdetail/:id' component={EventDetail} 
-        
-
-        />
-      </Layout>
-        <Route path='/eventdetail/:id' component={EventDetail} />
-      </Layout>*/
     );
   }
 }

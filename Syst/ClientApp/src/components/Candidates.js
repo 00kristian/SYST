@@ -8,7 +8,7 @@ import { InteractiveTable } from './InteractiveTable';
 import {FetchOptions} from './FetchOptions';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 
-
+//Page that shows all the candidates 
 export default Candidates
 
 function Candidates() {
@@ -25,26 +25,21 @@ function Candidates() {
     }, []);
 
    
-
+    //Methods
     const clickToDownvoteCandidate = async (id) => {
         const options = await FetchOptions.Options(instance, accounts, "DELETE");
 
         await fetch('api/candidates/' + id, options);
     }
 
-/*     const getCandidateById = async (id) =>{
-        await fetch('api/candidates/' + id, {
-            method: 'GET'
-        })
-    }
-     */
     const clickToUpvoteCandidate =  async (id) => {
         const options = await FetchOptions.Options(instance, accounts, "PUT");
         console.log (options);
         
         await fetch("api/candidates"+"/upvote/"+ id, options)
     } 
-
+    
+    //User Interface
     let contents = <InteractiveTable ExportName="All_Candidates.csv" SearchBar={true} PageSize={8} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={candidates}>
             {candidate =>
                 <div>
@@ -85,7 +80,7 @@ function Candidates() {
             }
         </InteractiveTable>;
     return (
-        <div>
+        <div className="page-padding">
             <h1 id="tabelLabel" >Candidates</h1>
             {contents}
         </div>

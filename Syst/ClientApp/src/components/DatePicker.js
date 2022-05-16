@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+//The date picker that gets used when creating an event and when a a candidate sets in their graduation month
 export class DatePicker extends Component {
     static Picker(value, changeFun) {
         return (

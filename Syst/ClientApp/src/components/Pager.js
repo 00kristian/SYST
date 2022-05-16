@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
+//Makes the progress bar used when hosting an event
 export class Pager extends Component {
     
     static Pager(at, length, noNext, setFun, pageNumber) {

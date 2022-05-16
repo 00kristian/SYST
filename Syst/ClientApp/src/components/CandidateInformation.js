@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import 'react-dropdown/style.css'
 
 
+//Page where the candidate writes down their information to be stored in the database
 export function CandidateInformation(props) {
 
     const [name, setName] = useState("");
@@ -14,8 +15,9 @@ export function CandidateInformation(props) {
     const [university, setUniversity] = useState("");
     const [studyProgram, setStudyProgram] = useState("");
     const [currentDegree, setCurrentDegree] = useState("");
-    const [showSpecialUni, setShowSpecialUni] = useState(false);
     const [graduationDate, setGraduationDate] = useState(new Date());
+
+    const [showSpecialUni, setShowSpecialUni] = useState(false);
     const [validateName, setValidateName] = useState(true);
     const [validateEmail, setValidateEmail] = useState(true);
     const [validateStudyProgram, setValidateStudyProgram] = useState(true);
@@ -43,6 +45,8 @@ export function CandidateInformation(props) {
         'PhD'
     ];
 
+
+    //Mehtods
     const selectUni = (option) => {
 
         if (option.value === 'Other') {
@@ -128,7 +132,8 @@ export function CandidateInformation(props) {
         }
     }
 
-  
+
+    //User Interface     
     return (
         
         <div>

@@ -59,7 +59,7 @@ public class SystematicContext : DbContext, ISystematicContext
             c => c.ToArray())
         );
 
-        //makes sure we can store a list of options in question
+        //Makes sure we can store a list of options in question
         modelBuilder.Entity<Question>()
         .Property(q => q.Options)
         .HasConversion(

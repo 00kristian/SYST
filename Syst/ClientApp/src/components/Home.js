@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { InteractiveTable } from './InteractiveTable';
 import {FetchOptions} from './FetchOptions';
+import { LoginPage } from './LoginPage';
 
-
+//The first page the admin sees. The page shows all the upcoming events 
 export default Home
 
 function Home(props) {
@@ -14,7 +15,7 @@ function Home(props) {
     useEffect(async () => {
         if (isAuthenticated) {
             const options = await FetchOptions.Options(instance, accounts, "GET");
-            const data = await fetch('api/events', options)
+            const data = await fetch('api/eventsquery/upcoming', options)
             .then(response => response.json())
             .catch(error => console.log(error));
             setEvents(data);
@@ -50,18 +51,27 @@ function Home(props) {
             <div className='div-right'>
                   <td><a href={'/eventdetail/' + event.id}> <button className="btn btn-secondary btn-right obj-right_margin">Details</button></a></td>
                   <td onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')}><button className="btn btn-primary btn-right">HOST</button></td>
-              </div>
+            </div>
         }
         </InteractiveTable>;
-        
+    
     return (
+        <React.Fragment>
         <AuthenticatedTemplate>
+            <div className="page-padding">
         <div>
-            <h1 id="tabelLabel" >Upcoming Events
+            <h1 id="tabelLabel">Upcoming Events
                 <button className="btn btn-primary btn-right" onClick={() => rerouteToEventCreation()}>CREATE</button>
             </h1>
             {contents}
             </div>
+            </div>
         </AuthenticatedTemplate>
+            <UnauthenticatedTemplate>
+                <div>
+                <LoginPage></LoginPage>
+            </div>
+            </UnauthenticatedTemplate>
+        </React.Fragment>
     );
 }

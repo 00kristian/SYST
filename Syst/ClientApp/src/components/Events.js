@@ -4,6 +4,7 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/
 import { FetchOptions } from './FetchOptions';
 
 
+//Page that shows alle the events
 export default Events 
 
 function Events (props) {
@@ -18,7 +19,7 @@ function Events (props) {
         .then(response => response.json())
         .catch(error => console.log(error));
         
-        const dataRecent = await fetch('api/eventsquery/recent', options)
+        const dataRecent = await fetch('api/events', options)
         .then(response => response.json())
         .catch(error => console.log(error));
 
@@ -77,7 +78,7 @@ function Events (props) {
 
         return (
             <AuthenticatedTemplate>
-            <div>
+            <div className="page-padding">
                 <h3 id="tabelLabel" >Upcoming Events
                     <button className="btn btn-primary btn-right" onClick= {()=>rerouteToEventCreation()}>CREATE</button>
                 </h3>
