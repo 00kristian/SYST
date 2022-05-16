@@ -59,6 +59,16 @@ export function CandidateInformation(props) {
     
     const selectDegree = (education) => {setCurrentDegree(education.value);}
 
+    const ValidateEmail = () => {
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+            return (true);
+         }else {
+        alert("You have entered an invalid email address!")
+         return (false);
+         }
+    }
+        
+
     const checkedBox = (e) => {
         setValidateCheckBox(e.target.checked);
     }
@@ -68,7 +78,7 @@ export function CandidateInformation(props) {
         setClickedOnSubmit(true);
 
         const NameGood = name.length !== 0;
-        const EmailGood = email.length !== 0;
+        const EmailGood = email.length !== 0 && ValidateEmail();
         const UniversityGood = university.length !== 0;
         const DegreeGood = currentDegree.length !== 0;
         const StudyProgramGood = studyProgram.length !== 0;
@@ -121,6 +131,7 @@ export function CandidateInformation(props) {
             window.location.reload(true);
         }
     }
+
 
     //User Interface     
     return (

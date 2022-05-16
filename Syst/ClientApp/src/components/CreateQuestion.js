@@ -58,16 +58,17 @@ function CreateQuestion(props) {
         )
     }
 
+    function removeOptionFields() {
+        theseOptions.pop();
+        setOptions([...theseOptions]);
+
+    }
+
     function addOptionFields() {
         setOptions([...theseOptions, ""]);
     }
 
-    function removeOptionFields() {
-        let temp = theseOptions;
-        if (temp.length === 0) return;
-        temp.pop();
-        setOptions(temp);
-    }
+  
 
     async function confirm() {
         let question = {
@@ -104,7 +105,7 @@ function CreateQuestion(props) {
                         <hr/>
                         <div> {theseOptions?.map((option, index) => renderOption(option, index))} </div>
                         <button className="btn btn-primary" type="button" onClick={() => addOptionFields()}>+</button>
-                        <button className="btn btn-minus_question" type="button" onClick={() => removeOptionFields()}><Icon path={mdiTrashCan} size={1}/></button>
+                            <button className="btn btn-minus_question" type="button" onClick={() => removeOptionFields()}><Icon path={mdiTrashCan} size={1}/></button>
                     </Col>
                     <Col>
                         <h5 className="obj-top_padding">Select an image for the question</h5>

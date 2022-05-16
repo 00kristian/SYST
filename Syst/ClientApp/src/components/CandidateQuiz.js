@@ -100,7 +100,7 @@ export function CandidateQuiz(props) {
               :
               renderCandidateQuestion(quiz.questions[currentQuestion], answer)
               }
-              {Pager.Pager(currentQuestion, quiz.questions.length, ((at) => setCurrentQuestion(at)))}  
+              {Pager.Pager(currentQuestion, quiz.questions.length, true,((at) => setCurrentQuestion(at)))}  
           </Container>)
         : <h2 className="txt-center"> No quiz attached to this Event! </h2>;
 

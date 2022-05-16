@@ -13,7 +13,7 @@ export function EventDetail(props) {
 
   const [event, setEvent] = useState(null);
   const [winnerNames, setWinnerNames] = useState("");
-  const [numWinners, setNumWinners] = useState(1);
+  const [numWinners, setNumWinners] = useState(0);
   const history = useHistory();
   const { instance, accounts } = useMsal();
   
@@ -23,11 +23,13 @@ export function EventDetail(props) {
     
     let returnString = "";
 
-      for (let i = 0; i < winnersId.length; i++) {
-          if (i != 0) returnString = returnString + ", ";
-          let id = winnersId[i];
-          let candidate = await fetch('api/candidates/'+id, options).then(response => response.json());
-          returnString = returnString + candidate.name
+      if (winnersId !== undefined) {
+          for (let i = 0; i < winnersId.length; i++) {
+              if (i != 0) returnString = returnString + ", ";
+              let id = winnersId[i];
+              let candidate = await fetch('api/candidates/' + id, options).then(response => response.json());
+              returnString = returnString + candidate.name
+          }
       }
     return returnString;
   }

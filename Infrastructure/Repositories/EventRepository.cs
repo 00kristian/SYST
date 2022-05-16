@@ -118,7 +118,7 @@ namespace Infrastructure
         //Deletes an event given the event id
         public async Task<Status> Delete(int id){
 
-            var e = await _context.Events.Where(c => c.Id == id).FirstOrDefaultAsync();
+            var e = await _context.Events.Include(c => c.Candidates).Where(c => c.Id == id).FirstOrDefaultAsync();
             
             if (e == default(Event)) return Status.NotFound;
 
