@@ -3,7 +3,7 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-reac
 
 export class Pager extends Component {
     
-    static Pager(at, length, setFun, pageNumber) {
+    static Pager(at, length, noNext, setFun, pageNumber) {
         let at_ = at;
 
         const hideButtons = () => {
@@ -50,8 +50,10 @@ export class Pager extends Component {
             <div className="horizontal-centered-div div-flex2">
                 <button className='btn btn-primary' id="page-backBtn" onClick={back}>BACK</button>
                 {pageNumber != null && pageNumber ? <h3 className='progress-bar progress-text'>{at_ + 1} / {length + 1}</h3> : <progress className='progress-bar' id='page-progressBar' value={at_} max={length}> {at_} </progress>}
-                
-                <button className='btn btn-primary btn-right' id="page-nextBtn" onClick={next}>Next</button>
+                    {noNext ? <></> :
+                        <button className='btn btn-primary btn-right' id="page-nextBtn" onClick={next}>Next</button>
+                    }
+                    
                 </div>
             </AuthenticatedTemplate>
         );  

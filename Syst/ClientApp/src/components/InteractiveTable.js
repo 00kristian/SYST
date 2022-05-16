@@ -93,7 +93,7 @@ export function InteractiveTable(props) {
                 </tbody>
             </table>
             {props.PageSize != null ?
-                Pager.Pager(pageAt, Math.ceil(_content.length / props.PageSize, 10) - 1, (page) => {setPageAt(page)}, true)
+                Pager.Pager(pageAt, Math.ceil(_content.length / props.PageSize, 10) - 1, false, (page) => {setPageAt(page)}, true)
                 : <span></span>
             }
 
