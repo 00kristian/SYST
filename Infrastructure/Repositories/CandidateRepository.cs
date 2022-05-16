@@ -164,8 +164,6 @@ namespace Infrastructure
             }
             
             c.PercentageOfCorrectAnswers = (numOfCorrectAnswers / quiz.Questions.Count()) * 100;
-
-            Console.WriteLine((numOfCorrectAnswers / quiz.Questions.Count) * 100);
             
             var e = await _context.Events.Where(e => e.Id == answer.EventId).FirstOrDefaultAsync();
             if (e != default(Event)) c.EventsParticipatedIn!.Add(e); //Add the candidate to the event
