@@ -83,10 +83,11 @@ export function CandidatesGraph(props) {
         console.log(selectedUni), [selectedUni]
     )
 
-    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    const labels = ['0%', '20%', '40%', '60%', '80%', '100%'];
 
     const pieOptions =  {
         'onClick' : function (evt, item) {
+            if (item[0] == null) return;
             let id = item[0].index;
             setSelectedUni(universities[id]?? "Other");
             setBarColor(colors[id]);
