@@ -10,6 +10,7 @@ import { mdiAccountGroup } from '@mdi/js';
 import { useIsAuthenticated } from "@azure/msal-react";
 import { SignInButton } from "./SignInButton";
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import {SignOutButton} from "./SignOutButton";
 
 
 //The navigation bar that makes the admin able to surf through the different pages
@@ -48,7 +49,7 @@ export function NavMenu(props) {
                   <NavLink tag={Link} className="navitem text-dark txt-navbar" to="/candidates"><Icon path={mdiAccountGroup} size={1}/> CANDIDATES</NavLink>
                 </NavItem>
                 <NavItem>
-                { !isAuthenticated ? <SignInButton></SignInButton> : <NavLink tag={Link} className="navitem text-dark txt-navbar" to="/">SIGN OUT</NavLink>}              
+                { !isAuthenticated ? <SignInButton></SignInButton> : <SignOutButton></SignOutButton> }              
                   </NavItem>
               </ul>
             </Collapse>
