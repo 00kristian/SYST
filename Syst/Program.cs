@@ -89,12 +89,6 @@ builder.Services.AddSwaggerGen(setup =>
     }); 
 });
 
-// In production, the React files will be served from this directory
-builder.Services.AddSpaStaticFiles(configuration =>
-{
-    configuration.RootPath = "ClientApp/build";
-});
-
 var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(c => {  
@@ -114,7 +108,6 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseSpaStaticFiles();
 app.UseRouting();
 
 app.UseAuthentication();
