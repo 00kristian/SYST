@@ -25,6 +25,9 @@ namespace Core {
 
         [Required]
         string GraduationDate,
+        
+        [Required] 
+        double PercentageOfCorrectAnswers,
 
         [Required]
         ICollection<EventDTO> Events,

@@ -49,7 +49,8 @@ namespace Infrastructure
                     StudyProgram = c.StudyProgram!,
                     University = c.University!,
                     GraduationDate = c.GraduationDate.ToString("yyyy-MM"),
-                    IsUpvoted = c.IsUpvoted
+                    IsUpvoted = c.IsUpvoted, 
+                    PercentageOfCorrectAnswers = c.PercentageOfCorrectAnswers
                 }).ToList() : new List<CandidateDTO>(),
                 Quiz = (e.Quiz != default(Quiz)) ? new QuizDTO() {
                     Id = e.Quiz.Id,
