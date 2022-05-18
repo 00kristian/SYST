@@ -103,7 +103,7 @@ export function CandidatesGraph(props) {
     return (
         <div className="div-flex">
             <div style={{width: 350, marginLeft: 150, marginRight: 50}}>
-
+                <h4>Distribution of candidates</h4>
                 <Pie options={pieOptions} data={{
                     labels: ['AAU', 'AU', 'CBS','ITU','RUC','DTU','KU','SDU','Other'],
                     datasets: [{
@@ -115,8 +115,8 @@ export function CandidatesGraph(props) {
                     }]
                 }} />
             </div>
-            <div style={{width: 600, marginTop: 30}}>
-
+            <div style={{width: 600, marginTop: 0}}>
+                <h4>Distribution of answers per University</h4>
                 <Bar data={{
                     labels,
                     datasets: [
