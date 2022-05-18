@@ -12,5 +12,6 @@ public interface ICandidateRepository
         Task<Status> AddAnswer(int candidateId, AnswersDTO answer);
         Task DeleteOldCandidates();
         Task<int[]> GraphData(IEnumerable<string> universities);
+        Task<UniversityAnswerDistributionDTO> CandidateDistribution(string universityName);
     }
 }

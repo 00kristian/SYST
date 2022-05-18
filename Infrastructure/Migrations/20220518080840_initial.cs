@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class swagster : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,6 +34,25 @@ namespace Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Quizes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Answers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Answers = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    QuizId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Answers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Answers_Quizes_QuizId",
+                        column: x => x.QuizId,
+                        principalTable: "Quizes",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -98,14 +117,21 @@ namespace Infrastructure.Migrations
                     StudyProgram = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     University = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GraduationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PercentageOfCorrectAnswers = table.Column<double>(type: "float", nullable: false),
                     QuizId = table.Column<int>(type: "int", nullable: true),
                     IsUpvoted = table.Column<bool>(type: "bit", nullable: false),
+                    AnswerId = table.Column<int>(type: "int", nullable: true),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EventId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Candidates", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Candidates_Answers_AnswerId",
+                        column: x => x.AnswerId,
+                        principalTable: "Answers",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Candidates_Events_EventId",
                         column: x => x.EventId,
@@ -116,32 +142,6 @@ namespace Infrastructure.Migrations
                         column: x => x.QuizId,
                         principalTable: "Quizes",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Answers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    QuizId = table.Column<int>(type: "int", nullable: false),
-                    Answers = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CandidateId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Answers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Answers_Candidates_CandidateId",
-                        column: x => x.CandidateId,
-                        principalTable: "Candidates",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Answers_Quizes_QuizId",
-                        column: x => x.QuizId,
-                        principalTable: "Quizes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -169,11 +169,6 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Answers_CandidateId",
-                table: "Answers",
-                column: "CandidateId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Answers_QuizId",
                 table: "Answers",
                 column: "QuizId");
@@ -182,6 +177,11 @@ namespace Infrastructure.Migrations
                 name: "IX_CandidateEvent_EventsParticipatedInId",
                 table: "CandidateEvent",
                 column: "EventsParticipatedInId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Candidates_AnswerId",
+                table: "Candidates",
+                column: "AnswerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Candidates_EventId",
@@ -212,9 +212,6 @@ namespace Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Answers");
-
-            migrationBuilder.DropTable(
                 name: "CandidateEvent");
 
             migrationBuilder.DropTable(
@@ -222,6 +219,9 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Candidates");
+
+            migrationBuilder.DropTable(
+                name: "Answers");
 
             migrationBuilder.DropTable(
                 name: "Events");

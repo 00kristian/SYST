@@ -4,7 +4,6 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,10 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(SystematicContext))]
-    [Migration("20220516090909_swagster")]
-    partial class swagster
+    partial class SystematicContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,15 +67,10 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Answers")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CandidateId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuizId")
+                    b.Property<int?>("QuizId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CandidateId");
 
                     b.HasIndex("QuizId");
 
@@ -91,6 +84,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("AnswerId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -113,6 +109,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("PercentageOfCorrectAnswers")
+                        .HasColumnType("float");
+
                     b.Property<int?>("QuizId")
                         .HasColumnType("int");
 
@@ -123,6 +122,8 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AnswerId");
 
                     b.HasIndex("EventId");
 
@@ -229,21 +230,19 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Infrastructure.Answer", b =>
                 {
-                    b.HasOne("Infrastructure.Candidate", null)
-                        .WithMany("Answers")
-                        .HasForeignKey("CandidateId");
-
                     b.HasOne("Infrastructure.Quiz", "Quiz")
                         .WithMany()
-                        .HasForeignKey("QuizId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("QuizId");
 
                     b.Navigation("Quiz");
                 });
 
             modelBuilder.Entity("Infrastructure.Candidate", b =>
                 {
+                    b.HasOne("Infrastructure.Answer", "Answer")
+                        .WithMany()
+                        .HasForeignKey("AnswerId");
+
                     b.HasOne("Infrastructure.Event", null)
                         .WithMany("Winners")
                         .HasForeignKey("EventId");
@@ -251,6 +250,8 @@ namespace Infrastructure.Migrations
                     b.HasOne("Infrastructure.Quiz", "Quiz")
                         .WithMany("Candidates")
                         .HasForeignKey("QuizId");
+
+                    b.Navigation("Answer");
 
                     b.Navigation("Quiz");
                 });
@@ -280,11 +281,6 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Infrastructure.Admin", b =>
                 {
                     b.Navigation("Events");
-                });
-
-            modelBuilder.Entity("Infrastructure.Candidate", b =>
-                {
-                    b.Navigation("Answers");
                 });
 
             modelBuilder.Entity("Infrastructure.Event", b =>

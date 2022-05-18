@@ -7,6 +7,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend,
     Title} from 'chart.js';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 import {FetchOptions} from './FetchOptions';
+import { InformationIcon } from "./InformationIcon";
 
 ChartJS.register(
     ArcElement, Tooltip, Legend,
@@ -62,6 +63,8 @@ export function CandidatesGraph(props) {
     const [graphData, setGraphData] = useState([]);
     const [selectedUni, setSelectedUni] = useState("Aalborg University");
     const [barColor, setBarColor] = useState('rgba(255, 105, 180, 0.7)');
+    const [answerRates, setAnswerRates] = useState([]);
+    const [distribution, setDistribution] = useState([]);
     const { instance, accounts } = useMsal();
 
     useEffect(async () => {
@@ -79,11 +82,16 @@ export function CandidatesGraph(props) {
         setGraphData(data);
     }, []);
 
-    useEffect(() => 
-        console.log(selectedUni), [selectedUni]
-    )
+    useEffect(async () => {
+        const options = await FetchOptions.Options(instance, accounts, "GET");
+        const data = await fetch('api/Candidates/AnswerDistribution/' + selectedUni, options)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+        setAnswerRates(data.answerRates.map(a => a + "%"));
+        setDistribution(data.distribution);
+    }, [selectedUni])
 
-    const labels = ['0%', '20%', '40%', '60%', '80%', '100%'];
+    const labels = answerRates;
 
     const pieOptions =  {
         'onClick' : function (evt, item) {
@@ -95,8 +103,13 @@ export function CandidatesGraph(props) {
     }
     return (
         <div className="div-flex">
-            <div style={{width: 350, marginLeft: 150, marginRight: 50}}>
-
+            <div style={{width: 350, marginLeft: 200, marginRight: 100}}>
+                <h4>Distribution of candidates
+                    &nbsp; 
+                        <InformationIcon>
+                            {"Pie chart visualizing the distribution of all candidates for each University.<br>Click on a slice to see the distribution of answers of an individual University on the next chart."}
+                        </InformationIcon>
+                    </h4>
                 <Pie options={pieOptions} data={{
                     labels: ['AAU', 'AU', 'CBS','ITU','RUC','DTU','KU','SDU','Other'],
                     datasets: [{
@@ -108,14 +121,19 @@ export function CandidatesGraph(props) {
                     }]
                 }} />
             </div>
-            <div style={{width: 600, marginTop: 30}}>
-
+            <div style={{width: 600, marginTop: 0}}>
+                <h4>Distribution of answers per University &nbsp; 
+                    <InformationIcon>
+                    {"Bar chart visualizing the distribution of candidates' answer rate in % for an indivudual University.<br>X-axis is answer rate and Y-axis is amount of candidates."}
+                    </InformationIcon>
+                </h4>
+                
                 <Bar data={{
                     labels,
                     datasets: [
                         {
                             label: selectedUni,
-                            data: labels.map(() => (Math.random() * 100)),
+                            data: distribution,
                             backgroundColor: barColor,
                         }
                     ],
