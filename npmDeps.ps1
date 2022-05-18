@@ -7,3 +7,4 @@ npm install react-dropdown --save
 npm install npm install @azure/msal-browser @azure/msal-react
 npm install react-csv --save;
 npm i react-chartjs-2 chart.js
+npm install react-tooltip --save
