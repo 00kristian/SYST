@@ -13,6 +13,6 @@ export function SignOutButton() {
     // useMsal hook will return the PublicClientApplication instance you provided to MsalProvider
     const { instance, accounts } = useMsal();
 
-    return <button onClick={() => signOutClickHandler(instance, accounts)}>Sign Out</button>
+    return <button variant="secondary" className="btn " onClick={() => signOutClickHandler(instance, accounts)}>Sign Out</button>
 };
 
