@@ -222,5 +222,42 @@ namespace Infrastructure
             data[unis.Length] = dict.ContainsKey("Other") ? dict["Other"] : 0;
             return data;
         }
+
+        private HashSet<string> ValidUniversities = new HashSet<string> {
+            "Aalborg University",
+            "Aarhus University",
+            "Copenhagen Business School",
+            "IT-University of Copenhagen",
+            "Roskilde University",
+            "Technical University of Denmark",
+            "University of Copenhagen",
+            "University of Southern Denmark"};
+
+        public async Task<UniversityAnswerDistributionDTO> CandidateDistribution(string universityName) {
+            var candidates = universityName == "Other" ?
+                _context.Candidates.Where(c => !ValidUniversities.Contains(c.University!)).AsQueryable()
+                :
+                _context.Candidates.Where(c => c.University == universityName).AsQueryable();
+            var disMap = new Dictionary<double, int>();
+            await candidates.ForEachAsync(candidate => {
+                var p = candidate.PercentageOfCorrectAnswers;
+                if (disMap.ContainsKey(p)) disMap[p] = disMap[p] + 1;
+                else disMap[p] = 1;
+            });
+            var tupList = new List<(double, int)>();
+            foreach (var (rate, amount) in disMap)
+            {
+                tupList.Add((rate, amount));
+            }
+            tupList.Sort((tup1, tup2) => (int) (tup1.Item1 - tup2.Item1));
+
+            var dto = new UniversityAnswerDistributionDTO() {
+                Name = universityName,
+                answerRates = tupList.Select(t => t.Item1).ToArray(),
+                distribution = tupList.Select(t => t.Item2).ToArray()
+            };
+
+            return dto;
+        }
     }
 }

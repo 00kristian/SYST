@@ -62,6 +62,8 @@ export function CandidatesGraph(props) {
     const [graphData, setGraphData] = useState([]);
     const [selectedUni, setSelectedUni] = useState("Aalborg University");
     const [barColor, setBarColor] = useState('rgba(255, 105, 180, 0.7)');
+    const [answerRates, setAnswerRates] = useState([]);
+    const [distribution, setDistribution] = useState([]);
     const { instance, accounts } = useMsal();
 
     useEffect(async () => {
@@ -79,11 +81,16 @@ export function CandidatesGraph(props) {
         setGraphData(data);
     }, []);
 
-    useEffect(() => 
-        console.log(selectedUni), [selectedUni]
-    )
+    useEffect(async () => {
+        const options = await FetchOptions.Options(instance, accounts, "GET");
+        const data = await fetch('api/Candidates/AnswerDistribution/' + selectedUni, options)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+        setAnswerRates(data.answerRates.map(a => a + "%"));
+        setDistribution(data.distribution);
+    }, [selectedUni])
 
-    const labels = ['0%', '20%', '40%', '60%', '80%', '100%'];
+    const labels = answerRates;
 
     const pieOptions =  {
         'onClick' : function (evt, item) {
@@ -115,7 +122,7 @@ export function CandidatesGraph(props) {
                     datasets: [
                         {
                             label: selectedUni,
-                            data: labels.map(() => (Math.random() * 100)),
+                            data: distribution,
                             backgroundColor: barColor,
                         }
                     ],

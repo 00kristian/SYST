@@ -118,4 +118,13 @@ public class CandidatesController : ControllerBase
         var res = await _repo.GraphData(universities);
         return new ActionResult<int[]>(res);
     }
+
+    [Authorize]
+    [ProducesResponseType(typeof(UniversityAnswerDistributionDTO), 200)]
+    [HttpGet("AnswerDistribution/{universityName}")]
+    public async Task<ActionResult<UniversityAnswerDistributionDTO>> UniversityAnswerDistribution([FromRoute] string universityName)
+    {   
+        var res = await _repo.CandidateDistribution(universityName);  
+        return new ActionResult<UniversityAnswerDistributionDTO>(res);
+    }
 }
