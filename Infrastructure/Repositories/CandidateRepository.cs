@@ -57,7 +57,8 @@ namespace Infrastructure
                 University = c.University!,
                 GraduationDate = c.GraduationDate.ToString("yyyy-MM"),
                 IsUpvoted = c.IsUpvoted,
-                Created = c.Created
+                Created = c.Created,
+                PercentageOfCorrectAnswers = c.PercentageOfCorrectAnswers
             }).FirstOrDefaultAsync();
 
             if (c == default(CandidateDTO)) return (Status.NotFound, c);
@@ -86,7 +87,8 @@ namespace Infrastructure
                 University = c.University!,
                 GraduationDate = c.GraduationDate.ToString("yyyy-MM"),
                 IsUpvoted = c.IsUpvoted,
-                Created = c.Created
+                Created = c.Created,
+                PercentageOfCorrectAnswers = c.PercentageOfCorrectAnswers!
             }).ToListAsync();
         
         //Updates an candidate name, email, university and study program values
@@ -155,15 +157,15 @@ namespace Infrastructure
 
             var numOfCorrectAnswers = 0.0;
             
-            for (int i = 0; i < ans.Answers.Length; i++)
+            for (int i = 0; i < ans.Answers?.Length; i++)
             {
-                if (ans.Answers[i] == quiz.Questions.ElementAt(i).Answer)
+                if (ans.Answers[i] == quiz.Questions?.ElementAt(i).Answer)
                 {
                     numOfCorrectAnswers++;
                 }
             }
             
-            c.PercentageOfCorrectAnswers = (numOfCorrectAnswers / quiz.Questions.Count()) * 100;
+            c.PercentageOfCorrectAnswers = (numOfCorrectAnswers / quiz.Questions!.Count()) * 100;
             
             var e = await _context.Events.Where(e => e.Id == answer.EventId).FirstOrDefaultAsync();
             if (e != default(Event)) c.EventsParticipatedIn!.Add(e); //Add the candidate to the event

@@ -40,7 +40,7 @@ function Candidates() {
     } 
     
     //User Interface
-    let contents = <InteractiveTable ExportName="All_Candidates.csv" SearchBar={true} PageSize={8} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={candidates}>
+    let contents = <InteractiveTable ExportName="All_Candidates.csv" SearchBar={true} PageSize={8} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"], ["Answer Rate in %", "percentageOfCorrectAnswers" ] ]} Content={candidates}>
             {candidate =>
                 <div>
                     {candidate.isUpvoted ?(
