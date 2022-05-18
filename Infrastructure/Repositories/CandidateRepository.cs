@@ -1,3 +1,4 @@
+using System.Net.Mail;
 using Core;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,8 +19,8 @@ namespace Infrastructure
             DateTime currentDate = DateTime.Today;
             var dupe = _context.Candidates.Where(c => c.Email == candidateDTO.Email).FirstOrDefault();
             if (dupe != default(Candidate)) return (Status.Conflict, dupe.Id);
+                if(!IsValid(candidateDTO.Email)) return (Status.BadRequest, 0);
                 //Is this function necessary? Ask Iulia about multiple email entries in the db
-            
                 var entity = new Candidate
                 {
                     Name = candidateDTO.Name!,
@@ -39,6 +40,20 @@ namespace Infrastructure
                 return (Status.Created, entity.Id);
         }
 
+    public bool IsValid(string emailaddress)
+    {
+    try
+    {
+        MailAddress m = new MailAddress(emailaddress);
+
+        return true;
+    }
+    catch (FormatException)
+    {
+        return false;
+    }
+}
+
         //Return a name given the candidate id 
         public async Task<(Status, string?)> ReadNameFromId(int id) {
             string? name = await _context.Candidates.Where(c => c.Id == id).Select(c => c.Name).FirstOrDefaultAsync();
@@ -48,7 +63,7 @@ namespace Infrastructure
         //Return an candidate given the candidate id
         public async Task<(Status, CandidateDTO)> Read(int id)
         {
-            var c = await _context.Candidates.Include(c => c.Answers).Where(c => c.Id == id).Select(c => new CandidateDTO(){
+            var c = await _context.Candidates.Include(c => c.Answer).Where(c => c.Id == id).Select(c => new CandidateDTO(){
                 Name = c.Name!,
                 Id = c.Id,
                 Email = c.Email!,
@@ -57,7 +72,8 @@ namespace Infrastructure
                 University = c.University!,
                 GraduationDate = c.GraduationDate.ToString("yyyy-MM"),
                 IsUpvoted = c.IsUpvoted,
-                Created = c.Created
+                Created = c.Created,
+                PercentageOfCorrectAnswers = c.PercentageOfCorrectAnswers
             }).FirstOrDefaultAsync();
 
             if (c == default(CandidateDTO)) return (Status.NotFound, c);
@@ -86,7 +102,8 @@ namespace Infrastructure
                 University = c.University!,
                 GraduationDate = c.GraduationDate.ToString("yyyy-MM"),
                 IsUpvoted = c.IsUpvoted,
-                Created = c.Created
+                Created = c.Created,
+                PercentageOfCorrectAnswers = c.PercentageOfCorrectAnswers!
             }).ToListAsync();
         
         //Updates an candidate name, email, university and study program values
@@ -109,7 +126,8 @@ namespace Infrastructure
 
             return Status.Updated;
         }
-
+        
+        //Upvotes a candidate given the candidate id
         public async Task<Status> UpdateUpVote(int id)
         {
             var c = await _context.Candidates.Where(c => c.Id == id).FirstOrDefaultAsync();
@@ -124,7 +142,7 @@ namespace Infrastructure
         //Deletes a candidates given the candidate id
         public async Task<Status> Delete(int id){
 
-            var c = await _context.Candidates.Include(c => c.Answers).Where(c => c.Id == id).FirstOrDefaultAsync();
+            var c = await _context.Candidates.Include(c => c.Answer).Where(c => c.Id == id).FirstOrDefaultAsync();
             
             if (c == default(Candidate)) return Status.NotFound;
 
@@ -134,24 +152,38 @@ namespace Infrastructure
             return Status.Deleted;
         }
 
-        public async Task<Status> AddAnswer(int candidateId, AnswerDTO answer) {
-            var c = await _context.Candidates.Include(c => c.Answers).Include(c => c.EventsParticipatedIn).Where(c => c.Id == candidateId).FirstOrDefaultAsync();
-            
+        //Adds quiz answers to the candidate given the candidate id and the answers 
+        public async Task<Status> AddAnswer(int candidateId, AnswersDTO answer) {
+            var c = await _context.Candidates.Include(c => c.Answer).Include(c => c.EventsParticipatedIn).Where(c => c.Id == candidateId).FirstOrDefaultAsync();
+
             if (c == default(Candidate)) return Status.NotFound;
 
-            var q = await _context.Quizes.Where(q => q.Id == answer.QuizId).FirstOrDefaultAsync();
+            var quiz = await _context.Quizes.Include(q => q.Questions).Where(q => q.Id == answer.QuizId).FirstOrDefaultAsync();
             
-            if (q == default(Quiz)) return Status.NotFound;
+            if (quiz == default(Quiz)) return Status.NotFound;
 
-            var ans = new Answer() {
-                Quiz = q,
+            var ans = new Answer()
+            {
+                Quiz = quiz,
                 Answers = answer.Answers
             };
-            if (c.Answers == null) c.Answers = new List<Answer>();
-            c.Answers.Add(ans); //add the answer to the candidate
 
+            c.Answer = ans; //Add the answer to the candidate
+
+            var numOfCorrectAnswers = 0.0;
+            
+            for (int i = 0; i < ans.Answers?.Length; i++)
+            {
+                if (ans.Answers[i] == quiz.Questions?.ElementAt(i).Answer)
+                {
+                    numOfCorrectAnswers++;
+                }
+            }
+            
+            c.PercentageOfCorrectAnswers = (numOfCorrectAnswers / quiz.Questions!.Count()) * 100;
+            
             var e = await _context.Events.Where(e => e.Id == answer.EventId).FirstOrDefaultAsync();
-            if (e != default(Event)) c.EventsParticipatedIn!.Add(e); //add the candidate to the event
+            if (e != default(Event)) c.EventsParticipatedIn!.Add(e); //Add the candidate to the event
 
             await _context.SaveChangesAsync();
             return Status.Updated;

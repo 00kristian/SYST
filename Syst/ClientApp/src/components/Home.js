@@ -4,7 +4,9 @@ import { InteractiveTable } from './InteractiveTable';
 import {FetchOptions} from './FetchOptions';
 import { CandidatesGraph } from "./CandidatesGraph";
 import { Transition } from 'react-transition-group';
+import { LoginPage } from './LoginPage';
 
+//The first page the admin sees. The page shows all the upcoming events 
 export default Home
 
 function Home(props) {
@@ -45,7 +47,6 @@ function Home(props) {
        history.push("/CreateEvent/"+qId); 
       
     }
-
     let contents =  
             <InteractiveTable Columns={[["Id", "id"], ["Name", "name"], ["Date", "date"], ["Location", "location"], ["Rating", "rating"]]} Content={events}>
             {event =>
@@ -57,9 +58,10 @@ function Home(props) {
             </InteractiveTable>;
         
     return (
+        <React.Fragment>
         <AuthenticatedTemplate>
-        <div>
-            <h1 id="tabelLabel" >Upcoming Events
+            <div className="page-padding">
+            <h1 id="tabelLabel">Upcoming Events
                 <button className="btn btn-primary btn-right" onClick={() => rerouteToEventCreation()}>CREATE</button>
             </h1>
             {contents}
@@ -67,6 +69,13 @@ function Home(props) {
         <hr></hr>
         <CandidatesGraph></CandidatesGraph>
         <hr></hr>
+
         </AuthenticatedTemplate>
+            <UnauthenticatedTemplate>
+                <div>
+                <LoginPage></LoginPage>
+            </div>
+            </UnauthenticatedTemplate>
+        </React.Fragment>
     );
 }

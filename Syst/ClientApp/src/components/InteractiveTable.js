@@ -3,6 +3,7 @@ import { Pager } from "./Pager";
 import ExportCandidates from './ExportCandidates';
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
+//Function that creates the interactive tables used under events and candidates 
 export function InteractiveTable(props) {
     const _content = props.Content;
     const [sortedField, setSortedField] = useState(null);
@@ -93,7 +94,7 @@ export function InteractiveTable(props) {
                 </tbody>
             </table>
             {props.PageSize != null ?
-                Pager.Pager(pageAt, Math.ceil(_content.length / props.PageSize, 10) - 1, (page) => {setPageAt(page)}, true)
+                Pager.Pager(pageAt, Math.ceil(_content.length / props.PageSize, 10) - 1, false, (page) => {setPageAt(page)}, true)
                 : <span></span>
             }
 

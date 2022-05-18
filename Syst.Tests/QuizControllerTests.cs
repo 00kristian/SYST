@@ -26,9 +26,6 @@ public class QuizControllerTests{
         Events = new List<EventDTO> {default(EventDTO)},
         Candidates = new List<CandidateDTO>{default(CandidateDTO)} 
     };
-
-
-
   
     [Fact]
     public void Get_all_returns_all_quizes()
@@ -43,8 +40,6 @@ public class QuizControllerTests{
 
         Assert.Equal(quizes, respones.Result);
     }
-
-
 
     [Fact]
     public async void Get_existing_id_return_Quiz()
@@ -84,9 +79,9 @@ public class QuizControllerTests{
         //Arrange
         var logger = new Mock<ILogger<QuizController>>();
         var repository = new Mock<IQuizRepository>();
-        var newQuiz = new QuizCreateDTO("Hejsan");
-        var quizes = new List <QuizCreateDTO> {newQuiz};
-        var createdQuiz = new QuizCreateDTO("Cams spørgsmål");
+        var newQuiz = new CreateQuizDTO("Hejsan");
+        var quizes = new List <CreateQuizDTO> {newQuiz};
+        var createdQuiz = new CreateQuizDTO("Cams spørgsmål");
         repository.Setup(m => m.Create(createdQuiz)).Callback(()=> quizes.Add(createdQuiz));
         var controller = new QuizController(logger.Object, repository.Object);
 
@@ -105,7 +100,7 @@ public class QuizControllerTests{
         //arrange 
         var logger = new Mock<ILogger<QuizController>>();
         var repository = new Mock<IQuizRepository>();
-        var newQuiz = default(QuizCreateDTO);
+        var newQuiz = default(CreateQuizDTO);
         repository.Setup(m => m.Create(newQuiz)).ReturnsAsync((Status.Conflict,0 ));
         var controller = new QuizController(logger.Object, repository.Object);
 
@@ -114,8 +109,6 @@ public class QuizControllerTests{
 
         //Assert
         Assert.IsType<ConflictObjectResult>(response);
-
-
     }
 
     [Fact]
@@ -125,7 +118,7 @@ public class QuizControllerTests{
         //arrange
         var logger = new Mock<ILogger<QuizController>>();
         var repository = new Mock<IQuizRepository>();
-        var newQuiz = new QuizCreateDTO("Swagsters");
+        var newQuiz = new CreateQuizDTO("Swagsters");
         repository.Setup(m => m.Update(2, newQuiz)).ReturnsAsync(Status.Updated);
         var controller = new QuizController(logger.Object, repository.Object);
 
@@ -143,7 +136,7 @@ public class QuizControllerTests{
         //arrange
         var logger = new Mock<ILogger<QuizController>>();
         var repository = new Mock<IQuizRepository>();
-        var newQuiz = new QuizCreateDTO("Swagsters");
+        var newQuiz = new CreateQuizDTO("Swagsters");
         repository.Setup(m => m.Update(99, newQuiz)).ReturnsAsync(Status.NotFound);
         var controller = new QuizController(logger.Object, repository.Object);
 

@@ -8,11 +8,12 @@ import Icon from "@mdi/react";
 import { mdiThumbUp, mdiThumbDown } from '@mdi/js';
 import { useHistory } from "react-router-dom";
 
+//Page that shows a specific events details 
 export function EventDetail(props) {
 
   const [event, setEvent] = useState(null);
   const [winnerNames, setWinnerNames] = useState("");
-  const [numWinners, setNumWinners] = useState(1);
+  const [numWinners, setNumWinners] = useState(0);
   const history = useHistory();
   const { instance, accounts } = useMsal();
   
@@ -22,11 +23,13 @@ export function EventDetail(props) {
     
     let returnString = "";
 
-      for (let i = 0; i < winnersId.length; i++) {
-          if (i != 0) returnString = returnString + ", ";
-          let id = winnersId[i];
-          let candidate = await fetch('api/candidates/'+id, options).then(response => response.json());
-          returnString = returnString + candidate.name
+      if (winnersId !== undefined) {
+          for (let i = 0; i < winnersId.length; i++) {
+              if (i != 0) returnString = returnString + ", ";
+              let id = winnersId[i];
+              let candidate = await fetch('api/candidates/' + id, options).then(response => response.json());
+              returnString = returnString + candidate.name
+          }
       }
     return returnString;
   }
@@ -78,7 +81,7 @@ export function EventDetail(props) {
   const renderEvent = () => {
       return (
         <AuthenticatedTemplate>
-        <div>
+        <div className="page-padding">
             <h1>{event.name}</h1>
             <h3>{event.location}, {event.date}</h3>
             <button onClick={() => editEvent()} className="btn btn-tertiary obj-space btn-right">Edit Event</button>
@@ -114,7 +117,7 @@ export function EventDetail(props) {
             <button className = "btn btn-primary btn-right" onClick={()=> window.open('/CandidateQuiz/' + event.id + '/' + event.quiz.id, "_blank", 'location=yes,height=800,width=1300,scrollbars=yes,status=yes')} >HOST</button>
             <br/>
             <h4>PARTICIPANTS</h4>
-            <InteractiveTable ExportName={event.name + ".csv"} SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"]]} Content={event.candidates}>
+            <InteractiveTable ExportName={event.name + ".csv"} SearchBar={true} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"], ["Answer Rate in %", "percentageOfCorrectAnswers" ]]} Content={event.candidates}>
             {candidate =>
                     <div>
                         {candidate.isUpvoted ? (

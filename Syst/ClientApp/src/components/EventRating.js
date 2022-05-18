@@ -4,6 +4,7 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/
 import {FetchOptions} from './FetchOptions';
 import { useHistory } from "react-router-dom";
 
+//Page where the admins can rate a specific event 
 export default EventRating
 
 function EventRating(props) {
@@ -75,7 +76,7 @@ function EventRating(props) {
 
     return (
      <AuthenticatedTemplate>
-            <div>
+            <div className="page-padding">
                 <h2 className='div-center'>Event Rating</h2>
                 <br/>
                 <p>1. How many relevant candidates did we meet?</p>

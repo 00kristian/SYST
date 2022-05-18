@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 namespace Core {
-
-    public record struct AnswerDTO(
+    //Answer object that carries admin data between processes 
+    public record struct AnswersDTO(
 
         int Id,
 

@@ -49,7 +49,8 @@ namespace Infrastructure
                     StudyProgram = c.StudyProgram!,
                     University = c.University!,
                     GraduationDate = c.GraduationDate.ToString("yyyy-MM"),
-                    IsUpvoted = c.IsUpvoted
+                    IsUpvoted = c.IsUpvoted, 
+                    PercentageOfCorrectAnswers = c.PercentageOfCorrectAnswers
                 }).ToList() : new List<CandidateDTO>(),
                 Quiz = (e.Quiz != default(Quiz)) ? new QuizDTO() {
                     Id = e.Quiz.Id,
@@ -101,6 +102,7 @@ namespace Infrastructure
             return Status.Updated;
         }
 
+        //Updates an events rating 
         public async Task<Status> UpdateRating(int id, double rating)
         {
             var e = await _context.Events.Where(e => e.Id == id).FirstOrDefaultAsync();
@@ -117,7 +119,7 @@ namespace Infrastructure
         //Deletes an event given the event id
         public async Task<Status> Delete(int id){
 
-            var e = await _context.Events.Where(c => c.Id == id).FirstOrDefaultAsync();
+            var e = await _context.Events.Include(c => c.Candidates).Where(c => c.Id == id).FirstOrDefaultAsync();
             
             if (e == default(Event)) return Status.NotFound;
 
@@ -126,7 +128,8 @@ namespace Infrastructure
             await _context.SaveChangesAsync();
             return Status.Deleted;
         }
-        
+
+        //Returns the upcoming events   
         public async Task<IReadOnlyCollection<EventDTO>> ReadUpcoming() =>
             await _context.Events.Include(e => e.Quiz).Where(e => e.Date >= DateTime.Today)
                 .OrderBy(e => e.Date)
@@ -146,6 +149,7 @@ namespace Infrastructure
                 })
                 .ToListAsync();
 
+        //Returns the recent events  
         public async Task<IReadOnlyCollection<EventDTO>> ReadRecent() =>
             await _context.Events.Include(e => e.Quiz).Where(e => e.Date < DateTime.Today)
                 .OrderByDescending(e => e.Date)
@@ -165,6 +169,7 @@ namespace Infrastructure
                 })
                 .ToListAsync();
 
+        //Updates the quiz connected to the event
         public async Task<Status> UpdateQuiz(int eventid, int quizid) {
 
             var e = await _context.Events.Include(e => e.Quiz).Where(c => c.Id == eventid).FirstOrDefaultAsync();
@@ -179,6 +184,7 @@ namespace Infrastructure
             return Status.Updated;
         }
 
+        //Returns multiple winners connected to the event 
         public async Task<(Status, IEnumerable<CandidateDTO>)> PickMultipleWinners(int eventid,
             int numOfWinners)
         {

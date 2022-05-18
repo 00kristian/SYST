@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core {
 
-    //Candidate object that carries candiate data between processes
+    //Candidate object that carries candiate data between processes and is being used when creating a candidate
     public record struct CreateCandidateDTO(
 
         [Required]
@@ -11,6 +11,7 @@ namespace Core {
         [Required, StringLength(50)]
         string Name,
 
+        [DataType(DataType.EmailAddress)]
         [Required, EmailAddress]
         string Email,
         
@@ -28,7 +29,7 @@ namespace Core {
 
         [Required]
         bool IsUpvoted,
-
+        
         [Required]
         DateTime Created
     );

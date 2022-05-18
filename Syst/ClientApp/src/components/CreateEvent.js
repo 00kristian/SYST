@@ -7,6 +7,7 @@ import 'reactjs-popup/dist/index.css';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 import { FetchOptions } from "./FetchOptions";
 
+//Page where the admins can create a new event 
 export default CreateEvent
 
 function CreateEvent(props) {
@@ -51,6 +52,7 @@ function CreateEvent(props) {
         await fetch('api/events/' + props.match.params.id + '/' + qId, options);
     };
 
+    //Methods
     const updateEvent = async () => {
 
         let event = {
@@ -112,9 +114,10 @@ function CreateEvent(props) {
             history.push("/events");
     }
 
+    //User Interface
     return (
        <AuthenticatedTemplate>
-        <div>
+        <div className="page-padding">
             <h2>Here you can create or edit an event</h2>
             <br/>
             <form>

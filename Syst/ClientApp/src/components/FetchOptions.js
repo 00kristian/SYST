@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { loginRequest } from "../authConfig";
 
+//Finds the acccess Token to the API
 export class FetchOptions extends Component { 
 
     static async Options(instance, accounts, type) {

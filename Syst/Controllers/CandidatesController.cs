@@ -56,6 +56,7 @@ public class CandidatesController : ControllerBase
         var created = await _repo.Create(candidate);
         var id = created.Item2;
         if (created.Item1 == Status.Conflict) return new ConflictObjectResult(id);
+        if(created.Item1 == Status.BadRequest) return new BadRequestObjectResult(id);
         return CreatedAtAction(nameof(Get), new { id }, id);
     }
     
@@ -100,7 +101,7 @@ public class CandidatesController : ControllerBase
     [Authorize]
     [ProducesResponseType(409)]
     [HttpPost("Answer/{candidateId}")]
-    public async Task<IActionResult> PostAnswer([FromRoute] int candidateId, [FromBody] AnswerDTO answer) {
+    public async Task<IActionResult> PostAnswer([FromRoute] int candidateId, [FromBody] AnswersDTO answer) {
         var res = await _repo.AddAnswer(candidateId, answer);
         if (res == Status.NotFound) return new NotFoundObjectResult(candidateId);
         return res.ToActionResult();
