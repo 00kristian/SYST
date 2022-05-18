@@ -189,6 +189,38 @@ namespace Infrastructure
             return Status.Updated;
         }
 
-        
+        //Do not give me an array with the "Other" field!
+        public async Task<int[]> GraphData(IEnumerable<string> universities) {
+            var unis = universities.ToArray();
+            var generalUniversities = universities.ToHashSet();
+            var dict = new Dictionary<string, int>();
+
+            await _context.Candidates.ForEachAsync(candidate => {
+                var uni = candidate.University!;
+                if (!generalUniversities.Contains(uni)) {
+                    if (dict.ContainsKey("Other")) {
+                        dict["Other"]++;
+                    } else {
+                        dict["Other"] = 1;
+                    }
+                }
+                else {
+                    if (dict.ContainsKey(uni)) {
+                        dict[uni]++;
+                    } else {
+                        dict[uni] = 1;
+                    }
+                }
+            });
+
+            var data = new int[unis.Length + 1];
+            for (int i = 0; i < unis.Length; i++)
+            {
+                var uni = unis[i];
+                data[i] = dict.ContainsKey(uni) ? dict[uni] : 0;
+            }
+            data[unis.Length] = dict.ContainsKey("Other") ? dict["Other"] : 0;
+            return data;
+        }
     }
 }

@@ -198,7 +198,7 @@
 
 .div-right{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     margin-bottom: 2px;
     margin-right: 5px;
 }

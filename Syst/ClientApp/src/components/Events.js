@@ -3,7 +3,6 @@ import { InteractiveTable } from './InteractiveTable';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 import { FetchOptions } from './FetchOptions';
 
-
 //Page that shows alle the events
 export default Events 
 
@@ -30,10 +29,6 @@ function Events (props) {
         setUpcomingEvents(dataUpcoming);
     }, []);
 
-
-
-
-    
     const rerouteToEventCreation = async () => {
         let event = {
             "name": "new event",

@@ -97,7 +97,6 @@ public class CandidatesController : ControllerBase
         return updated.ToActionResult();
     }
     
-    //NEEDS TO BE TESTED!
     //Create a new answer to candidate 
     [Authorize]
     [ProducesResponseType(409)]
@@ -108,4 +107,15 @@ public class CandidatesController : ControllerBase
         return res.ToActionResult();
     }
 
+    //This is maybe more like a get request
+    [Authorize]
+    [ProducesResponseType(404)]
+    [ProducesResponseType(typeof(CandidateDTO), 200)]
+    [HttpPut("GraphData")]
+    public async Task<ActionResult<int[]>> GraphData([FromBody] IEnumerable<string> universities)
+    {   
+        //Using our CRUD operation to get the specified candidate by id
+        var res = await _repo.GraphData(universities);
+        return new ActionResult<int[]>(res);
+    }
 }

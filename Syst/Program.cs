@@ -12,8 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddDbContext<SystematicContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("EventToolDB"),
+builder.Services.AddDbContext<SystematicContext>(options => options.UseSqlServer("Server=localhost;Database=EventToolDB;User Id=sa;Password=TilJuleBalINisseLand10000;Trusted_Connection=False;Encrypt=False",
 builder => {
     builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
 }));
@@ -88,7 +87,6 @@ builder.Services.AddSwaggerGen(setup =>
             new List < string > ()  
         }  
     }); 
-
 });
 
 var app = builder.Build();
