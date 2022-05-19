@@ -118,8 +118,8 @@ public class EventRepositoryTests {
 
         //assert
         Assert.Collection(events,
-            firstEvent => Assert.Equal(new EventDTO(1,"Workshop event", (new DateTime{}).ToString("yyyy-MM-dd"), "ITU", null!, new QuizDTO {Id = 1}, 4.0, null!, null!), firstEvent),
-            SecondEvent => Assert.Equal(new EventDTO( 2, "Swagger event", (new DateTime{}).ToString("yyyy-MM-dd"), "Scrollbar", null!, new QuizDTO{ Id = 2}, 7.0,  null!, null!), SecondEvent )
+            firstEvent => Assert.Equal(new EventDTO(1,"Workshop event", (new DateTime{}).ToString("yyyy-MM-dd"), "ITU", null!, new QuizDTO {Id = 1}, 4.0,  null!), firstEvent),
+            SecondEvent => Assert.Equal(new EventDTO( 2, "Swagger event", (new DateTime{}).ToString("yyyy-MM-dd"), "Scrollbar", null!, new QuizDTO{ Id = 2}, 7.0,  null!), SecondEvent )
         );
     }
 

@@ -8,7 +8,6 @@ namespace Infrastructure;
 public class SystematicContext : DbContext, ISystematicContext
 {
     //Tables in our database 
-    public DbSet<Admin> Admins { get; set; } = null!;
     public DbSet<Candidate> Candidates { get; set; } = null!;
     public DbSet<Event> Events { get; set; } = null!;
     public DbSet<Question> Questions { get; set; } = null!;
@@ -44,9 +43,6 @@ public class SystematicContext : DbContext, ISystematicContext
         .HasMany<Candidate>(q => q.Candidates)
         .WithOne(c => c.Quiz);
 
-        //To make sure admins know what events they have rated 
-        modelBuilder.Entity<Admin>()
-        .HasMany<Event>(a => a.Events);
         
         modelBuilder.Entity<Candidate>()
             .HasOne<Answer>(c => c.Answer);
