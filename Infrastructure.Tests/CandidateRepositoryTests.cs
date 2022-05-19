@@ -51,20 +51,20 @@ public class CandidateRepositoryTests{
         Assert.Equal(3, actual.Item2);
     }
 
-     [Fact]
-    public async void Create_Returns_Conflict_When_Name_Is_In_the_database()
-    {
-        //Arrange
-         var newCandidate = new CreateCandidateDTO { Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "ITU", GraduationDate = (new DateTime{}).ToString("yyyy-MM-dd"), IsUpvoted = false};
+    //  [Fact]
+    // public async void Create_Returns_Conflict_When_Name_Is_In_the_database()
+    // {
+    //     //Arrange
+    //      var newCandidate = new CreateCandidateDTO { Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "ITU", GraduationDate = (new DateTime{}).ToString("yyyy-MM-dd"), IsUpvoted = false};
 
 
-        //Act
-        var actual = await _repo.Create(newCandidate);
+    //     //Act
+    //     var actual = await _repo.Create(newCandidate);
 
-        //Assert
-        Assert.Equal(Status.Conflict, actual.Item1);
-        Assert.Equal(1, actual.Item2);
-    }
+    //     //Assert
+    //     Assert.Equal(Status.Conflict, actual.Item1);
+    //     Assert.Equal(1, actual.Item2);
+    // }
  
     [Fact]
     public async void ReadNameFromID_returns_Maj__Frost_Jensen_given_id_2()
