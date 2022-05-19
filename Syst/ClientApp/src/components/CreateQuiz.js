@@ -7,6 +7,7 @@ import Icon from "@mdi/react";
 import { mdiTrashCan } from '@mdi/js';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 import { FetchOptions } from "./FetchOptions";
+import { InformationIcon } from "./InformationIcon";
 
 //Page where the admin can create a new quiz
 export default CreateQuiz
@@ -141,12 +142,22 @@ function CreateQuiz(props) {
             <form>
                 <div className="div-flex2">
                     <label className="row-layout">
-                        <h5>Quiz name</h5>
+                        <h5>Quiz name
+                            &nbsp;
+                            <InformationIcon>
+                                Click the plus sign to add a question and the trash can to remove one.
+                            </InformationIcon>
+                        </h5>
                         <input value={name} className="input-layout txt-small" onChange={(event) => setName(event.target.value)}></input>
                     </label>
                     <div style={{ width: 50 }}> </div>
                     <div>
-                        <h5>Clone existing quiz</h5>
+                        <h5>Clone existing quiz
+                        &nbsp;
+                            <InformationIcon>
+                                Copy the contents of an existing quiz over to this one without affecting the original.
+                            </InformationIcon>
+                        </h5>
                         {QuizPicker.Picker(quizes, "", (qId) => setCloneId(qId))}
                         {cloneId > 0 ?
                             <button onClick={() => cloneQuiz()} className="btn btn-primary"> CLONE </button>

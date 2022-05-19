@@ -6,6 +6,7 @@ import Icon from "@mdi/react";
 import { mdiTrashCan } from '@mdi/js';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 import { FetchOptions } from "./FetchOptions";
+import { InformationIcon } from "./InformationIcon";
 
 //Page where the admin can create different questions to a specific quiz
 export default CreateQuestion
@@ -98,7 +99,11 @@ function CreateQuestion(props) {
                         <h2>Here you can create or edit a question </h2>
                         <br/>
                         <label>
-                            <h5>Question Text</h5>
+                            <h5>Question Text &nbsp;
+                                <InformationIcon>
+                                    Click the plus sign to add an option and the trash can to remove one.
+                                </InformationIcon>
+                            </h5>
                             <input value={representation} className="input-layout input-question representation-text txt-small" onChange={(event) => setRepresentation(event.target.value)} />
                         </label>
                         <br />

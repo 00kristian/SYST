@@ -6,6 +6,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 import { FetchOptions } from "./FetchOptions";
+import { InformationIcon } from "./InformationIcon";
 
 //Page where the admins can create a new event 
 export default CreateEvent
@@ -137,7 +138,12 @@ function CreateEvent(props) {
                 </label>
             </form>
             <br />
-            <h5>Quiz</h5>
+            <h5>Quiz
+                &nbsp;
+                <InformationIcon>
+                    {"Selecting an existing quiz and editing it will edit all instances of it.<br>If this is not intended, instead create a new quiz and clone the existing quiz into it."}
+                </InformationIcon>
+            </h5>
             <button onClick={createQuiz} className="btn btn-primary">CREATE NEW QUIZ</button>
             {(quizId > 0) ? (
                 <div> 
