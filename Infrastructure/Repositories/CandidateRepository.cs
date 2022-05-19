@@ -17,27 +17,24 @@ namespace Infrastructure
         public async Task<(Status, int id)> Create(CreateCandidateDTO candidateDTO) {
 
             DateTime currentDate = DateTime.Today;
-            var dupe = _context.Candidates.Where(c => c.Email == candidateDTO.Email).FirstOrDefault();
-            if (dupe != default(Candidate)) return (Status.Conflict, dupe.Id);
-                if(!IsValid(candidateDTO.Email)) return (Status.BadRequest, 0);
-                //Is this function necessary? Ask Iulia about multiple email entries in the db
-                var entity = new Candidate
-                {
-                    Name = candidateDTO.Name!,
-                    Email = candidateDTO.Email!,
-                    CurrentDegree = candidateDTO.CurrentDegree,     
-                    StudyProgram = candidateDTO.StudyProgram,
-                    University = candidateDTO.University,
-                    GraduationDate = DateTime.Parse(candidateDTO.GraduationDate),
-                    IsUpvoted = candidateDTO.IsUpvoted,
-                    Created = currentDate
-                };
+            if(!IsValid(candidateDTO.Email)) return (Status.BadRequest, 0);
+            var entity = new Candidate
+            {
+                Name = candidateDTO.Name!,
+                Email = candidateDTO.Email!,
+                CurrentDegree = candidateDTO.CurrentDegree,     
+                StudyProgram = candidateDTO.StudyProgram,
+                University = candidateDTO.University,
+                GraduationDate = DateTime.Parse(candidateDTO.GraduationDate),
+                IsUpvoted = candidateDTO.IsUpvoted,
+                Created = currentDate
+            };
 
-                _context.Candidates.Add(entity);
+            _context.Candidates.Add(entity);
 
-                await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-                return (Status.Created, entity.Id);
+            return (Status.Created, entity.Id);
         }
 
     public bool IsValid(string emailaddress)
