@@ -124,7 +124,7 @@ export function CandidatesGraph(props) {
             <div style={{width: 600, marginTop: 0}}>
                 <h4>Distribution of answers per University &nbsp; 
                     <InformationIcon>
-                    {"Bar chart visualizing the distribution of candidates' answer rate in % for an indivudual University.<br>X-axis is answer rate and Y-axis is amount of candidates."}
+                    {"Bar chart visualizing the distribution of candidates' answer rate in % for an individual University.<br>X-axis is answer rate and Y-axis is amount of candidates."}
                     </InformationIcon>
                 </h4>
                 

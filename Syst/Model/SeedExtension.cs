@@ -15,6 +15,25 @@ public static class SeedExtensions
         }
         return host;
     }
+    private static Random random = new Random();
+
+    public static string RandomString(int length)
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        return new string(Enumerable.Repeat(chars, length)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
+    }
+
+    private static string[] Universities = new string[] {
+            "Aalborg University",
+            "Aarhus University",
+            "Copenhagen Business School",
+            "IT-University of Copenhagen",
+            "Roskilde University",
+            "Technical University of Denmark",
+            "University of Copenhagen",
+            "University of Southern Denmark",
+            "Other"};
 
     private static async Task SeedObjectsAsync(SystematicContext context)
     {   
@@ -53,6 +72,22 @@ public static class SeedExtensions
             var sebastian = new Candidate(){Name = "Sebastian Nielsen", Email = "seni@ruc.dk", CurrentDegree = "PhD", StudyProgram = "Humunistisk Teknologi", University= "Roskilde University", GraduationDate = date1, Created = DateTime.Now, PercentageOfCorrectAnswers = 40, Answer = null}; 
             var benjamin = new Candidate(){Name = "Benjamin Christensen", Email = "belc@itu.dk", CurrentDegree = "MSc", StudyProgram = "Computer Science", University = "IT-University of Copenhagen", GraduationDate = date2, Created = DateTime.Now, PercentageOfCorrectAnswers = 40, Answer = null};
             var peter = new Candidate(){Name = "Peter Hansen", Email = "peha@sdu.dk", CurrentDegree = "MSc", StudyProgram = "Webkommunikation", University = "University of Southern Denmark", GraduationDate = date2, Created = DateTime.Now, PercentageOfCorrectAnswers = 40, Answer = null};
+
+            for (int i = 0; i < 1000; i++)
+            {
+                var c = new Candidate() {
+                    Name = RandomString(5) + " " + RandomString(8),
+                    Email = RandomString(8) + "@gmail.com",
+                    CurrentDegree = "BSc",
+                    StudyProgram = "Softwareudvikling",
+                    University = Universities[random.Next(Universities.Length)],
+                    GraduationDate = DateTime.Now.AddYears(1),
+                    Created = DateTime.Now,
+                    PercentageOfCorrectAnswers = random.Next(6) * 20,
+                    Answer = null
+                };
+                context.Candidates.Add(c);
+            }
 
             context.Candidates.AddRange(
                 lukas,
