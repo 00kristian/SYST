@@ -17,7 +17,6 @@ builder => {
     builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
 }));
 builder.Services.AddScoped<ISystematicContext, SystematicContext>();
-builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 //add environment path so we can delete images

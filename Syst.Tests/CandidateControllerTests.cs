@@ -52,7 +52,7 @@ public class CandidateControllerTests
         Candidates = null!,
         Quiz = quiz1,
         Rating = 3.5,
-        Admins = null!
+        
     };
 
 

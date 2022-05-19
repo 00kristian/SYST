@@ -41,12 +41,8 @@ public static class SeedExtensions
         if (context.Candidates.Count() > 1) return;
         await context.Database.MigrateAsync();
 
-        if (!await context.Admins.AnyAsync())
+        if (!await context.Candidates.AnyAsync())
         {
-
-            context.Admins.AddRange(
-                new Admin() {Name = "Bob Bobsen", Email = "bob@bobsen.com", Events = new List<Event> {}}
-            );
 
             var date0 = new System.DateTime(2023,05,30);
             var date1 = new System.DateTime(2022,06,01);

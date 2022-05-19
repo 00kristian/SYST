@@ -4,7 +4,6 @@ namespace Infrastructure;
 
 public interface ISystematicContext : IDisposable
 {
-    public DbSet<Admin> Admins { get; set; }
     public DbSet<Candidate> Candidates {get;set;}
     public DbSet<Event> Events {get;set;}
     public DbSet<Question> Questions {get;set;}

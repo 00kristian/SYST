@@ -37,25 +37,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("CandidateEvent");
                 });
 
-            modelBuilder.Entity("Infrastructure.Admin", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Admins");
-                });
-
             modelBuilder.Entity("Infrastructure.Answer", b =>
                 {
                     b.Property<int>("Id")
@@ -140,9 +121,6 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("AdminId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -159,8 +137,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AdminId");
 
                     b.HasIndex("QuizId");
 
@@ -258,10 +234,6 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Infrastructure.Event", b =>
                 {
-                    b.HasOne("Infrastructure.Admin", null)
-                        .WithMany("Events")
-                        .HasForeignKey("AdminId");
-
                     b.HasOne("Infrastructure.Quiz", "Quiz")
                         .WithMany("Events")
                         .HasForeignKey("QuizId");
@@ -276,11 +248,6 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("QuizId");
 
                     b.Navigation("Quiz");
-                });
-
-            modelBuilder.Entity("Infrastructure.Admin", b =>
-                {
-                    b.Navigation("Events");
                 });
 
             modelBuilder.Entity("Infrastructure.Event", b =>

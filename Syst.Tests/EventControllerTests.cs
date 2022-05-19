@@ -27,7 +27,6 @@ public class EventControllerTests
         Candidates = null!,
         Quiz = quiz1,
         Rating = 3.5,
-        Admins = null!
     };
 
     static readonly EventDTO event2 = new EventDTO{
@@ -38,7 +37,6 @@ public class EventControllerTests
         Candidates = null!,
         Quiz = quiz1,
         Rating = 4.8,
-        Admins = null!
     };
 
     static readonly EventDTO event3 = new EventDTO{
@@ -49,7 +47,6 @@ public class EventControllerTests
         Candidates = null!,
         Quiz = quiz1,
         Rating = 1.2,
-        Admins = null!
     };
 
 
