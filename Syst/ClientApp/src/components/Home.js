@@ -3,7 +3,6 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, use
 import { InteractiveTable } from './InteractiveTable';
 import {FetchOptions} from './FetchOptions';
 import { CandidatesGraph } from "./CandidatesGraph";
-import { Transition } from 'react-transition-group';
 import { LoginPage } from './LoginPage';
 
 //The first page the admin sees. The page shows all the upcoming events 
