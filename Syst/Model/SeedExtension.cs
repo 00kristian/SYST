@@ -73,7 +73,7 @@ public static class SeedExtensions
             var benjamin = new Candidate(){Name = "Benjamin Christensen", Email = "belc@itu.dk", CurrentDegree = "MSc", StudyProgram = "Computer Science", University = "IT-University of Copenhagen", GraduationDate = date2, Created = DateTime.Now, PercentageOfCorrectAnswers = 40, Answer = null};
             var peter = new Candidate(){Name = "Peter Hansen", Email = "peha@sdu.dk", CurrentDegree = "MSc", StudyProgram = "Webkommunikation", University = "University of Southern Denmark", GraduationDate = date2, Created = DateTime.Now, PercentageOfCorrectAnswers = 40, Answer = null};
 
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 var c = new Candidate() {
                     Name = RandomString(5) + " " + RandomString(8),
