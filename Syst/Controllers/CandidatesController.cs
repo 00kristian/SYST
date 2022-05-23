@@ -107,6 +107,7 @@ public class CandidatesController : ControllerBase
         return res.ToActionResult();
     }
 
+    //Not tested
     //This is maybe more like a get request
     [Authorize]
     [ProducesResponseType(404)]
@@ -118,7 +119,8 @@ public class CandidatesController : ControllerBase
         var res = await _repo.GraphData(universities);
         return new ActionResult<int[]>(res);
     }
-
+    
+    //Not tested
     [Authorize]
     [ProducesResponseType(typeof(UniversityAnswerDistributionDTO), 200)]
     [HttpGet("AnswerDistribution/{universityName}")]
@@ -127,4 +129,5 @@ public class CandidatesController : ControllerBase
         var res = await _repo.CandidateDistribution(universityName);  
         return new ActionResult<UniversityAnswerDistributionDTO>(res);
     }
+
 }
