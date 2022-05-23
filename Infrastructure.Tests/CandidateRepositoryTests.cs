@@ -16,9 +16,7 @@ public class CandidateRepositoryTests
     private readonly ICandidateRepository _repo;
 
     Candidate candidate1 = new Candidate {Id = 1, Name = "Lukas Hjelmstrand", Email = "luhj@itu.dk", CurrentDegree = "BSc", StudyProgram = "Softwareudvikling", University = "IT-University of Copenhagen", GraduationDate = new DateTime { }, IsUpvoted = false, Created = new DateTime(2022, 05, 30)};
-
     Candidate candidate2 = new Candidate {Id = 2, Name = "Maj Frost Jensen", Email = "mfje@itu.dk", CurrentDegree = "MSc", StudyProgram = "Computer Science", University = "Copenhagen Business School", GraduationDate = new DateTime { }, IsUpvoted = true, Created = new DateTime(2022, 05, 30)};
-
     Candidate candidate3 = new Candidate {Id = 3, Name = "Frida Pagels", Email = "frip@ku.dk", CurrentDegree = "BSc", StudyProgram = "Law", University = "University of Copenhagen", GraduationDate = new DateTime { }, IsUpvoted = true, Created = new DateTime(2020, 04, 02)};
 
     public CandidateRepositoryTests()
