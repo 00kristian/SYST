@@ -264,7 +264,7 @@ export function CandidateInformation(props) {
                 ) : (
                 <div></div>
                 )}
-                <button className="btn btn-primary btn-right" onClick={rerouteToCandidateConfirmation}>SUBMIT</button>
+                <button className="btn btn-primary btn-submit" onClick={rerouteToCandidateConfirmation}>SUBMIT</button>
             </div>
         </div>
             

@@ -162,6 +162,14 @@
     
 }
 
+.btn-submit{
+    font-family: 'Roboto', sans-serif;
+    padding: 15px 30px;
+    font-size: large;
+    font-weight: 500;
+    box-shadow: 3px 3px #bc5928;
+}
+
 /*---------------Divs---------------*/
 
 .div-center {
@@ -190,7 +198,7 @@
 .div-input_layout{
     padding-left: 15%;
     padding-right: 15%;
-    padding-bottom: 10%;
+    padding-bottom: 2%;
 }
 
 .div-option {
