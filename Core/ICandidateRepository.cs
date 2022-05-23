@@ -13,5 +13,6 @@ public interface ICandidateRepository
         Task DeleteOldCandidates();
         Task<int[]> GraphData(IEnumerable<string> universities);
         Task<UniversityAnswerDistributionDTO> CandidateDistribution(string universityName);
+        bool IsValid(string email);
     }
 }
