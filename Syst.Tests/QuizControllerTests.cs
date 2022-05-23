@@ -180,6 +180,54 @@ public class QuizControllerTests{
         Assert.IsType<NoContentResult>(response);
     }
 
+     [Fact]
+    public async Task Clone_returns_notFound_when_given_nonExisting_IdAsync()
+    {
+       //Arrange
+        var logger = new Mock<ILogger<QuizController>>();
+        var repository = new Mock<IQuizRepository>();
+        repository.Setup(m => m.Clone(20,20)).ReturnsAsync(Status.NotFound);
+        var controller = new QuizController(logger.Object, repository.Object);
+
+        //Act
+        var response = await controller.Clone(20,20);
+
+        //Assert
+        Assert.IsType<NotFoundResult>(response);
+    } 
+
+    [Fact]
+    public async Task Clone_returns_status_updated_when_given_vaild_ids()
+    {
+         //Arrange
+        var logger = new Mock<ILogger<QuizController>>();
+        var repository = new Mock<IQuizRepository>();
+        repository.Setup(m => m.Clone(3,1)).ReturnsAsync(Status.Updated);
+        var controller = new QuizController(logger.Object, repository.Object);
+
+        //Act
+        var response = await controller.Clone(3,1);
+
+        //Assert
+        Assert.IsType<NoContentResult>(response);
+    }
+
+    [Fact]
+    public async Task Clone_returns_status_notFound_where_newID_already_existsAsync()
+    {
+         //Arrange
+        var logger = new Mock<ILogger<QuizController>>();
+        var repository = new Mock<IQuizRepository>();
+        repository.Setup(m => m.Clone(2,1)).ReturnsAsync(Status.NotFound);
+        var controller = new QuizController(logger.Object, repository.Object);
+
+        //Act
+        var response = await controller.Clone(2,1);
+
+        //Assert
+        Assert.IsType<NotFoundResult>(response);
+    }
+
 
 
 
