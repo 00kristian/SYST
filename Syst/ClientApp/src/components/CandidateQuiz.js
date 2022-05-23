@@ -81,8 +81,8 @@ export function CandidateQuiz(props) {
                 justifyContent: "center",
                 alignItems: "center",
                 margin: 10,
-                marginBottom: 20,
-                marginTop: 20
+                marginBottom: 30,
+                marginTop: 30
             }}>{question.representation}</h3>
             <Row>
                 <Col>
@@ -111,7 +111,11 @@ export function CandidateQuiz(props) {
               <br></br>
               {Pager.Pager(currentQuestion, quiz.questions.length, true,((at) => setCurrentQuestion(at)))}  
           </Container>)
-        : <h2 className="txt-center"> No quiz attached to this Event! </h2>;
+        : <>
+          <br></br>
+          <br></br>
+          <h2 className="txt-center"> No quiz attached to this Event! </h2>
+          </>
 
 
     return (
