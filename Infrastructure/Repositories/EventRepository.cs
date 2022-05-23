@@ -186,8 +186,7 @@ namespace Infrastructure
 
         //Returns multiple winners connected to the event 
         public async Task<(Status, IEnumerable<CandidateDTO>)> PickMultipleWinners(int eventid,
-            int numOfWinners)
-        {
+            int numOfWinners){
             var e = await _context.Events.Include(e => e.Candidates).Where(e => e.Id == eventid).FirstOrDefaultAsync();
             if (e == default(Event)) return (Status.NotFound, new List<CandidateDTO>());
             

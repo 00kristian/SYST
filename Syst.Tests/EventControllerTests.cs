@@ -2,6 +2,7 @@ using Xunit;
 using Syst.Controllers;
 using Moq;
 using Core;
+using Infrastructure;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -19,12 +20,40 @@ public class EventControllerTests
         Candidates = null!
     };
 
+    static readonly CandidateDTO candidate1 = new CandidateDTO {
+		Id = 1,
+		Name = "Bob Jensen",
+		Email = "bobj@dtu.dk",
+		StudyProgram = "Datalogi",
+		University = "DTU",
+		GraduationDate = "20-06-2024",
+		Events = null!,
+		Quiz = quiz1,
+		IsUpvoted = false
+	};
+
+    static readonly Candidate candidate2 = new Candidate{
+        Id = 2,
+        Name = "Michael Jackson",
+        Email = "jackson@dtu.dk",
+        CurrentDegree ="BSC",
+        StudyProgram = "Software",
+        University = "DTU",
+        GraduationDate = System.DateTime.Today,
+        PercentageOfCorrectAnswers = 0.0,
+        EventsParticipatedIn = null,
+        Quiz = null,
+        IsUpvoted = false,
+        Answer = null,
+        Created = System.DateTime.Today
+    };
+
     static readonly EventDTO event1 = new EventDTO{
         Id = 1,
         Name = "TechBBQ",
         Date = "03-21-2022",
         Location = "Copenhagen",
-        Candidates = null!,
+        Candidates = new List<CandidateDTO>{candidate1},
         Quiz = quiz1,
         Rating = 3.5,
     };
@@ -37,6 +66,7 @@ public class EventControllerTests
         Candidates = null!,
         Quiz = quiz1,
         Rating = 4.8,
+        WinnersId = new List<int>{1}
     };
 
     static readonly EventDTO event3 = new EventDTO{
@@ -238,6 +268,82 @@ public class EventControllerTests
         var respones = controller.GetAll();
 
         Assert.Equal(events, respones.Result);
+    }
+
+    [Fact]
+    public async void Picks_the_multiple_winners(){
+        var logger = new Mock<ILogger<EventsController>>();
+        var repository = new Mock<IEventRepository>();
+        var winners = new List<CandidateDTO>{candidate1};
+        repository.Setup(m => m.PickMultipleWinners(1, 1)).ReturnsAsync(() => (Status.Found,  winners));
+        var controller = new EventsController(logger.Object, repository.Object);
+
+        var respones = await controller.GetWinners(1, 1);
+
+        Assert.Collection(winners,
+            candiate => {
+                Assert.Equal(1, candiate.Id);
+                Assert.Equal("Bob Jensen", candiate.Name);
+                Assert.Equal("bobj@dtu.dk", candiate.Email);
+                Assert.Equal("Datalogi", candiate.StudyProgram);
+                Assert.Equal("DTU", candiate.University);
+                Assert.Equal("20-06-2024", candiate.GraduationDate);
+                Assert.Equal(null!, candiate.Events);
+                Assert.Equal(quiz1, candiate.Quiz);
+                Assert.Equal(false, candiate.IsUpvoted);
+            }
+        );
+    }
+
+    [Fact]
+    public async void Returns_NotFoundObject_when_list_is_empty(){
+        var logger = new Mock<ILogger<EventsController>>();
+        var repository = new Mock<IEventRepository>();
+        var winners = new List<CandidateDTO>{};
+        repository.Setup(m => m.PickMultipleWinners(1, 10)).ReturnsAsync(() => (Status.NotFound,  winners));
+        var controller = new EventsController(logger.Object, repository.Object);
+
+        var respones = await controller.GetWinners(1, 10);
+
+        Assert.IsType<NotFoundObjectResult>(respones.Result);
+    }
+
+    [Fact]
+    public async void Returns_NotFoundObject_when_no_event_exists(){
+        var logger = new Mock<ILogger<EventsController>>();
+        var repository = new Mock<IEventRepository>();
+        var winners = new List<CandidateDTO>{candidate1};
+        repository.Setup(m => m.PickMultipleWinners(10, 1)).ReturnsAsync(() => (Status.NotFound,  winners));
+        var controller = new EventsController(logger.Object, repository.Object);
+
+        var respones = await controller.GetWinners(10, 1);
+
+        Assert.IsType<NotFoundObjectResult>(respones.Result);
+    }
+
+    [Fact]
+        public async void Returns_Found_when_winners_already_exists(){
+        var logger = new Mock<ILogger<EventsController>>();
+        var repository = new Mock<IEventRepository>();
+        var winners = new List<CandidateDTO>{candidate1};
+        repository.Setup(m => m.PickMultipleWinners(2, 1)).ReturnsAsync(() => (Status.Found,  winners));
+        var controller = new EventsController(logger.Object, repository.Object);
+
+        var respones = await controller.GetWinners(2, 1);
+
+        Assert.Collection(winners,
+            candiate => {
+                Assert.Equal(1, candiate.Id);
+                Assert.Equal("Bob Jensen", candiate.Name);
+                Assert.Equal("bobj@dtu.dk", candiate.Email);
+                Assert.Equal("Datalogi", candiate.StudyProgram);
+                Assert.Equal("DTU", candiate.University);
+                Assert.Equal("20-06-2024", candiate.GraduationDate);
+                Assert.Equal(null!, candiate.Events);
+                Assert.Equal(quiz1, candiate.Quiz);
+                Assert.Equal(false, candiate.IsUpvoted);
+            }
+        );
     }
 
 
