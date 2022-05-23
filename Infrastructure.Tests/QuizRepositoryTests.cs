@@ -48,6 +48,19 @@ public class QuizRepositoryTests {
         Assert.Equal(Status.Created, actual.Item1);
         Assert.Equal(3, actual.Item2);
     }
+     [Fact]
+    public async void Create_returns_status_conflict_when_given_new_quiz_is_null()
+    {
+        //Arrange
+        var quiz3 =  default(CreateQuizDTO);
+
+        //Act
+        var actual = await _repo.Create(quiz3);
+
+        //Assert
+        Assert.Equal(Status.Conflict, actual.Item1);
+        Assert.Equal(0, actual.Item2);
+    } 
 
     [Fact]
     public async void Read_returns_quiz1_when_given_ID_1()
@@ -58,6 +71,7 @@ public class QuizRepositoryTests {
         //assert
         
         Assert.Equal(Status.Found, actual.Item1);
+        Assert.Equal(quiz1.Name, actual.Item2.Name);
         Assert.Equal(quiz1.Id, actual.Item2.Id);
     }
 
@@ -98,7 +112,7 @@ public class QuizRepositoryTests {
     
         // Assert
         Assert.Equal(Status.Updated, actual);
-    }
+     }
 
     [Fact]
     public async void Update_returns_not_found_when_given_nonexisiting_idAsync()
@@ -180,5 +194,55 @@ public class QuizRepositoryTests {
                 );
             }
         );
+    }
+
+    [Fact]
+    public async void AddQuestion_returns_notFound_when_given_non_existing_quizAsync()
+    {
+
+        //arrange
+        var question = new CreateQuestionDTO{
+            Representation = "I am not sure",
+            Answer = "Virtual Dispatching",
+            Options = new List<string>{"Java", "F#", "Virtual Dispatching","Golang"}
+        };
+
+    
+        // Act
+        var actual = await _repo.AddQuestion(30, question);
+    
+        // Assert
+        Assert.Equal(Status.NotFound, actual.Item1);
+        Assert.Equal(-1, actual.Item2);
+    }
+
+    [Fact]
+    public async void AddQuestion_returns_status_updated_when_given_existing_quizAsync()
+    {
+        //arrange
+        var question = new CreateQuestionDTO{
+            Representation = "I am not sure",
+            Answer = "Virtual Dispatching",
+            Options = new List<string>{"Java", "F#", "Virtual Dispatching","Golang"}
+        };
+
+    
+        // Act
+        var actual = await _repo.AddQuestion(1, question);
+    
+        // Assert
+        Assert.Equal(Status.Updated, actual.Item1);
+    }
+
+    [Fact]
+    public async void RemoveQuestion_returns_status_notFound_when_given_non_existing_id()
+    {
+      
+    
+        // Act
+        var actual = await _repo.RemoveQuestion(30, 23);
+    
+        // Assert
+        Assert.Equal(Status.NotFound, actual);
     }
 } 

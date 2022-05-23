@@ -20,16 +20,9 @@ namespace Infrastructure
         public async Task<(Status, int id)> Create(CreateQuizDTO quizDTO)
         {
             if (quizDTO == default(CreateQuizDTO)) return (Status.Conflict, 0);
-            //TODO: test if dto is null
             var entity = new Quiz
                 {
                     Name = quizDTO.Name,
-                    // Questions = quizDTO.Questions.Select(qs => new Question {
-                    //     Representation = qs.Representation,
-                    //     Answer = qs.Answer,
-                    //     ImageURL = qs.ImageURl,
-                    //     Options = qs.Options
-                    // }).ToList()
                 };
 
             _context.Quizes.Add(entity);
