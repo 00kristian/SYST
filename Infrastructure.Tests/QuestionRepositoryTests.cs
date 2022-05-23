@@ -162,5 +162,25 @@ public class QuestionsRepositoryTests {
 
     }
 
+    [Fact]
+    public async void Update_image_when_given_id_and_imageURL()
+    {
+        //act
+        var actual = await _repo.UpdateImage(1, "https://www.gamereactor.dk/media/58/babyyoda_dukkenmandalorian_3065853_650x.jpg");
+
+        //assert
+        Assert.Equal(Status.Updated, actual);
+
+    }
+
+    [Fact]
+    public async void Update_returns_NotFound_image_when_given_a_non_id()
+    {
+        //act
+        var actual = await _repo.UpdateImage(40, "https://www.gamereactor.dk/media/58/babyyoda_dukkenmandalorian_3065853_650x.jpg");
+
+        //assert
+        Assert.Equal(Status.NotFound, actual);
+    }
 }
 
