@@ -38,6 +38,8 @@
     background-color: #fff;
     border-color: #FF7837;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 1%;
+    margin-top: 1%;
 }
 
 .btn-confirmation {
@@ -46,10 +48,10 @@
     padding-right: 4%;
 }
 
-.btn-delete {
+.btn-export {
     color: #fff;
-    background-color: #141446;
-    border-color: #141446;
+    background-color: #193cbe;
+    border-color: #193cbe;
     margin-bottom: 1%;
     font-family: 'Roboto', sans-serif;
 }
@@ -119,7 +121,6 @@
     margin-bottom: 1%;
     margin-top: 1%;
     font-family: 'Roboto', sans-serif;
-    margin-left: 1%;
 }
 
 .btn-green{
@@ -339,6 +340,7 @@ div.container {
 .txt-secondary{
     font-family: 'Roboto', sans-serif; 
     font-size: 17px;
+    
 }
 
 .txt-small{
