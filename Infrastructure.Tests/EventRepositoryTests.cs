@@ -40,8 +40,8 @@ public class EventRepositoryTests {
         candidate2 = new Candidate {Name = "Maj Frost Jensen", Email = "mfje@itu.dk", CurrentDegree = "MSc", StudyProgram = "Computer Science", University = "CBS", GraduationDate = new DateTime{}, IsUpvoted = true};
         candidate3 = new Candidate {Name = "Gustav Svensson", Email = "gs@ku.dk", CurrentDegree = "BSc", StudyProgram = "Law", University = "KU", GraduationDate = new DateTime{}, IsUpvoted = true};
 
-        event1 = new Event{Name="Workshop event", Date = new DateTime{}, Location="ITU", Candidates = new List<Candidate>{candidate1, candidate2, candidate3}, Quiz = new Quiz{}, Rating=4.0, Winners=new List<Candidate>()};
-        event2 = new Event{Name="Swagger event", Date = new DateTime{}, Location="Scrollbar", Candidates = new List<Candidate>{}, Quiz = new Quiz{}, Rating=7.0, Winners=new List<Candidate>()};
+        event1 = new Event{Name="Workshop event", Date = new DateTime(2000, 1, 27), Location="ITU", Candidates = new List<Candidate>{candidate1, candidate2, candidate3}, Quiz = new Quiz{}, Rating=4.0, Winners=new List<Candidate>()};
+        event2 = new Event{Name="Swagger event", Date = new DateTime(2050, 1, 31), Location="Scrollbar", Candidates = new List<Candidate>{}, Quiz = new Quiz{}, Rating=7.0, Winners=new List<Candidate>()};
 
         context.Events.AddRange(
             event1,
@@ -68,21 +68,6 @@ public class EventRepositoryTests {
         Assert.Equal(3, actual.Item2);
     }
 
-    // [Fact]
-    // public async void Create_Returns_Conflict_When_ID_Is_In_the_database()
-    // {
-    //     //Arrange
-    //     var event3 = new CreateEventDTO{Name="Swagger event", Date = "2022-03-21", Location="Scrollbar"};
-
-
-    //     //Act
-    //     var actual = await _repo.Create(event3);
-
-    //     //Assert
-    //     Assert.Equal(Status.Conflict, actual.Item1);
-    //     Assert.Equal(2, actual.Item2);
-    // }
-
     [Fact]
     public async void Read_returns_event1_when_given_ID_1()
     {
@@ -97,6 +82,8 @@ public class EventRepositoryTests {
         Assert.Equal(event1.Location, actual.Item2.Location);
         Assert.Equal(event1.Rating, actual.Item2.Rating);
     }
+
+
 
     [Fact]
     public async void Read_returns_status_notFound_when_given_nonexisting_ID()
@@ -118,8 +105,8 @@ public class EventRepositoryTests {
 
         //assert
         Assert.Collection(events,
-            firstEvent => Assert.Equal(new EventDTO(1,"Workshop event", (new DateTime{}).ToString("yyyy-MM-dd"), "ITU", null!, new QuizDTO {Id = 1}, 4.0,  null!), firstEvent),
-            SecondEvent => Assert.Equal(new EventDTO( 2, "Swagger event", (new DateTime{}).ToString("yyyy-MM-dd"), "Scrollbar", null!, new QuizDTO{ Id = 2}, 7.0,  null!), SecondEvent )
+            firstEvent => Assert.Equal(new EventDTO(1,"Workshop event", (new DateTime(2000, 1, 27)).ToString("yyyy-MM-dd"), "ITU", null!, new QuizDTO {Id = 1}, 4.0,  null!), firstEvent),
+            SecondEvent => Assert.Equal(new EventDTO( 2, "Swagger event", (new DateTime(2050, 1, 31)).ToString("yyyy-MM-dd"), "Scrollbar", null!, new QuizDTO{ Id = 2}, 7.0,  null!), SecondEvent )
         );
     }
 
@@ -293,6 +280,54 @@ public class EventRepositoryTests {
         var rating = await _repo.UpdateRating(99, 5);
         
         Assert.Equal(Status.NotFound, rating); 
+    }
+
+    [Fact]
+    public async void ReadUpcoming_returns_upcoming_events()
+    {
+       var upcomingEvents = await _repo.ReadUpcoming();
+        
+        Assert.Collection(upcomingEvents,
+            SecondEvent => Assert.Equal(new EventDTO( 2, "Swagger event", (new DateTime(2050, 1, 31)).ToString("yyyy-MM-dd"), "Scrollbar", null!, new QuizDTO{ Id = 2}, 7.0,  null!), SecondEvent )
+        );
+    }
+
+    [Fact]
+    public async void ReadRecent_returns_recent_events()
+    {
+        var recentEvents = await _repo.ReadRecent();
+        
+        Assert.Collection(recentEvents,
+            firstEvent => Assert.Equal(new EventDTO(1,"Workshop event", (new DateTime(2000, 1, 27)).ToString("yyyy-MM-dd"), "ITU", null!, new QuizDTO {Id = 1}, 4.0,  null!), firstEvent)
+        );
+        
+    }
+
+    [Fact]
+    public async void UpdateQuiz_given_id_updates_quiz()
+    {
+        var actual = await _repo.UpdateQuiz(1,1);
+
+        Assert.Equal(Status.Updated, actual);
+        
+    }
+
+    [Fact]
+    public async void UpdateQuiz_given_nonexistant_event_id_returns_NotFound()
+    {
+        var actual = await _repo.UpdateQuiz(99,1);
+
+        Assert.Equal(Status.NotFound, actual);
+        
+    }
+
+    [Fact]
+    public async void UpdateQuiz_given_nonexistant_quiz_id_returns_NotFound()
+    {
+        var actual = await _repo.UpdateQuiz(1,99);
+
+        Assert.Equal(Status.NotFound, actual);
+        
     }
 
 }
