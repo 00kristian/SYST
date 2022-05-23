@@ -285,6 +285,10 @@
 .obj-space {
     margin-right: 0.8%
 }
+
+.obj-top_margin {
+    margin-top: 3%;
+}
 /*-------------Container-------------*/
 div.container {
     padding-left: 0 !important;
