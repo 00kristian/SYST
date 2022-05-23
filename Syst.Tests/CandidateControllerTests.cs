@@ -55,7 +55,16 @@ public class CandidateControllerTests
         
     };
 
-
+	static readonly HashSet<string> ValidUniversities = new HashSet<string> {
+            "Aalborg University",
+            "Aarhus University",
+            "Copenhagen Business School",
+            "IT-University of Copenhagen",
+            "Roskilde University",
+            "Technical University of Denmark",
+            "University of Copenhagen",
+            "University of Southern Denmark"
+	};
 
 	//Testing starts here
 	[Fact]
@@ -263,24 +272,52 @@ public class CandidateControllerTests
     }
 
 
-	/* [Fact]
+	[Fact]
 	public async void Post_answer_to_candidate() {
 		//Arrange
 		var logger = new Mock<ILogger<CandidatesController>>();
 		var repository = new Mock<ICandidateRepository>();
-		var answer = new AnswerDTO(1, 20, 1, new string[] {"Answer 1", "Answer 2", "Answer 3"});
-		repository.Setup(m => m.AddAnswer(1, answer)).Returns(() => (Status.Conflict, 1));
+		var answer = new AnswersDTO(1, 20, 1, new string[] {"Answer 1", "Answer 2", "Answer 3"});
+		repository.Setup(m => m.AddAnswer(1, answer)).ReturnsAsync(() => (Status.Updated));
 		var controller = new CandidatesController(logger.Object, repository.Object);
 
 		//Act
 		var response = await controller.PostAnswer(1, answer);
 
 		//Assert
-		Assert.IsType<ConflictObjectResult>(response);
+		Assert.IsType<NoContentResult>(response);
 	}
- */
 
+	[Fact]
+	public async void PostAnswer_returns_status_notFound_when_given_nonexisting_idAsync(){
+		//Arrange
+		var logger = new Mock<ILogger<CandidatesController>>();
+		var repository = new Mock<ICandidateRepository>();
+		var answer = new AnswersDTO(1, 20, 1, new string[] {"Answer 1", "Answer 2", "Answer 3"});
+		repository.Setup(m => m.AddAnswer(40, answer)).ReturnsAsync(() => Status.NotFound);
+		var controller = new CandidatesController(logger.Object, repository.Object);
 
+		//Act
+		var response = await controller.PostAnswer(40, answer);
 
+		//Assert
+		Assert.IsType<NotFoundObjectResult>(response);
+	}
 
+	/*[Fact]
+	public void Get_graphData_when_having_a_list_of_universities() {
+		//Arrange
+		var logger = new Mock<ILogger<CandidatesController>>();
+		var repository = new Mock<ICandidateRepository>();
+		repository.Setup(m => m.GraphData(ValidUniversities)).Returns(() => (int[]));
+		var controller = new CandidatesController(logger.Object, repository.Object);
+
+		//Act
+		var response = controller.GraphData(ValidUniversities);
+
+		//Assert
+		Assert.IsType<int[]>(response);
+	}*/
+
+	
 }
