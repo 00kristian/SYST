@@ -5,7 +5,7 @@
 .btn-answer {
     width: 5rem;
     height: 5rem;
-    margin-right: 2rem;
+    margin-right: 0.5rem;
     margin-bottom: 2rem;
     margin-top: 2rem;
     border-radius: 50%;
@@ -15,13 +15,23 @@
     border: none;
     font-size: x-large;
     font-family: 'Roboto', sans-serif;
+    transition: 0.3s;
 }
-    .btn-answer:hover {
-        background-color: #e17640;
-    } 
-    .btn-answer:active {
-        background-color: #FF7837;
-    }
+.btn-answer:hover {
+    color: #fff;
+    background-color: #c15d2b;
+    border-color: #c15d2b;
+}
+.btn-answer:active {
+    color: #fff;
+    background-color: #FF7837;
+    border-color: #FF7837;
+}
+.btn-answer:focus {
+    color: #fff;
+    background-color: #FF7837;
+    border-color: #FF7837;
+}
 
 .btn-secondary {
     color: #FF7837;
