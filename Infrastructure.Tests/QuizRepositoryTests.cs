@@ -14,8 +14,7 @@ public class QuizRepositoryTests {
     private readonly IQuizRepository _repo;
 
     Quiz quiz1 = new Quiz{Id = 1, Name="Lukki", Questions = new List<Question>{}, Events = new List<Event>{}, Candidates = new List<Candidate>{}};
-    Quiz quiz2 = new Quiz{Id = 2, Name = "Sals", Questions = new List<Question>{}, Events = new List<Event>{}, Candidates = new List<Candidate>{}};
-
+Quiz quiz2 = new Quiz{Id = 2, Name = "Sals", Questions = new List<Question>{new Question{Id=1, Representation="swagster"}}, Events = new List<Event>{}, Candidates = new List<Candidate>{}};
     public QuizRepositoryTests(){
         var connection = new SqliteConnection("Filename=:memory:");
         connection.Open();
@@ -243,6 +242,27 @@ public class QuizRepositoryTests {
         var actual = await _repo.RemoveQuestion(30, 23);
     
         // Assert
+        Assert.Equal(Status.NotFound, actual);
+    }
+
+    [Fact]
+    public async void RemoveQuestion_returns_status_updated_when_given_existing_quizId()
+    {
+
+        // Act
+        var actual = await _repo.RemoveQuestion(2, 1);
+
+        // Assert
+        Assert.Equal(Status.Updated, actual);
+    }
+
+    [Fact]
+    public async void RemoveQuestion_returns_status_notFound_when_given_non_existing_questionId()
+    {
+        //Act
+        var actual = await _repo.RemoveQuestion(2,13);
+
+        //Assert
         Assert.Equal(Status.NotFound, actual);
     }
 } 
