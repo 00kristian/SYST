@@ -277,37 +277,22 @@ public class EventRepositoryTests {
         Assert.True(winners.Item2.ToList().Count() == 0);
     }
 
-    /*[Fact]
-    public async void pick_winner_returns_correct_winner()
-    {
-        // Act
-        var winner = await _repo.pickAWinner(event1.Id);
-        
-        //Assert
-        Assert.Equal(Status.Found, winner.Item1);
-    }
-
     [Fact]
-    public async void pick_winner_twice_returns_the_same()
+    public async void updateRating_updates_event_rating()
     {
-        //Act
-        var firstWinner = await _repo.pickAWinner(event1.Id);
-        var secondWinner = await _repo.pickAWinner(event1.Id);
-
-        //Assert
-        Assert.Equal(Status.Found, firstWinner.Item1);
-        Assert.Equal(Status.Found, secondWinner.Item1);
-        Assert.Equal(0, secondWinner.Item2.Id);
-    }
-
-    [Fact]
-    public async void pick_winner_returns_notfound_no_candidates()
-    {
-        //Act
-        var winner = await _repo.pickAWinner(event2.Id);
+        var rating = await _repo.UpdateRating(event2.Id, 5);
         
-        //Assert
-        Assert.Equal(Status.NotFound, winner.Item1);
-    }*/
+        Assert.Equal(5, event2.Rating);
+        Assert.Equal(Status.Updated, rating);
+        
+    }
+    
+    [Fact]
+    public async void updateRating_returns_NotFound_when_given_nonexisting_id()
+    {
+        var rating = await _repo.UpdateRating(99, 5);
+        
+        Assert.Equal(Status.NotFound, rating); 
+    }
 
 }
