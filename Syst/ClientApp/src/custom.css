@@ -188,8 +188,8 @@
 }
 
 .div-input_layout{
-    padding-left: 24%;
-    padding-right: 24%;
+    padding-left: 15%;
+    padding-right: 15%;
     padding-bottom: 10%;
 }
 
@@ -247,7 +247,7 @@
 }
 
 .input-candInfoPage{
-    width: 40vw;
+    width: 45rem;
     padding: 2% 15px;
     margin-top: 2%;
     margin-bottom: 2%;
@@ -417,7 +417,7 @@ progress {
 
 /*---------------DropDown---------------*/
 .dropdown-length{
-    width: 40vw;
+    width: 45rem;
     margin-top: 2%;
     margin-bottom: 2%;
 }
