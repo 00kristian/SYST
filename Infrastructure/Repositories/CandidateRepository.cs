@@ -37,19 +37,20 @@ namespace Infrastructure
             return (Status.Created, entity.Id);
         }
 
-    public bool IsValid(string emailaddress)
-    {
-    try
-    {
-        MailAddress m = new MailAddress(emailaddress);
+        //Checks for a valid email    
+        public bool IsValid(string emailaddress)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(emailaddress);
 
-        return true;
-    }
-    catch (FormatException)
-    {
-        return false;
-    }
-}
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
 
         //Return a name given the candidate id 
         public async Task<(Status, string?)> ReadNameFromId(int id) {
@@ -235,17 +236,22 @@ namespace Infrastructure
                 _context.Candidates.Where(c => !ValidUniversities.Contains(c.University!)).AsQueryable()
                 :
                 _context.Candidates.Where(c => c.University == universityName).AsQueryable();
+            
             var disMap = new Dictionary<double, int>();
+            
             await candidates.ForEachAsync(candidate => {
                 var p = candidate.PercentageOfCorrectAnswers;
                 if (disMap.ContainsKey(p)) disMap[p] = disMap[p] + 1;
                 else disMap[p] = 1;
             });
+            
             var tupList = new List<(double, int)>();
+            
             foreach (var (rate, amount) in disMap)
             {
                 tupList.Add((rate, amount));
             }
+            
             tupList.Sort((tup1, tup2) => (int) (tup1.Item1 - tup2.Item1));
 
             var dto = new UniversityAnswerDistributionDTO() {
