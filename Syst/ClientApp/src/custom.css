@@ -336,6 +336,7 @@ div.container {
 .txt-small{
     font-family: 'Roboto', sans-serif; 
     font-size: 15px;
+    font-style: italic;
 }
 
 .txt-navbar{
@@ -350,6 +351,10 @@ h1, h2, h3, h4, h5, h6, p{
     color: white;
 }
 
+.txt-represetation{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
 
 /*---------------Misc---------------*/
 .question-options {
@@ -362,7 +367,7 @@ h1, h2, h3, h4, h5, h6, p{
     width: 170px;
 }
 .horizontal-centered-div {
-    width: 50%;
+    width: 40%;
     padding-top: 25px;
     margin: 0 auto;
 }

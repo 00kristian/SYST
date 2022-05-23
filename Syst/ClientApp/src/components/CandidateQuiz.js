@@ -75,12 +75,14 @@ export function CandidateQuiz(props) {
     //User Interface
     return (
         <div>
-            <h3 style={{
+            <hr></hr>
+            <h3 className = "txt-represetation" style={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 margin: 10,
-                marginBottom: 40
+                marginBottom: 20,
+                marginTop: 20
             }}>{question.representation}</h3>
             <Row>
                 <Col>
