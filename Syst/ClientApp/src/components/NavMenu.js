@@ -34,7 +34,10 @@ export function NavMenu(props) {
               </a>
             </div>
             <div>
-              <h5>Event Tool</h5>
+              <h5
+              style={{marginLeft: 7,
+              paddingTop: 7}}
+              >Event Tool</h5>
             </div>
             <NavbarToggler onClick={toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!collapsed} navbar>

@@ -57,7 +57,12 @@ export function CandidateQuiz(props) {
     question.options.forEach(op => {
         ops.push(
             <Col key={i}> 
-                <div className="div-flex">           
+                <div style={{
+              backgroundColor: "#ececec",
+              borderRadius: 40,
+              paddingLeft: 15,
+              paddingRight: 15,
+              marginBottom: 20}} className="div-flex">           
                     <button onClick={() => answerFun(op)} className="btn-answer"> {letters[i++]} </button>
                     <div className='div-quiz_layout'>
                         <h5 className='question-text'> {op}</h5>
@@ -69,12 +74,15 @@ export function CandidateQuiz(props) {
 
     //User Interface
     return (
-        <div className="page-padding">
-            <h3 style={{
+        <div>
+            <hr></hr>
+            <h3 className = "txt-represetation" style={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                margin: 15
+                margin: 10,
+                marginBottom: 20,
+                marginTop: 20
             }}>{question.representation}</h3>
             <Row>
                 <Col>
@@ -83,7 +91,7 @@ export function CandidateQuiz(props) {
                     </div>
                 </Col>
                 <Col>
-                    <img style={{width: 400}} src={path + "/api/Image/" + question.imageURl} alt="quizPic" />
+                    <img style={{width: 400, maxHeight: 500}} src={path + "/api/Image/" + question.imageURl} alt="quizPic" />
                 </Col>        
             </Row>
       </div>
@@ -100,6 +108,7 @@ export function CandidateQuiz(props) {
               :
               renderCandidateQuestion(quiz.questions[currentQuestion], answer)
               }
+              <br></br>
               {Pager.Pager(currentQuestion, quiz.questions.length, true,((at) => setCurrentQuestion(at)))}  
           </Container>)
         : <h2 className="txt-center"> No quiz attached to this Event! </h2>;
@@ -107,7 +116,7 @@ export function CandidateQuiz(props) {
 
     return (
       <div className='div-center'>
-        <img style={{width: 600}} src={logo} alt="logo" />
+        <img style={{width: 450}} src={logo} alt="logo" />
         {contents}
       </div>
     );

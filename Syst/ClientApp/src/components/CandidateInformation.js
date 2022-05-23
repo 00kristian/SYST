@@ -138,7 +138,8 @@ export function CandidateInformation(props) {
         
         <div>
             <div className='div-header'>
-            <h5>Please write your information to enter the competition</h5>
+            <h5 style={{marginTop: 15}}
+            >Please write your information to enter the competition</h5>
             </div>
             <br/>
             <div className='div-input_layout'>
@@ -263,7 +264,7 @@ export function CandidateInformation(props) {
                 ) : (
                 <div></div>
                 )}
-                <button className="btn btn-primary btn-right" onClick={rerouteToCandidateConfirmation}>SUBMIT</button>
+                <button className="btn btn-primary btn-submit" onClick={rerouteToCandidateConfirmation}>SUBMIT</button>
             </div>
         </div>
             
