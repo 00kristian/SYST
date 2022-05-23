@@ -174,7 +174,7 @@ function CreateQuiz(props) {
             <button onClick={removeQuestion} className="btn btn-minus_quiz" type="button"><Icon path={mdiTrashCan} size={1}/></button>        
             <br />
             <button onClick={_confirm} className="btn btn-primary btn-right btn-corner">SAVE QUIZ</button>
-            <Popup className="popup-overlay" trigger = {<button className="btn btn-delete btn-right btn-corner">DELETE</button>} modal nested>
+                <Popup className="popup-overlay" trigger={<button className="btn btn-secondary">DELETE</button>} modal nested>
               {close => (
                 <div>
                   <p className="txt-popup">Are you sure you want to delete this quiz?</p>
@@ -185,7 +185,6 @@ function CreateQuiz(props) {
                   </div>
               )}
             </Popup>
-            <button onClick={() => history.push("/CreateEvent/"+ props.match.params.event_id)} className="btn btn-secondary">Cancel</button>
             </div>
         </AuthenticatedTemplate>
     );
