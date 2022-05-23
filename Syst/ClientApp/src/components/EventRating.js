@@ -14,7 +14,7 @@ function EventRating(props) {
     const [QApplicationRating, setQapplicationRating ] = useState(0);
     const [QCostRating, setQCostRating ] = useState(0);
     const [QTimeRating, setQTimeRating ] = useState(0);
-    const [isFilledOut, setIsFilledOut ] = useState(false);
+    const [isFilledOut, setIsFilledOut ] = useState(true);
     const [finalRating, setFinalRating ] = useState(0);
     const history = useHistory();
 
