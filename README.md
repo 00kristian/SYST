@@ -12,7 +12,7 @@ Required installations:
   - Docker
   - Powershell
 
-<h3 style="color: red;"> Have Docker desktop running. </h3> <br/>
+<h3 style="color:blue;"> Have Docker desktop running. </h3> <br/>
 In a powershell terminal go to the root map and run the "npmDeps.ps1" script, this will install all required node dependencies. (Only first time). <br/>
 Then navigate back to the root map and run the "start.ps1" script and after some time you can open the application in your browser. (Only if database container is not running). <br/>
 Else you use "dotnet run" from the "Syst" directory. <br/>
