@@ -165,10 +165,10 @@
 
 .btn-submit{
     font-family: 'Roboto', sans-serif;
-    padding: 15px 30px;
+    padding: 10px 25px;
     font-size: large;
     font-weight: 500;
-    box-shadow: 3px 3px #bc5928;
+    box-shadow: 2px 2px #bc5928;
 }
 
 /*---------------Divs---------------*/
