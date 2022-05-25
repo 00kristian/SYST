@@ -170,7 +170,7 @@ function CreateQuiz(props) {
                 <h5>Questions:</h5>
                 {questions?.map((question, index) => renderQuiz(question, index))}
             </form>
-            <button onClick={addQuestion} className="btn btn-primary" type="button">+</button> 
+            <button onClick={addQuestion} className="btn btn-primary btn-plus" type="button">+</button> 
             <button onClick={removeQuestion} className="btn btn-minus_quiz" type="button"><Icon path={mdiTrashCan} size={1}/></button>        
             <br />
             <hr></hr>

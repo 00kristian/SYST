@@ -210,7 +210,7 @@ export function CandidateInformation(props) {
                     <div>
                         <label>
                             <h5 className='txt-red'>* Degree</h5>
-                            <Dropdown className="dropdown-length txt-small"  options={educations} onChange={selectDegree} value="Select your program"/>                            
+                            <Dropdown className="dropdown-length txt-small"  options={educations} onChange={selectDegree} value="Select your degree"/>                            
                         </label>
                         <br />
                         <br />
@@ -224,7 +224,7 @@ export function CandidateInformation(props) {
                     <div>
                         <label>
                             <h5>Degree</h5>
-                            <Dropdown className="dropdown-length txt-small" options={educations} onChange={selectDegree} value="Select your program"/>
+                            <Dropdown className="dropdown-length txt-small" options={educations} onChange={selectDegree} value="Select your degree"/>
                         </label>
                         <br />
                         <br />

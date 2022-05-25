@@ -71,7 +71,7 @@
 }
 
 .btn-minus_quiz {
-    margin-left: 41%;
+    margin-left: 40%;
     color: #FF7837;
     background-color: #fff;
     border-color: #FF7837;
@@ -84,6 +84,11 @@
 .btn-next{
     padding-bottom: 5%;
     padding-right: 3%;
+}
+
+.btn-plus{
+    padding: 8px 15px;
+    font-weight: bold;
 }
 
 .btn-primary {
