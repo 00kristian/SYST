@@ -23,7 +23,10 @@ namespace Infrastructure
 
             var question = new Question
                 {
-                    Representation = "New question"
+                    Representation = "New question",
+                    Answer = "",
+                    ImageURL = "",
+                    Options = new List<string>() {""}
                 };
 
             _context.Questions.Add(question);
