@@ -441,6 +441,16 @@ progress {
     margin-bottom: 2%;
 }
 
+.dropdown-smallLength{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: center;
+    margin-right: 8px;
+    
+}
+
+
 /*---------------Popup------------------*/
 .popup-overlay {
     margin: auto;
@@ -454,4 +464,9 @@ progress {
     background-color: rgb(239, 239, 239);
     color: black;
     font-size: large;
+}
+
+/*----------------a------------------*/
+.a-txt{
+    color: #009BE6;
 }
