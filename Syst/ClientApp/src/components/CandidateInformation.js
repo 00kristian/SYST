@@ -21,7 +21,7 @@ export function CandidateInformation(props) {
     const [validateName, setValidateName] = useState(true);
     const [validateEmail, setValidateEmail] = useState(true);
     const [validateStudyProgram, setValidateStudyProgram] = useState(true);
-    const [validateCheckBox, setValidateCheckBox] = useState(true);
+    const [validateCheckBox, setValidateCheckBox] = useState(false);
     const [validateUniversity, setValidateUniversity] = useState(true);
     const [validateGraduation, setValidateGraduation] = useState(true);
     const [validateDegree, setValidateDegree] = useState(true);

@@ -79,18 +79,23 @@ function CreateQuiz(props) {
         let index = await fetch('api/QuizQuestion/' + props.match.params.id, options)
         .then(response => response.json());
         
-        setQuestions([...questions, {representation : question.representation, id : index}])
     }
 
-    const removeQuestion = async () => {
+    const removeQuestion = async (id) => {
         if (questions.length === 0) return;
         const options = await FetchOptions.Options(instance, accounts, "DELETE");
         
-        
-        await fetch('api/Questions/' + questions[questions.length - 1].id, options);
-
-        setQuestions(questions.slice(0, questions.length - 1));
+        await fetch('api/Questions/' + id, options);
     }
+
+    useEffect(async () => {
+        const options = await FetchOptions.Options(instance, accounts, "GET");
+        const data = await fetch('api/quiz/'+props.match.params.id, options)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+
+        setQuestions(data.questions);
+    }, [removeQuestion, addQuestion]);
 
     const modifyQuestion = (id) => {
         updateQuiz();
@@ -115,7 +120,8 @@ function CreateQuiz(props) {
             <AuthenticatedTemplate>
             <div key={index}>
                 <h5> Question {index + 1}
-                    <button onClick={(event) => modifyQuestion(question.id)} className="btn btn-primary btn-modify"> MODIFY </button>
+                    <button style={{marginRight: 5}} onClick={(event) => modifyQuestion(question.id)} className="btn btn-primary btn-modify"> MODIFY </button>
+                    <button onClick={(event) => removeQuestion(question.id)} className="btn btn-secondary" type="button"><Icon path={mdiTrashCan} size={1}/></button>  
                 </h5>
                 <label className="obj-bottom_margin">{question.representation}</label>
                 </div>
@@ -167,11 +173,10 @@ function CreateQuiz(props) {
                     </div>
                 </div>
                 <br /> <hr/> <br />
-                <h5>Questions:</h5>
+                <h4 className="txt-represetation">Questions:</h4>
                 {questions?.map((question, index) => renderQuiz(question, index))}
             </form>
-            <button onClick={addQuestion} className="btn btn-primary" type="button">+</button> 
-            <button onClick={removeQuestion} className="btn btn-minus_quiz" type="button"><Icon path={mdiTrashCan} size={1}/></button>        
+            <button style={{marginLeft: 300}} onClick={addQuestion} className="btn btn-primary" type="button">+</button>       
             <br />
             <hr></hr>
             <div>

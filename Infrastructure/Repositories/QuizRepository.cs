@@ -20,9 +20,18 @@ namespace Infrastructure
         public async Task<(Status, int id)> Create(CreateQuizDTO quizDTO)
         {
             if (quizDTO == default(CreateQuizDTO)) return (Status.Conflict, 0);
+
+            var question = new Question
+                {
+                    Representation = "New question"
+                };
+
+            _context.Questions.Add(question);
+
             var entity = new Quiz
                 {
                     Name = quizDTO.Name,
+                    Questions = new List<Question>() {question}
                 };
 
             _context.Quizes.Add(entity);
