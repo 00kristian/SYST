@@ -1,15 +1,15 @@
-import React, { Component, useState } from 'react';
+import React, {useState } from 'react';
 import { Collapse, Container, Navbar, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 import logo from './Systematic_Logo.png';
 import Icon from '@mdi/react'
-import { mdiCloseOutline, mdiHome } from '@mdi/js'
+import {mdiHome } from '@mdi/js'
 import { mdiCalendar } from '@mdi/js';
 import { mdiAccountGroup } from '@mdi/js';
 import { useIsAuthenticated } from "@azure/msal-react";
 import { SignInButton } from "./SignInButton";
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { AuthenticatedTemplate} from "@azure/msal-react";
 import {SignOutButton} from "./SignOutButton";
 
 

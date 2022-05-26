@@ -16,6 +16,8 @@ export function CandidateInformation(props) {
     const [studyProgram, setStudyProgram] = useState("");
     const [currentDegree, setCurrentDegree] = useState("");
     const [graduationDate, setGraduationDate] = useState(null);
+    const [year, setYear] = useState("");
+    const [month, setMonth] = useState("");
 
     const [showSpecialUni, setShowSpecialUni] = useState(false);
     const [validateName, setValidateName] = useState(true);
@@ -46,6 +48,34 @@ export function CandidateInformation(props) {
         'PhD'
     ];
 
+    const years = [
+        '2022',
+        '2023',
+        '2024',
+        '2025',
+        '2026',
+        '2027',
+        '2028',
+        '2029',
+        '2030',
+        '2031',
+        '2032'
+    ]
+    
+    const months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ]
 
     //Mehtods
     const selectUni = (option) => {
@@ -59,6 +89,9 @@ export function CandidateInformation(props) {
     }
     
     const selectDegree = (education) => {setCurrentDegree(education.value);}
+
+    const selectYear = (years) => {setYear(years.value)}
+    const selectMonth = (months) => {setMonth(months.value)}
 
     const ValidateEmail = () => {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
@@ -84,7 +117,7 @@ export function CandidateInformation(props) {
         const DegreeGood = currentDegree.length !== 0;
         const StudyProgramGood = studyProgram.length !== 0;
         const CheckBoxGood = validateCheckBox;
-        const GraduationGood = graduationDate != null;
+        const GraduationGood = year != "" && month != "";
 
         setValidateName(name.length !== 0);
         setValidateEmail(email.length !== 0);
@@ -103,7 +136,7 @@ export function CandidateInformation(props) {
                 "currentDegree": currentDegree,
                 "studyProgram": studyProgram,
                 "upVote": false,
-                "graduationDate": graduationDate.toDateString()
+                "graduationDate": year + "-" + (months.indexOf(month) + 1) + "-01"
             };
             const options = await FetchOptions.Options(instance, accounts, "POST");
             options.headers = {
@@ -238,13 +271,10 @@ export function CandidateInformation(props) {
                 <br />
                 <label>
                     {validateGraduation ? <h5>Scheduled graduation</h5> : <h5 className='txt-red'>* Scheduled graduation</h5>}
-                    
-                    <input onInput={(v) => {
-                        setGraduationDate(new Date(v.target.value + "-01"));
-                    }} 
-                    defaultValue={Date.now}
-                    type="month"
-                    min="2018-01" max="2030-12"></input>
+                    <div className="div-flex2">
+                        <Dropdown className="dropdown-smallLength txt-small" options={months} onChange={selectMonth} value="Select month"/>
+                        <Dropdown className="dropdown-smallLength txt-small" options={years} onChange={selectYear} value="Select year"/>
+                    </div>
                 </label>
                 <br />
                 <br />
@@ -254,7 +284,7 @@ export function CandidateInformation(props) {
                     </div>
                 ) : (
                 <div>
-                    <p><input type="checkbox" onClick={(event) => checkedBox(event)}/> Accept that Systematic can store your information <a href='https://systematic.com/da-dk/kontakt/privacy-policyings/'>Read more</a></p>
+                    <p><input type="checkbox" onClick={(event) => checkedBox(event)}/> Accept that Systematic can store your information <a className="a-txt" onClick={()=> window.open('https://systematic.com/da-dk/kontakt/privacy-policyings/','location=yes,height=800,width=1300,scrollbars=yes,status=yes')}>Read more</a></p>
                 </div>
                 )}
             </form>

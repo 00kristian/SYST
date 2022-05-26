@@ -121,7 +121,15 @@ function CreateQuiz(props) {
             <div key={index}>
                 <h5> Question {index + 1}
                     <button style={{marginRight: 5}} onClick={(event) => modifyQuestion(question.id)} className="btn btn-primary btn-modify"> MODIFY </button>
-                    <button onClick={(event) => removeQuestion(question.id)} className="btn btn-secondary" type="button"><Icon path={mdiTrashCan} size={1}/></button>  
+                    <Popup className="popup-overlay" trigger = {<button className="btn btn-secondary" type="button"><Icon path={mdiTrashCan} size={1}/></button>} modal nested>
+                            {close => (
+                                <div className="div-center">
+                                    <p>Are you sure you want to delete this question?</p>
+                                    <button className="btn btn-primary btn-yes" onClick={(event)=>{removeQuestion(question.id); close();}}>Yes</button>
+                                    <button className="btn btn-primary"onClick={() => {close();}}>No</button>
+                                </div>
+                            )}
+                            </Popup>
                 </h5>
                 <label className="obj-bottom_margin">{question.representation}</label>
                 </div>

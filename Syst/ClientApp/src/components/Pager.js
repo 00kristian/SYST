@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { AuthenticatedTemplate } from "@azure/msal-react";
 
 //Makes the progress bar used when hosting an event
 export class Pager extends Component {
@@ -7,20 +7,6 @@ export class Pager extends Component {
     static Pager(at, length, noNext, setFun, pageNumber) {
         let at_ = at;
 
-        const hideButtons = () => {
-            let back = document.getElementById('page-backBtn');
-            if (at_ == 0) {
-                back.style.display = "block";
-            } else {
-                back.style.display = "none";
-            }
-            let next = document.getElementById('page-nextBtn');
-            if (at_ == length) {
-                next.style.display = "block";
-            } else {
-                next.style.display = "none";
-            }
-        }
 
         const back = () => {
             if (at_ > 0) {
