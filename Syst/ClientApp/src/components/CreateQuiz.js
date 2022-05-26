@@ -190,7 +190,7 @@ function CreateQuiz(props) {
             <div>
 
                 <button onClick={_confirm} className="btn btn-primary btn-right btn-corner">SAVE QUIZ</button>
-                <Popup className="popup-overlay" trigger={<button className="btn btn-secondary">DELETE QUIZ</button>} modal nested>
+                <Popup className="popup-overlay" trigger={<button className="btn btn-secondary">Delete quiz</button>} modal nested>
                 {close => (
                     <>
                     <p className="txt-popup">Are you sure you want to delete this quiz?</p>
