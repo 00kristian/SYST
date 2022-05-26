@@ -79,7 +79,7 @@ function Candidates() {
         </InteractiveTable>;
     return (
         <div className="page-padding">
-            <h1 id="tabelLabel" >Candidates</h1>
+            <h3 id="tabelLabel" >Candidates</h3>
             {contents}
         </div>
     );

@@ -75,7 +75,7 @@ export function InteractiveTable(props) {
                         </th>
                     )}
                     {props.SearchBar ?
-                        <div className="div-right">
+                        <div className="div-right obj-top_margin">
                             <input value={search} placeholder="Search" onChange={(e) => setSearch(e.target.value)} className="txt-primary txt-small"></input>
                         </div>
                         :
@@ -84,7 +84,7 @@ export function InteractiveTable(props) {
                 </tr>
                 </thead>
                 <tbody>
-                {filter(slc(_content)).map(row =>
+                {slc(filter(_content)).map(row =>
                     <tr key={row.id}>
                         {props.Columns.map(col =>
                             <td className="txt-small"> {row[col[1]]} </td>
@@ -94,7 +94,7 @@ export function InteractiveTable(props) {
                 </tbody>
             </table>
             {props.PageSize != null ?
-                Pager.Pager(pageAt, Math.ceil(_content.length / props.PageSize, 10) - 1, false, (page) => {setPageAt(page)}, true)
+                Pager.Pager(pageAt, Math.ceil(filter(_content).length / props.PageSize, 10) - 1, false, (page) => {setPageAt(page)}, true)
                 : <span></span>
             }
 

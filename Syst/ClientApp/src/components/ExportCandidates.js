@@ -15,6 +15,6 @@ function ExportCandidates(props) {
         Is_upvoted : c.isUpvoted,
         Answer_rate : c.percentageOfCorrectAnswers
     }))
-    return <div className="div-right"><button className='btn btn-tertiary btn-right txt-small' > <CSVLink filename={props.Name} data={csvData}>Export</CSVLink></button></div> ;
+    return <div className="div-right"><button className='btn btn-right btn-export' > <CSVLink style={{color: "white"}} filename={props.Name} data={csvData}>Export</CSVLink></button></div> ;
 }
 

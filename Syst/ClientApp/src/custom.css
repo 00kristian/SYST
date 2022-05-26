@@ -38,6 +38,8 @@
     background-color: #fff;
     border-color: #FF7837;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 1%;
+    margin-top: 1%;
 }
 
 .btn-confirmation {
@@ -46,7 +48,7 @@
     padding-right: 4%;
 }
 
-.btn-delete {
+.btn-export {
     color: #fff;
     background-color: #141446;
     border-color: #141446;
@@ -69,7 +71,7 @@
 }
 
 .btn-minus_quiz {
-    margin-left: 41%;
+    margin-left: 40%;
     color: #FF7837;
     background-color: #fff;
     border-color: #FF7837;
@@ -82,6 +84,11 @@
 .btn-next{
     padding-bottom: 5%;
     padding-right: 3%;
+}
+
+.btn-plus{
+    padding: 8px 15px;
+    font-weight: bold;
 }
 
 .btn-primary {
@@ -119,7 +126,6 @@
     margin-bottom: 1%;
     margin-top: 1%;
     font-family: 'Roboto', sans-serif;
-    margin-left: 1%;
 }
 
 .btn-green{
@@ -164,10 +170,10 @@
 
 .btn-submit{
     font-family: 'Roboto', sans-serif;
-    padding: 15px 30px;
+    padding: 10px 25px;
     font-size: large;
     font-weight: 500;
-    box-shadow: 3px 3px #bc5928;
+    box-shadow: 2px 2px #bc5928;
 }
 
 /*---------------Divs---------------*/
@@ -284,6 +290,10 @@
 .obj-space {
     margin-right: 0.8%
 }
+
+.obj-top_margin {
+    margin-top: 3%;
+}
 /*-------------Container-------------*/
 div.container {
     padding-left: 0 !important;
@@ -339,6 +349,7 @@ div.container {
 .txt-secondary{
     font-family: 'Roboto', sans-serif; 
     font-size: 17px;
+    
 }
 
 .txt-small{

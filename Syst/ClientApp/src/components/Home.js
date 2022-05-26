@@ -60,12 +60,14 @@ function Home(props) {
         <React.Fragment>
         <AuthenticatedTemplate>
             <div className="page-padding">
-            <h1 id="tabelLabel">Upcoming Events
+            <h3 id="tabelLabel">Upcoming Events
                 <button className="btn btn-primary btn-right" onClick={() => rerouteToEventCreation()}>CREATE</button>
-            </h1>
+            </h3>
             {contents}
         </div>
         <hr></hr>
+        <br></br>
+        <br></br>
         <CandidatesGraph></CandidatesGraph>
         <hr></hr>
 

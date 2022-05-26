@@ -85,7 +85,9 @@ export function EventDetail(props) {
             <h1>{event.name}</h1>
             <h3>{event.location}, {event.date}</h3>
             <button onClick={() => editEvent()} className="btn btn-tertiary obj-space btn-right">Edit Event</button>
-                <button onClick={() => editRating()} className="btn btn-tertiary btn-right">Edit Rating</button>
+                <button style={{
+                  marginRight: 10
+                }} onClick={() => editRating()} className="btn btn-tertiary btn-right">Edit Rating</button>
             <h4>Rating: {event.rating}</h4>
             <h4>Winners: {winnerNames}</h4>
             <br/>
@@ -157,9 +159,7 @@ export function EventDetail(props) {
                 }
             </InteractiveTable>
             <br></br>
-            <a href={'/events'}> <button className="btn btn-secondary">Back</button> </a>
-           
-            <Popup className="popup-overlay" trigger = {<button className="btn btn-delete btn-right">DELETE</button>} modal nested>
+            <Popup className="popup-overlay" trigger={<button className="btn btn-secondary btn-cancel">DELETE EVENT</button>} modal nested>
               {close => (
                 <div>
                   <p className="txt-popup">Are you sure you want to delete this event?</p>

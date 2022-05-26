@@ -34,6 +34,7 @@ export class LoginPage extends Component {
             <div className='div-center'>
                 <img style={{width: 600, backgroundPosition: 'center'}} src={logo} alt="logo" />
                 <br></br>
+                <br></br>
                 <h1 className='txt-white'>Welcome to Event Tool</h1>
             </div>
             <div className='btn-center'>

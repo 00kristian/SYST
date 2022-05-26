@@ -107,7 +107,7 @@ export function CandidatesGraph(props) {
                 <h4>Distribution of candidates
                     &nbsp; 
                         <InformationIcon>
-                            {"Pie chart visualizing the distribution of all candidates for each University.<br>Click on a slice to see the distribution of answers of an individual University on the next chart."}
+                            {"Pie chart visualizing the distribution of all candidates for each university.<br>Click on a slice to see the distribution of correct answers of an individual university on the next chart."}
                         </InformationIcon>
                     </h4>
                 <Pie options={pieOptions} data={{
@@ -122,9 +122,9 @@ export function CandidatesGraph(props) {
                 }} />
             </div>
             <div style={{width: 600, marginTop: 0}}>
-                <h4>Distribution of answers per University &nbsp; 
+                <h4>Distribution of correct answers per university &nbsp; 
                     <InformationIcon>
-                    {"Bar chart visualizing the distribution of candidates' answer rate in % for an individual University.<br>X-axis is answer rate and Y-axis is amount of candidates."}
+                    {"Bar chart visualizing the distribution of candidates' correct answer rate in % for an individual university.<br>X-axis is the correct answer rate and Y-axis is the amount of candidates."}
                     </InformationIcon>
                 </h4>
                 
