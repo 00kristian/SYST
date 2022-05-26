@@ -15,14 +15,15 @@ export function CandidateInformation(props) {
     const [university, setUniversity] = useState("");
     const [studyProgram, setStudyProgram] = useState("");
     const [currentDegree, setCurrentDegree] = useState("");
-    const [graduationDate, setGraduationDate] = useState(new Date());
+    const [graduationDate, setGraduationDate] = useState(null);
 
     const [showSpecialUni, setShowSpecialUni] = useState(false);
     const [validateName, setValidateName] = useState(true);
     const [validateEmail, setValidateEmail] = useState(true);
     const [validateStudyProgram, setValidateStudyProgram] = useState(true);
-    const [validateCheckBox, setValidateCheckBox] = useState(true);
+    const [validateCheckBox, setValidateCheckBox] = useState(false);
     const [validateUniversity, setValidateUniversity] = useState(true);
+    const [validateGraduation, setValidateGraduation] = useState(true);
     const [validateDegree, setValidateDegree] = useState(true);
     const [clickedOnSubmit, setClickedOnSubmit] = useState(false);
     const { instance, accounts } = useMsal();
@@ -83,6 +84,7 @@ export function CandidateInformation(props) {
         const DegreeGood = currentDegree.length !== 0;
         const StudyProgramGood = studyProgram.length !== 0;
         const CheckBoxGood = validateCheckBox;
+        const GraduationGood = graduationDate != null;
 
         setValidateName(name.length !== 0);
         setValidateEmail(email.length !== 0);
@@ -90,8 +92,9 @@ export function CandidateInformation(props) {
         setValidateDegree(currentDegree.length !== 0);
         setValidateStudyProgram(studyProgram.length !== 0);
         setValidateCheckBox(validateCheckBox)
+        setValidateGraduation(GraduationGood)
 
-        if(NameGood && EmailGood && UniversityGood && DegreeGood && StudyProgramGood && CheckBoxGood) {
+        if(NameGood && EmailGood && UniversityGood && DegreeGood && StudyProgramGood && CheckBoxGood && GraduationGood) {
             
             let candidate = {
                 "name": name,
@@ -207,7 +210,7 @@ export function CandidateInformation(props) {
                     <div>
                         <label>
                             <h5 className='txt-red'>* Degree</h5>
-                            <Dropdown className="dropdown-length txt-small"  options={educations} onChange={selectDegree} value="Select your program"/>                            
+                            <Dropdown className="dropdown-length txt-small"  options={educations} onChange={selectDegree} value="Select your degree"/>                            
                         </label>
                         <br />
                         <br />
@@ -221,7 +224,7 @@ export function CandidateInformation(props) {
                     <div>
                         <label>
                             <h5>Degree</h5>
-                            <Dropdown className="dropdown-length txt-small" options={educations} onChange={selectDegree} value="Select your program"/>
+                            <Dropdown className="dropdown-length txt-small" options={educations} onChange={selectDegree} value="Select your degree"/>
                         </label>
                         <br />
                         <br />
@@ -234,7 +237,8 @@ export function CandidateInformation(props) {
                 )}
                 <br />
                 <label>
-                    <h5>Graduation Month</h5>
+                    {validateGraduation ? <h5>Scheduled graduation</h5> : <h5 className='txt-red'>* Scheduled graduation</h5>}
+                    
                     <input onInput={(v) => {
                         setGraduationDate(new Date(v.target.value + "-01"));
                     }} 

@@ -35,8 +35,8 @@ export function NavMenu(props) {
             </div>
             <div>
               <h5
-              style={{marginLeft: 7,
-              paddingTop: 7}}
+              style={{marginLeft: 9,
+              paddingTop: 9}}
               >Event Tool</h5>
             </div>
             <NavbarToggler onClick={toggleNavbar} className="mr-2" />

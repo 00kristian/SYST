@@ -109,7 +109,7 @@ function CreateQuestion(props) {
                         <br />
                         <hr/>
                         <div> {theseOptions?.map((option, index) => renderOption(option, index))} </div>
-                        <button className="btn btn-primary" type="button" onClick={() => addOptionFields()}>+</button>
+                        <button className="btn btn-primary btn-plus" type="button" onClick={() => addOptionFields()}>+</button>
                             <button className="btn btn-minus_question" type="button" onClick={() => removeOptionFields()}><Icon path={mdiTrashCan} size={1}/></button>
                     </Col>
                     <Col>
@@ -120,6 +120,7 @@ function CreateQuestion(props) {
                 </Row>
             </Container>
             <br /> <br />
+            <hr></hr>
             <button onClick={() => history.push("/CreateQuiz/" + props.match.params.event_id + "/" + props.match.params.quiz_id)} className="btn btn-secondary">Cancel</button>
             <button className="btn btn-primary btn-right" onClick={() => confirm()}>SAVE QUESTION</button>
         </div>

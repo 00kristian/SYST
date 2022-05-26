@@ -49,10 +49,10 @@ export class Pager extends Component {
         return (
             <AuthenticatedTemplate>
             <div className="horizontal-centered-div div-flex2">
-                <button className='btn btn-primary' id="page-backBtn" onClick={back}>BACK</button>
+                <button className='btn btn-secondary' id="page-backBtn" onClick={back}>Back</button>
                 {pageNumber != null && pageNumber ? <h3 className='progress-bar progress-text'>{at_ + 1} / {length + 1}</h3> : <progress className='progress-bar' id='page-progressBar' value={at_} max={length}> {at_} </progress>}
                     {noNext ? <></> :
-                        <button className='btn btn-primary btn-right' id="page-nextBtn" onClick={next}>Next</button>
+                        <button className='btn btn-secondary btn-right' id="page-nextBtn" onClick={next}>Next</button>
                     }
                     
                 </div>
