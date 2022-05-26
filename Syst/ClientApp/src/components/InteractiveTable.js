@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { Pager } from "./Pager";
 import ExportCandidates from './ExportCandidates';
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { AuthenticatedTemplate} from "@azure/msal-react";
 
 //Function that creates the interactive tables used under events and candidates 
 export function InteractiveTable(props) {

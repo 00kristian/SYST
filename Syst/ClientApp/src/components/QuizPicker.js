@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { AuthenticatedTemplate} from "@azure/msal-react";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css'
 

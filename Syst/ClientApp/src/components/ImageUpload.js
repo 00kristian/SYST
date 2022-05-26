@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, useMsal } from "@azure/msal-react";
+import { AuthenticatedTemplate, useMsal } from "@azure/msal-react";
 import {FetchOptions} from './FetchOptions';
 const { env } = require('process');
 

@@ -1,4 +1,4 @@
-import { useMsal, AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { useMsal} from "@azure/msal-react";
 
 function signOutClickHandler(instance, accounts) {
     const logoutRequest = {
