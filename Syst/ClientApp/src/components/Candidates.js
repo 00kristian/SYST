@@ -14,12 +14,14 @@ export default Candidates
 function Candidates() {
     const [candidates, setCandidates] = useState([]);
     const { instance, accounts } = useMsal();
+    const [calls, setCalls] = useState(0);
    
     //Methods
     const clickToDownvoteCandidate = async (id) => {
         const options = await FetchOptions.Options(instance, accounts, "DELETE");
 
         await fetch('api/candidates/' + id, options);
+        setCalls((c) => c +1);
     }
 
     const clickToUpvoteCandidate =  async (id) => {
@@ -35,7 +37,7 @@ function Candidates() {
         .then(response => response.json())
         .catch(error => console.log(error));
         setCandidates(data);
-    }, [clickToDownvoteCandidate]);
+    }, [calls]);
     
     //User Interface
     let contents = <InteractiveTable ExportName="All_Candidates.csv" SearchBar={true} PageSize={8} Columns={[["Id", "id"], ["Name", "name"], ["Email", "email"], ["University", "university"], ["Degree", "currentDegree"], ["Study Program", "studyProgram"], ["Graduation Date", "graduationDate"], ["Answer Rate in %", "percentageOfCorrectAnswers" ] ]} Content={candidates}>
