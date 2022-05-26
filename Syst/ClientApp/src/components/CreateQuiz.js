@@ -66,7 +66,7 @@ function CreateQuiz(props) {
         let question = {
             "representation": "New question",
             "answer": "",
-            "Options": [],
+            "Options": [""],
             "imageUrl": ""
         };
         const options = await FetchOptions.Options(instance, accounts, "PUT");
