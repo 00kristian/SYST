@@ -109,7 +109,7 @@ function CreateQuestion(props) {
                         <br />
                         <hr/>
                         <div> {theseOptions?.map((option, index) => renderOption(option, index))} </div>
-                        <button className="btn btn-primary" type="button" onClick={() => addOptionFields()}>+</button>
+                        <button className="btn btn-primary btn-plus" type="button" onClick={() => addOptionFields()}>+</button>
                             <button className="btn btn-minus_question" type="button" onClick={() => removeOptionFields()}><Icon path={mdiTrashCan} size={1}/></button>
                     </Col>
                     <Col>

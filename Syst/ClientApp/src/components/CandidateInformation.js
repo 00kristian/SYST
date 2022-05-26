@@ -210,7 +210,7 @@ export function CandidateInformation(props) {
                     <div>
                         <label>
                             <h5 className='txt-red'>* Degree</h5>
-                            <Dropdown className="dropdown-length txt-small"  options={educations} onChange={selectDegree} value="Select your program"/>                            
+                            <Dropdown className="dropdown-length txt-small"  options={educations} onChange={selectDegree} value="Select your degree"/>                            
                         </label>
                         <br />
                         <br />
@@ -224,7 +224,7 @@ export function CandidateInformation(props) {
                     <div>
                         <label>
                             <h5>Degree</h5>
-                            <Dropdown className="dropdown-length txt-small" options={educations} onChange={selectDegree} value="Select your program"/>
+                            <Dropdown className="dropdown-length txt-small" options={educations} onChange={selectDegree} value="Select your degree"/>
                         </label>
                         <br />
                         <br />
@@ -237,7 +237,7 @@ export function CandidateInformation(props) {
                 )}
                 <br />
                 <label>
-                    {validateGraduation ? <h5>Graduation Month</h5> : <h5 className='txt-red'>* Graduation Month</h5>}
+                    {validateGraduation ? <h5>Scheduled graduation</h5> : <h5 className='txt-red'>* Scheduled graduation</h5>}
                     
                     <input onInput={(v) => {
                         setGraduationDate(new Date(v.target.value + "-01"));

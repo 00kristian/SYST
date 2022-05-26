@@ -71,7 +71,7 @@
 }
 
 .btn-minus_quiz {
-    margin-left: 41%;
+    margin-left: 40%;
     color: #FF7837;
     background-color: #fff;
     border-color: #FF7837;
@@ -84,6 +84,11 @@
 .btn-next{
     padding-bottom: 5%;
     padding-right: 3%;
+}
+
+.btn-plus{
+    padding: 8px 15px;
+    font-weight: bold;
 }
 
 .btn-primary {
@@ -165,10 +170,10 @@
 
 .btn-submit{
     font-family: 'Roboto', sans-serif;
-    padding: 15px 30px;
+    padding: 10px 25px;
     font-size: large;
     font-weight: 500;
-    box-shadow: 3px 3px #bc5928;
+    box-shadow: 2px 2px #bc5928;
 }
 
 /*---------------Divs---------------*/
