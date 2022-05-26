@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, useMsal } from "@azure/msal-react";
 import {FetchOptions} from './FetchOptions';
 import Popup from 'reactjs-popup';
@@ -16,6 +16,7 @@ export function EventDetail(props) {
   const [numWinners, setNumWinners] = useState(0);
   const history = useHistory();
   const { instance, accounts } = useMsal();
+  const [calls, setCalls] = useState(0);
   
   const displayWinners = async (winnersId) => {
     
@@ -37,16 +38,19 @@ export function EventDetail(props) {
   const pickWinners = async () => {
 	const options = await FetchOptions.Options(instance, accounts, "GET");
     await fetch('api/events/winners'+"/"+props.match.params.id+"/" + numWinners, options);
+    setCalls((c) => c + 1)
   }
   
-  const clickToUpvoteCandidate =  async (id) => {
+  const clickToUpvoteCandidate = async (id) => {
     const options = await FetchOptions.Options(instance, accounts, "PUT");
     await fetch("api/candidates"+"/upvote/"+ id, options)
+    setCalls((c) => c + 1)
   }
 
   const clickToDownvoteCandidate = async (id) => {
 	const options = await FetchOptions.Options(instance, accounts, "DELETE");
     await fetch('api/candidates/' + id, options);
+    setCalls((c) => c + 1)
   }
 
   useEffect(async () => {
@@ -56,7 +60,7 @@ export function EventDetail(props) {
     let winnerNames = await displayWinners(data.winnersId);
     setEvent(data);
     setWinnerNames(winnerNames);
-  }, [pickWinners, clickToUpvoteCandidate, clickToDownvoteCandidate])
+  }, [calls])
 
   const editEvent = () => {
     history.push("/CreateEvent/" + props.match.params.id);
