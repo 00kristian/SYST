@@ -118,6 +118,8 @@ app.MapControllerRoute(
 
 app.MapFallbackToFile("index.html");;
 
-await app.SeedAsync();
+
+/*To add seedings, uncomment the line below.*/
+//await app.SeedAsync();
 
 app.Run();
