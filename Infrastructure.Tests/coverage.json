@@ -1,421 +1,6 @@
 {
-  "Core.dll": {
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Core\\AnswersDTO.cs": {
-      "Core.AnswersDTO": {
-        "System.Int32 Core.AnswersDTO::get_Id()": {
-          "Lines": {
-            "6": 2
-          },
-          "Branches": []
-        },
-        "System.Int32 Core.AnswersDTO::get_QuizId()": {
-          "Lines": {
-            "8": 4,
-            "9": 4
-          },
-          "Branches": []
-        },
-        "System.Int32 Core.AnswersDTO::get_EventId()": {
-          "Lines": {
-            "11": 3
-          },
-          "Branches": []
-        },
-        "System.String[] Core.AnswersDTO::get_Answers()": {
-          "Lines": {
-            "13": 3
-          },
-          "Branches": []
-        }
-      }
-    },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Core\\CandidateDTO.cs": {
-      "Core.CandidateDTO": {
-        "System.Int32 Core.CandidateDTO::get_Id()": {
-          "Lines": {
-            "8": 28,
-            "9": 28
-          },
-          "Branches": []
-        },
-        "System.String Core.CandidateDTO::get_Name()": {
-          "Lines": {
-            "11": 20,
-            "12": 20
-          },
-          "Branches": []
-        },
-        "System.String Core.CandidateDTO::get_Email()": {
-          "Lines": {
-            "14": 20,
-            "15": 20
-          },
-          "Branches": []
-        },
-        "System.String Core.CandidateDTO::get_CurrentDegree()": {
-          "Lines": {
-            "17": 18,
-            "18": 18
-          },
-          "Branches": []
-        },
-        "System.String Core.CandidateDTO::get_StudyProgram()": {
-          "Lines": {
-            "20": 18,
-            "21": 18
-          },
-          "Branches": []
-        },
-        "System.String Core.CandidateDTO::get_University()": {
-          "Lines": {
-            "23": 19,
-            "24": 19
-          },
-          "Branches": []
-        },
-        "System.String Core.CandidateDTO::get_GraduationDate()": {
-          "Lines": {
-            "26": 20,
-            "27": 20
-          },
-          "Branches": []
-        },
-        "System.Double Core.CandidateDTO::get_PercentageOfCorrectAnswers()": {
-          "Lines": {
-            "29": 8,
-            "30": 8
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.CandidateDTO::get_Events()": {
-          "Lines": {
-            "32": 4,
-            "33": 4
-          },
-          "Branches": []
-        },
-        "Core.QuizDTO Core.CandidateDTO::get_Quiz()": {
-          "Lines": {
-            "35": 2,
-            "36": 2
-          },
-          "Branches": []
-        },
-        "System.Boolean Core.CandidateDTO::get_IsUpvoted()": {
-          "Lines": {
-            "38": 12,
-            "39": 12
-          },
-          "Branches": []
-        },
-        "System.DateTime Core.CandidateDTO::get_Created()": {
-          "Lines": {
-            "41": 6,
-            "42": 6
-          },
-          "Branches": []
-        }
-      }
-    },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Core\\CreateCandidateDTO.cs": {
-      "Core.CreateCandidateDTO": {
-        "System.Int32 Core.CreateCandidateDTO::get_Id()": {
-          "Lines": {
-            "8": 0,
-            "9": 0
-          },
-          "Branches": []
-        },
-        "System.String Core.CreateCandidateDTO::get_Name()": {
-          "Lines": {
-            "11": 4,
-            "12": 4
-          },
-          "Branches": []
-        },
-        "System.String Core.CreateCandidateDTO::get_Email()": {
-          "Lines": {
-            "14": 6,
-            "15": 6,
-            "16": 6
-          },
-          "Branches": []
-        },
-        "System.String Core.CreateCandidateDTO::get_CurrentDegree()": {
-          "Lines": {
-            "18": 4,
-            "19": 4
-          },
-          "Branches": []
-        },
-        "System.String Core.CreateCandidateDTO::get_StudyProgram()": {
-          "Lines": {
-            "21": 4,
-            "22": 4
-          },
-          "Branches": []
-        },
-        "System.String Core.CreateCandidateDTO::get_University()": {
-          "Lines": {
-            "24": 4,
-            "25": 4
-          },
-          "Branches": []
-        },
-        "System.String Core.CreateCandidateDTO::get_GraduationDate()": {
-          "Lines": {
-            "27": 4,
-            "28": 4
-          },
-          "Branches": []
-        },
-        "System.Boolean Core.CreateCandidateDTO::get_IsUpvoted()": {
-          "Lines": {
-            "30": 4,
-            "31": 4
-          },
-          "Branches": []
-        },
-        "System.DateTime Core.CreateCandidateDTO::get_Created()": {
-          "Lines": {
-            "33": 0,
-            "34": 0
-          },
-          "Branches": []
-        }
-      }
-    },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Core\\CreateEventDTO.cs": {
-      "Core.CreateEventDTO": {
-        "System.String Core.CreateEventDTO::get_Name()": {
-          "Lines": {
-            "8": 8,
-            "9": 8
-          },
-          "Branches": []
-        },
-        "System.String Core.CreateEventDTO::get_Date()": {
-          "Lines": {
-            "11": 7,
-            "12": 7
-          },
-          "Branches": []
-        },
-        "System.String Core.CreateEventDTO::get_Location()": {
-          "Lines": {
-            "14": 7,
-            "15": 7
-          },
-          "Branches": []
-        }
-      }
-    },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Core\\CreateQuestionDTO.cs": {
-      "Core.CreateQuestionDTO": {
-        "System.String Core.CreateQuestionDTO::get_Representation()": {
-          "Lines": {
-            "8": 8,
-            "9": 8
-          },
-          "Branches": []
-        },
-        "System.String Core.CreateQuestionDTO::get_Answer()": {
-          "Lines": {
-            "11": 8,
-            "12": 8
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<System.String> Core.CreateQuestionDTO::get_Options()": {
-          "Lines": {
-            "14": 5,
-            "15": 5
-          },
-          "Branches": []
-        },
-        "System.String Core.CreateQuestionDTO::get_ImageURl()": {
-          "Lines": {
-            "17": 2,
-            "18": 2
-          },
-          "Branches": []
-        }
-      }
-    },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Core\\CreateQuizDTO.cs": {
-      "Core.CreateQuizDTO": {
-        "System.String Core.CreateQuizDTO::get_Name()": {
-          "Lines": {
-            "7": 5,
-            "8": 5
-          },
-          "Branches": []
-        }
-      }
-    },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Core\\EventDTO.cs": {
-      "Core.EventDTO": {
-        "System.Int32 Core.EventDTO::get_Id()": {
-          "Lines": {
-            "8": 9,
-            "9": 9
-          },
-          "Branches": []
-        },
-        "System.String Core.EventDTO::get_Name()": {
-          "Lines": {
-            "11": 10,
-            "12": 10
-          },
-          "Branches": []
-        },
-        "System.String Core.EventDTO::get_Date()": {
-          "Lines": {
-            "14": 10,
-            "15": 10
-          },
-          "Branches": []
-        },
-        "System.String Core.EventDTO::get_Location()": {
-          "Lines": {
-            "17": 10,
-            "18": 10
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<Core.CandidateDTO> Core.EventDTO::get_Candidates()": {
-          "Lines": {
-            "20": 5
-          },
-          "Branches": []
-        },
-        "Core.QuizDTO Core.EventDTO::get_Quiz()": {
-          "Lines": {
-            "22": 9
-          },
-          "Branches": []
-        },
-        "System.Double Core.EventDTO::get_Rating()": {
-          "Lines": {
-            "24": 10,
-            "25": 10
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<System.Int32> Core.EventDTO::get_WinnersId()": {
-          "Lines": {
-            "28": 5
-          },
-          "Branches": []
-        }
-      }
-    },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Core\\QuestionDTO.cs": {
-      "Core.QuestionDTO": {
-        "System.Int32 Core.QuestionDTO::get_Id()": {
-          "Lines": {
-            "8": 6,
-            "9": 6
-          },
-          "Branches": []
-        },
-        "System.String Core.QuestionDTO::get_Representation()": {
-          "Lines": {
-            "11": 6,
-            "12": 6
-          },
-          "Branches": []
-        },
-        "System.String Core.QuestionDTO::get_Answer()": {
-          "Lines": {
-            "14": 6,
-            "15": 6
-          },
-          "Branches": []
-        },
-        "System.String Core.QuestionDTO::get_ImageURl()": {
-          "Lines": {
-            "17": 6,
-            "18": 6
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<System.String> Core.QuestionDTO::get_Options()": {
-          "Lines": {
-            "20": 7,
-            "21": 7
-          },
-          "Branches": []
-        }
-      }
-    },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Core\\QuizDTO.cs": {
-      "Core.QuizDTO": {
-        "System.Int32 Core.QuizDTO::get_Id()": {
-          "Lines": {
-            "8": 19,
-            "9": 19
-          },
-          "Branches": []
-        },
-        "System.String Core.QuizDTO::get_Name()": {
-          "Lines": {
-            "11": 11,
-            "12": 11
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<Core.QuestionDTO> Core.QuizDTO::get_Questions()": {
-          "Lines": {
-            "14": 3,
-            "15": 3
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.QuizDTO::get_Events()": {
-          "Lines": {
-            "17": 2,
-            "18": 2
-          },
-          "Branches": []
-        },
-        "System.Collections.Generic.ICollection`1<Core.CandidateDTO> Core.QuizDTO::get_Candidates()": {
-          "Lines": {
-            "20": 2,
-            "21": 2
-          },
-          "Branches": []
-        }
-      }
-    },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Core\\UniversityAnswerDistributionDTO.cs": {
-      "Core.UniversityAnswerDistributionDTO": {
-        "System.String Core.UniversityAnswerDistributionDTO::get_Name()": {
-          "Lines": {
-            "5": 2,
-            "6": 2
-          },
-          "Branches": []
-        },
-        "System.Double[] Core.UniversityAnswerDistributionDTO::get_answerRates()": {
-          "Lines": {
-            "7": 4,
-            "8": 4
-          },
-          "Branches": []
-        },
-        "System.Int32[] Core.UniversityAnswerDistributionDTO::get_distribution()": {
-          "Lines": {
-            "9": 4,
-            "10": 4
-          },
-          "Branches": []
-        }
-      }
-    }
-  },
   "Infrastructure.dll": {
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Program.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Program.cs": {
       "Program": {
         "System.Void Program::<Main>$(System.String[])": {
           "Lines": {
@@ -433,7 +18,7 @@
         }
       }
     },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Entities\\Answer.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Entities/Answer.cs": {
       "Infrastructure.Answer": {
         "System.Int32 Infrastructure.Answer::get_Id()": {
           "Lines": {
@@ -455,11 +40,11 @@
         }
       }
     },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Entities\\Candidate.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Entities/Candidate.cs": {
       "Infrastructure.Candidate": {
         "System.Int32 Infrastructure.Candidate::get_Id()": {
           "Lines": {
-            "6": 96
+            "6": 97
           },
           "Branches": []
         },
@@ -537,7 +122,7 @@
         }
       }
     },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Entities\\Event.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Entities/Event.cs": {
       "Infrastructure.Event": {
         "System.Int32 Infrastructure.Event::get_Id()": {
           "Lines": {
@@ -589,7 +174,7 @@
         }
       }
     },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Entities\\Question.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Entities/Question.cs": {
       "Infrastructure.Question": {
         "System.Int32 Infrastructure.Question::get_Id()": {
           "Lines": {
@@ -599,25 +184,25 @@
         },
         "System.String Infrastructure.Question::get_Representation()": {
           "Lines": {
-            "5": 49
+            "5": 50
           },
           "Branches": []
         },
         "System.String Infrastructure.Question::get_Answer()": {
           "Lines": {
-            "6": 36
+            "6": 37
           },
           "Branches": []
         },
         "System.String Infrastructure.Question::get_ImageURL()": {
           "Lines": {
-            "7": 37
+            "7": 38
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<System.String> Infrastructure.Question::get_Options()": {
           "Lines": {
-            "8": 35
+            "8": 36
           },
           "Branches": []
         },
@@ -657,7 +242,7 @@
         }
       }
     },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Entities\\Quiz.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Entities/Quiz.cs": {
       "Infrastructure.Quiz": {
         "System.Int32 Infrastructure.Quiz::get_Id()": {
           "Lines": {
@@ -673,7 +258,7 @@
         },
         "System.Collections.Generic.ICollection`1<Infrastructure.Question> Infrastructure.Quiz::get_Questions()": {
           "Lines": {
-            "6": 49
+            "6": 50
           },
           "Branches": []
         },
@@ -691,7 +276,7 @@
         }
       }
     },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Entities\\SystematicContext.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Entities/SystematicContext.cs": {
       "Infrastructure.SystematicContext": {
         "Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Candidate> Infrastructure.SystematicContext::get_Candidates()": {
           "Lines": {
@@ -707,7 +292,7 @@
         },
         "Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Question> Infrastructure.SystematicContext::get_Questions()": {
           "Lines": {
-            "13": 169
+            "13": 170
           },
           "Branches": []
         },
@@ -781,7 +366,7 @@
         }
       }
     },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Entities\\SystematicContextFactory.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Entities/SystematicContextFactory.cs": {
       "Infrastructure.SystematicContextFactory": {
         "Infrastructure.SystematicContext Infrastructure.SystematicContextFactory::CreateDbContext(System.String[])": {
           "Lines": {
@@ -801,7 +386,7 @@
         }
       }
     },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Repositories\\CandidateRepository.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Repositories/CandidateRepository.cs": {
       "Infrastructure.CandidateRepository": {
         "System.Boolean Infrastructure.CandidateRepository::IsValid(System.String)": {
           "Lines": {
@@ -1470,7 +1055,7 @@
         }
       }
     },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Repositories\\EventRepository.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Repositories/EventRepository.cs": {
       "Infrastructure.EventRepository": {
         "System.Void Infrastructure.EventRepository::.ctor(Infrastructure.ISystematicContext)": {
           "Lines": {
@@ -1964,7 +1549,7 @@
         }
       }
     },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Repositories\\QuestionRepository.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Repositories/QuestionRepository.cs": {
       "Infrastructure.QuestionRepository": {
         "System.Void Infrastructure.QuestionRepository::.ctor(Infrastructure.ISystematicContext,System.String)": {
           "Lines": {
@@ -2177,7 +1762,7 @@
         }
       }
     },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Repositories\\QuizRepository.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Repositories/QuizRepository.cs": {
       "Infrastructure.QuizRepository": {
         "System.Void Infrastructure.QuizRepository::.ctor(Infrastructure.ISystematicContext,System.String)": {
           "Lines": {
@@ -2193,16 +1778,16 @@
       "Infrastructure.QuizRepository/<>c": {
         "Infrastructure.Question Infrastructure.QuizRepository/<>c::<Clone>b__10_0(Infrastructure.Question)": {
           "Lines": {
-            "162": 3,
-            "163": 3,
-            "164": 3,
-            "165": 3,
-            "166": 3,
-            "167": 3
+            "174": 3,
+            "175": 3,
+            "176": 3,
+            "177": 3,
+            "178": 3,
+            "179": 3
           },
           "Branches": [
             {
-              "Line": 162,
+              "Line": 174,
               "Offset": 51,
               "EndOffset": 53,
               "Path": 0,
@@ -2210,7 +1795,7 @@
               "Hits": 0
             },
             {
-              "Line": 162,
+              "Line": 174,
               "Offset": 51,
               "EndOffset": 60,
               "Path": 1,
@@ -2223,7 +1808,7 @@
       "Infrastructure.QuizRepository/<>c__DisplayClass9_0": {
         "System.Boolean Infrastructure.QuizRepository/<>c__DisplayClass9_0::<RemoveQuestion>b__0(Infrastructure.Question)": {
           "Lines": {
-            "134": 4
+            "146": 4
           },
           "Branches": []
         }
@@ -2231,26 +1816,26 @@
       "Infrastructure.QuizRepository/<AddQuestion>d__8": {
         "System.Void Infrastructure.QuizRepository/<AddQuestion>d__8::MoveNext()": {
           "Lines": {
-            "103": 2,
-            "104": 2,
-            "106": 3,
-            "108": 1,
-            "109": 0,
-            "110": 0,
-            "112": 1,
-            "113": 1,
-            "114": 1,
-            "115": 1,
-            "116": 1,
-            "117": 1,
-            "119": 1,
-            "121": 1,
-            "123": 1,
-            "124": 2
+            "115": 2,
+            "116": 2,
+            "118": 3,
+            "120": 1,
+            "121": 0,
+            "122": 0,
+            "124": 1,
+            "125": 1,
+            "126": 1,
+            "127": 1,
+            "128": 1,
+            "129": 1,
+            "131": 1,
+            "133": 1,
+            "135": 1,
+            "136": 2
           },
           "Branches": [
             {
-              "Line": 106,
+              "Line": 118,
               "Offset": 381,
               "EndOffset": 383,
               "Path": 0,
@@ -2258,7 +1843,7 @@
               "Hits": 1
             },
             {
-              "Line": 106,
+              "Line": 118,
               "Offset": 381,
               "EndOffset": 396,
               "Path": 1,
@@ -2266,7 +1851,7 @@
               "Hits": 1
             },
             {
-              "Line": 108,
+              "Line": 120,
               "Offset": 414,
               "EndOffset": 416,
               "Path": 0,
@@ -2274,7 +1859,7 @@
               "Hits": 0
             },
             {
-              "Line": 108,
+              "Line": 120,
               "Offset": 414,
               "EndOffset": 435,
               "Path": 1,
@@ -2287,28 +1872,28 @@
       "Infrastructure.QuizRepository/<Clone>d__10": {
         "System.Void Infrastructure.QuizRepository/<Clone>d__10::MoveNext()": {
           "Lines": {
-            "145": 1,
-            "146": 1,
-            "148": 1,
-            "150": 1,
-            "152": 1,
-            "154": 2,
-            "155": 3,
-            "156": 0,
-            "157": 0,
-            "158": 0,
-            "159": 1,
-            "161": 1,
-            "168": 1,
-            "170": 1,
+            "157": 1,
+            "158": 1,
+            "160": 1,
+            "162": 1,
+            "164": 1,
+            "166": 2,
+            "167": 3,
+            "168": 0,
+            "169": 0,
+            "170": 0,
             "171": 1,
             "173": 1,
-            "175": 1,
-            "176": 1
+            "180": 1,
+            "182": 1,
+            "183": 1,
+            "185": 1,
+            "187": 1,
+            "188": 1
           },
           "Branches": [
             {
-              "Line": 148,
+              "Line": 160,
               "Offset": 431,
               "EndOffset": 433,
               "Path": 0,
@@ -2316,7 +1901,7 @@
               "Hits": 0
             },
             {
-              "Line": 148,
+              "Line": 160,
               "Offset": 431,
               "EndOffset": 440,
               "Path": 1,
@@ -2324,7 +1909,7 @@
               "Hits": 1
             },
             {
-              "Line": 152,
+              "Line": 164,
               "Offset": 767,
               "EndOffset": 769,
               "Path": 0,
@@ -2332,7 +1917,7 @@
               "Hits": 0
             },
             {
-              "Line": 152,
+              "Line": 164,
               "Offset": 767,
               "EndOffset": 776,
               "Path": 1,
@@ -2340,7 +1925,7 @@
               "Hits": 1
             },
             {
-              "Line": 154,
+              "Line": 166,
               "Offset": 799,
               "EndOffset": 804,
               "Path": 0,
@@ -2348,7 +1933,7 @@
               "Hits": 1
             },
             {
-              "Line": 155,
+              "Line": 167,
               "Offset": 1330,
               "EndOffset": 850,
               "Path": 1,
@@ -2356,7 +1941,7 @@
               "Hits": 0
             },
             {
-              "Line": 157,
+              "Line": 169,
               "Offset": 1281,
               "EndOffset": 1283,
               "Path": 0,
@@ -2364,7 +1949,7 @@
               "Hits": 0
             },
             {
-              "Line": 157,
+              "Line": 169,
               "Offset": 1281,
               "EndOffset": 1311,
               "Path": 1,
@@ -2372,7 +1957,7 @@
               "Hits": 0
             },
             {
-              "Line": 155,
+              "Line": 167,
               "Offset": 1330,
               "EndOffset": 1335,
               "Path": 0,
@@ -2380,7 +1965,7 @@
               "Hits": 1
             },
             {
-              "Line": 154,
+              "Line": 166,
               "Offset": 799,
               "EndOffset": 1370,
               "Path": 1,
@@ -2388,7 +1973,7 @@
               "Hits": 1
             },
             {
-              "Line": 162,
+              "Line": 174,
               "Offset": 1420,
               "EndOffset": 1422,
               "Path": 0,
@@ -2396,7 +1981,7 @@
               "Hits": 0
             },
             {
-              "Line": 162,
+              "Line": 174,
               "Offset": 1420,
               "EndOffset": 1429,
               "Path": 1,
@@ -2411,14 +1996,23 @@
           "Lines": {
             "21": 2,
             "22": 3,
-            "23": 1,
             "24": 1,
             "25": 1,
             "26": 1,
+            "27": 1,
             "28": 1,
+            "29": 1,
             "30": 1,
             "32": 1,
-            "33": 2
+            "34": 1,
+            "35": 1,
+            "36": 1,
+            "37": 1,
+            "38": 1,
+            "40": 1,
+            "42": 1,
+            "44": 1,
+            "45": 2
           },
           "Branches": [
             {
@@ -2443,25 +2037,25 @@
       "Infrastructure.QuizRepository/<Delete>d__5": {
         "System.Void Infrastructure.QuizRepository/<Delete>d__5::MoveNext()": {
           "Lines": {
-            "44": 2,
-            "46": 2,
-            "48": 3,
-            "50": 2,
-            "51": 5,
-            "52": 1,
-            "53": 1,
-            "54": 1,
-            "55": 1,
-            "56": 1,
-            "57": 1,
-            "59": 1,
-            "61": 1,
-            "62": 1,
-            "63": 2
+            "56": 2,
+            "58": 2,
+            "60": 3,
+            "62": 2,
+            "63": 5,
+            "64": 1,
+            "65": 1,
+            "66": 1,
+            "67": 1,
+            "68": 1,
+            "69": 1,
+            "71": 1,
+            "73": 1,
+            "74": 1,
+            "75": 2
           },
           "Branches": [
             {
-              "Line": 48,
+              "Line": 60,
               "Offset": 519,
               "EndOffset": 521,
               "Path": 0,
@@ -2469,7 +2063,7 @@
               "Hits": 1
             },
             {
-              "Line": 48,
+              "Line": 60,
               "Offset": 519,
               "EndOffset": 528,
               "Path": 1,
@@ -2477,7 +2071,7 @@
               "Hits": 1
             },
             {
-              "Line": 50,
+              "Line": 62,
               "Offset": 546,
               "EndOffset": 551,
               "Path": 0,
@@ -2485,7 +2079,7 @@
               "Hits": 1
             },
             {
-              "Line": 51,
+              "Line": 63,
               "Offset": 1085,
               "EndOffset": 592,
               "Path": 1,
@@ -2493,7 +2087,7 @@
               "Hits": 1
             },
             {
-              "Line": 54,
+              "Line": 66,
               "Offset": 1003,
               "EndOffset": 1005,
               "Path": 0,
@@ -2501,7 +2095,7 @@
               "Hits": 0
             },
             {
-              "Line": 54,
+              "Line": 66,
               "Offset": 1003,
               "EndOffset": 1033,
               "Path": 1,
@@ -2509,7 +2103,7 @@
               "Hits": 1
             },
             {
-              "Line": 51,
+              "Line": 63,
               "Offset": 1085,
               "EndOffset": 1090,
               "Path": 0,
@@ -2517,7 +2111,7 @@
               "Hits": 1
             },
             {
-              "Line": 50,
+              "Line": 62,
               "Offset": 546,
               "EndOffset": 1125,
               "Path": 1,
@@ -2530,26 +2124,26 @@
       "Infrastructure.QuizRepository/<Read>d__6": {
         "System.Void Infrastructure.QuizRepository/<Read>d__6::MoveNext()": {
           "Lines": {
-            "67": 2,
-            "69": 2,
-            "70": 2,
-            "71": 2,
-            "72": 2,
-            "73": 2,
-            "74": 2,
-            "75": 2,
-            "76": 2,
-            "77": 2,
-            "78": 2,
             "79": 2,
-            "80": 2,
-            "82": 3,
-            "83": 1,
-            "84": 2
+            "81": 2,
+            "82": 2,
+            "83": 2,
+            "84": 2,
+            "85": 2,
+            "86": 2,
+            "87": 2,
+            "88": 2,
+            "89": 2,
+            "90": 2,
+            "91": 2,
+            "92": 2,
+            "94": 3,
+            "95": 1,
+            "96": 2
           },
           "Branches": [
             {
-              "Line": 82,
+              "Line": 94,
               "Offset": 938,
               "EndOffset": 940,
               "Path": 0,
@@ -2557,7 +2151,7 @@
               "Hits": 1
             },
             {
-              "Line": 82,
+              "Line": 94,
               "Offset": 938,
               "EndOffset": 955,
               "Path": 1,
@@ -2570,10 +2164,10 @@
       "Infrastructure.QuizRepository/<ReadAll>d__4": {
         "System.Void Infrastructure.QuizRepository/<ReadAll>d__4::MoveNext()": {
           "Lines": {
-            "37": 1,
-            "38": 1,
-            "39": 1,
-            "40": 1
+            "49": 1,
+            "50": 1,
+            "51": 1,
+            "52": 1
           },
           "Branches": []
         }
@@ -2581,17 +2175,17 @@
       "Infrastructure.QuizRepository/<RemoveQuestion>d__9": {
         "System.Void Infrastructure.QuizRepository/<RemoveQuestion>d__9::MoveNext()": {
           "Lines": {
-            "129": 3,
-            "130": 3,
-            "132": 4,
-            "136": 3,
-            "138": 1,
-            "140": 1,
-            "141": 3
+            "141": 3,
+            "142": 3,
+            "144": 4,
+            "148": 3,
+            "150": 1,
+            "152": 1,
+            "153": 3
           },
           "Branches": [
             {
-              "Line": 132,
+              "Line": 144,
               "Offset": 387,
               "EndOffset": 389,
               "Path": 0,
@@ -2599,7 +2193,7 @@
               "Hits": 1
             },
             {
-              "Line": 132,
+              "Line": 144,
               "Offset": 387,
               "EndOffset": 396,
               "Path": 1,
@@ -2607,7 +2201,7 @@
               "Hits": 2
             },
             {
-              "Line": 136,
+              "Line": 148,
               "Offset": 453,
               "EndOffset": 455,
               "Path": 0,
@@ -2615,7 +2209,7 @@
               "Hits": 1
             },
             {
-              "Line": 136,
+              "Line": 148,
               "Offset": 453,
               "EndOffset": 459,
               "Path": 1,
@@ -2628,17 +2222,17 @@
       "Infrastructure.QuizRepository/<Update>d__7": {
         "System.Void Infrastructure.QuizRepository/<Update>d__7::MoveNext()": {
           "Lines": {
-            "88": 2,
-            "89": 2,
-            "91": 3,
-            "93": 1,
-            "95": 1,
-            "97": 1,
-            "98": 2
+            "100": 2,
+            "101": 2,
+            "103": 3,
+            "105": 1,
+            "107": 1,
+            "109": 1,
+            "110": 2
           },
           "Branches": [
             {
-              "Line": 91,
+              "Line": 103,
               "Offset": 319,
               "EndOffset": 321,
               "Path": 0,
@@ -2646,7 +2240,7 @@
               "Hits": 1
             },
             {
-              "Line": 91,
+              "Line": 103,
               "Offset": 319,
               "EndOffset": 328,
               "Path": 1,
@@ -2657,7 +2251,7 @@
         }
       }
     },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Migrations\\20220519104718_pikachu.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Migrations/20220519104718_pikachu.cs": {
       "Infrastructure.Migrations.pikachu": {
         "System.Void Infrastructure.Migrations.pikachu::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)": {
           "Lines": {
@@ -2848,7 +2442,7 @@
         }
       }
     },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Migrations\\20220519104718_pikachu.Designer.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Migrations/20220519104718_pikachu.Designer.cs": {
       "Infrastructure.Migrations.pikachu": {
         "System.Void Infrastructure.Migrations.pikachu::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)": {
           "Lines": {
@@ -3092,7 +2686,7 @@
         }
       }
     },
-    "C:\\Users\\mille\\OneDrive\\Skrivebord\\SYST\\Infrastructure\\Migrations\\SystematicContextModelSnapshot.cs": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Infrastructure/Migrations/SystematicContextModelSnapshot.cs": {
       "Infrastructure.Migrations.SystematicContextModelSnapshot": {
         "System.Void Infrastructure.Migrations.SystematicContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)": {
           "Lines": {
@@ -3331,6 +2925,421 @@
             "264": 0,
             "265": 0,
             "267": 0
+          },
+          "Branches": []
+        }
+      }
+    }
+  },
+  "Core.dll": {
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Core/AnswersDTO.cs": {
+      "Core.AnswersDTO": {
+        "System.Int32 Core.AnswersDTO::get_Id()": {
+          "Lines": {
+            "6": 2
+          },
+          "Branches": []
+        },
+        "System.Int32 Core.AnswersDTO::get_QuizId()": {
+          "Lines": {
+            "8": 4,
+            "9": 4
+          },
+          "Branches": []
+        },
+        "System.Int32 Core.AnswersDTO::get_EventId()": {
+          "Lines": {
+            "11": 3
+          },
+          "Branches": []
+        },
+        "System.String[] Core.AnswersDTO::get_Answers()": {
+          "Lines": {
+            "13": 3
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Core/CandidateDTO.cs": {
+      "Core.CandidateDTO": {
+        "System.Int32 Core.CandidateDTO::get_Id()": {
+          "Lines": {
+            "8": 29,
+            "9": 29
+          },
+          "Branches": []
+        },
+        "System.String Core.CandidateDTO::get_Name()": {
+          "Lines": {
+            "11": 20,
+            "12": 20
+          },
+          "Branches": []
+        },
+        "System.String Core.CandidateDTO::get_Email()": {
+          "Lines": {
+            "14": 20,
+            "15": 20
+          },
+          "Branches": []
+        },
+        "System.String Core.CandidateDTO::get_CurrentDegree()": {
+          "Lines": {
+            "17": 18,
+            "18": 18
+          },
+          "Branches": []
+        },
+        "System.String Core.CandidateDTO::get_StudyProgram()": {
+          "Lines": {
+            "20": 18,
+            "21": 18
+          },
+          "Branches": []
+        },
+        "System.String Core.CandidateDTO::get_University()": {
+          "Lines": {
+            "23": 19,
+            "24": 19
+          },
+          "Branches": []
+        },
+        "System.String Core.CandidateDTO::get_GraduationDate()": {
+          "Lines": {
+            "26": 20,
+            "27": 20
+          },
+          "Branches": []
+        },
+        "System.Double Core.CandidateDTO::get_PercentageOfCorrectAnswers()": {
+          "Lines": {
+            "29": 8,
+            "30": 8
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.CandidateDTO::get_Events()": {
+          "Lines": {
+            "32": 4,
+            "33": 4
+          },
+          "Branches": []
+        },
+        "Core.QuizDTO Core.CandidateDTO::get_Quiz()": {
+          "Lines": {
+            "35": 2,
+            "36": 2
+          },
+          "Branches": []
+        },
+        "System.Boolean Core.CandidateDTO::get_IsUpvoted()": {
+          "Lines": {
+            "38": 12,
+            "39": 12
+          },
+          "Branches": []
+        },
+        "System.DateTime Core.CandidateDTO::get_Created()": {
+          "Lines": {
+            "41": 6,
+            "42": 6
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Core/CreateCandidateDTO.cs": {
+      "Core.CreateCandidateDTO": {
+        "System.Int32 Core.CreateCandidateDTO::get_Id()": {
+          "Lines": {
+            "8": 0,
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String Core.CreateCandidateDTO::get_Name()": {
+          "Lines": {
+            "11": 4,
+            "12": 4
+          },
+          "Branches": []
+        },
+        "System.String Core.CreateCandidateDTO::get_Email()": {
+          "Lines": {
+            "14": 6,
+            "15": 6,
+            "16": 6
+          },
+          "Branches": []
+        },
+        "System.String Core.CreateCandidateDTO::get_CurrentDegree()": {
+          "Lines": {
+            "18": 4,
+            "19": 4
+          },
+          "Branches": []
+        },
+        "System.String Core.CreateCandidateDTO::get_StudyProgram()": {
+          "Lines": {
+            "21": 4,
+            "22": 4
+          },
+          "Branches": []
+        },
+        "System.String Core.CreateCandidateDTO::get_University()": {
+          "Lines": {
+            "24": 4,
+            "25": 4
+          },
+          "Branches": []
+        },
+        "System.String Core.CreateCandidateDTO::get_GraduationDate()": {
+          "Lines": {
+            "27": 4,
+            "28": 4
+          },
+          "Branches": []
+        },
+        "System.Boolean Core.CreateCandidateDTO::get_IsUpvoted()": {
+          "Lines": {
+            "30": 4,
+            "31": 4
+          },
+          "Branches": []
+        },
+        "System.DateTime Core.CreateCandidateDTO::get_Created()": {
+          "Lines": {
+            "33": 0,
+            "34": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Core/CreateEventDTO.cs": {
+      "Core.CreateEventDTO": {
+        "System.String Core.CreateEventDTO::get_Name()": {
+          "Lines": {
+            "8": 8,
+            "9": 8
+          },
+          "Branches": []
+        },
+        "System.String Core.CreateEventDTO::get_Date()": {
+          "Lines": {
+            "11": 7,
+            "12": 7
+          },
+          "Branches": []
+        },
+        "System.String Core.CreateEventDTO::get_Location()": {
+          "Lines": {
+            "14": 7,
+            "15": 7
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Core/CreateQuestionDTO.cs": {
+      "Core.CreateQuestionDTO": {
+        "System.String Core.CreateQuestionDTO::get_Representation()": {
+          "Lines": {
+            "8": 8,
+            "9": 8
+          },
+          "Branches": []
+        },
+        "System.String Core.CreateQuestionDTO::get_Answer()": {
+          "Lines": {
+            "11": 8,
+            "12": 8
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<System.String> Core.CreateQuestionDTO::get_Options()": {
+          "Lines": {
+            "14": 5,
+            "15": 5
+          },
+          "Branches": []
+        },
+        "System.String Core.CreateQuestionDTO::get_ImageURl()": {
+          "Lines": {
+            "17": 2,
+            "18": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Core/CreateQuizDTO.cs": {
+      "Core.CreateQuizDTO": {
+        "System.String Core.CreateQuizDTO::get_Name()": {
+          "Lines": {
+            "7": 5,
+            "8": 5
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Core/EventDTO.cs": {
+      "Core.EventDTO": {
+        "System.Int32 Core.EventDTO::get_Id()": {
+          "Lines": {
+            "8": 9,
+            "9": 9
+          },
+          "Branches": []
+        },
+        "System.String Core.EventDTO::get_Name()": {
+          "Lines": {
+            "11": 10,
+            "12": 10
+          },
+          "Branches": []
+        },
+        "System.String Core.EventDTO::get_Date()": {
+          "Lines": {
+            "14": 10,
+            "15": 10
+          },
+          "Branches": []
+        },
+        "System.String Core.EventDTO::get_Location()": {
+          "Lines": {
+            "17": 10,
+            "18": 10
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.CandidateDTO> Core.EventDTO::get_Candidates()": {
+          "Lines": {
+            "20": 5
+          },
+          "Branches": []
+        },
+        "Core.QuizDTO Core.EventDTO::get_Quiz()": {
+          "Lines": {
+            "22": 9
+          },
+          "Branches": []
+        },
+        "System.Double Core.EventDTO::get_Rating()": {
+          "Lines": {
+            "24": 10,
+            "25": 10
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<System.Int32> Core.EventDTO::get_WinnersId()": {
+          "Lines": {
+            "28": 5
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Core/QuestionDTO.cs": {
+      "Core.QuestionDTO": {
+        "System.Int32 Core.QuestionDTO::get_Id()": {
+          "Lines": {
+            "8": 6,
+            "9": 6
+          },
+          "Branches": []
+        },
+        "System.String Core.QuestionDTO::get_Representation()": {
+          "Lines": {
+            "11": 6,
+            "12": 6
+          },
+          "Branches": []
+        },
+        "System.String Core.QuestionDTO::get_Answer()": {
+          "Lines": {
+            "14": 6,
+            "15": 6
+          },
+          "Branches": []
+        },
+        "System.String Core.QuestionDTO::get_ImageURl()": {
+          "Lines": {
+            "17": 6,
+            "18": 6
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<System.String> Core.QuestionDTO::get_Options()": {
+          "Lines": {
+            "20": 7,
+            "21": 7
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Core/QuizDTO.cs": {
+      "Core.QuizDTO": {
+        "System.Int32 Core.QuizDTO::get_Id()": {
+          "Lines": {
+            "8": 19,
+            "9": 19
+          },
+          "Branches": []
+        },
+        "System.String Core.QuizDTO::get_Name()": {
+          "Lines": {
+            "11": 11,
+            "12": 11
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.QuestionDTO> Core.QuizDTO::get_Questions()": {
+          "Lines": {
+            "14": 3,
+            "15": 3
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.EventDTO> Core.QuizDTO::get_Events()": {
+          "Lines": {
+            "17": 2,
+            "18": 2
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<Core.CandidateDTO> Core.QuizDTO::get_Candidates()": {
+          "Lines": {
+            "20": 2,
+            "21": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/Users/isabellaharriesmagnusdottir/Documents/IT-Universitetet/4. Semester/Industrial Software Engeneering (ISE)/SYST/Core/UniversityAnswerDistributionDTO.cs": {
+      "Core.UniversityAnswerDistributionDTO": {
+        "System.String Core.UniversityAnswerDistributionDTO::get_Name()": {
+          "Lines": {
+            "5": 2,
+            "6": 2
+          },
+          "Branches": []
+        },
+        "System.Double[] Core.UniversityAnswerDistributionDTO::get_answerRates()": {
+          "Lines": {
+            "7": 4,
+            "8": 4
+          },
+          "Branches": []
+        },
+        "System.Int32[] Core.UniversityAnswerDistributionDTO::get_distribution()": {
+          "Lines": {
+            "9": 4,
+            "10": 4
           },
           "Branches": []
         }
