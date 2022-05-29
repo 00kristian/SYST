@@ -18,3 +18,8 @@ Required installations:
 - In a powershell terminal go to the root map and run the "npmDeps.ps1" script, this will install all required node dependencies. (Only first time). <br/>
 - Then navigate back to the root map and run the "start.ps1" script and after some time you can open the application in your browser. (Only if database container is not running). <br/>
 - Else you use "dotnet run" from the "Syst" directory. <br/>
+
+# Things to note:
+One specific bug was encountered prior to the release. The team believes it only exists while there's seedings in the system. The code for seeding is commented out as a default, but beware that if seedings are present then a bug can be encountered while deleting events. This bug leads to an error page, but only on the first attempt at deleting, afterwards the bug should not longer cause problems.<br/>
+
+Another thing to note is that the database is set up to delete candidates after 2 years.
