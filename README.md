@@ -26,3 +26,6 @@ The code for seeding is commented out as a default, but beware that if seedings 
 
 <h3> Candidates set to delete after 2 years </h3>
 Another thing to note is that the database is set up to delete candidates after 2 years. This is done to comply with the the GDPR rules, as was required for the system.
+
+<h3>Used code</h3>
+A third thing to note is that some of the code is based on a previous project during the past semester and there can therefore be some similarities.
